@@ -1,6 +1,6 @@
 <?php
 
-namespace XoopsModules\Wgwfhdiaries\Common;
+namespace XoopsModules\Wgdiaries\Common;
 
 /*
  You may not change or alter any portion of this comment or credits
@@ -12,7 +12,7 @@ namespace XoopsModules\Wgwfhdiaries\Common;
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
-use \XoopsModules\Wgwfhdiaries\Common;
+use \XoopsModules\Wgdiaries\Common;
 
 /**
  * Class Migrate synchronize existing tables with target schema
@@ -29,7 +29,7 @@ class Migrate extends \Xmf\Database\Migrate
     private $renameTables;
 
     /**
-     * @param \XoopsModules\Wgwfhdiaries\Common\Configurator|null $configurator
+     * @param \XoopsModules\Wgdiaries\Common\Configurator|null $configurator
      */
     public function __construct(Common\Configurator $configurator = null)
     {

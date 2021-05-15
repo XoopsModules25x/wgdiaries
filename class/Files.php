@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 
-namespace XoopsModules\Wgwfhdiaries;
+namespace XoopsModules\Wgdiaries;
 
 /*
  You may not change or alter any portion of this comment or credits
@@ -20,13 +20,13 @@ namespace XoopsModules\Wgwfhdiaries;
  *
  * @copyright      2020 XOOPS Project (https://xooops.org)
  * @license        GPL 2.0 or later
- * @package        wgwfhdiaries
+ * @package        wgdiaries
  * @since          1.0
  * @min_xoops      2.5.9
  * @author         wedega - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
  */
 
-use XoopsModules\Wgwfhdiaries;
+use XoopsModules\Wgdiaries;
 
 \defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
@@ -80,44 +80,44 @@ class Files extends \XoopsObject
 	 */
 	public function getFormFiles($action = false)
 	{
-		$helper = \XoopsModules\Wgwfhdiaries\Helper::getInstance();
+		$helper = \XoopsModules\Wgdiaries\Helper::getInstance();
 		if (!$action) {
 			$action = $_SERVER['REQUEST_URI'];
 		}
 		$isAdmin = $GLOBALS['xoopsUser']->isAdmin($GLOBALS['xoopsModule']->mid());
 		// Title
-		$title = $this->isNew() ? \sprintf(_AM_WGWFHDIARIES_FILE_ADD) : \sprintf(_AM_WGWFHDIARIES_FILE_EDIT);
+		$title = $this->isNew() ? \sprintf(_AM_WGDIARIES_FILE_ADD) : \sprintf(_AM_WGDIARIES_FILE_EDIT);
 		// Get Theme Form
 		\xoops_load('XoopsFormLoader');
 		$form = new \XoopsThemeForm($title, 'form', $action, 'post', true);
 		$form->setExtra('enctype="multipart/form-data"');
 		// Form Table items
 		$itemsHandler = $helper->getHandler('Items');
-		$fileItemidSelect = new \XoopsFormSelect(_AM_WGWFHDIARIES_FILE_ITEMID, 'file_itemid', $this->getVar('file_itemid'));
+		$fileItemidSelect = new \XoopsFormSelect(_AM_WGDIARIES_FILE_ITEMID, 'file_itemid', $this->getVar('file_itemid'));
 		$fileItemidSelect->addOptionArray($itemsHandler->getList());
 		$form->addElement($fileItemidSelect, true);
 		// Form Text fileDesc
-		$form->addElement(new \XoopsFormText(_AM_WGWFHDIARIES_FILE_DESC, 'file_desc', 50, 255, $this->getVar('file_desc')));
+		$form->addElement(new \XoopsFormText(_AM_WGDIARIES_FILE_DESC, 'file_desc', 50, 255, $this->getVar('file_desc')));
 		// Form File: Upload fileName
 		$fileName = $this->isNew() ? '' : $this->getVar('file_name');
 		if ($permissionUpload) {
-			$fileUploadTray = new \XoopsFormElementTray(_AM_WGWFHDIARIES_FILE_NAME, '<br>');
-			$fileDirectory = '/uploads/wgwfhdiaries/files/files';
+			$fileUploadTray = new \XoopsFormElementTray(_AM_WGDIARIES_FILE_NAME, '<br>');
+			$fileDirectory = '/uploads/wgdiaries/files/files';
 			if (!$this->isNew()) {
-				$fileUploadTray->addElement(new \XoopsFormLabel(\sprintf(_AM_WGWFHDIARIES_FILE_NAME_UPLOADS, ".{$fileDirectory}/"), $fileName));
+				$fileUploadTray->addElement(new \XoopsFormLabel(\sprintf(_AM_WGDIARIES_FILE_NAME_UPLOADS, ".{$fileDirectory}/"), $fileName));
 			}
 			$maxsize = $helper->getConfig('maxsize_file');
 			$fileUploadTray->addElement(new \XoopsFormFile('', 'file_name', $maxsize));
-			$fileUploadTray->addElement(new \XoopsFormLabel(_AM_WGWFHDIARIES_FORM_UPLOAD_SIZE, ($maxsize / 1048576) . ' '  . _AM_WGWFHDIARIES_FORM_UPLOAD_SIZE_MB));
+			$fileUploadTray->addElement(new \XoopsFormLabel(_AM_WGDIARIES_FORM_UPLOAD_SIZE, ($maxsize / 1048576) . ' '  . _AM_WGDIARIES_FORM_UPLOAD_SIZE_MB));
 			$form->addElement($fileUploadTray);
 		} else {
 			$form->addElement(new \XoopsFormHidden('file_name', $fileName));
 		}
 		// Form Text Date Select fileDatecreated
 		$fileDatecreated = $this->isNew() ?: $this->getVar('file_datecreated');
-		$form->addElement(new \XoopsFormDateTime(_AM_WGWFHDIARIES_FILE_DATECREATED, 'file_datecreated', '', $fileDatecreated));
+		$form->addElement(new \XoopsFormDateTime(_AM_WGDIARIES_FILE_DATECREATED, 'file_datecreated', '', $fileDatecreated));
 		// Form Select User fileSubmitter
-		$form->addElement(new \XoopsFormSelectUser(_AM_WGWFHDIARIES_FILE_SUBMITTER, 'file_submitter', false, $this->getVar('file_submitter')));
+		$form->addElement(new \XoopsFormSelectUser(_AM_WGDIARIES_FILE_SUBMITTER, 'file_submitter', false, $this->getVar('file_submitter')));
 		// To Save
 		$form->addElement(new \XoopsFormHidden('op', 'save'));
 		$form->addElement(new \XoopsFormButtonTray('', _SUBMIT, 'submit', '', false));
@@ -133,7 +133,7 @@ class Files extends \XoopsObject
 	 */
 	public function getValuesFiles($keys = null, $format = null, $maxDepth = null)
 	{
-		$helper  = \XoopsModules\Wgwfhdiaries\Helper::getInstance();
+		$helper  = \XoopsModules\Wgdiaries\Helper::getInstance();
 		$ret = $this->getValues($keys, $format, $maxDepth);
 		$ret['id']          = $this->getVar('file_id');
 		$itemsHandler = $helper->getHandler('Items');

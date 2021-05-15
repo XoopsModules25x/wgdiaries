@@ -1,6 +1,6 @@
 <?php
 
-namespace XoopsModules\Wgwfhdiaries\Common;
+namespace XoopsModules\Wgdiaries\Common;
 
 /*
  You may not change or alter any portion of this comment or credits
@@ -13,7 +13,7 @@ namespace XoopsModules\Wgwfhdiaries\Common;
  */
 
 /**
- * Wgwfhdiaries module
+ * Wgdiaries module
  *
  * @copyright       XOOPS Project (https://xoops.org)
  * @license         GNU GPL 2 or later (http://www.gnu.org/licenses/gpl-2.0.html)
@@ -21,7 +21,7 @@ namespace XoopsModules\Wgwfhdiaries\Common;
  */
 
 use Xmf\Request;
-use XoopsModules\Wgwfhdiaries;
+use XoopsModules\Wgdiaries;
 
 //\defined('XOOPS_ROOT_PATH') || die('XOOPS root path not defined');
 

@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 
-namespace XoopsModules\Wgwfhdiaries;
+namespace XoopsModules\Wgdiaries;
 
 /*
  You may not change or alter any portion of this comment or credits
@@ -20,13 +20,13 @@ namespace XoopsModules\Wgwfhdiaries;
  *
  * @copyright      2020 XOOPS Project (https://xooops.org)
  * @license        GPL 2.0 or later
- * @package        wgwfhdiaries
+ * @package        wgdiaries
  * @since          1.0
  * @min_xoops      2.5.9
  * @author         wedega - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
  */
 
-use XoopsModules\Wgwfhdiaries;
+use XoopsModules\Wgdiaries;
 
 \defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
@@ -80,13 +80,13 @@ class Items extends \XoopsObject
 	 */
 	public function getFormItems($action = false)
 	{
-		$helper = \XoopsModules\Wgwfhdiaries\Helper::getInstance();
+		$helper = \XoopsModules\Wgdiaries\Helper::getInstance();
 		if (!$action) {
 			$action = $_SERVER['REQUEST_URI'];
 		}
 		$isAdmin = $GLOBALS['xoopsUser']->isAdmin($GLOBALS['xoopsModule']->mid());
 		// Title
-		$title = $this->isNew() ? \sprintf(_AM_WGWFHDIARIES_ITEM_ADD) : \sprintf(_AM_WGWFHDIARIES_ITEM_EDIT);
+		$title = $this->isNew() ? \sprintf(_AM_WGDIARIES_ITEM_ADD) : \sprintf(_AM_WGDIARIES_ITEM_EDIT);
 		// Get Theme Form
 		\xoops_load('XoopsFormLoader');
 		$form = new \XoopsThemeForm($title, 'form', $action, 'post', true);
@@ -105,18 +105,18 @@ class Items extends \XoopsObject
 		$editorConfigs['width'] = '100%';
 		$editorConfigs['height'] = '400px';
 		$editorConfigs['editor'] = $editor;
-		$form->addElement(new \XoopsFormEditor(_AM_WGWFHDIARIES_ITEM_REMARKS, 'item_remarks', $editorConfigs));
+		$form->addElement(new \XoopsFormEditor(_AM_WGDIARIES_ITEM_REMARKS, 'item_remarks', $editorConfigs));
 		// Form Text Date Select itemDatefrom
 		$itemDatefrom = $this->isNew() ?: $this->getVar('item_datefrom');
-		$form->addElement(new \XoopsFormDateTime(_AM_WGWFHDIARIES_ITEM_DATEFROM, 'item_datefrom', '', $itemDatefrom), true);
+		$form->addElement(new \XoopsFormDateTime(_AM_WGDIARIES_ITEM_DATEFROM, 'item_datefrom', '', $itemDatefrom), true);
 		// Form Text Date Select itemDateto
 		$itemDateto = $this->isNew() ?: $this->getVar('item_dateto');
-		$form->addElement(new \XoopsFormDateTime(_AM_WGWFHDIARIES_ITEM_DATETO, 'item_dateto', '', $itemDateto), true);
+		$form->addElement(new \XoopsFormDateTime(_AM_WGDIARIES_ITEM_DATETO, 'item_dateto', '', $itemDateto), true);
 		// Form Text Date Select itemDatecreated
 		$itemDatecreated = $this->isNew() ?: $this->getVar('item_datecreated');
-		$form->addElement(new \XoopsFormDateTime(_AM_WGWFHDIARIES_ITEM_DATECREATED, 'item_datecreated', '', $itemDatecreated));
+		$form->addElement(new \XoopsFormDateTime(_AM_WGDIARIES_ITEM_DATECREATED, 'item_datecreated', '', $itemDatecreated));
 		// Form Select User itemSubmitter
-		$form->addElement(new \XoopsFormSelectUser(_AM_WGWFHDIARIES_ITEM_SUBMITTER, 'item_submitter', false, $this->getVar('item_submitter')));
+		$form->addElement(new \XoopsFormSelectUser(_AM_WGDIARIES_ITEM_SUBMITTER, 'item_submitter', false, $this->getVar('item_submitter')));
 		// To Save
 		$form->addElement(new \XoopsFormHidden('op', 'save'));
 		$form->addElement(new \XoopsFormButtonTray('', _SUBMIT, 'submit', '', false));
@@ -132,8 +132,8 @@ class Items extends \XoopsObject
 	 */
 	public function getValuesItems($keys = null, $format = null, $maxDepth = null)
 	{
-		$helper  = \XoopsModules\Wgwfhdiaries\Helper::getInstance();
-		$utility = new \XoopsModules\Wgwfhdiaries\Utility();
+		$helper  = \XoopsModules\Wgdiaries\Helper::getInstance();
+		$utility = new \XoopsModules\Wgdiaries\Utility();
 		$ret = $this->getValues($keys, $format, $maxDepth);
 		$ret['id']            = $this->getVar('item_id');
 		$ret['remarks']       = $this->getVar('item_remarks', 'e');

@@ -17,19 +17,19 @@ declare(strict_types=1);
  *
  * @copyright      2020 XOOPS Project (https://xooops.org)
  * @license        GPL 2.0 or later
- * @package        wgwfhdiaries
+ * @package        wgdiaries
  * @since          1.0
  * @min_xoops      2.5.9
  * @author         wedega - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
  */
 
 use Xmf\Request;
-use XoopsModules\Wgwfhdiaries;
-use XoopsModules\Wgwfhdiaries\Constants;
-use XoopsModules\Wgwfhdiaries\Common;
+use XoopsModules\Wgdiaries;
+use XoopsModules\Wgdiaries\Constants;
+use XoopsModules\Wgdiaries\Common;
 
 require __DIR__ . '/header.php';
-$GLOBALS['xoopsOption']['template_main'] = 'wgwfhdiaries_items.tpl';
+$GLOBALS['xoopsOption']['template_main'] = 'wgdiaries_items.tpl';
 include_once XOOPS_ROOT_PATH . '/header.php';
 
 $op    = Request::getCmd('op', 'list');
@@ -41,11 +41,11 @@ $itemId = Request::getInt('item_id', 0);
 $GLOBALS['xoTheme']->addStylesheet($style, null);
 // Paths
 $GLOBALS['xoopsTpl']->assign('xoops_icons32_url', XOOPS_ICONS32_URL);
-$GLOBALS['xoopsTpl']->assign('wgwfhdiaries_url', WGWFHDIARIES_URL);
+$GLOBALS['xoopsTpl']->assign('wgdiaries_url', WGDIARIES_URL);
 // Keywords
 $keywords = [];
 // Breadcrumbs
-$xoBreadcrumbs[] = ['title' => _MA_WGWFHDIARIES_INDEX, 'link' => 'index.php'];
+$xoBreadcrumbs[] = ['title' => _MA_WGDIARIES_INDEX, 'link' => 'index.php'];
 // Permissions
 $GLOBALS['xoopsTpl']->assign('showItem', $itemId > 0);
 
@@ -54,7 +54,7 @@ switch ($op) {
 	case 'list':
 	default:
 		// Breadcrumbs
-		$xoBreadcrumbs[] = ['title' => _MA_WGWFHDIARIES_ITEMS_LIST];
+		$xoBreadcrumbs[] = ['title' => _MA_WGDIARIES_ITEMS_LIST];
 		$crItems = new \CriteriaCompo();
 		if ($itemId > 0) {
 			$crItems->add(new \Criteria('item_id', $itemId));
@@ -120,7 +120,7 @@ switch ($op) {
 		// Insert Data
 		if ($itemsHandler->insert($itemsObj)) {
 			// redirect after insert
-			\redirect_header('items.php', 2, _MA_WGWFHDIARIES_FORM_OK);
+			\redirect_header('items.php', 2, _MA_WGDIARIES_FORM_OK);
 		}
 		// Get Form Error
 		$GLOBALS['xoopsTpl']->assign('error', $itemsObj->getHtmlErrors());
@@ -129,7 +129,7 @@ switch ($op) {
 		break;
 	case 'new':
 		// Breadcrumbs
-		$xoBreadcrumbs[] = ['title' => _MA_WGWFHDIARIES_ITEM_ADD];
+		$xoBreadcrumbs[] = ['title' => _MA_WGDIARIES_ITEM_ADD];
 		// Form Create
 		$itemsObj = $itemsHandler->create();
 		$form = $itemsObj->getFormItems();
@@ -137,10 +137,10 @@ switch ($op) {
 		break;
 	case 'edit':
 		// Breadcrumbs
-		$xoBreadcrumbs[] = ['title' => _MA_WGWFHDIARIES_ITEM_EDIT];
+		$xoBreadcrumbs[] = ['title' => _MA_WGDIARIES_ITEM_EDIT];
 		// Check params
 		if (0 == $itemId) {
-			\redirect_header('items.php?op=list', 3, _MA_WGWFHDIARIES_INVALID_PARAM);
+			\redirect_header('items.php?op=list', 3, _MA_WGDIARIES_INVALID_PARAM);
 		}
 		// Get Form
 		$itemsObj = $itemsHandler->get($itemId);
@@ -149,10 +149,10 @@ switch ($op) {
 		break;
 	case 'delete':
 		// Breadcrumbs
-		$xoBreadcrumbs[] = ['title' => _MA_WGWFHDIARIES_ITEM_DELETE];
+		$xoBreadcrumbs[] = ['title' => _MA_WGDIARIES_ITEM_DELETE];
 		// Check params
 		if (0 == $itemId) {
-			\redirect_header('items.php?op=list', 3, _MA_WGWFHDIARIES_INVALID_PARAM);
+			\redirect_header('items.php?op=list', 3, _MA_WGDIARIES_INVALID_PARAM);
 		}
 		$itemsObj = $itemsHandler->get($itemId);
 		$itemSubmitter = $itemsObj->getVar('item_submitter');
@@ -161,7 +161,7 @@ switch ($op) {
 				\redirect_header('items.php', 3, \implode(', ', $GLOBALS['xoopsSecurity']->getErrors()));
 			}
 			if ($itemsHandler->delete($itemsObj)) {
-				\redirect_header('items.php', 3, _MA_WGWFHDIARIES_FORM_DELETE_OK);
+				\redirect_header('items.php', 3, _MA_WGDIARIES_FORM_DELETE_OK);
 			} else {
 				$GLOBALS['xoopsTpl']->assign('error', $itemsObj->getHtmlErrors());
 			}
@@ -169,7 +169,7 @@ switch ($op) {
 			$xoopsconfirm = new Common\XoopsConfirm(
 				['ok' => 1, 'item_id' => $itemId, 'op' => 'delete'],
 				$_SERVER['REQUEST_URI'],
-				\sprintf(_MA_WGWFHDIARIES_FORM_SURE_DELETE, $itemsObj->getVar('item_submitter')));
+				\sprintf(_MA_WGDIARIES_FORM_SURE_DELETE, $itemsObj->getVar('item_submitter')));
 			$form = $xoopsconfirm->getFormXoopsConfirm();
 			$GLOBALS['xoopsTpl']->assign('form', $form->render());
 		}
@@ -177,12 +177,12 @@ switch ($op) {
 }
 
 // Keywords
-wgwfhdiariesMetaKeywords($helper->getConfig('keywords') . ', ' . \implode(',', $keywords));
+wgdiariesMetaKeywords($helper->getConfig('keywords') . ', ' . \implode(',', $keywords));
 unset($keywords);
 
 // Description
-wgwfhdiariesMetaDescription(_MA_WGWFHDIARIES_ITEMS_DESC);
-$GLOBALS['xoopsTpl']->assign('xoops_mpageurl', WGWFHDIARIES_URL.'/items.php');
-$GLOBALS['xoopsTpl']->assign('wgwfhdiaries_upload_url', WGWFHDIARIES_UPLOAD_URL);
+wgdiariesMetaDescription(_MA_WGDIARIES_ITEMS_DESC);
+$GLOBALS['xoopsTpl']->assign('xoops_mpageurl', WGDIARIES_URL.'/items.php');
+$GLOBALS['xoopsTpl']->assign('wgdiaries_upload_url', WGDIARIES_UPLOAD_URL);
 
 require __DIR__ . '/footer.php';

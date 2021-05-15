@@ -17,7 +17,7 @@ declare(strict_types=1);
  *
  * @copyright      2020 XOOPS Project (https://xooops.org)
  * @license        GPL 2.0 or later
- * @package        wgwfhdiaries
+ * @package        wgdiaries
  * @since          1.0
  * @min_xoops      2.5.9
  * @author         wedega - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
@@ -28,13 +28,13 @@ $moduleDirName = \basename(__DIR__);
 // Breadcrumbs
 $xoBreadcrumbs = [];
 // Get instance of module
-$helper = \XoopsModules\Wgwfhdiaries\Helper::getInstance();
+$helper = \XoopsModules\Wgdiaries\Helper::getInstance();
 $itemsHandler = $helper->getHandler('Items');
 $filesHandler = $helper->getHandler('Files');
 // 
 $myts = MyTextSanitizer::getInstance();
 // Default Css Style
-$style = WGWFHDIARIES_URL . '/assets/css/style.css';
+$style = WGDIARIES_URL . '/assets/css/style.css';
 // Smarty Default
 $sysPathIcon16 = $GLOBALS['xoopsModule']->getInfo('sysicons16');
 $sysPathIcon32 = $GLOBALS['xoopsModule']->getInfo('sysicons32');

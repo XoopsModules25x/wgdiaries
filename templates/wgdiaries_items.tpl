@@ -1,22 +1,22 @@
-<{include file='db:wgwfhdiaries_header.tpl' }>
+<{include file='db:wgdiaries_header.tpl' }>
 
-<{if $filesCount|default:0 > 0}>
+<{if $itemsCount|default:0 > 0}>
 <div class='table-responsive'>
 	<table class='table table-<{$table_type}>'>
 		<thead>
 			<tr class='head'>
-				<th colspan='<{$divideby}>'><{$smarty.const._MA_WGWFHDIARIES_FILES_TITLE}></th>
+				<th colspan='<{$divideby}>'><{$smarty.const._MA_WGDIARIES_ITEMS_TITLE}></th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr>
-				<{foreach item=file from=$files name=file}>
+				<{foreach item=item from=$items name=item}>
 				<td>
 					<div class='panel panel-<{$panel_type}>'>
-						<{include file='db:wgwfhdiaries_files_item.tpl' }>
+						<{include file='db:wgdiaries_items_item.tpl' }>
 					</div>
 				</td>
-				<{if $smarty.foreach.file.iteration is div by $divideby}>
+				<{if $smarty.foreach.item.iteration is div by $divideby}>
 					</tr><tr>
 				<{/if}>
 				<{/foreach}>
@@ -33,4 +33,4 @@
 	<{$error}>
 <{/if}>
 
-<{include file='db:wgwfhdiaries_footer.tpl' }>
+<{include file='db:wgdiaries_footer.tpl' }>

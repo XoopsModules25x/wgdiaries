@@ -8,10 +8,10 @@
 # PHP Version: 7.4.4
 
 #
-# Structure table for `wgwfhdiaries_items` 6
+# Structure table for `wgdiaries_items` 6
 #
 
-CREATE TABLE `wgwfhdiaries_items` (
+CREATE TABLE `wgdiaries_items` (
   `item_id` INT(8) UNSIGNED NOT NULL AUTO_INCREMENT,
   `item_remarks` TEXT NOT NULL ,
   `item_datefrom` INT(11) NOT NULL DEFAULT '0',
@@ -22,10 +22,10 @@ CREATE TABLE `wgwfhdiaries_items` (
 ) ENGINE=InnoDB;
 
 #
-# Structure table for `wgwfhdiaries_files` 6
+# Structure table for `wgdiaries_files` 6
 #
 
-CREATE TABLE `wgwfhdiaries_files` (
+CREATE TABLE `wgdiaries_files` (
   `file_id` INT(8) UNSIGNED NOT NULL AUTO_INCREMENT,
   `file_itemid` INT(10) NOT NULL DEFAULT '0',
   `file_desc` VARCHAR(255) NOT NULL DEFAULT '',

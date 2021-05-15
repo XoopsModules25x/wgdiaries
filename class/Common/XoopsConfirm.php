@@ -1,6 +1,6 @@
 <?php
 
-namespace XoopsModules\Wgwfhdiaries\Common;
+namespace XoopsModules\Wgdiaries\Common;
 
 /*
  You may not change or alter any portion of this comment or credits
@@ -17,13 +17,13 @@ namespace XoopsModules\Wgwfhdiaries\Common;
  *
  * @copyright     2020 XOOPS Project (https://xooops.org)
  * @license        GPL 2.0 or later
- * @package        Wgwfhdiaries
+ * @package        Wgdiaries
  * @since          1.0
  * @min_xoops      2.5.9
  * @author         Goffy - Email:<goffy@myxoops.org> - Website:<http://xoops.org>
  */
 
-use XoopsModules\Wgwfhdiaries;
+use XoopsModules\Wgdiaries;
 
 \defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
@@ -62,9 +62,9 @@ class XoopsConfirm
     public function getFormXoopsConfirm()
     {
         //in order to be accessable from user and admin area this should be place in language common.php
-        if (!defined('CO_WGWFHDIARIES_DELETE_CONFIRM')) {
-            \define('CO_WGWFHDIARIES_DELETE_CONFIRM', 'Confirm delete');
-            \define('CO_WGWFHDIARIES_DELETE_LABEL', 'Do you really want to delete:');
+        if (!defined('CO_WGDIARIES_DELETE_CONFIRM')) {
+            \define('CO_WGDIARIES_DELETE_CONFIRM', 'Confirm delete');
+            \define('CO_WGDIARIES_DELETE_LABEL', 'Do you really want to delete:');
         }
 
         // Get Theme Form
@@ -72,11 +72,11 @@ class XoopsConfirm
             $this->action = \Xmf\Request::getString('REQUEST_URI', '', 'SERVER');
         }
         if ('' === $this->title) {
-            $this->title = CO_WGWFHDIARIES_DELETE_CONFIRM;
+            $this->title = CO_WGDIARIES_DELETE_CONFIRM;
         }
         if ('' === $this->label) {
 
-            $this->label = CO_WGWFHDIARIES_DELETE_LABEL;
+            $this->label = CO_WGDIARIES_DELETE_LABEL;
         }
 
         \xoops_load('XoopsFormLoader');

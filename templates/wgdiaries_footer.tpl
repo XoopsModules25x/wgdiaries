@@ -5,7 +5,7 @@
 <{/if}>
 <br>
 <{if $xoops_isadmin|default:''}>
-	<div class='text-center bold'><a href='<{$admin}>'><{$smarty.const._MA_WGWFHDIARIES_ADMIN}></a></div>
+	<div class='text-center bold'><a href='<{$admin}>'><{$smarty.const._MA_WGDIARIES_ADMIN}></a></div>
 <{/if}>
 
 <{if $comment_mode|default:''}>

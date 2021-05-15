@@ -17,7 +17,7 @@ declare(strict_types=1);
  *
  * @copyright      2020 XOOPS Project (https://xooops.org)
  * @license        GPL 2.0 or later
- * @package        wgwfhdiaries
+ * @package        wgdiaries
  * @since          1.0
  * @min_xoops      2.5.9
  * @author         wedega - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
@@ -29,7 +29,7 @@ declare(strict_types=1);
  * @return void
  */
 
-function wgwfhdiariesMetaKeywords($content)
+function wgdiariesMetaKeywords($content)
 {
     global $xoopsTpl, $xoTheme;
     $myts = MyTextSanitizer::getInstance();
@@ -47,7 +47,7 @@ function wgwfhdiariesMetaKeywords($content)
  * @return void
  */
  
-function wgwfhdiariesMetaDescription($content)
+function wgdiariesMetaDescription($content)
 {
     global $xoopsTpl, $xoTheme;
     $myts = MyTextSanitizer::getInstance();
@@ -67,10 +67,10 @@ function wgwfhdiariesMetaDescription($content)
  * @param string  $type    type
  * @return null|string $type    string replacement for any blank case
  */
-function wgwfhdiaries_RewriteUrl($module, $array, $type = 'content')
+function wgdiaries_RewriteUrl($module, $array, $type = 'content')
 {
     $comment = '';
-    $helper = \XoopsModules\Wgwfhdiaries\Helper::getInstance();
+    $helper = \XoopsModules\Wgdiaries\Helper::getInstance();
     $filesHandler = $helper->getHandler('files');
     $lenght_id = $helper->getConfig('lenght_id');
     $rewrite_url = $helper->getConfig('rewrite_url');
@@ -87,7 +87,7 @@ function wgwfhdiaries_RewriteUrl($module, $array, $type = 'content')
     if (isset($array['topic_alias']) && $array['topic_alias']) {
         $topic_name = $array['topic_alias'];
     } else {
-        $topic_name = wgwfhdiaries_Filter(xoops_getModuleOption('static_name', $module));
+        $topic_name = wgdiaries_Filter(xoops_getModuleOption('static_name', $module));
     }
 
     switch ($rewrite_url) {
@@ -155,10 +155,10 @@ function wgwfhdiaries_RewriteUrl($module, $array, $type = 'content')
  * @param string $type     string replacement for any blank case
  * @return string $url
  */
-function wgwfhdiaries_Filter($url, $type = '') {
+function wgdiaries_Filter($url, $type = '') {
 
     // Get regular expression from module setting. default setting is : `[^a-z0-9]`i
-    $helper = \XoopsModules\Wgwfhdiaries\Helper::getInstance();
+    $helper = \XoopsModules\Wgdiaries\Helper::getInstance();
     $filesHandler = $helper->getHandler('files');
     $regular_expression = $helper->getConfig('regular_expression');
 

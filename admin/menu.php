@@ -17,7 +17,7 @@ declare(strict_types=1);
  *
  * @copyright      2020 XOOPS Project (https://xooops.org)
  * @license        GPL 2.0 or later
- * @package        wgwfhdiaries
+ * @package        wgdiaries
  * @since          1.0
  * @min_xoops      2.5.9
  * @author         wedega - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
@@ -30,27 +30,27 @@ $moduleInfo    = $moduleHandler->get($xoopsModule->getVar('mid'));
 $sysPathIcon32 = $moduleInfo->getInfo('sysicons32');
 
 $adminmenu[] = [
-	'title' => _MI_WGWFHDIARIES_ADMENU1,
+	'title' => _MI_WGDIARIES_ADMENU1,
 	'link' => 'admin/index.php',
 	'icon' => $sysPathIcon32.'/dashboard.png',
 ];
 $adminmenu[] = [
-	'title' => _MI_WGWFHDIARIES_ADMENU2,
+	'title' => _MI_WGDIARIES_ADMENU2,
 	'link' => 'admin/items.php',
 	'icon' => 'assets/icons/32/event.png',
 ];
 $adminmenu[] = [
-	'title' => _MI_WGWFHDIARIES_ADMENU3,
+	'title' => _MI_WGDIARIES_ADMENU3,
 	'link' => 'admin/files.php',
 	'icon' => 'assets/icons/32/fileshare.png',
 ];
 $adminmenu[] = [
-	'title' => _MI_WGWFHDIARIES_ADMENU4,
+	'title' => _MI_WGDIARIES_ADMENU4,
 	'link' => 'admin/feedback.php',
 	'icon' => $sysPathIcon32.'/mail_foward.png',
 ];
 $adminmenu[] = [
-	'title' => _MI_WGWFHDIARIES_ABOUT,
+	'title' => _MI_WGDIARIES_ABOUT,
 	'link' => 'admin/about.php',
 	'icon' => $sysPathIcon32.'/about.png',
 ];

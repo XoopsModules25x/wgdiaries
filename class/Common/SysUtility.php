@@ -1,6 +1,6 @@
 <?php
 
-namespace XoopsModules\Wgwfhdiaries\Common;
+namespace XoopsModules\Wgdiaries\Common;
 
 /*
  Utility Class Definition
@@ -26,8 +26,8 @@ namespace XoopsModules\Wgwfhdiaries\Common;
 use MyTextSanitizer;
 use XoopsFormDhtmlTextArea;
 use XoopsFormTextArea;
-use XoopsModules\Wgwfhdiaries;
-use XoopsModules\Wgwfhdiaries\Helper;
+use XoopsModules\Wgdiaries;
+use XoopsModules\Wgdiaries\Helper;
 
 /**
  * Class Utility

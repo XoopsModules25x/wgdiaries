@@ -18,8 +18,8 @@ use Xmf\Database\TableLoad;
 use Xmf\Module\Helper;
 use Xmf\Request;
 use Xmf\Yaml;
-use XoopsModules\Wgwfhdiaries;
-use XoopsModules\Wgwfhdiaries\{
+use XoopsModules\Wgdiaries;
+use XoopsModules\Wgdiaries\{
     Common,
     Utility
 };
@@ -32,7 +32,7 @@ $op = \Xmf\Request::getCmd('op', '');
 $moduleDirName = \basename(\dirname(__DIR__));
 $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
 
-$helper = Wgwfhdiaries\Helper::getInstance();
+$helper = Wgdiaries\Helper::getInstance();
 // Load language files
 $helper->loadLanguage('common');
 
@@ -62,7 +62,7 @@ function loadSampleData()
     $moduleDirName      = \basename(\dirname(__DIR__));
     $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
 
-    $utility      = new Wgwfhdiaries\Utility();
+    $utility      = new Wgdiaries\Utility();
     $configurator = new Common\Configurator();
 
     $tables = Helper::getHelper($moduleDirName)->getModule()->getInfo('tables');
@@ -146,7 +146,7 @@ function exportSchema()
 
     try {
         // TODO set exportSchema
-        //        $migrate = new Wgwfhdiaries\Migrate($moduleDirName);
+        //        $migrate = new Wgdiaries\Migrate($moduleDirName);
         //        $migrate->saveCurrentSchema();
         //
         //        \redirect_header('../admin/index.php', 1, \constant('CO_' . $moduleDirNameUpper . '_' . 'EXPORT_SCHEMA_SUCCESS'));

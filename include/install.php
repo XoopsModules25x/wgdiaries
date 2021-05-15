@@ -10,28 +10,28 @@
 */
 
 /**
- * Wgwfhdiaries module for xoops
+ * Wgdiaries module for xoops
  *
  * @copyright      module for xoops
  * @license        GPL 2.0 or later
- * @package        Wgwfhdiaries
+ * @package        Wgdiaries
  * @since          1.0
  * @min_xoops      2.5.9
  * @author         Wedega - Email:<webmaster@wedega.com> - Website:<https://wedega.com> XOOPS Project (www.xoops.org) $
  */
 
-use XoopsModules\Wgwfhdiaries;
-use XoopsModules\Wgwfhdiaries\Common;
+use XoopsModules\Wgdiaries;
+use XoopsModules\Wgdiaries\Common;
 
 /**
  * @param \XoopsModule $module
  * @return bool
  */
-function xoops_module_pre_install_wgwfhdiaries(\XoopsModule $module)
+function xoops_module_pre_install_wgdiaries(\XoopsModule $module)
 {
     require \dirname(__DIR__) . '/preloads/autoloader.php';
-    /** @var Wgwfhdiaries\Utility $utility */
-    $utility = new Wgwfhdiaries\Utility();
+    /** @var Wgdiaries\Utility $utility */
+    $utility = new Wgdiaries\Utility();
 
     //check for minimum XOOPS version
     $xoopsSuccess = $utility::checkVerXoops($module);
@@ -53,15 +53,15 @@ function xoops_module_pre_install_wgwfhdiaries(\XoopsModule $module)
  * @param \XoopsModule $module
  * @return bool|string
  */
-function xoops_module_install_wgwfhdiaries(\XoopsModule $module)
+function xoops_module_install_wgdiaries(\XoopsModule $module)
 {
     require \dirname(__DIR__) . '/preloads/autoloader.php';
 
-    /** @var Wgwfhdiaries\Helper $helper */ 
-    /** @var Wgwfhdiaries\Utility $utility */
+    /** @var Wgdiaries\Helper $helper */
+    /** @var Wgdiaries\Utility $utility */
     /** @var Common\Configurator $configurator */
-    $helper       = Wgwfhdiaries\Helper::getInstance();
-    $utility      = new Wgwfhdiaries\Utility();
+    $helper       = Wgdiaries\Helper::getInstance();
+    $utility      = new Wgdiaries\Utility();
     $configurator = new Common\Configurator();
 
     // Load language files

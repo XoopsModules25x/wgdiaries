@@ -17,28 +17,28 @@ declare(strict_types=1);
  *
  * @copyright      2020 XOOPS Project (https://xooops.org)
  * @license        GPL 2.0 or later
- * @package        wgwfhdiaries
+ * @package        wgdiaries
  * @since          1.0
  * @min_xoops      2.5.9
  * @author         wedega - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
  */
 
 use Xmf\Request;
-use XoopsModules\Wgwfhdiaries;
-use XoopsModules\Wgwfhdiaries\Constants;
+use XoopsModules\Wgdiaries;
+use XoopsModules\Wgdiaries\Constants;
 
 require __DIR__ . '/header.php';
-$GLOBALS['xoopsOption']['template_main'] = 'wgwfhdiaries_index.tpl';
+$GLOBALS['xoopsOption']['template_main'] = 'wgdiaries_index.tpl';
 include_once XOOPS_ROOT_PATH . '/header.php';
 // Define Stylesheet
 $GLOBALS['xoTheme']->addStylesheet($style, null);
 // Keywords
 $keywords = [];
 // Breadcrumbs
-$xoBreadcrumbs[] = ['title' => _MA_WGWFHDIARIES_INDEX];
+$xoBreadcrumbs[] = ['title' => _MA_WGDIARIES_INDEX];
 // Paths
 $GLOBALS['xoopsTpl']->assign('xoops_icons32_url', XOOPS_ICONS32_URL);
-$GLOBALS['xoopsTpl']->assign('wgwfhdiaries_url', WGWFHDIARIES_URL);
+$GLOBALS['xoopsTpl']->assign('wgdiaries_url', WGDIARIES_URL);
 // Tables
 $itemsCount = $itemsHandler->getCountItems();
 $GLOBALS['xoopsTpl']->assign('itemsCount', $itemsCount);
@@ -64,18 +64,18 @@ if ($itemsCount > 0) {
 		$pagenav = new \XoopsPageNav($itemsCount, $limit, $start, 'start', 'op=list&limit=' . $limit);
 		$GLOBALS['xoopsTpl']->assign('pagenav', $pagenav->renderNav(4));
 	}
-	$GLOBALS['xoopsTpl']->assign('lang_thereare', \sprintf(_MA_WGWFHDIARIES_INDEX_THEREARE, $itemsCount));
+	$GLOBALS['xoopsTpl']->assign('lang_thereare', \sprintf(_MA_WGDIARIES_INDEX_THEREARE, $itemsCount));
 	$GLOBALS['xoopsTpl']->assign('divideby', $helper->getConfig('divideby'));
 	$GLOBALS['xoopsTpl']->assign('numb_col', $helper->getConfig('numb_col'));
 }
 unset($count);
 $GLOBALS['xoopsTpl']->assign('table_type', $helper->getConfig('table_type'));
 // Keywords
-wgwfhdiariesMetaKeywords($helper->getConfig('keywords') . ', ' . \implode(',', $keywords));
+wgdiariesMetaKeywords($helper->getConfig('keywords') . ', ' . \implode(',', $keywords));
 unset($keywords);
 // Description
-wgwfhdiariesMetaDescription(_MA_WGWFHDIARIES_INDEX_DESC);
-$GLOBALS['xoopsTpl']->assign('xoops_mpageurl', WGWFHDIARIES_URL.'/index.php');
+wgdiariesMetaDescription(_MA_WGDIARIES_INDEX_DESC);
+$GLOBALS['xoopsTpl']->assign('xoops_mpageurl', WGDIARIES_URL.'/index.php');
 $GLOBALS['xoopsTpl']->assign('xoops_icons32_url', XOOPS_ICONS32_URL);
-$GLOBALS['xoopsTpl']->assign('wgwfhdiaries_upload_url', WGWFHDIARIES_UPLOAD_URL);
+$GLOBALS['xoopsTpl']->assign('wgdiaries_upload_url', WGDIARIES_UPLOAD_URL);
 require __DIR__ . '/footer.php';

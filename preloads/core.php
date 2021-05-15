@@ -17,9 +17,9 @@
 \defined('XOOPS_ROOT_PATH') || die('Restricted access.');
 
 /**
- * Class WgwfhdiariesCorePreload
+ * Class WgdiariesCorePreload
  */
-class WgwfhdiariesCorePreload extends \XoopsPreloadItem
+class WgdiariesCorePreload extends \XoopsPreloadItem
 {
     // to add PSR-4 autoloader
 

@@ -8,7 +8,7 @@
  * @link            https://xoops.org XOOPS
  */
 
-use XoopsModules\Wgwfhdiaries;
+use XoopsModules\Wgdiaries;
 
 /**
  * Prepares system prior to attempting to uninstall module
@@ -16,7 +16,7 @@ use XoopsModules\Wgwfhdiaries;
  *
  * @return bool true if ready to uninstall, false if not
  */
-function xoops_module_pre_uninstall_wgwfhdiaries(\XoopsModule $module)
+function xoops_module_pre_uninstall_wgdiaries(\XoopsModule $module)
 {
     // Do some synchronization
     return true;
@@ -28,17 +28,17 @@ function xoops_module_pre_uninstall_wgwfhdiaries(\XoopsModule $module)
  *
  * @return bool true if uninstallation successful, false if not
  */
-function xoops_module_uninstall_wgwfhdiaries(\XoopsModule $module)
+function xoops_module_uninstall_wgdiaries(\XoopsModule $module)
 {
     //    return true;
 
     $moduleDirName      = \basename(\dirname(__DIR__));
     $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
-    /** @var Wgwfhdiaries\Helper $helper */
-    $helper = Wgwfhdiaries\Helper::getInstance();
+    /** @var Wgdiaries\Helper $helper */
+    $helper = Wgdiaries\Helper::getInstance();
 
-    /** @var Wgwfhdiaries\Utility $utility */
-    $utility = new Wgwfhdiaries\Utility();
+    /** @var Wgdiaries\Utility $utility */
+    $utility = new Wgdiaries\Utility();
 
     $success = true;
     $helper->loadLanguage('admin');
@@ -67,7 +67,7 @@ function xoops_module_uninstall_wgwfhdiaries(\XoopsModule $module)
     $xmlfile = $GLOBALS['xoops']->path('xsitemap.xml');
     if (is_file($xmlfile)) {
         if (false === ($delOk = \unlink($xmlfile))) {
-            $module->setErrors(\sprintf(_AM_WGWFHDIARIES_ERROR_BAD_REMOVE, $xmlfile));
+            $module->setErrors(\sprintf(_AM_WGDIARIES_ERROR_BAD_REMOVE, $xmlfile));
         }
     }
 //    return $success && $delOk; // use this if you're using this routine

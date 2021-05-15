@@ -22,7 +22,7 @@
  * @param $val
  * @return float|int
  */
-function wgwfhdiariesReturnBytes($val)
+function wgdiariesReturnBytes($val)
 {
     switch (mb_substr($val, -1)) {
         case 'K':

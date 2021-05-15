@@ -1,6 +1,6 @@
 <?php
 
-namespace XoopsModules\Wgwfhdiaries\Common;
+namespace XoopsModules\Wgdiaries\Common;
 
 /*
  You may not change or alter any portion of this comment or credits
@@ -22,7 +22,7 @@ namespace XoopsModules\Wgwfhdiaries\Common;
 trait ModuleStats
 {
     /**
-     * @param \XoopsModules\Wgwfhdiaries\Common\Configurator $configurator
+     * @param \XoopsModules\Wgdiaries\Common\Configurator $configurator
      * @param array                                       $moduleStats
      * @return array
      */

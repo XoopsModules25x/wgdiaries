@@ -17,7 +17,7 @@ declare(strict_types=1);
  *
  * @copyright      2020 XOOPS Project (https://xooops.org)
  * @license        GPL 2.0 or later
- * @package        wgwfhdiaries
+ * @package        wgdiaries
  * @since          1.0
  * @min_xoops      2.5.9
  * @author         wedega - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
@@ -30,7 +30,7 @@ $GLOBALS['xoopsTpl']->assign('adv', $helper->getConfig('advertise'));
 $GLOBALS['xoopsTpl']->assign('bookmarks', $helper->getConfig('bookmarks'));
 $GLOBALS['xoopsTpl']->assign('fbcomments', $helper->getConfig('fbcomments'));
 // 
-$GLOBALS['xoopsTpl']->assign('admin', WGWFHDIARIES_ADMIN);
+$GLOBALS['xoopsTpl']->assign('admin', WGDIARIES_ADMIN);
 $GLOBALS['xoopsTpl']->assign('copyright', $copyright);
 // 
 include_once XOOPS_ROOT_PATH . '/footer.php';

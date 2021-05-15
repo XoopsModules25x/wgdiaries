@@ -1,6 +1,6 @@
 <?php
 
-namespace XoopsModules\Wgwfhdiaries\Common;
+namespace XoopsModules\Wgdiaries\Common;
 
 /*
  You may not change or alter any portion of this comment or credits
@@ -18,7 +18,7 @@ namespace XoopsModules\Wgwfhdiaries\Common;
  * @copyright   The XOOPS Project http://sourceforge.net/projects/xoops/
  * @license     http://www.fsf.org/copyleft/gpl.html GNU public license
  * @author      lucio <lucio.rota@gmail.com>
- * @package     Wgwfhdiaries
+ * @package     Wgdiaries
  *
  * Example:
  * $breadcrumb = new Common\Breadcrumb();
@@ -28,8 +28,8 @@ namespace XoopsModules\Wgwfhdiaries\Common;
  * echo $breadcrumb->render();
  */
 
-use XoopsModules\Wgwfhdiaries;
-use XoopsModules\Wgwfhdiaries\Common;
+use XoopsModules\Wgdiaries;
+use XoopsModules\Wgdiaries\Common;
 
 \defined('XOOPS_ROOT_PATH') || exit('XOOPS Root Path not defined');
 

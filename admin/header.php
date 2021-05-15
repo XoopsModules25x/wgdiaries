@@ -17,7 +17,7 @@ declare(strict_types=1);
  *
  * @copyright      2020 XOOPS Project (https://xooops.org)
  * @license        GPL 2.0 or later
- * @package        wgwfhdiaries
+ * @package        wgdiaries
  * @since          1.0
  * @min_xoops      2.5.9
  * @author         wedega - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
@@ -28,11 +28,11 @@ include_once \dirname(__DIR__) . '/include/common.php';
 $sysPathIcon16   = '../' . $GLOBALS['xoopsModule']->getInfo('sysicons16');
 $sysPathIcon32   = '../' . $GLOBALS['xoopsModule']->getInfo('sysicons32');
 $pathModuleAdmin = $GLOBALS['xoopsModule']->getInfo('dirmoduleadmin');
-$modPathIcon16   = WGWFHDIARIES_URL . '/' . $GLOBALS['xoopsModule']->getInfo('modicons16') . '/';
-$modPathIcon32   = WGWFHDIARIES_URL . '/' . $GLOBALS['xoopsModule']->getInfo('modicons32') . '/';
+$modPathIcon16   = WGDIARIES_URL . '/' . $GLOBALS['xoopsModule']->getInfo('modicons16') . '/';
+$modPathIcon32   = WGDIARIES_URL . '/' . $GLOBALS['xoopsModule']->getInfo('modicons32') . '/';
 
 // Get instance of module
-$helper = \XoopsModules\Wgwfhdiaries\Helper::getInstance();
+$helper = \XoopsModules\Wgdiaries\Helper::getInstance();
 $itemsHandler = $helper->getHandler('Items');
 $filesHandler = $helper->getHandler('Files');
 $myts = MyTextSanitizer::getInstance();
@@ -62,4 +62,4 @@ $GLOBALS['xoopsTpl']->assign('modPathIcon16', $modPathIcon16);
 $GLOBALS['xoopsTpl']->assign('modPathIcon32', $modPathIcon32);
 
 $adminObject = \Xmf\Module\Admin::getInstance();
-$style = WGWFHDIARIES_URL . '/assets/css/admin/style.css';
+$style = WGDIARIES_URL . '/assets/css/admin/style.css';

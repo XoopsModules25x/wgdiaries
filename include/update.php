@@ -10,11 +10,11 @@
 */
 
 /**
- * Wgwfhdiaries module for xoops
+ * Wgdiaries module for xoops
  *
  * @param mixed      $module
  * @param null|mixed $prev_version
- * @package        Wgwfhdiaries
+ * @package        Wgdiaries
  * @since          1.0
  * @min_xoops      2.5.9
  * @author         Wedega - Email:<webmaster@wedega.com> - Website:<https://wedega.com>
@@ -29,18 +29,18 @@
  *
  * @return bool|null
  */
-function xoops_module_update_wgwfhdiaries($module, $prev_version = null)
+function xoops_module_update_wgdiaries($module, $prev_version = null)
 {
     $ret = null;
     if ($prev_version < 10) {
-        $ret = update_wgwfhdiaries_v10($module);
+        $ret = update_wgdiaries_v10($module);
     }
 
-    $ret = wgwfhdiaries_check_db($module);
+    $ret = wgdiaries_check_db($module);
 
     //check upload directory
 	include_once __DIR__ . '/install.php';
-    $ret = xoops_module_install_wgwfhdiaries($module);
+    $ret = xoops_module_install_wgdiaries($module);
 
     $errors = $module->getErrors();
     if (!empty($errors)) {
@@ -57,7 +57,7 @@ function xoops_module_update_wgwfhdiaries($module, $prev_version = null)
  *
  * @return bool
  */
-function update_wgwfhdiaries_v10($module)
+function update_wgdiaries_v10($module)
 {
     global $xoopsDB;
     $result = $xoopsDB->query(
@@ -110,14 +110,14 @@ function update_wgwfhdiaries_v10($module)
  *
  * @return bool
  */
-function wgwfhdiaries_check_db($module)
+function wgdiaries_check_db($module)
 {
     $ret = true;
 	//insert here code for database check
 
     /*
     // Example: update table (add new field)
-    $table   = $GLOBALS['xoopsDB']->prefix('wgwfhdiaries_images');
+    $table   = $GLOBALS['xoopsDB']->prefix('wgdiaries_images');
     $field   = 'img_exif';
     $check   = $GLOBALS['xoopsDB']->queryF('SHOW COLUMNS FROM `' . $table . "` LIKE '" . $field . "'");
     $numRows = $GLOBALS['xoopsDB']->getRowsNum($check);
@@ -131,11 +131,11 @@ function wgwfhdiaries_check_db($module)
     }
 
     // Example: create new table
-    $table   = $GLOBALS['xoopsDB']->prefix('wgwfhdiaries_categories');
+    $table   = $GLOBALS['xoopsDB']->prefix('wgdiaries_categories');
     $check   = $GLOBALS['xoopsDB']->queryF("SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA=DATABASE() AND TABLE_NAME='$table'");
     $numRows = $GLOBALS['xoopsDB']->getRowsNum($check);
     if (!$numRows) {
-        // create new table 'wgwfhdiaries_categories'
+        // create new table 'wgdiaries_categories'
         $sql = "CREATE TABLE `$table` (
                   `cat_id`        INT(8) UNSIGNED NOT NULL AUTO_INCREMENT,
                   `cat_text`      VARCHAR(100)    NOT NULL DEFAULT '',

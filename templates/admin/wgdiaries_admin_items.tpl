@@ -1,17 +1,17 @@
 <!-- Header -->
-<{include file='db:wgwfhdiaries_admin_header.tpl' }>
+<{include file='db:wgdiaries_admin_header.tpl' }>
 
 <{if $items_list|default:''}>
 	<table class='table table-bordered'>
 		<thead>
 			<tr class='head'>
-				<th class="center"><{$smarty.const._AM_WGWFHDIARIES_ITEM_ID}></th>
-				<th class="center"><{$smarty.const._AM_WGWFHDIARIES_ITEM_REMARKS}></th>
-				<th class="center"><{$smarty.const._AM_WGWFHDIARIES_ITEM_DATEFROM}></th>
-				<th class="center"><{$smarty.const._AM_WGWFHDIARIES_ITEM_DATETO}></th>
-				<th class="center"><{$smarty.const._AM_WGWFHDIARIES_ITEM_DATECREATED}></th>
-				<th class="center"><{$smarty.const._AM_WGWFHDIARIES_ITEM_SUBMITTER}></th>
-				<th class="center width5"><{$smarty.const._AM_WGWFHDIARIES_FORM_ACTION}></th>
+				<th class="center"><{$smarty.const._AM_WGDIARIES_ITEM_ID}></th>
+				<th class="center"><{$smarty.const._AM_WGDIARIES_ITEM_REMARKS}></th>
+				<th class="center"><{$smarty.const._AM_WGDIARIES_ITEM_DATEFROM}></th>
+				<th class="center"><{$smarty.const._AM_WGDIARIES_ITEM_DATETO}></th>
+				<th class="center"><{$smarty.const._AM_WGDIARIES_ITEM_DATECREATED}></th>
+				<th class="center"><{$smarty.const._AM_WGDIARIES_ITEM_SUBMITTER}></th>
+				<th class="center width5"><{$smarty.const._AM_WGDIARIES_FORM_ACTION}></th>
 			</tr>
 		</thead>
 		<{if $items_count|default:''}>
@@ -47,4 +47,4 @@
 <{/if}>
 
 <!-- Footer -->
-<{include file='db:wgwfhdiaries_admin_footer.tpl' }>
+<{include file='db:wgdiaries_admin_footer.tpl' }>

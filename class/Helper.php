@@ -1,6 +1,6 @@
 <?php
 
-namespace XoopsModules\Wgwfhdiaries;
+namespace XoopsModules\Wgdiaries;
 
 /*
  * You may not change or alter any portion of this comment or credits
@@ -41,7 +41,7 @@ class Helper extends \Xmf\Module\Helper
     /**
      * @param bool $debug
      *
-     * @return \XoopsModules\Wgwfhdiaries\Helper
+     * @return \XoopsModules\Wgdiaries\Helper
      */
     public static function getInstance($debug = false)
     {

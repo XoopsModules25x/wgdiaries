@@ -17,13 +17,13 @@ declare(strict_types=1);
  *
  * @copyright      2020 XOOPS Project (https://xooops.org)
  * @license        GPL 2.0 or later
- * @package        wgwfhdiaries
+ * @package        wgdiaries
  * @since          1.0
  * @min_xoops      2.5.9
  * @author         wedega - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
  */
 require __DIR__ . '/header.php';
-$templateMain = 'wgwfhdiaries_admin_about.tpl';
+$templateMain = 'wgdiaries_admin_about.tpl';
 $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('about.php'));
 $adminObject->setPaypal('6KJ7RW5DR3VTJ');
 $GLOBALS['xoopsTpl']->assign('about', $adminObject->renderAbout(false));
