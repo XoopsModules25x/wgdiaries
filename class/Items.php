@@ -117,7 +117,7 @@ class Items extends \XoopsObject
 		$itemDateto = $this->isNew() ? time() : $this->getVar('item_dateto');
 		$form->addElement(new \XoopsFormDateTime(_AM_WGDIARIES_ITEM_DATETO, 'item_dateto', '', $itemDateto), true);
 		// Form Text Date Select itemDatecreated
-		$itemDatecreated = $this->isNew() ?: $this->getVar('item_datecreated');
+		$itemDatecreated = $this->isNew() ? 0 : $this->getVar('item_datecreated');
 		$form->addElement(new \XoopsFormTextDateSelect(_AM_WGDIARIES_ITEM_DATECREATED, 'item_datecreated', '', $itemDatecreated));
 		// Form Select User itemSubmitter
 		$form->addElement(new \XoopsFormSelectUser(_AM_WGDIARIES_ITEM_SUBMITTER, 'item_submitter', false, $this->getVar('item_submitter')));

@@ -20,7 +20,7 @@
 	<tfoot>
 		<tr class='center'>
 			<td class='bold pad5'>
-				<{if $adv|default:''}><{$adv}><{/if}>
+				<{if $adv|default:''}><{$adv|default:false}><{/if}>
 			</td>
 		</tr>
 	</tfoot>

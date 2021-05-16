@@ -223,4 +223,7 @@ wgdiariesMetaDescription(_MA_WGDIARIES_ITEMS_DESC);
 $GLOBALS['xoopsTpl']->assign('xoops_mpageurl', WGDIARIES_URL.'/items.php');
 $GLOBALS['xoopsTpl']->assign('wgdiaries_upload_url', WGDIARIES_UPLOAD_URL);
 
+// View comments
+require_once XOOPS_ROOT_PATH . '/include/comment_view.php';
+
 require __DIR__ . '/footer.php';

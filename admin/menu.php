@@ -46,11 +46,21 @@ $adminmenu[] = [
 ];
 $adminmenu[] = [
 	'title' => _MI_WGDIARIES_ADMENU4,
+	'link' => 'admin/groups.php',
+	'icon' => 'assets/icons/32/users.png',
+];
+$adminmenu[] = [
+	'title' => _MI_WGDIARIES_ADMENU5,
+	'link' => 'admin/groupusers.php',
+	'icon' => 'assets/icons/32/user-icon.png',
+];
+$adminmenu[] = [
+	'title' => _MI_WGDIARIES_ADMENU6,
 	'link' => 'admin/permissions.php',
 	'icon' => $sysPathIcon32.'/permissions.png',
 ];
 $adminmenu[] = [
-	'title' => _MI_WGDIARIES_ADMENU5,
+	'title' => _MI_WGDIARIES_ADMENU7,
 	'link' => 'admin/feedback.php',
 	'icon' => $sysPathIcon32.'/mail_foward.png',
 ];
