@@ -41,7 +41,7 @@ $modversion = [
 	'help'                => 'page=help',
 	'release_info'        => 'release_info',
 	'release_file'        => XOOPS_URL . '/modules/wgdiaries/docs/release_info file',
-	'release_date'        => '2021/05/15',
+	'release_date'        => '2021/05/16',
 	'manual'              => 'link to manual file',
 	'manual_file'         => XOOPS_URL . '/modules/wgdiaries/docs/install.txt',
 	'min_php'             => '7.0',
@@ -80,6 +80,8 @@ $modversion['templates'] = [
 	['file' => 'wgdiaries_admin_index.tpl', 'description' => '', 'type' => 'admin'],
 	['file' => 'wgdiaries_admin_items.tpl', 'description' => '', 'type' => 'admin'],
 	['file' => 'wgdiaries_admin_files.tpl', 'description' => '', 'type' => 'admin'],
+	['file' => 'wgdiaries_admin_groups.tpl', 'description' => '', 'type' => 'admin'],
+	['file' => 'wgdiaries_admin_groupusers.tpl', 'description' => '', 'type' => 'admin'],
 	['file' => 'wgdiaries_admin_permissions.tpl', 'description' => '', 'type' => 'admin'],
 	['file' => 'wgdiaries_admin_footer.tpl', 'description' => '', 'type' => 'admin'],
 	// User templates
@@ -91,6 +93,12 @@ $modversion['templates'] = [
 	['file' => 'wgdiaries_files.tpl', 'description' => ''],
 	['file' => 'wgdiaries_files_list.tpl', 'description' => ''],
 	['file' => 'wgdiaries_files_item.tpl', 'description' => ''],
+	['file' => 'wgdiaries_groups.tpl', 'description' => ''],
+	['file' => 'wgdiaries_groups_list.tpl', 'description' => ''],
+	['file' => 'wgdiaries_groups_item.tpl', 'description' => ''],
+	['file' => 'wgdiaries_groupusers.tpl', 'description' => ''],
+	['file' => 'wgdiaries_groupusers_list.tpl', 'description' => ''],
+	['file' => 'wgdiaries_groupusers_item.tpl', 'description' => ''],
 	['file' => 'wgdiaries_breadcrumbs.tpl', 'description' => ''],
 	['file' => 'wgdiaries_footer.tpl', 'description' => ''],
 ];
@@ -100,6 +108,18 @@ $modversion['sqlfile']['mysql'] = 'sql/mysql.sql';
 $modversion['tables'] = [
 	'wgdiaries_items',
 	'wgdiaries_files',
+	'wgdiaries_groups',
+	'wgdiaries_groupusers',
+];
+// ------------------- Comments ------------------- //
+$modversion['hasComments'] = 1;
+$modversion['comments']['pageName'] = 'items.php';
+$modversion['comments']['itemName'] = 'item_id';
+// Comment callback functions
+$modversion['comments']['callbackFile'] = 'include/comment_functions.php';
+$modversion['comments']['callback'] = [
+	'approve' => 'wgdiariesCommentsApprove',
+	'update'  => 'wgdiariesCommentsUpdate',
 ];
 // ------------------- Menu ------------------- //
 $currdirname  = isset($GLOBALS['xoopsModule']) && \is_object($GLOBALS['xoopsModule']) ? $GLOBALS['xoopsModule']->getVar('dirname') : 'system';
@@ -122,6 +142,26 @@ if ($currdirname == $moduleDirName) {
 	$modversion['sub'][] = [
 		'name' => _MI_WGDIARIES_SMNAME5,
 		'url'  => 'files.php?op=new',
+	];
+	// Sub groups
+	$modversion['sub'][] = [
+		'name' => _MI_WGDIARIES_SMNAME6,
+		'url'  => 'groups.php',
+	];
+	// Sub Submit
+	$modversion['sub'][] = [
+		'name' => _MI_WGDIARIES_SMNAME7,
+		'url'  => 'groups.php?op=new',
+	];
+	// Sub groupusers
+	$modversion['sub'][] = [
+		'name' => _MI_WGDIARIES_SMNAME8,
+		'url'  => 'groupusers.php',
+	];
+	// Sub Submit
+	$modversion['sub'][] = [
+		'name' => _MI_WGDIARIES_SMNAME9,
+		'url'  => 'groupusers.php?op=new',
 	];
 }
 // ------------------- Config ------------------- //
@@ -211,7 +251,7 @@ $modversion['config'][] = [
 	'description' => '_MI_WGDIARIES_KEYWORDS_DESC',
 	'formtype'    => 'textbox',
 	'valuetype'   => 'text',
-	'default'     => 'wgdiaries, items, files',
+	'default'     => 'wgdiaries, items, files, groups, groupusers',
 ];
 // create increment steps for file size
 include_once __DIR__ . '/include/xoops_version.inc.php';
@@ -251,6 +291,42 @@ while ($i * 1048576 <= $maxSize) {
 	$optionMaxsize[$i . ' ' . _MI_WGDIARIES_SIZE_MB] = $i * 1048576;
 	$i += $increment;
 }
+// Uploads : maxsize of image
+$modversion['config'][] = [
+	'name'        => 'maxsize_image',
+	'title'       => '_MI_WGDIARIES_MAXSIZE_IMAGE',
+	'description' => '_MI_WGDIARIES_MAXSIZE_IMAGE_DESC',
+	'formtype'    => 'select',
+	'valuetype'   => 'int',
+	'default'     => 3145728,
+	'options'     => $optionMaxsize,
+];
+// Uploads : mimetypes of image
+$modversion['config'][] = [
+	'name'        => 'mimetypes_image',
+	'title'       => '_MI_WGDIARIES_MIMETYPES_IMAGE',
+	'description' => '_MI_WGDIARIES_MIMETYPES_IMAGE_DESC',
+	'formtype'    => 'select_multi',
+	'valuetype'   => 'array',
+	'default'     => ['image/gif', 'image/jpeg', 'image/png'],
+	'options'     => ['bmp' => 'image/bmp','gif' => 'image/gif','pjpeg' => 'image/pjpeg', 'jpeg' => 'image/jpeg','jpg' => 'image/jpg','jpe' => 'image/jpe', 'png' => 'image/png'],
+];
+$modversion['config'][] = [
+	'name'        => 'maxwidth_image',
+	'title'       => '_MI_WGDIARIES_MAXWIDTH_IMAGE',
+	'description' => '_MI_WGDIARIES_MAXWIDTH_IMAGE_DESC',
+	'formtype'    => 'textbox',
+	'valuetype'   => 'int',
+	'default'     => 800,
+];
+$modversion['config'][] = [
+	'name'        => 'maxheight_image',
+	'title'       => '_MI_WGDIARIES_MAXHEIGHT_IMAGE',
+	'description' => '_MI_WGDIARIES_MAXHEIGHT_IMAGE_DESC',
+	'formtype'    => 'textbox',
+	'valuetype'   => 'int',
+	'default'     => 800,
+];
 // Uploads : maxsize of file
 $modversion['config'][] = [
 	'name'        => 'maxsize_file',

@@ -68,7 +68,38 @@ As you can see, you have created a page with a list of links at the top to navig
 \define('_MA_WGDIARIES_FILE_NAME', 'Name');
 \define('_MA_WGDIARIES_FILE_DATECREATED', 'Datecreated');
 \define('_MA_WGDIARIES_FILE_SUBMITTER', 'Submitter');
-\define('_MA_WGDIARIES_INDEX_THEREARE', 'There are %s Files');
+// Group
+\define('_MA_WGDIARIES_GROUP', 'Group');
+\define('_MA_WGDIARIES_GROUP_ADD', 'Add Groups');
+\define('_MA_WGDIARIES_GROUP_EDIT', 'Edit Groups');
+\define('_MA_WGDIARIES_GROUP_DELETE', 'Delete Groups');
+\define('_MA_WGDIARIES_GROUPS', 'Groups');
+\define('_MA_WGDIARIES_GROUPS_LIST', 'List of Groups');
+\define('_MA_WGDIARIES_GROUPS_TITLE', 'Groups title');
+\define('_MA_WGDIARIES_GROUPS_DESC', 'Groups description');
+// Caption of Group
+\define('_MA_WGDIARIES_GROUP_ID', 'Id');
+\define('_MA_WGDIARIES_GROUP_NAME', 'Name');
+\define('_MA_WGDIARIES_GROUP_LOGO', 'Logo');
+\define('_MA_WGDIARIES_GROUP_ONLINE', 'Online');
+\define('_MA_WGDIARIES_GROUP_DATECREATED', 'Datecreated');
+\define('_MA_WGDIARIES_GROUP_SUBMITTER', 'Submitter');
+// Groupuser
+\define('_MA_WGDIARIES_GROUPUSER', 'Groupuser');
+\define('_MA_WGDIARIES_GROUPUSER_ADD', 'Add Groupusers');
+\define('_MA_WGDIARIES_GROUPUSER_EDIT', 'Edit Groupusers');
+\define('_MA_WGDIARIES_GROUPUSER_DELETE', 'Delete Groupusers');
+\define('_MA_WGDIARIES_GROUPUSERS', 'Groupusers');
+\define('_MA_WGDIARIES_GROUPUSERS_LIST', 'List of Groupusers');
+\define('_MA_WGDIARIES_GROUPUSERS_TITLE', 'Groupusers title');
+\define('_MA_WGDIARIES_GROUPUSERS_DESC', 'Groupusers description');
+// Caption of Groupuser
+\define('_MA_WGDIARIES_GROUPUSER_ID', 'Id');
+\define('_MA_WGDIARIES_GROUPUSER_GROUPID', 'Groupid');
+\define('_MA_WGDIARIES_GROUPUSER_UID', 'Uid');
+\define('_MA_WGDIARIES_GROUPUSER_DATECREATED', 'Datecreated');
+\define('_MA_WGDIARIES_GROUPUSER_SUBMITTER', 'Submitter');
+\define('_MA_WGDIARIES_INDEX_THEREARE', 'There are %s Groupusers');
 \define('_MA_WGDIARIES_INDEX_LATEST_LIST', 'Last wgDiaries');
 // Submit
 \define('_MA_WGDIARIES_SUBMIT', 'Submit');

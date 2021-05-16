@@ -2,9 +2,6 @@
 
 declare(strict_types=1);
 
-
-namespace XoopsModules\Wgdiaries;
-
 /*
  You may not change or alter any portion of this comment or credits
  of supporting developers from this source code or any supporting source code
@@ -25,29 +22,5 @@ namespace XoopsModules\Wgdiaries;
  * @min_xoops      2.5.9
  * @author         wedega - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
  */
-
-/**
- * Interface  Constants
- */
-interface Constants
-{
-	// Constants for tables
-	const TABLE_ITEMS = 0;
-	const TABLE_FILES = 1;
-	const TABLE_GROUPS = 2;
-	const TABLE_GROUPUSERS = 3;
-
-	// Constants for status
-	public const STATUS_NONE      = 0;
-	public const STATUS_OFFLINE   = 1;
-	public const STATUS_SUBMITTED = 2;
-	public const STATUS_APPROVED  = 3;
-	public const STATUS_BROKEN    = 4;
-
-	// Constants for permissions
-	public const PERM_GLOBAL_NONE    = 0;
-	public const PERM_GLOBAL_VIEW    = 1;
-	public const PERM_GLOBAL_SUBMIT  = 2;
-	public const PERM_GLOBAL_APPROVE = 3;
-
-}
+include_once \dirname(\dirname(__DIR__)) . '/mainfile.php';
+include_once XOOPS_ROOT_PATH.'/include/comment_post.php';

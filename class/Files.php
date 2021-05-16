@@ -118,7 +118,7 @@ class Files extends \XoopsObject
 			$form->addElement(new \XoopsFormHidden('file_name', $fileName));
 		}
 		// Form Text Date Select fileDatecreated
-		$fileDatecreated = $this->isNew() ?: $this->getVar('file_datecreated');
+		$fileDatecreated = $this->isNew() ? 0 : $this->getVar('file_datecreated');
 		$form->addElement(new \XoopsFormTextDateSelect(_AM_WGDIARIES_FILE_DATECREATED, 'file_datecreated', '', $fileDatecreated));
 		// Form Select User fileSubmitter
 		$form->addElement(new \XoopsFormSelectUser(_AM_WGDIARIES_FILE_SUBMITTER, 'file_submitter', false, $this->getVar('file_submitter')));

@@ -31,10 +31,14 @@ include_once __DIR__ . '/main.php';
 // There are
 \define('_AM_WGDIARIES_THEREARE_ITEMS', "There are <span class='bold'>%s</span> items in the database");
 \define('_AM_WGDIARIES_THEREARE_FILES', "There are <span class='bold'>%s</span> files in the database");
+\define('_AM_WGDIARIES_THEREARE_GROUPS', "There are <span class='bold'>%s</span> groups in the database");
+\define('_AM_WGDIARIES_THEREARE_GROUPUSERS', "There are <span class='bold'>%s</span> groupusers in the database");
 // ---------------- Admin Files ----------------
 // There aren't
 \define('_AM_WGDIARIES_THEREARENT_ITEMS', "There aren't items");
 \define('_AM_WGDIARIES_THEREARENT_FILES', "There aren't files");
+\define('_AM_WGDIARIES_THEREARENT_GROUPS', "There aren't groups");
+\define('_AM_WGDIARIES_THEREARENT_GROUPUSERS', "There aren't groupusers");
 // Save/Delete
 \define('_AM_WGDIARIES_FORM_OK', 'Successfully saved');
 \define('_AM_WGDIARIES_FORM_DELETE_OK', 'Successfully deleted');
@@ -43,9 +47,13 @@ include_once __DIR__ . '/main.php';
 // Buttons
 \define('_AM_WGDIARIES_ADD_ITEM', 'Add New Item');
 \define('_AM_WGDIARIES_ADD_FILE', 'Add New File');
+\define('_AM_WGDIARIES_ADD_GROUP', 'Add New Group');
+\define('_AM_WGDIARIES_ADD_GROUPUSER', 'Add New Groupuser');
 // Lists
 \define('_AM_WGDIARIES_ITEMS_LIST', 'List of Items');
 \define('_AM_WGDIARIES_FILES_LIST', 'List of Files');
+\define('_AM_WGDIARIES_GROUPS_LIST', 'List of Groups');
+\define('_AM_WGDIARIES_GROUPUSERS_LIST', 'List of Groupusers');
 // ---------------- Admin Classes ----------------
 // Item add/edit
 \define('_AM_WGDIARIES_ITEM_ADD', 'Add Item');
@@ -68,6 +76,26 @@ include_once __DIR__ . '/main.php';
 \define('_AM_WGDIARIES_FILE_NAME_UPLOADS', 'Name in %s :');
 \define('_AM_WGDIARIES_FILE_DATECREATED', 'Datecreated');
 \define('_AM_WGDIARIES_FILE_SUBMITTER', 'Submitter');
+// Group add/edit
+\define('_AM_WGDIARIES_GROUP_ADD', 'Add Group');
+\define('_AM_WGDIARIES_GROUP_EDIT', 'Edit Group');
+// Elements of Group
+\define('_AM_WGDIARIES_GROUP_ID', 'Id');
+\define('_AM_WGDIARIES_GROUP_NAME', 'Name');
+\define('_AM_WGDIARIES_GROUP_LOGO', 'Logo');
+\define('_AM_WGDIARIES_GROUP_LOGO_UPLOADS', 'Logo in %s :');
+\define('_AM_WGDIARIES_GROUP_ONLINE', 'Online');
+\define('_AM_WGDIARIES_GROUP_DATECREATED', 'Datecreated');
+\define('_AM_WGDIARIES_GROUP_SUBMITTER', 'Submitter');
+// Groupuser add/edit
+\define('_AM_WGDIARIES_GROUPUSER_ADD', 'Add Groupuser');
+\define('_AM_WGDIARIES_GROUPUSER_EDIT', 'Edit Groupuser');
+// Elements of Groupuser
+\define('_AM_WGDIARIES_GROUPUSER_ID', 'Id');
+\define('_AM_WGDIARIES_GROUPUSER_GROUPID', 'Groups');
+\define('_AM_WGDIARIES_GROUPUSER_UID', 'Uid');
+\define('_AM_WGDIARIES_GROUPUSER_DATECREATED', 'Datecreated');
+\define('_AM_WGDIARIES_GROUPUSER_SUBMITTER', 'Submitter');
 // General
 \define('_AM_WGDIARIES_FORM_UPLOAD', 'Upload file');
 \define('_AM_WGDIARIES_FORM_UPLOAD_NEW', 'Upload new file: ');

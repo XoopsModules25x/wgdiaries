@@ -23,6 +23,9 @@
  * @license        GPL 2.0 or later
  */
 
+use XoopsModules\Wgdiaries\Common\TableChecker;
+
+
 /**
  * @param      $module
  * @param null $prev_version
@@ -37,6 +40,10 @@ function xoops_module_update_wgdiaries($module, $prev_version = null)
     }
 
     $ret = wgdiaries_check_db($module);
+
+
+    $tablechecker = new \XoopsModules\Wgdiaries\Common\TableChecker('wgdiaries', 1);
+    $result = $tablechecker->processSQL();
 
     //check upload directory
 	include_once __DIR__ . '/install.php';

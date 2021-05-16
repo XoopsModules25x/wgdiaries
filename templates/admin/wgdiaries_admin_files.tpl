@@ -35,15 +35,15 @@
 	</table>
 	<div class="clear">&nbsp;</div>
 	<{if $pagenav|default:''}>
-		<div class="xo-pagenav floatright"><{$pagenav}></div>
+		<div class="xo-pagenav floatright"><{$pagenav|default:false}></div>
 		<div class="clear spacer"></div>
 	<{/if}>
 <{/if}>
 <{if $form|default:''}>
-	<{$form}>
+	<{$form|default:false}>
 <{/if}>
 <{if $error|default:''}>
-	<div class="errorMsg"><strong><{$error}></strong></div>
+	<div class="errorMsg"><strong><{$error|default:false}></strong></div>
 <{/if}>
 
 <!-- Footer -->

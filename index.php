@@ -53,7 +53,7 @@ if ($itemsCount > 0) {
 		$item = $itemsAll[$i]->getValuesItems();
 		$acount = ['count', $count];
 		$items[] = \array_merge($item, $acount);
-		$keywords[] = $itemsAll[$i]->getVar('file_itemid');
+		$keywords[] = $itemsAll[$i]->getVar('gu_groupid');
 		++$count;
 	}
 	$GLOBALS['xoopsTpl']->assign('items', $items);

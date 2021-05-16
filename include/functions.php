@@ -93,7 +93,7 @@ function wgdiaries_RewriteUrl($module, $array, $type = 'content')
 {
     $comment = '';
     $helper = \XoopsModules\Wgdiaries\Helper::getInstance();
-    $filesHandler = $helper->getHandler('files');
+    $groupusersHandler = $helper->getHandler('groupusers');
     $lenght_id = $helper->getConfig('lenght_id');
     $rewrite_url = $helper->getConfig('rewrite_url');
 
@@ -181,7 +181,7 @@ function wgdiaries_Filter($url, $type = '') {
 
     // Get regular expression from module setting. default setting is : `[^a-z0-9]`i
     $helper = \XoopsModules\Wgdiaries\Helper::getInstance();
-    $filesHandler = $helper->getHandler('files');
+    $groupusersHandler = $helper->getHandler('groupusers');
     $regular_expression = $helper->getConfig('regular_expression');
 
     $url = \strip_tags($url);
