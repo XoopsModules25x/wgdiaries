@@ -126,10 +126,11 @@ class Groups extends \XoopsObject
 		$grpOnline = $this->isNew() ? 0 : $this->getVar('grp_online');
 		$form->addElement(new \XoopsFormRadioYN(_AM_WGDIARIES_GROUP_ONLINE, 'grp_online', $grpOnline));
 		// Form Text Date Select grpDatecreated
-		$grpDatecreated = $this->isNew() ? 0 : $this->getVar('grp_datecreated');
+		$grpDatecreated = $this->isNew() ? time() : $this->getVar('grp_datecreated');
 		$form->addElement(new \XoopsFormTextDateSelect(_AM_WGDIARIES_GROUP_DATECREATED, 'grp_datecreated', '', $grpDatecreated));
 		// Form Select User grpSubmitter
-		$form->addElement(new \XoopsFormSelectUser(_AM_WGDIARIES_GROUP_SUBMITTER, 'grp_submitter', false, $this->getVar('grp_submitter')));
+		$grpSubmitter = $this->isNew() ? $GLOBALS['xoopsUser']->uid() : $this->getVar('grp_submitter');
+		$form->addElement(new \XoopsFormSelectUser(_AM_WGDIARIES_GROUP_SUBMITTER, 'grp_submitter', false, $grpSubmitter));
 		// Permissions
 		$memberHandler = \xoops_getHandler('member');
 		$groupList = $memberHandler->getGroupList();
