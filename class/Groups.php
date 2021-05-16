@@ -181,7 +181,7 @@ class Groups extends \XoopsObject
 		$ret['logo']        = $this->getVar('grp_logo');
 		$ret['online']      = (int)$this->getVar('grp_online') > 0 ? _YES : _NO;
 		$ret['datecreated'] = \formatTimestamp($this->getVar('grp_datecreated'), 's');
-		$ret['submitter']   = \XoopsUser::getUnameFromId($this->getVar('grp_submitter'));
+		$ret['submitter']   = \XoopsUser::getUnameFromId($this->getVar('grp_submitter'), true);
 		return $ret;
 	}
 

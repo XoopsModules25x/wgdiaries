@@ -38,24 +38,6 @@ $op = Request::getCmd('op', 'global');
 // Get Form
 include_once XOOPS_ROOT_PATH . '/class/xoopsform/grouppermform.php';
 \xoops_load('XoopsFormLoader');
-$permTableForm = new \XoopsSimpleForm('', 'fselperm', 'permissions.php', 'post');
-$formSelect = new \XoopsFormSelect('', 'op', $op);
-$formSelect->setExtra('onchange="document.fselperm.submit()"');
-$formSelect->addOption('global', _AM_WGDIARIES_PERMISSIONS_GLOBAL);
-$formSelect->addOption('approve_items', _AM_WGDIARIES_PERMISSIONS_APPROVE . ' Items');
-$formSelect->addOption('submit_items', _AM_WGDIARIES_PERMISSIONS_SUBMIT . ' Items');
-$formSelect->addOption('view_items', _AM_WGDIARIES_PERMISSIONS_VIEW . ' Items');
-$formSelect->addOption('approve_files', _AM_WGDIARIES_PERMISSIONS_APPROVE . ' Files');
-$formSelect->addOption('submit_files', _AM_WGDIARIES_PERMISSIONS_SUBMIT . ' Files');
-$formSelect->addOption('view_files', _AM_WGDIARIES_PERMISSIONS_VIEW . ' Files');
-$formSelect->addOption('approve_groups', _AM_WGDIARIES_PERMISSIONS_APPROVE . ' Groups');
-$formSelect->addOption('submit_groups', _AM_WGDIARIES_PERMISSIONS_SUBMIT . ' Groups');
-$formSelect->addOption('view_groups', _AM_WGDIARIES_PERMISSIONS_VIEW . ' Groups');
-$formSelect->addOption('approve_groupusers', _AM_WGDIARIES_PERMISSIONS_APPROVE . ' Groupusers');
-$formSelect->addOption('submit_groupusers', _AM_WGDIARIES_PERMISSIONS_SUBMIT . ' Groupusers');
-$formSelect->addOption('view_groupusers', _AM_WGDIARIES_PERMISSIONS_VIEW . ' Groupusers');
-$permTableForm->addElement($formSelect);
-$permTableForm->display();
 switch ($op) {
 	case 'global':
 	default:
@@ -63,78 +45,6 @@ switch ($op) {
 		$permName = 'wgdiaries_ac';
 		$permDesc = _AM_WGDIARIES_PERMISSIONS_GLOBAL_DESC;
 		$globalPerms = array( '4' => _AM_WGDIARIES_PERMISSIONS_GLOBAL_4, '8' => _AM_WGDIARIES_PERMISSIONS_GLOBAL_8, '16' => _AM_WGDIARIES_PERMISSIONS_GLOBAL_16 );
-		break;
-	case 'approve_items':
-		$formTitle = _AM_WGDIARIES_PERMISSIONS_APPROVE;
-		$permName = 'wgdiaries_approve_items';
-		$permDesc = _AM_WGDIARIES_PERMISSIONS_APPROVE_DESC . ' Items';
-		$handler = $helper->getHandler('items');
-		break;
-	case 'submit_items':
-		$formTitle = _AM_WGDIARIES_PERMISSIONS_SUBMIT;
-		$permName = 'wgdiaries_submit_items';
-		$permDesc = _AM_WGDIARIES_PERMISSIONS_SUBMIT_DESC . ' Items';
-		$handler = $helper->getHandler('items');
-		break;
-	case 'view_items':
-		$formTitle = _AM_WGDIARIES_PERMISSIONS_VIEW;
-		$permName = 'wgdiaries_view_items';
-		$permDesc = _AM_WGDIARIES_PERMISSIONS_VIEW_DESC . ' Items';
-		$handler = $helper->getHandler('items');
-		break;
-	case 'approve_files':
-		$formTitle = _AM_WGDIARIES_PERMISSIONS_APPROVE;
-		$permName = 'wgdiaries_approve_files';
-		$permDesc = _AM_WGDIARIES_PERMISSIONS_APPROVE_DESC . ' Files';
-		$handler = $helper->getHandler('files');
-		break;
-	case 'submit_files':
-		$formTitle = _AM_WGDIARIES_PERMISSIONS_SUBMIT;
-		$permName = 'wgdiaries_submit_files';
-		$permDesc = _AM_WGDIARIES_PERMISSIONS_SUBMIT_DESC . ' Files';
-		$handler = $helper->getHandler('files');
-		break;
-	case 'view_files':
-		$formTitle = _AM_WGDIARIES_PERMISSIONS_VIEW;
-		$permName = 'wgdiaries_view_files';
-		$permDesc = _AM_WGDIARIES_PERMISSIONS_VIEW_DESC . ' Files';
-		$handler = $helper->getHandler('files');
-		break;
-	case 'approve_groups':
-		$formTitle = _AM_WGDIARIES_PERMISSIONS_APPROVE;
-		$permName = 'wgdiaries_approve_groups';
-		$permDesc = _AM_WGDIARIES_PERMISSIONS_APPROVE_DESC . ' Groups';
-		$handler = $helper->getHandler('groups');
-		break;
-	case 'submit_groups':
-		$formTitle = _AM_WGDIARIES_PERMISSIONS_SUBMIT;
-		$permName = 'wgdiaries_submit_groups';
-		$permDesc = _AM_WGDIARIES_PERMISSIONS_SUBMIT_DESC . ' Groups';
-		$handler = $helper->getHandler('groups');
-		break;
-	case 'view_groups':
-		$formTitle = _AM_WGDIARIES_PERMISSIONS_VIEW;
-		$permName = 'wgdiaries_view_groups';
-		$permDesc = _AM_WGDIARIES_PERMISSIONS_VIEW_DESC . ' Groups';
-		$handler = $helper->getHandler('groups');
-		break;
-	case 'approve_groupusers':
-		$formTitle = _AM_WGDIARIES_PERMISSIONS_APPROVE;
-		$permName = 'wgdiaries_approve_groupusers';
-		$permDesc = _AM_WGDIARIES_PERMISSIONS_APPROVE_DESC . ' Groupusers';
-		$handler = $helper->getHandler('groupusers');
-		break;
-	case 'submit_groupusers':
-		$formTitle = _AM_WGDIARIES_PERMISSIONS_SUBMIT;
-		$permName = 'wgdiaries_submit_groupusers';
-		$permDesc = _AM_WGDIARIES_PERMISSIONS_SUBMIT_DESC . ' Groupusers';
-		$handler = $helper->getHandler('groupusers');
-		break;
-	case 'view_groupusers':
-		$formTitle = _AM_WGDIARIES_PERMISSIONS_VIEW;
-		$permName = 'wgdiaries_view_groupusers';
-		$permDesc = _AM_WGDIARIES_PERMISSIONS_VIEW_DESC . ' Groupusers';
-		$handler = $helper->getHandler('groupusers');
 		break;
 }
 $moduleId = $xoopsModule->getVar('mid');
@@ -147,50 +57,8 @@ if ('global' === $op) {
 	$GLOBALS['xoopsTpl']->assign('form', $permform->render());
 	$permFound = true;
 }
-if ($op === 'approve_items' || $op === 'submit_items' || $op === 'view_items') {
-	$itemsCount = $itemsHandler->getCountItems();
-	if ($itemsCount > 0) {
-		$itemsAll = $itemsHandler->getAllItems(0, 'item_submitter');
-		foreach (\array_keys($itemsAll) as $i) {
-			$permform->addItem($itemsAll[$i]->getVar('item_id'), $itemsAll[$i]->getVar('item_submitter'));
-		}
-		$GLOBALS['xoopsTpl']->assign('form', $permform->render());
-	}
-	$permFound = true;
-}
-if ($op === 'approve_files' || $op === 'submit_files' || $op === 'view_files') {
-	$filesCount = $filesHandler->getCountFiles();
-	if ($filesCount > 0) {
-		$filesAll = $filesHandler->getAllFiles(0, 'file_itemid');
-		foreach (\array_keys($filesAll) as $i) {
-			$permform->addItem($filesAll[$i]->getVar('file_id'), $filesAll[$i]->getVar('file_itemid'));
-		}
-		$GLOBALS['xoopsTpl']->assign('form', $permform->render());
-	}
-	$permFound = true;
-}
-if ($op === 'approve_groups' || $op === 'submit_groups' || $op === 'view_groups') {
-	$groupsCount = $groupsHandler->getCountGroups();
-	if ($groupsCount > 0) {
-		$groupsAll = $groupsHandler->getAllGroups(0, 'grp_name');
-		foreach (\array_keys($groupsAll) as $i) {
-			$permform->addItem($groupsAll[$i]->getVar('grp_id'), $groupsAll[$i]->getVar('grp_name'));
-		}
-		$GLOBALS['xoopsTpl']->assign('form', $permform->render());
-	}
-	$permFound = true;
-}
-if ($op === 'approve_groupusers' || $op === 'submit_groupusers' || $op === 'view_groupusers') {
-	$groupusersCount = $groupusersHandler->getCountGroupusers();
-	if ($groupusersCount > 0) {
-		$groupusersAll = $groupusersHandler->getAllGroupusers(0, 'gu_groupid');
-		foreach (\array_keys($groupusersAll) as $i) {
-			$permform->addItem($groupusersAll[$i]->getVar('gu_id'), $groupusersAll[$i]->getVar('gu_groupid'));
-		}
-		$GLOBALS['xoopsTpl']->assign('form', $permform->render());
-	}
-	$permFound = true;
-}
+
+
 unset($permform);
 if (true !== $permFound) {
 	\redirect_header('permissions.php', 3, _AM_WGDIARIES_NO_PERMISSIONS_SET);

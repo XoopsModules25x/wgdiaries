@@ -147,7 +147,7 @@ class Files extends \XoopsObject
 		$ret['desc']        = $this->getVar('file_desc');
 		$ret['name']        = $this->getVar('file_name');
 		$ret['datecreated'] = \formatTimestamp($this->getVar('file_datecreated'), 's');
-		$ret['submitter']   = \XoopsUser::getUnameFromId($this->getVar('file_submitter'));
+		$ret['submitter']   = \XoopsUser::getUnameFromId($this->getVar('file_submitter'), true);
 		return $ret;
 	}
 

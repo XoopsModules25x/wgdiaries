@@ -144,7 +144,7 @@ class Items extends \XoopsObject
 		$ret['datefrom']      = \formatTimestamp($this->getVar('item_datefrom'), 'm');
 		$ret['dateto']        = \formatTimestamp($this->getVar('item_dateto'), 'm');
 		$ret['datecreated']   = \formatTimestamp($this->getVar('item_datecreated'), 's');
-		$ret['submitter']     = \XoopsUser::getUnameFromId($this->getVar('item_submitter'));
+		$ret['submitter']     = \XoopsUser::getUnameFromId($this->getVar('item_submitter'), true);
 		return $ret;
 	}
 

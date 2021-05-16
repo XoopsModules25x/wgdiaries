@@ -131,7 +131,7 @@ class Groupusers extends \XoopsObject
 		$ret['groupid']     = $groupsObj->getVar('grp_name');
 		$ret['uid']         = \XoopsUser::getUnameFromId($this->getVar('gu_uid'));
 		$ret['datecreated'] = \formatTimestamp($this->getVar('gu_datecreated'), 's');
-		$ret['submitter']   = \XoopsUser::getUnameFromId($this->getVar('gu_submitter'));
+		$ret['submitter']   = \XoopsUser::getUnameFromId($this->getVar('gu_submitter'), true);
 		return $ret;
 	}
 
