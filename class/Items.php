@@ -85,10 +85,6 @@ class Items extends \XoopsObject
 			$action = $_SERVER['REQUEST_URI'];
 		}
 		$isAdmin = $GLOBALS['xoopsUser']->isAdmin($GLOBALS['xoopsModule']->mid());
-		// Permissions for uploader
-		$grouppermHandler = \xoops_getHandler('groupperm');
-		$groups = \is_object($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->getGroups() : XOOPS_GROUP_ANONYMOUS;
-		$permissionUpload = $grouppermHandler->checkRight('upload_groups', 32, $groups, $GLOBALS['xoopsModule']->getVar('mid')) ? true : false;
 		// Title
 		$title = $this->isNew() ? \sprintf(_AM_WGDIARIES_ITEM_ADD) : \sprintf(_AM_WGDIARIES_ITEM_EDIT);
 		// Get Theme Form
@@ -117,39 +113,12 @@ class Items extends \XoopsObject
 		$itemDateto = $this->isNew() ? time() : $this->getVar('item_dateto');
 		$form->addElement(new \XoopsFormDateTime(_AM_WGDIARIES_ITEM_DATETO, 'item_dateto', '', $itemDateto), true);
 		// Form Text Date Select itemDatecreated
-		$itemDatecreated = $this->isNew() ? 0 : $this->getVar('item_datecreated');
+		$itemDatecreated = $this->isNew() ? time() : $this->getVar('item_datecreated');
 		$form->addElement(new \XoopsFormTextDateSelect(_AM_WGDIARIES_ITEM_DATECREATED, 'item_datecreated', '', $itemDatecreated));
 		// Form Select User itemSubmitter
-		$form->addElement(new \XoopsFormSelectUser(_AM_WGDIARIES_ITEM_SUBMITTER, 'item_submitter', false, $this->getVar('item_submitter')));
-		// Permissions
-		$memberHandler = \xoops_getHandler('member');
-		$groupList = $memberHandler->getGroupList();
-		$grouppermHandler = \xoops_getHandler('groupperm');
-		$fullList[] = \array_keys($groupList);
-		if (!$this->isNew()) {
-			$groupsIdsApprove = $grouppermHandler->getGroupIds('wgdiaries_approve_items', $this->getVar('item_id'), $GLOBALS['xoopsModule']->getVar('mid'));
-			$groupsIdsApprove[] = \array_values($groupsIdsApprove);
-			$groupsCanApproveCheckbox = new \XoopsFormCheckBox(_AM_WGDIARIES_PERMISSIONS_APPROVE, 'groups_approve_items[]', $groupsIdsApprove);
-			$groupsIdsSubmit = $grouppermHandler->getGroupIds('wgdiaries_submit_items', $this->getVar('item_id'), $GLOBALS['xoopsModule']->getVar('mid'));
-			$groupsIdsSubmit[] = \array_values($groupsIdsSubmit);
-			$groupsCanSubmitCheckbox = new \XoopsFormCheckBox(_AM_WGDIARIES_PERMISSIONS_SUBMIT, 'groups_submit_items[]', $groupsIdsSubmit);
-			$groupsIdsView = $grouppermHandler->getGroupIds('wgdiaries_view_items', $this->getVar('item_id'), $GLOBALS['xoopsModule']->getVar('mid'));
-			$groupsIdsView[] = \array_values($groupsIdsView);
-			$groupsCanViewCheckbox = new \XoopsFormCheckBox(_AM_WGDIARIES_PERMISSIONS_VIEW, 'groups_view_items[]', $groupsIdsView);
-		} else {
-			$groupsCanApproveCheckbox = new \XoopsFormCheckBox(_AM_WGDIARIES_PERMISSIONS_APPROVE, 'groups_approve_items[]', $fullList);
-			$groupsCanSubmitCheckbox = new \XoopsFormCheckBox(_AM_WGDIARIES_PERMISSIONS_SUBMIT, 'groups_submit_items[]', $fullList);
-			$groupsCanViewCheckbox = new \XoopsFormCheckBox(_AM_WGDIARIES_PERMISSIONS_VIEW, 'groups_view_items[]', $fullList);
-		}
-		// To Approve
-		$groupsCanApproveCheckbox->addOptionArray($groupList);
-		$form->addElement($groupsCanApproveCheckbox);
-		// To Submit
-		$groupsCanSubmitCheckbox->addOptionArray($groupList);
-		$form->addElement($groupsCanSubmitCheckbox);
-		// To View
-		$groupsCanViewCheckbox->addOptionArray($groupList);
-		$form->addElement($groupsCanViewCheckbox);
+		$itemSubmitter = $this->isNew() ? $GLOBALS['xoopsUser']->uid() : $this->getVar('item_submitter');
+		$form->addElement(new \XoopsFormSelectUser(_AM_WGDIARIES_ITEM_SUBMITTER, 'item_submitter', false, $itemSubmitter));
+
 		// To Save
 		$form->addElement(new \XoopsFormHidden('op', 'save'));
 		$form->addElement(new \XoopsFormButtonTray('', _SUBMIT, 'submit', '', false));
@@ -175,7 +144,7 @@ class Items extends \XoopsObject
 		$ret['datefrom']      = \formatTimestamp($this->getVar('item_datefrom'), 'm');
 		$ret['dateto']        = \formatTimestamp($this->getVar('item_dateto'), 'm');
 		$ret['datecreated']   = \formatTimestamp($this->getVar('item_datecreated'), 's');
-		$ret['submitter']     = \XoopsUser::getUnameFromId($this->getVar('item_submitter'));
+		$ret['submitter']     = \XoopsUser::getUnameFromId($this->getVar('item_submitter'), true);
 		return $ret;
 	}
 

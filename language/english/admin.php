@@ -114,12 +114,6 @@ include_once __DIR__ . '/main.php';
 \define('_AM_WGDIARIES_PERMISSIONS_GLOBAL_4', 'Permissions global to approve');
 \define('_AM_WGDIARIES_PERMISSIONS_GLOBAL_8', 'Permissions global to submit');
 \define('_AM_WGDIARIES_PERMISSIONS_GLOBAL_16', 'Permissions global to view');
-\define('_AM_WGDIARIES_PERMISSIONS_APPROVE', 'Permissions to approve');
-\define('_AM_WGDIARIES_PERMISSIONS_APPROVE_DESC', 'Permissions to approve');
-\define('_AM_WGDIARIES_PERMISSIONS_SUBMIT', 'Permissions to submit');
-\define('_AM_WGDIARIES_PERMISSIONS_SUBMIT_DESC', 'Permissions to submit');
-\define('_AM_WGDIARIES_PERMISSIONS_VIEW', 'Permissions to view');
-\define('_AM_WGDIARIES_PERMISSIONS_VIEW_DESC', 'Permissions to view');
 \define('_AM_WGDIARIES_NO_PERMISSIONS_SET', 'No permission set');
 // ---------------- Admin Others ----------------
 \define('_AM_WGDIARIES_ABOUT_MAKE_DONATION', 'Submit');

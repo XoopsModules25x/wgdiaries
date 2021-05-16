@@ -118,39 +118,11 @@ class Files extends \XoopsObject
 			$form->addElement(new \XoopsFormHidden('file_name', $fileName));
 		}
 		// Form Text Date Select fileDatecreated
-		$fileDatecreated = $this->isNew() ? 0 : $this->getVar('file_datecreated');
+		$fileDatecreated = $this->isNew() ? time() : $this->getVar('file_datecreated');
 		$form->addElement(new \XoopsFormTextDateSelect(_AM_WGDIARIES_FILE_DATECREATED, 'file_datecreated', '', $fileDatecreated));
 		// Form Select User fileSubmitter
-		$form->addElement(new \XoopsFormSelectUser(_AM_WGDIARIES_FILE_SUBMITTER, 'file_submitter', false, $this->getVar('file_submitter')));
-		// Permissions
-		$memberHandler = \xoops_getHandler('member');
-		$groupList = $memberHandler->getGroupList();
-		$grouppermHandler = \xoops_getHandler('groupperm');
-		$fullList[] = \array_keys($groupList);
-		if (!$this->isNew()) {
-			$groupsIdsApprove = $grouppermHandler->getGroupIds('wgdiaries_approve_files', $this->getVar('file_id'), $GLOBALS['xoopsModule']->getVar('mid'));
-			$groupsIdsApprove[] = \array_values($groupsIdsApprove);
-			$groupsCanApproveCheckbox = new \XoopsFormCheckBox(_AM_WGDIARIES_PERMISSIONS_APPROVE, 'groups_approve_files[]', $groupsIdsApprove);
-			$groupsIdsSubmit = $grouppermHandler->getGroupIds('wgdiaries_submit_files', $this->getVar('file_id'), $GLOBALS['xoopsModule']->getVar('mid'));
-			$groupsIdsSubmit[] = \array_values($groupsIdsSubmit);
-			$groupsCanSubmitCheckbox = new \XoopsFormCheckBox(_AM_WGDIARIES_PERMISSIONS_SUBMIT, 'groups_submit_files[]', $groupsIdsSubmit);
-			$groupsIdsView = $grouppermHandler->getGroupIds('wgdiaries_view_files', $this->getVar('file_id'), $GLOBALS['xoopsModule']->getVar('mid'));
-			$groupsIdsView[] = \array_values($groupsIdsView);
-			$groupsCanViewCheckbox = new \XoopsFormCheckBox(_AM_WGDIARIES_PERMISSIONS_VIEW, 'groups_view_files[]', $groupsIdsView);
-		} else {
-			$groupsCanApproveCheckbox = new \XoopsFormCheckBox(_AM_WGDIARIES_PERMISSIONS_APPROVE, 'groups_approve_files[]', $fullList);
-			$groupsCanSubmitCheckbox = new \XoopsFormCheckBox(_AM_WGDIARIES_PERMISSIONS_SUBMIT, 'groups_submit_files[]', $fullList);
-			$groupsCanViewCheckbox = new \XoopsFormCheckBox(_AM_WGDIARIES_PERMISSIONS_VIEW, 'groups_view_files[]', $fullList);
-		}
-		// To Approve
-		$groupsCanApproveCheckbox->addOptionArray($groupList);
-		$form->addElement($groupsCanApproveCheckbox);
-		// To Submit
-		$groupsCanSubmitCheckbox->addOptionArray($groupList);
-		$form->addElement($groupsCanSubmitCheckbox);
-		// To View
-		$groupsCanViewCheckbox->addOptionArray($groupList);
-		$form->addElement($groupsCanViewCheckbox);
+		$fileSubmitter = $this->isNew() ? $GLOBALS['xoopsUser']->uid() : $this->getVar('file_submitter');
+		$form->addElement(new \XoopsFormSelectUser(_AM_WGDIARIES_FILE_SUBMITTER, 'file_submitter', false, $fileSubmitter));
 		// To Save
 		$form->addElement(new \XoopsFormHidden('op', 'save'));
 		$form->addElement(new \XoopsFormButtonTray('', _SUBMIT, 'submit', '', false));
@@ -175,7 +147,7 @@ class Files extends \XoopsObject
 		$ret['desc']        = $this->getVar('file_desc');
 		$ret['name']        = $this->getVar('file_name');
 		$ret['datecreated'] = \formatTimestamp($this->getVar('file_datecreated'), 's');
-		$ret['submitter']   = \XoopsUser::getUnameFromId($this->getVar('file_submitter'));
+		$ret['submitter']   = \XoopsUser::getUnameFromId($this->getVar('file_submitter'), true);
 		return $ret;
 	}
 

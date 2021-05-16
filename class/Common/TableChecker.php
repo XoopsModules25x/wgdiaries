@@ -231,6 +231,7 @@ class TableChecker extends \XoopsObject
                     // create new field
                     /*
                     $sql = "ALTER TABLE `$table` ADD " . $field['sql'] . ' AFTER `' . $field['after'] . '`;';
+                    AFTER only if $field['after'] not empty
                     if ($result = $GLOBALS['xoopsDB']->queryF($sql)) {
                         $this->result[] = 'Field added:' . $fieldname;
                     } else {

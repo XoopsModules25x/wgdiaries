@@ -122,29 +122,6 @@ switch ($op) {
 		$itemsObj->setVar('item_submitter', Request::getInt('item_submitter', 0));
 		// Insert Data
 		if ($itemsHandler->insert($itemsObj)) {
-			$grouppermHandler = \xoops_getHandler('groupperm');
-			$mid = $GLOBALS['xoopsModule']->getVar('mid');
-			// Permission to view_items
-			$grouppermHandler->deleteByModule($mid, 'wgdiaries_view_items', $newItemId);
-			if (isset($_POST['groups_view_items'])) {
-				foreach ($_POST['groups_view_items'] as $onegroupId) {
-					$grouppermHandler->addRight('wgdiaries_view_items', $newItemId, $onegroupId, $mid);
-				}
-			}
-			// Permission to submit_items
-			$grouppermHandler->deleteByModule($mid, 'wgdiaries_submit_items', $newItemId);
-			if (isset($_POST['groups_submit_items'])) {
-				foreach ($_POST['groups_submit_items'] as $onegroupId) {
-					$grouppermHandler->addRight('wgdiaries_submit_items', $newItemId, $onegroupId, $mid);
-				}
-			}
-			// Permission to approve_items
-			$grouppermHandler->deleteByModule($mid, 'wgdiaries_approve_items', $newItemId);
-			if (isset($_POST['groups_approve_items'])) {
-				foreach ($_POST['groups_approve_items'] as $onegroupId) {
-					$grouppermHandler->addRight('wgdiaries_approve_items', $newItemId, $onegroupId, $mid);
-				}
-			}
 			// redirect after insert
 			\redirect_header('items.php', 2, _MA_WGDIARIES_FORM_OK);
 		}
