@@ -32,17 +32,17 @@ declare(strict_types=1);
  */
 function wgdiariesGetMyItemIds($permtype, $dirname)
 {
-	global $xoopsUser;
-	static $permissions = [];
-	if (\is_array($permissions) && \array_key_exists($permtype, $permissions)) {
-		return $permissions[$permtype];
-	}
-	$moduleHandler = \xoops_getHandler('module');
-	$wgdiariesModule = $moduleHandler->getByDirname($dirname);
-	$groups = \is_object($xoopsUser) ? $xoopsUser->getGroups() : XOOPS_GROUP_ANONYMOUS;
-	$grouppermHandler = \xoops_getHandler('groupperm');
-	$itemIds = $grouppermHandler->getItemIds($permtype, $groups, $wgdiariesModule->getVar('mid'));
-	return $itemIds;
+    global $xoopsUser;
+    static $permissions = [];
+    if (\is_array($permissions) && \array_key_exists($permtype, $permissions)) {
+    return $permissions[$permtype];
+    }
+    $moduleHandler = \xoops_getHandler('module');
+    $wgdiariesModule = $moduleHandler->getByDirname($dirname);
+    $groups = \is_object($xoopsUser) ? $xoopsUser->getGroups() : \XOOPS_GROUP_ANONYMOUS;
+    $grouppermHandler = \xoops_getHandler('groupperm');
+    $itemIds = $grouppermHandler->getItemIds($permtype, $groups, $wgdiariesModule->getVar('mid'));
+    return $itemIds;
 }
 
 /**
@@ -120,7 +120,7 @@ function wgdiaries_RewriteUrl($module, $array, $type = 'content')
             }
             $rewrite_base = '/modules/';
             $page = 'page=' . $array['content_alias'];
-            return XOOPS_URL . $rewrite_base . $module . '/' . $type . '.php?' . $topic_name . 'id=' . $id . '&amp;' . $page . $comment;
+            return \XOOPS_URL . $rewrite_base . $module . '/' . $type . '.php?' . $topic_name . 'id=' . $id . '&amp;' . $page . $comment;
             break;
 
         case 'rewrite':
@@ -140,10 +140,10 @@ function wgdiaries_RewriteUrl($module, $array, $type = 'content')
                 $type = '';
             }
             if ('comment-edit/' === $type || 'comment-reply/' === $type || 'comment-delete/' === $type) {
-                return XOOPS_URL . $rewrite_base . $module_name . $type . $id . '/';
+                return \XOOPS_URL . $rewrite_base . $module_name . $type . $id . '/';
             }
 
-            return XOOPS_URL . $rewrite_base . $module_name . $type . $topic_name  . $id . $page . $rewrite_ext;
+            return \XOOPS_URL . $rewrite_base . $module_name . $type . $topic_name  . $id . $page . $rewrite_ext;
             break;
 
          case 'short':
@@ -162,10 +162,10 @@ function wgdiaries_RewriteUrl($module, $array, $type = 'content')
                 $type = '';
             }
             if ('comment-edit/' === $type || 'comment-reply/' === $type || 'comment-delete/' === $type) {
-                return XOOPS_URL . $rewrite_base . $module_name . $type . $id . '/';
+                return \XOOPS_URL . $rewrite_base . $module_name . $type . $id . '/';
             }
 
-            return XOOPS_URL . $rewrite_base . $module_name . $type . $topic_name . $page . $rewrite_ext;
+            return \XOOPS_URL . $rewrite_base . $module_name . $type . $topic_name . $page . $rewrite_ext;
             break;
     }
     return null;
@@ -190,6 +190,6 @@ function wgdiaries_Filter($url, $type = '') {
     $url .= htmlentities($url, ENT_COMPAT, 'utf-8');
     $url .= \preg_replace('`&([a-z])(acute|uml|circ|grave|ring|cedil|slash|tilde|caron|lig);`i', "\1", $url);
     $url .= \preg_replace(array($regular_expression, '`[-]+`'), '-', $url);
-    $url = ($url == '') ? $type : strtolower(	rim($url, '-'));
+    $url = ($url == '') ? $type : strtolower(    rim($url, '-'));
     return $url;
 }

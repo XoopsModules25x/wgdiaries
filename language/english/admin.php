@@ -111,9 +111,12 @@ include_once __DIR__ . '/main.php';
 // Permissions
 \define('_AM_WGDIARIES_PERMISSIONS_GLOBAL', 'Permissions global');
 \define('_AM_WGDIARIES_PERMISSIONS_GLOBAL_DESC', 'Permissions global to check type of.');
-\define('_AM_WGDIARIES_PERMISSIONS_GLOBAL_4', 'Permissions global to approve');
-\define('_AM_WGDIARIES_PERMISSIONS_GLOBAL_8', 'Permissions global to submit');
-\define('_AM_WGDIARIES_PERMISSIONS_GLOBAL_16', 'Permissions global to view');
+\define('_AM_WGDIARIES_PERMISSIONS_GLOBAL_SUBMIT', 'Permissions global to submit');
+\define('_AM_WGDIARIES_PERMISSIONS_GLOBAL_VIEW', 'Permissions global to view');
+\define('_AM_WGDIARIES_PERMISSIONS_ITEMS_GROUP_EDIT', 'Permissions to edit items of group');
+\define('_AM_WGDIARIES_PERMISSIONS_ITEMS_GROUP_VIEW', 'Permissions to view items of group');
+\define('_AM_WGDIARIES_PERMISSIONS_ITEMS_OWN_EDIT', 'Permissions to edit own items');
+\define('_AM_WGDIARIES_PERMISSIONS_ITEMS_OWN_VIEW', 'Permissions to view own items');
 \define('_AM_WGDIARIES_NO_PERMISSIONS_SET', 'No permission set');
 // ---------------- Admin Others ----------------
 \define('_AM_WGDIARIES_ABOUT_MAKE_DONATION', 'Submit');

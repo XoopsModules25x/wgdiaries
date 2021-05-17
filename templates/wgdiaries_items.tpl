@@ -1,30 +1,31 @@
 <{include file='db:wgdiaries_header.tpl' }>
 
 <{if $itemsCount|default:0 > 0}>
-<div class='table-responsive'>
-	<table class='table table-<{$table_type|default:false}>'>
-		<thead>
-			<tr class='head'>
-				<th colspan='<{$divideby|default:false}>'><{$smarty.const._MA_WGDIARIES_ITEMS_TITLE}></th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<{foreach item=item from=$items name=item}>
-				<td>
-					<div class='panel panel-<{$panel_type|default:false}>'>
+	<h3><{$smarty.const._MA_WGDIARIES_ITEMS_TITLE}></h3>
+	<div class='table-responsive'>
+		<table class='table table-<{$table_type|default:false}>'>
+			<thead>
+				<tr class='head'>
+					<th><{$smarty.const._MA_WGDIARIES_GROUP}></th>
+					<th><{$smarty.const._MA_WGDIARIES_ITEM_SUBMITTER}></th>
+					<th><{$smarty.const._MA_WGDIARIES_ITEM_REMARKS}></th>
+					<th><{$smarty.const._MA_WGDIARIES_ITEM_DATEFROM}></th>
+					<th><{$smarty.const._MA_WGDIARIES_ITEM_DATETO}></th>
+					<th><{$smarty.const._MA_WGDIARIES_ITEM_NBFILES}></th>
+					<th><{$smarty.const._MA_WGDIARIES_ITEM_COMMENTS}></th>
+					<th>&nbsp;</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<{foreach item=item from=$items name=item}>
 						<{include file='db:wgdiaries_items_item.tpl' }>
-					</div>
-				</td>
-				<{if $smarty.foreach.item.iteration is div by $divideby}>
-					</tr><tr>
-				<{/if}>
-				<{/foreach}>
-			</tr>
-		</tbody>
-		<tfoot><tr><td>&nbsp;</td></tr></tfoot>
-	</table>
-</div>
+					<{/foreach}>
+				</tr>
+			</tbody>
+			<tfoot><tr><td>&nbsp;</td></tr></tfoot>
+		</table>
+	</div>
 <{/if}>
 <{if $form|default:''}>
 	<{$form|default:false}>

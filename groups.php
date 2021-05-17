@@ -151,30 +151,6 @@ switch ($op) {
 		$groupsObj->setVar('grp_submitter', Request::getInt('grp_submitter', 0));
 		// Insert Data
 		if ($groupsHandler->insert($groupsObj)) {
-			$newGrpId = $grpId > 0 ? $grpId : $groupsObj->getNewInsertedIdGroups();
-			$grouppermHandler = \xoops_getHandler('groupperm');
-			$mid = $GLOBALS['xoopsModule']->getVar('mid');
-			// Permission to view_groups
-			$grouppermHandler->deleteByModule($mid, 'wgdiaries_view_groups', $newGrpId);
-			if (isset($_POST['groups_view_groups'])) {
-				foreach ($_POST['groups_view_groups'] as $onegroupId) {
-					$grouppermHandler->addRight('wgdiaries_view_groups', $newGrpId, $onegroupId, $mid);
-				}
-			}
-			// Permission to submit_groups
-			$grouppermHandler->deleteByModule($mid, 'wgdiaries_submit_groups', $newGrpId);
-			if (isset($_POST['groups_submit_groups'])) {
-				foreach ($_POST['groups_submit_groups'] as $onegroupId) {
-					$grouppermHandler->addRight('wgdiaries_submit_groups', $newGrpId, $onegroupId, $mid);
-				}
-			}
-			// Permission to approve_groups
-			$grouppermHandler->deleteByModule($mid, 'wgdiaries_approve_groups', $newGrpId);
-			if (isset($_POST['groups_approve_groups'])) {
-				foreach ($_POST['groups_approve_groups'] as $onegroupId) {
-					$grouppermHandler->addRight('wgdiaries_approve_groups', $newGrpId, $onegroupId, $mid);
-				}
-			}
 			// redirect after insert
 			if ('' !== $uploaderErrors) {
 				\redirect_header('groups.php?op=edit&grp_id=' . $newGrpId, 5, $uploaderErrors);

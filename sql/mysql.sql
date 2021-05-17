@@ -16,6 +16,7 @@ CREATE TABLE `wgdiaries_items` (
   `item_remarks` TEXT NOT NULL ,
   `item_datefrom` INT(11) NOT NULL DEFAULT '0',
   `item_dateto` INT(11) NOT NULL DEFAULT '0',
+  `item_comments` INT(11) NOT NULL DEFAULT '0',
   `item_datecreated` INT(11) NOT NULL DEFAULT '0',
   `item_submitter` INT(10) NOT NULL DEFAULT '0',
   PRIMARY KEY (`item_id`)

@@ -23,14 +23,14 @@ declare(strict_types=1);
  * @author         wedega - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
  */
 if (!\defined('XOOPS_ICONS32_PATH')) {
-	\define('XOOPS_ICONS32_PATH', XOOPS_ROOT_PATH . '/Frameworks/moduleclasses/icons/32');
+    \define('XOOPS_ICONS32_PATH', \XOOPS_ROOT_PATH . '/Frameworks/moduleclasses/icons/32');
 }
 if (!\defined('XOOPS_ICONS32_URL')) {
-	\define('XOOPS_ICONS32_URL', XOOPS_URL . '/Frameworks/moduleclasses/icons/32');
+    \define('XOOPS_ICONS32_URL', \XOOPS_URL . '/Frameworks/moduleclasses/icons/32');
 }
 \define('WGDIARIES_DIRNAME', 'wgdiaries');
-\define('WGDIARIES_PATH', XOOPS_ROOT_PATH . '/modules/' . WGDIARIES_DIRNAME);
-\define('WGDIARIES_URL', XOOPS_URL . '/modules/' . WGDIARIES_DIRNAME);
+\define('WGDIARIES_PATH', \XOOPS_ROOT_PATH . '/modules/' . WGDIARIES_DIRNAME);
+\define('WGDIARIES_URL', \XOOPS_URL . '/modules/' . WGDIARIES_DIRNAME);
 \define('WGDIARIES_ICONS_PATH', WGDIARIES_PATH . '/assets/icons');
 \define('WGDIARIES_ICONS_URL', WGDIARIES_URL . '/assets/icons');
 \define('WGDIARIES_IMAGE_PATH', WGDIARIES_PATH . '/assets/images');
@@ -47,5 +47,5 @@ if (!\defined('XOOPS_ICONS32_URL')) {
 $localLogo = WGDIARIES_IMAGE_URL . '/wedega_logo.png';
 // Module Information
 $copyright = "<a href='https://xoops.wedega.com' title='XOOPS Project' target='_blank'><img src='" . $localLogo . "' alt='XOOPS Project' /></a>";
-include_once XOOPS_ROOT_PATH . '/class/xoopsrequest.php';
+include_once \XOOPS_ROOT_PATH . '/class/xoopsrequest.php';
 include_once WGDIARIES_PATH . '/include/functions.php';

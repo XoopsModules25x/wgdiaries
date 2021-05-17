@@ -32,16 +32,16 @@ declare(strict_types=1);
  */
 function wgdiariesCommentsUpdate($itemId, $itemNumb)
 {
-	// Get instance of module
-	$helper = \XoopsModules\Wgdiaries\Helper::getInstance();
-	$groupusersHandler = $helper->getHandler('Groupusers');
-	$guId = (int)$itemId;
-	$groupusersObj = $groupusersHandler->get($guId);
-	$groupusersObj->setVar('gu_comments', (int)$itemNumb);
-	if ($groupusersHandler->insert($groupusersObj)) {
-		return true;
-	}
-	return false;
+    // Get instance of module
+    $helper = \XoopsModules\Wgdiaries\Helper::getInstance();
+    $itemsHandler = $helper->getHandler('Items');
+    $itemsObj = $itemsHandler->get((int)$itemId);
+    $itemsObj->setVar('item_comments', (int)$itemNumb);
+    if ($itemsHandler->insert($itemsObj)) {
+        return true;
+    }
+
+    return false;
 }
 
 /**
@@ -52,21 +52,23 @@ function wgdiariesCommentsUpdate($itemId, $itemNumb)
  */
 function wgdiariesCommentsApprove(&$comment)
 {
-	// Notification event
-	// Get instance of module
-	$helper = \XoopsModules\Wgdiaries\Helper::getInstance();
-	$groupusersHandler = $helper->getHandler('Groupusers');
-	$guId = $comment->getVar('com_itemid');
-	$groupusersObj = $groupusersHandler->get($guId);
-	$guGroupid = $groupusersObj->getVar('gu_groupid');
+    // Notification event
+    // Get instance of module
+    /*
+    $helper = \XoopsModules\Wgdiaries\Helper::getInstance();
+    $groupusersHandler = $helper->getHandler('Groupusers');
+    $guId = $comment->getVar('com_itemid');
+    $groupusersObj = $groupusersHandler->get($guId);
+    $guGroupid = $groupusersObj->getVar('gu_groupid');
 
-	$tags = [];
-	$tags['ITEM_NAME'] = $guGroupid;
-	$tags['ITEM_URL']  = XOOPS_URL . '/modules/wgdiaries/groupusers.php?op=show&gu_id=' . $guId;
-	$notificationHandler = \xoops_getHandler('notification');
-	// Event modify notification
-	$notificationHandler->triggerEvent('global', 0, 'global_comment', $tags);
-	$notificationHandler->triggerEvent('groupusers', $guId, 'groupuser_comment', $tags);
-	return true;
+    $tags = [];
+    $tags['ITEM_NAME'] = $guGroupid;
+    $tags['ITEM_URL']  = \XOOPS_URL . '/modules/wgdiaries/groupusers.php?op=show&gu_id=' . $guId;
+    $notificationHandler = \xoops_getHandler('notification');
+    // Event modify notification
+    $notificationHandler->triggerEvent('global', 0, 'global_comment', $tags);
+    $notificationHandler->triggerEvent('groupusers', $guId, 'groupuser_comment', $tags);
+    */
+    return true;
 
 }

@@ -117,6 +117,7 @@ switch ($op) {
 		$itemDatetoObj->setTime(0, 0, 0);
 		$itemDateto = $itemDatetoObj->getTimestamp() + (int)$itemDatetoArr['time'];
 		$itemsObj->setVar('item_dateto', $itemDateto);
+		$itemsObj->setVar('item_comments', Request::getInt('item_comments', 0));
 		$itemDatecreatedObj = \DateTime::createFromFormat(_SHORTDATESTRING, Request::getString('item_datecreated'));
 		$itemsObj->setVar('item_datecreated', $itemDatecreatedObj->getTimestamp());
 		$itemsObj->setVar('item_submitter', Request::getInt('item_submitter', 0));
