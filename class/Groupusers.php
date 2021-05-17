@@ -108,6 +108,35 @@ class Groupusers extends \XoopsObject
 		// Form Select User guSubmitter
 		$guSubmitter = $this->isNew() ? $GLOBALS['xoopsUser']->uid() : $this->getVar('gu_submitter');
 		$form->addElement(new \XoopsFormSelectUser(_AM_WGDIARIES_GROUPUSER_SUBMITTER, 'gu_submitter', false, $guSubmitter));
+		// Permissions
+		$memberHandler = \xoops_getHandler('member');
+		$groupList = $memberHandler->getGroupList();
+		$grouppermHandler = \xoops_getHandler('groupperm');
+		$fullList[] = \array_keys($groupList);
+		if (!$this->isNew()) {
+			$groupsIdsApprove = $grouppermHandler->getGroupIds('wgdiaries_approve_groupusers', $this->getVar('gu_id'), $GLOBALS['xoopsModule']->getVar('mid'));
+			$groupsIdsApprove[] = \array_values($groupsIdsApprove);
+			$groupsCanApproveCheckbox = new \XoopsFormCheckBox(_AM_WGDIARIES_PERMISSIONS_APPROVE, 'groups_approve_groupusers[]', $groupsIdsApprove);
+			$groupsIdsSubmit = $grouppermHandler->getGroupIds('wgdiaries_submit_groupusers', $this->getVar('gu_id'), $GLOBALS['xoopsModule']->getVar('mid'));
+			$groupsIdsSubmit[] = \array_values($groupsIdsSubmit);
+			$groupsCanSubmitCheckbox = new \XoopsFormCheckBox(_AM_WGDIARIES_PERMISSIONS_SUBMIT, 'groups_submit_groupusers[]', $groupsIdsSubmit);
+			$groupsIdsView = $grouppermHandler->getGroupIds('wgdiaries_view_groupusers', $this->getVar('gu_id'), $GLOBALS['xoopsModule']->getVar('mid'));
+			$groupsIdsView[] = \array_values($groupsIdsView);
+			$groupsCanViewCheckbox = new \XoopsFormCheckBox(_AM_WGDIARIES_PERMISSIONS_VIEW, 'groups_view_groupusers[]', $groupsIdsView);
+		} else {
+			$groupsCanApproveCheckbox = new \XoopsFormCheckBox(_AM_WGDIARIES_PERMISSIONS_APPROVE, 'groups_approve_groupusers[]', $fullList);
+			$groupsCanSubmitCheckbox = new \XoopsFormCheckBox(_AM_WGDIARIES_PERMISSIONS_SUBMIT, 'groups_submit_groupusers[]', $fullList);
+			$groupsCanViewCheckbox = new \XoopsFormCheckBox(_AM_WGDIARIES_PERMISSIONS_VIEW, 'groups_view_groupusers[]', $fullList);
+		}
+		// To Approve
+		$groupsCanApproveCheckbox->addOptionArray($groupList);
+		$form->addElement($groupsCanApproveCheckbox);
+		// To Submit
+		$groupsCanSubmitCheckbox->addOptionArray($groupList);
+		$form->addElement($groupsCanSubmitCheckbox);
+		// To View
+		$groupsCanViewCheckbox->addOptionArray($groupList);
+		$form->addElement($groupsCanViewCheckbox);
 		// To Save
 		$form->addElement(new \XoopsFormHidden('op', 'save'));
 		$form->addElement(new \XoopsFormButtonTray('', _SUBMIT, 'submit', '', false));
@@ -131,7 +160,7 @@ class Groupusers extends \XoopsObject
 		$ret['groupid']     = $groupsObj->getVar('grp_name');
 		$ret['uid']         = \XoopsUser::getUnameFromId($this->getVar('gu_uid'));
 		$ret['datecreated'] = \formatTimestamp($this->getVar('gu_datecreated'), 's');
-		$ret['submitter']   = \XoopsUser::getUnameFromId($this->getVar('gu_submitter'), true);
+		$ret['submitter']   = \XoopsUser::getUnameFromId($this->getVar('gu_submitter'));
 		return $ret;
 	}
 

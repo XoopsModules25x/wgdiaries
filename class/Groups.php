@@ -123,7 +123,7 @@ class Groups extends \XoopsObject
 		}
 		$form->addElement($imageTray);
 		// Form Radio Yes/No grpOnline
-		$grpOnline = $this->isNew() ? 0 : $this->getVar('grp_online');
+		$grpOnline = $this->isNew() ?: $this->getVar('grp_online');
 		$form->addElement(new \XoopsFormRadioYN(_AM_WGDIARIES_GROUP_ONLINE, 'grp_online', $grpOnline));
 		// Form Text Date Select grpDatecreated
 		$grpDatecreated = $this->isNew() ? time() : $this->getVar('grp_datecreated');
@@ -181,7 +181,7 @@ class Groups extends \XoopsObject
 		$ret['logo']        = $this->getVar('grp_logo');
 		$ret['online']      = (int)$this->getVar('grp_online') > 0 ? _YES : _NO;
 		$ret['datecreated'] = \formatTimestamp($this->getVar('grp_datecreated'), 's');
-		$ret['submitter']   = \XoopsUser::getUnameFromId($this->getVar('grp_submitter'), true);
+		$ret['submitter']   = \XoopsUser::getUnameFromId($this->getVar('grp_submitter'));
 		return $ret;
 	}
 

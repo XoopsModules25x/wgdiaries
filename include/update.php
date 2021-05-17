@@ -46,7 +46,7 @@ function xoops_module_update_wgdiaries($module, $prev_version = null)
     $result = $tablechecker->processSQL();
 
     //check upload directory
-	include_once __DIR__ . '/install.php';
+    include_once __DIR__ . '/install.php';
     $ret = xoops_module_install_wgdiaries($module);
 
     $errors = $module->getErrors();
@@ -120,7 +120,7 @@ function update_wgdiaries_v10($module)
 function wgdiaries_check_db($module)
 {
     $ret = true;
-	//insert here code for database check
+    //insert here code for database check
 
     /*
     // Example: update table (add new field)

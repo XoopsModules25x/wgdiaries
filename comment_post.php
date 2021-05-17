@@ -23,4 +23,4 @@ declare(strict_types=1);
  * @author         wedega - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
  */
 include_once \dirname(\dirname(__DIR__)) . '/mainfile.php';
-include_once XOOPS_ROOT_PATH.'/include/comment_post.php';
+include_once \XOOPS_ROOT_PATH.'/include/comment_post.php';

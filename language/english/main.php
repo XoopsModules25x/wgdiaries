@@ -52,11 +52,13 @@ As you can see, you have created a page with a list of links at the top to navig
 \define('_MA_WGDIARIES_ITEM_DATETO', 'Dateto');
 \define('_MA_WGDIARIES_ITEM_DATECREATED', 'Datecreated');
 \define('_MA_WGDIARIES_ITEM_SUBMITTER', 'Submitter');
+\define('_MA_WGDIARIES_ITEM_NBFILES', 'Files');
+\define('_MA_WGDIARIES_ITEM_COMMENTS', 'Comments');
 // File
 \define('_MA_WGDIARIES_FILE', 'File');
-\define('_MA_WGDIARIES_FILE_ADD', 'Add Files');
-\define('_MA_WGDIARIES_FILE_EDIT', 'Edit Files');
-\define('_MA_WGDIARIES_FILE_DELETE', 'Delete Files');
+\define('_MA_WGDIARIES_FILE_ADD', 'Add File');
+\define('_MA_WGDIARIES_FILE_EDIT', 'Edit File');
+\define('_MA_WGDIARIES_FILE_DELETE', 'Delete File');
 \define('_MA_WGDIARIES_FILES', 'Files');
 \define('_MA_WGDIARIES_FILES_LIST', 'List of Files');
 \define('_MA_WGDIARIES_FILES_TITLE', 'Files title');

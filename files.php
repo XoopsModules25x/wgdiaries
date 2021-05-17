@@ -136,30 +136,6 @@ switch ($op) {
 		$filesObj->setVar('file_submitter', Request::getInt('file_submitter', 0));
 		// Insert Data
 		if ($filesHandler->insert($filesObj)) {
-			$newFileId = $fileId > 0 ? $fileId : $filesObj->getNewInsertedIdFiles();
-			$grouppermHandler = \xoops_getHandler('groupperm');
-			$mid = $GLOBALS['xoopsModule']->getVar('mid');
-			// Permission to view_files
-			$grouppermHandler->deleteByModule($mid, 'wgdiaries_view_files', $newFileId);
-			if (isset($_POST['groups_view_files'])) {
-				foreach ($_POST['groups_view_files'] as $onegroupId) {
-					$grouppermHandler->addRight('wgdiaries_view_files', $newFileId, $onegroupId, $mid);
-				}
-			}
-			// Permission to submit_files
-			$grouppermHandler->deleteByModule($mid, 'wgdiaries_submit_files', $newFileId);
-			if (isset($_POST['groups_submit_files'])) {
-				foreach ($_POST['groups_submit_files'] as $onegroupId) {
-					$grouppermHandler->addRight('wgdiaries_submit_files', $newFileId, $onegroupId, $mid);
-				}
-			}
-			// Permission to approve_files
-			$grouppermHandler->deleteByModule($mid, 'wgdiaries_approve_files', $newFileId);
-			if (isset($_POST['groups_approve_files'])) {
-				foreach ($_POST['groups_approve_files'] as $onegroupId) {
-					$grouppermHandler->addRight('wgdiaries_approve_files', $newFileId, $onegroupId, $mid);
-				}
-			}
 			// redirect after insert
 			if ('' !== $uploaderErrors) {
 				\redirect_header('files.php?op=edit&file_id=' . $newFileId, 5, $uploaderErrors);

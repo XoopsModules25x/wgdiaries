@@ -31,19 +31,25 @@
 <{if $itemsCount|default:0 > 0}>
 	<!-- Start show new items in index -->
 	<table class='table table-<{$table_type}>'>
-					</tr><tr>
-		<tr>
+		<thead>
+		<tr class='head'>
+			<th><{$smarty.const._MA_WGDIARIES_GROUP}></th>
+			<th><{$smarty.const._MA_WGDIARIES_ITEM_SUBMITTER}></th>
+			<th><{$smarty.const._MA_WGDIARIES_ITEM_REMARKS}></th>
+			<th><{$smarty.const._MA_WGDIARIES_ITEM_DATEFROM}></th>
+			<th><{$smarty.const._MA_WGDIARIES_ITEM_DATETO}></th>
+			<th><{$smarty.const._MA_WGDIARIES_ITEM_NBFILES}></th>
+			<th><{$smarty.const._MA_WGDIARIES_ITEM_COMMENTS}></th>
+			<th>&nbsp;</th>
+		</tr>
+		</thead>
+		<tbody>
 			<!-- Start new link loop -->
 			<{foreach item=item from=$items name=item}>
-				<td class='col_width<{$numb_col}> top center'>
 					<{include file='db:wgdiaries_items_list.tpl' item=$item}>
-				</td>
-				<{if $smarty.foreach.item.iteration is div by $divideby}>
-					</tr><tr>
-				<{/if}>
 			<{/foreach}>
 			<!-- End new link loop -->
-		</tr>
+		</tbody>
 	</table>
 <{/if}>
 <{include file='db:wgdiaries_footer.tpl' }>

@@ -113,29 +113,6 @@ switch ($op) {
 		$groupusersObj->setVar('gu_submitter', Request::getInt('gu_submitter', 0));
 		// Insert Data
 		if ($groupusersHandler->insert($groupusersObj)) {
-			$grouppermHandler = \xoops_getHandler('groupperm');
-			$mid = $GLOBALS['xoopsModule']->getVar('mid');
-			// Permission to view_groupusers
-			$grouppermHandler->deleteByModule($mid, 'wgdiaries_view_groupusers', $newGuId);
-			if (isset($_POST['groups_view_groupusers'])) {
-				foreach ($_POST['groups_view_groupusers'] as $onegroupId) {
-					$grouppermHandler->addRight('wgdiaries_view_groupusers', $newGuId, $onegroupId, $mid);
-				}
-			}
-			// Permission to submit_groupusers
-			$grouppermHandler->deleteByModule($mid, 'wgdiaries_submit_groupusers', $newGuId);
-			if (isset($_POST['groups_submit_groupusers'])) {
-				foreach ($_POST['groups_submit_groupusers'] as $onegroupId) {
-					$grouppermHandler->addRight('wgdiaries_submit_groupusers', $newGuId, $onegroupId, $mid);
-				}
-			}
-			// Permission to approve_groupusers
-			$grouppermHandler->deleteByModule($mid, 'wgdiaries_approve_groupusers', $newGuId);
-			if (isset($_POST['groups_approve_groupusers'])) {
-				foreach ($_POST['groups_approve_groupusers'] as $onegroupId) {
-					$grouppermHandler->addRight('wgdiaries_approve_groupusers', $newGuId, $onegroupId, $mid);
-				}
-			}
 			// redirect after insert
 			\redirect_header('groupusers.php', 2, _MA_WGDIARIES_FORM_OK);
 		}

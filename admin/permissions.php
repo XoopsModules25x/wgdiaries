@@ -36,32 +36,39 @@ $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('perm
 $op = Request::getCmd('op', 'global');
 
 // Get Form
-include_once XOOPS_ROOT_PATH . '/class/xoopsform/grouppermform.php';
+include_once \XOOPS_ROOT_PATH . '/class/xoopsform/grouppermform.php';
 \xoops_load('XoopsFormLoader');
 switch ($op) {
-	case 'global':
-	default:
-		$formTitle = _AM_WGDIARIES_PERMISSIONS_GLOBAL;
-		$permName = 'wgdiaries_ac';
-		$permDesc = _AM_WGDIARIES_PERMISSIONS_GLOBAL_DESC;
-		$globalPerms = array( '4' => _AM_WGDIARIES_PERMISSIONS_GLOBAL_4, '8' => _AM_WGDIARIES_PERMISSIONS_GLOBAL_8, '16' => _AM_WGDIARIES_PERMISSIONS_GLOBAL_16 );
-		break;
+    case 'global':
+    default:
+    $formTitle = \_AM_WGDIARIES_PERMISSIONS_GLOBAL;
+    $permName = 'wgdiaries_ac';
+    $permDesc = \_AM_WGDIARIES_PERMISSIONS_GLOBAL_DESC;
+    $globalPerms = [
+            Constants::PERM_GLOBAL_SUBMIT => \_AM_WGDIARIES_PERMISSIONS_GLOBAL_SUBMIT,
+            Constants::PERM_GLOBAL_VIEW => \_AM_WGDIARIES_PERMISSIONS_GLOBAL_VIEW,
+            Constants::PERM_ITEMS_GROUP_EDIT => \_AM_WGDIARIES_PERMISSIONS_ITEMS_GROUP_EDIT,
+            Constants::PERM_ITEMS_GROUP_VIEW => \_AM_WGDIARIES_PERMISSIONS_ITEMS_GROUP_VIEW,
+            Constants::PERM_ITEMS_OWN_EDIT => \_AM_WGDIARIES_PERMISSIONS_ITEMS_OWN_EDIT,
+            Constants::PERM_ITEMS_OWN_VIEW => \_AM_WGDIARIES_PERMISSIONS_ITEMS_OWN_VIEW,
+        ];
+    break;
 }
 $moduleId = $xoopsModule->getVar('mid');
 $permform = new \XoopsGroupPermForm($formTitle, $moduleId, $permName, $permDesc, 'admin/permissions.php');
 $permFound = false;
 if ('global' === $op) {
-	foreach ($globalPerms as $gPermId => $gPermName) {
-		$permform->addItem($gPermId, $gPermName);
-	}
-	$GLOBALS['xoopsTpl']->assign('form', $permform->render());
-	$permFound = true;
+    foreach ($globalPerms as $gPermId => $gPermName) {
+        $permform->addItem($gPermId, $gPermName);
+    }
+    $GLOBALS['xoopsTpl']->assign('form', $permform->render());
+    $permFound = true;
 }
 
 
 unset($permform);
 if (true !== $permFound) {
-	\redirect_header('permissions.php', 3, _AM_WGDIARIES_NO_PERMISSIONS_SET);
-	exit();
+    \redirect_header('permissions.php', 3, \_AM_WGDIARIES_NO_PERMISSIONS_SET);
+    exit();
 }
 require __DIR__ . '/footer.php';
