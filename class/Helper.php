@@ -82,5 +82,17 @@ class Helper extends \Xmf\Module\Helper
 
         return $ret;
     }
+
+    /**
+     * @return int
+     */
+    public static function getMid()
+    {
+        $moduleHandler = \xoops_getHandler('module');
+        $xoopsModule   = $moduleHandler->getByDirname('wgdiaries');
+        $mid           = $xoopsModule->mid();
+
+        return $mid;
+    }
 }
 //require __DIR__ . '/../../mainfile.php';

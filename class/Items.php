@@ -43,6 +43,7 @@ class Items extends \XoopsObject
     public function __construct()
     {
         $this->initVar('item_id', \XOBJ_DTYPE_INT);
+        $this->initVar('item_groupid', \XOBJ_DTYPE_INT);
         $this->initVar('item_remarks', \XOBJ_DTYPE_OTHER);
         $this->initVar('item_datefrom', \XOBJ_DTYPE_INT);
         $this->initVar('item_dateto', \XOBJ_DTYPE_INT);
@@ -92,6 +93,9 @@ class Items extends \XoopsObject
         \xoops_load('XoopsFormLoader');
         $form = new \XoopsThemeForm($title, 'form', $action, 'post', true);
         $form->setExtra('enctype="multipart/form-data"');
+
+        $form->addElement(new \XoopsFormHidden('op', 'save'));
+
         // Form Editor DhtmlTextArea itemRemarks
         $editorConfigs = [];
         if ($isAdmin) {
@@ -106,27 +110,32 @@ class Items extends \XoopsObject
         $editorConfigs['width'] = '100%';
         $editorConfigs['height'] = '400px';
         $editorConfigs['editor'] = $editor;
-        $form->addElement(new \XoopsFormEditor(\_AM_WGDIARIES_ITEM_REMARKS, 'item_remarks', $editorConfigs));
+        $form->addElement(new \XoopsFormEditor(\_MA_WGDIARIES_ITEM_REMARKS, 'item_remarks', $editorConfigs));
         // Form Text Date Select itemDatefrom
         $itemDatefrom = $this->isNew() ? \time() : $this->getVar('item_datefrom');
-        $form->addElement(new \XoopsFormDateTime(\_AM_WGDIARIES_ITEM_DATEFROM, 'item_datefrom', '', $itemDatefrom), true);
+        $form->addElement(new \XoopsFormDateTime(\_MA_WGDIARIES_ITEM_DATEFROM, 'item_datefrom', '', $itemDatefrom), true);
         // Form Text Date Select itemDateto
         $itemDateto = $this->isNew() ? \time() : $this->getVar('item_dateto');
-        $form->addElement(new \XoopsFormDateTime(\_AM_WGDIARIES_ITEM_DATETO, 'item_dateto', '', $itemDateto), true);
+        $form->addElement(new \XoopsFormDateTime(\_MA_WGDIARIES_ITEM_DATETO, 'item_dateto', '', $itemDateto), true);
         // Form Text itemComments
         $itemComments = $this->getVar('item_comments');
         if ($isAdmin) {
-            $form->addElement(new \XoopsFormText(_AM_WGDIARIES_ITEM_COMMENTS, 'item_comments', 50, 255, $itemComments));
+            $form->addElement(new \XoopsFormText(_MA_WGDIARIES_ITEM_COMMENTS, 'item_comments', 50, 255, $itemComments));
         } else {
             $form->addElement(new \XoopsFormHidden('item_comments', $itemComments));
+            $form->addElement(new \XoopsFormLabel(_MA_WGDIARIES_ITEM_COMMENTS, $itemComments));
         }
         // Form Text Date Select itemDatecreated
         $itemDatecreated = $this->isNew() ? \time() : $this->getVar('item_datecreated');
-        $form->addElement(new \XoopsFormTextDateSelect(\_AM_WGDIARIES_ITEM_DATECREATED, 'item_datecreated', '', $itemDatecreated));
         // Form Select User itemSubmitter
         $itemSubmitter = $this->isNew() ? $GLOBALS['xoopsUser']->uid() : $this->getVar('item_submitter');
-        $form->addElement(new \XoopsFormSelectUser(\_AM_WGDIARIES_ITEM_SUBMITTER, 'item_submitter', false, $itemSubmitter));
-
+        if ($isAdmin) {
+            $form->addElement(new \XoopsFormTextDateSelect(\_MA_WGDIARIES_ITEM_DATECREATED, 'item_datecreated', '', $itemDatecreated));
+            $form->addElement(new \XoopsFormSelectUser(\_MA_WGDIARIES_ITEM_SUBMITTER, 'item_submitter', false, $itemSubmitter));
+        } else {
+            $form->addElement(new \XoopsFormHidden('item_datecreated', $itemDatecreated));
+            $form->addElement(new \XoopsFormHidden('item_submitter', $itemSubmitter));
+        }
         // To Save
         $form->addElement(new \XoopsFormHidden('op', 'save'));
         $form->addElement(new \XoopsFormButtonTray('', _SUBMIT, 'submit', '', false));
@@ -158,6 +167,12 @@ class Items extends \XoopsObject
         $crFiles = new \CriteriaCompo();
         $crFiles->add(new \Criteria('file_itemid', $this->getVar('item_id')));
         $ret['nbfiles'] = $filesHandler->getCount($crFiles);
+        $groupsHandler = $helper->getHandler('Groups');
+        $groupsObj = $groupsHandler->get($this->getVar('item_groupid'));
+        $ret['groupname'] = '';
+        if (\is_object($groupsObj)) {
+            $ret['groupname'] = $groupsObj->getVar('group_name');
+        }
 
         return $ret;
     }
@@ -174,6 +189,22 @@ class Items extends \XoopsObject
         foreach (\array_keys($vars) as $var) {
             $ret[$var] = $this->getVar('"{$var}"');
         }
+        return $ret;
+    }
+
+    /**
+     * Returns a string which shows basic info of item
+     *
+     * @return string
+     */
+    public function getCaption()
+    {
+        $ret = \sprintf(_MA_WGDIARIES_ITEM_CAPTION,
+                    $this->getVar('item_id'),
+                    \XoopsUser::getUnameFromId($this->getVar('item_submitter'), true),
+                    \formatTimestamp($this->getVar('item_datefrom'), 'm'),
+                    \formatTimestamp($this->getVar('item_dateto'), 'm')
+            );
         return $ret;
     }
 }

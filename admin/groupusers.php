@@ -94,31 +94,6 @@ switch ($op) {
 		$groupusersObj->setVar('gu_submitter', Request::getInt('gu_submitter', 0));
 		// Insert Data
 		if ($groupusersHandler->insert($groupusersObj)) {
-			$newGuId = $groupusersObj->getNewInsertedIdGroupusers();
-			$permId = isset($_REQUEST['gu_id']) ? $guId : $newGuId;
-			$grouppermHandler = \xoops_getHandler('groupperm');
-			$mid = $GLOBALS['xoopsModule']->getVar('mid');
-			// Permission to view_groupusers
-			$grouppermHandler->deleteByModule($mid, 'wgdiaries_view_groupusers', $permId);
-			if (isset($_POST['groups_view_groupusers'])) {
-				foreach ($_POST['groups_view_groupusers'] as $onegroupId) {
-					$grouppermHandler->addRight('wgdiaries_view_groupusers', $permId, $onegroupId, $mid);
-				}
-			}
-			// Permission to submit_groupusers
-			$grouppermHandler->deleteByModule($mid, 'wgdiaries_submit_groupusers', $permId);
-			if (isset($_POST['groups_submit_groupusers'])) {
-				foreach ($_POST['groups_submit_groupusers'] as $onegroupId) {
-					$grouppermHandler->addRight('wgdiaries_submit_groupusers', $permId, $onegroupId, $mid);
-				}
-			}
-			// Permission to approve_groupusers
-			$grouppermHandler->deleteByModule($mid, 'wgdiaries_approve_groupusers', $permId);
-			if (isset($_POST['groups_approve_groupusers'])) {
-				foreach ($_POST['groups_approve_groupusers'] as $onegroupId) {
-					$grouppermHandler->addRight('wgdiaries_approve_groupusers', $permId, $onegroupId, $mid);
-				}
-			}
 			\redirect_header('groupusers.php?op=list', 2, _AM_WGDIARIES_FORM_OK);
 		}
 		// Get Form

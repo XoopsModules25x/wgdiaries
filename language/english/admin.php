@@ -65,6 +65,8 @@ include_once __DIR__ . '/main.php';
 \define('_AM_WGDIARIES_ITEM_DATETO', 'Dateto');
 \define('_AM_WGDIARIES_ITEM_DATECREATED', 'Datecreated');
 \define('_AM_WGDIARIES_ITEM_SUBMITTER', 'Submitter');
+\define('_AM_WGDIARIES_ITEM_NBFILES', 'Files');
+\define('_AM_WGDIARIES_ITEM_COMMENTS', 'Comments');
 // File add/edit
 \define('_AM_WGDIARIES_FILE_ADD', 'Add File');
 \define('_AM_WGDIARIES_FILE_EDIT', 'Edit File');
@@ -92,8 +94,8 @@ include_once __DIR__ . '/main.php';
 \define('_AM_WGDIARIES_GROUPUSER_EDIT', 'Edit Groupuser');
 // Elements of Groupuser
 \define('_AM_WGDIARIES_GROUPUSER_ID', 'Id');
-\define('_AM_WGDIARIES_GROUPUSER_GROUPID', 'Groups');
-\define('_AM_WGDIARIES_GROUPUSER_UID', 'Uid');
+\define('_AM_WGDIARIES_GROUPUSER_GROUPID', 'Groups/Projects');
+\define('_AM_WGDIARIES_GROUPUSER_UID', 'User');
 \define('_AM_WGDIARIES_GROUPUSER_DATECREATED', 'Datecreated');
 \define('_AM_WGDIARIES_GROUPUSER_SUBMITTER', 'Submitter');
 // General
@@ -112,7 +114,9 @@ include_once __DIR__ . '/main.php';
 \define('_AM_WGDIARIES_PERMISSIONS_GLOBAL', 'Permissions global');
 \define('_AM_WGDIARIES_PERMISSIONS_GLOBAL_DESC', 'Permissions global to check type of.');
 \define('_AM_WGDIARIES_PERMISSIONS_GLOBAL_SUBMIT', 'Permissions global to submit');
+\define('_AM_WGDIARIES_PERMISSIONS_GLOBAL_EDIT', 'Permissions global to edit');
 \define('_AM_WGDIARIES_PERMISSIONS_GLOBAL_VIEW', 'Permissions global to view');
+\define('_AM_WGDIARIES_PERMISSIONS_ITEMS_SUBMIT', 'Permissions to submit items');
 \define('_AM_WGDIARIES_PERMISSIONS_ITEMS_GROUP_EDIT', 'Permissions to edit items of group');
 \define('_AM_WGDIARIES_PERMISSIONS_ITEMS_GROUP_VIEW', 'Permissions to view items of group');
 \define('_AM_WGDIARIES_PERMISSIONS_ITEMS_OWN_EDIT', 'Permissions to edit own items');

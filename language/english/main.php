@@ -43,8 +43,11 @@ As you can see, you have created a page with a list of links at the top to navig
 \define('_MA_WGDIARIES_ITEM_DELETE', 'Delete Items');
 \define('_MA_WGDIARIES_ITEMS', 'Items');
 \define('_MA_WGDIARIES_ITEMS_LIST', 'List of Items');
+\define('_MA_WGDIARIES_ITEMS_LISTMY', 'List of my items');
+\define('_MA_WGDIARIES_ITEMS_LISTGROUP', 'List of my items and of my group');
 \define('_MA_WGDIARIES_ITEMS_TITLE', 'Items title');
 \define('_MA_WGDIARIES_ITEMS_DESC', 'Items description');
+\define('_MA_WGDIARIES_ITEM_CAPTION', 'Item No. %s (%s, from %s to %s)');
 // Caption of Item
 \define('_MA_WGDIARIES_ITEM_ID', 'Id');
 \define('_MA_WGDIARIES_ITEM_REMARKS', 'Remarks');

@@ -13,6 +13,7 @@
 
 CREATE TABLE `wgdiaries_items` (
   `item_id` INT(8) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `item_groupid` INT(11) NOT NULL DEFAULT '0',
   `item_remarks` TEXT NOT NULL ,
   `item_datefrom` INT(11) NOT NULL DEFAULT '0',
   `item_dateto` INT(11) NOT NULL DEFAULT '0',

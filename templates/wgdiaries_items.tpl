@@ -1,7 +1,7 @@
 <{include file='db:wgdiaries_header.tpl' }>
 
 <{if $itemsCount|default:0 > 0}>
-	<h3><{$smarty.const._MA_WGDIARIES_ITEMS_TITLE}></h3>
+	<h3><{$itemsTitle}></h3>
 	<div class='table-responsive'>
 		<table class='table table-<{$table_type|default:false}>'>
 			<thead>

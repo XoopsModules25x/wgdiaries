@@ -47,10 +47,12 @@ interface Constants
     // Constants for permissions
     public const PERM_GLOBAL_NONE      = 0;
     public const PERM_GLOBAL_SUBMIT    = 1;
-    public const PERM_GLOBAL_VIEW      = 2;
-    public const PERM_ITEMS_GROUP_EDIT = 3;
-    public const PERM_ITEMS_GROUP_VIEW = 4;
-    public const PERM_ITEMS_OWN_EDIT   = 5;
-    public const PERM_ITEMS_OWN_VIEW   = 6;
+    public const PERM_GLOBAL_EDIT      = 2;
+    public const PERM_GLOBAL_VIEW      = 3;
+    public const PERM_ITEMS_SUBMIT     = 4;
+    public const PERM_ITEMS_GROUP_EDIT = 5;
+    public const PERM_ITEMS_GROUP_VIEW = 6;
+    public const PERM_ITEMS_OWN_EDIT   = 7;
+    public const PERM_ITEMS_OWN_VIEW   = 8;
 
 }

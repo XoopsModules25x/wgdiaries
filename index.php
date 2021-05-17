@@ -51,10 +51,10 @@ if ($itemsCount > 0) {
 	$items = [];
 	foreach (\array_keys($itemsAll) as $i) {
 		$item = $itemsAll[$i]->getValuesItems();
-		$acount = ['count', $count];
-		$items[] = \array_merge($item, $acount);
-		$keywords[] = $itemsAll[$i]->getVar('gu_groupid');
-		++$count;
+        if ($permissionsHandler->getPermItemsView($item['item_submitter'])) {
+            $items[$count] = $item;
+            ++$count;
+        }
 	}
 	$GLOBALS['xoopsTpl']->assign('items', $items);
 	unset($items);
