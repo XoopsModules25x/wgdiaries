@@ -41,8 +41,7 @@ if (!\defined('XOOPS_ICONS32_URL')) {
 \define('WGDIARIES_UPLOAD_FILES_URL', WGDIARIES_UPLOAD_URL . '/files');
 \define('WGDIARIES_UPLOAD_IMAGE_PATH', WGDIARIES_UPLOAD_PATH . '/images');
 \define('WGDIARIES_UPLOAD_IMAGE_URL', WGDIARIES_UPLOAD_URL . '/images');
-\define('WGDIARIES_UPLOAD_SHOTS_PATH', WGDIARIES_UPLOAD_PATH . '/images/shots');
-\define('WGDIARIES_UPLOAD_SHOTS_URL', WGDIARIES_UPLOAD_URL . '/images/shots');
+
 \define('WGDIARIES_ADMIN', WGDIARIES_URL . '/admin/index.php');
 $localLogo = WGDIARIES_IMAGE_URL . '/wedega_logo.png';
 // Module Information

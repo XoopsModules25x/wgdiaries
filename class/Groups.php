@@ -101,7 +101,7 @@ class Groups extends \XoopsObject
 		// Form Image grpLogo: Select Uploaded Image 
 		$getGrpLogo = $this->getVar('grp_logo');
 		$grpLogo = $getGrpLogo ?: 'blank.gif';
-		$imageDirectory = '/uploads/wgdiaries/images/groups';
+		$imageDirectory = '/uploads/wgdiaries/images';
 		$imageTray = new \XoopsFormElementTray(_AM_WGDIARIES_GROUP_LOGO, '<br>');
 		$imageSelect = new \XoopsFormSelect(\sprintf(_AM_WGDIARIES_GROUP_LOGO_UPLOADS, ".{$imageDirectory}/"), 'grp_logo', $grpLogo, 5);
 		$imageArray = \XoopsLists::getImgListAsArray( XOOPS_ROOT_PATH . $imageDirectory );
@@ -131,35 +131,6 @@ class Groups extends \XoopsObject
 		// Form Select User grpSubmitter
 		$grpSubmitter = $this->isNew() ? $GLOBALS['xoopsUser']->uid() : $this->getVar('grp_submitter');
 		$form->addElement(new \XoopsFormSelectUser(_AM_WGDIARIES_GROUP_SUBMITTER, 'grp_submitter', false, $grpSubmitter));
-		// Permissions
-		$memberHandler = \xoops_getHandler('member');
-		$groupList = $memberHandler->getGroupList();
-		$grouppermHandler = \xoops_getHandler('groupperm');
-		$fullList[] = \array_keys($groupList);
-		if (!$this->isNew()) {
-			$groupsIdsApprove = $grouppermHandler->getGroupIds('wgdiaries_approve_groups', $this->getVar('grp_id'), $GLOBALS['xoopsModule']->getVar('mid'));
-			$groupsIdsApprove[] = \array_values($groupsIdsApprove);
-			$groupsCanApproveCheckbox = new \XoopsFormCheckBox(_AM_WGDIARIES_PERMISSIONS_APPROVE, 'groups_approve_groups[]', $groupsIdsApprove);
-			$groupsIdsSubmit = $grouppermHandler->getGroupIds('wgdiaries_submit_groups', $this->getVar('grp_id'), $GLOBALS['xoopsModule']->getVar('mid'));
-			$groupsIdsSubmit[] = \array_values($groupsIdsSubmit);
-			$groupsCanSubmitCheckbox = new \XoopsFormCheckBox(_AM_WGDIARIES_PERMISSIONS_SUBMIT, 'groups_submit_groups[]', $groupsIdsSubmit);
-			$groupsIdsView = $grouppermHandler->getGroupIds('wgdiaries_view_groups', $this->getVar('grp_id'), $GLOBALS['xoopsModule']->getVar('mid'));
-			$groupsIdsView[] = \array_values($groupsIdsView);
-			$groupsCanViewCheckbox = new \XoopsFormCheckBox(_AM_WGDIARIES_PERMISSIONS_VIEW, 'groups_view_groups[]', $groupsIdsView);
-		} else {
-			$groupsCanApproveCheckbox = new \XoopsFormCheckBox(_AM_WGDIARIES_PERMISSIONS_APPROVE, 'groups_approve_groups[]', $fullList);
-			$groupsCanSubmitCheckbox = new \XoopsFormCheckBox(_AM_WGDIARIES_PERMISSIONS_SUBMIT, 'groups_submit_groups[]', $fullList);
-			$groupsCanViewCheckbox = new \XoopsFormCheckBox(_AM_WGDIARIES_PERMISSIONS_VIEW, 'groups_view_groups[]', $fullList);
-		}
-		// To Approve
-		$groupsCanApproveCheckbox->addOptionArray($groupList);
-		$form->addElement($groupsCanApproveCheckbox);
-		// To Submit
-		$groupsCanSubmitCheckbox->addOptionArray($groupList);
-		$form->addElement($groupsCanSubmitCheckbox);
-		// To View
-		$groupsCanViewCheckbox->addOptionArray($groupList);
-		$form->addElement($groupsCanViewCheckbox);
 		// To Save
 		$form->addElement(new \XoopsFormHidden('op', 'save'));
 		$form->addElement(new \XoopsFormButtonTray('', _SUBMIT, 'submit', '', false));

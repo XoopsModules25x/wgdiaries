@@ -36,6 +36,7 @@ $op    = Request::getCmd('op', 'list');
 $start = Request::getInt('start', 0);
 $limit = Request::getInt('limit', $helper->getConfig('userpager'));
 $fileId = Request::getInt('file_id', 0);
+$itemId = Request::getInt('item_id', 0);
 
 // Define Stylesheet
 $GLOBALS['xoTheme']->addStylesheet($style, null);
@@ -50,6 +51,7 @@ $xoBreadcrumbs[] = ['title' => _MA_WGDIARIES_INDEX, 'link' => 'index.php'];
 $permEdit = $permissionsHandler->getPermGlobalSubmit();
 $GLOBALS['xoopsTpl']->assign('permEdit', $permEdit);
 $GLOBALS['xoopsTpl']->assign('showItem', $fileId > 0);
+$GLOBALS['xoopsTpl']->assign('itemId', $itemId);
 
 switch ($op) {
 	case 'show':
@@ -61,21 +63,25 @@ switch ($op) {
 		if ($fileId > 0) {
 			$crFiles->add(new \Criteria('file_id', $fileId));
 		}
+        $crFiles->add(new \Criteria('file_itemid', $itemId));
 		$filesCount = $filesHandler->getCount($crFiles);
 		$GLOBALS['xoopsTpl']->assign('filesCount', $filesCount);
-		$crFiles->setStart($start);
-		$crFiles->setLimit($limit);
-		$filesAll = $filesHandler->getAll($crFiles);
 		if ($filesCount > 0) {
+            $crFiles->setStart($start);
+            $crFiles->setLimit($limit);
+            $filesAll = $filesHandler->getAll($crFiles);
 			$files = [];
 			$fileItemid = '';
+            $itemCaption = '';
 			// Get All Files
 			foreach (\array_keys($filesAll) as $i) {
 				$files[$i] = $filesAll[$i]->getValuesFiles();
 				$fileItemid = $filesAll[$i]->getVar('file_itemid');
-				$keywords[$i] = $fileItemid;
+                $itemCaption = $files[$i]['caption'];
+				$keywords[$i] = $itemCaption;
 			}
 			$GLOBALS['xoopsTpl']->assign('files', $files);
+            $GLOBALS['xoopsTpl']->assign('itemCaption', $itemCaption);
 			unset($files);
 			// Display Navigation
 			if ($filesCount > $limit) {
@@ -110,9 +116,10 @@ switch ($op) {
 		$filesObj->setVar('file_desc', Request::getString('file_desc', ''));
 		// Set Var file_name
 		include_once XOOPS_ROOT_PATH . '/class/uploader.php';
+        $uploaderErrors = '';
 		$filename       = $_FILES['file_name']['name'];
-		$imgNameDef     = Request::getString('file_itemid');
-		$uploader = new \XoopsMediaUploader(WGDIARIES_UPLOAD_FILES_PATH . '/files/', 
+		$imgNameDef     = 'itemid_' . Request::getString('file_itemid');
+		$uploader = new \XoopsMediaUploader(WGDIARIES_UPLOAD_FILES_PATH . '/',
 													$helper->getConfig('mimetypes_file'), 
 													$helper->getConfig('maxsize_file'), null, null);
 		if ($uploader->fetchMedia($_POST['xoops_upload_file'][0])) {
@@ -136,11 +143,12 @@ switch ($op) {
 		$filesObj->setVar('file_submitter', Request::getInt('file_submitter', 0));
 		// Insert Data
 		if ($filesHandler->insert($filesObj)) {
+            $newFileId = $fileId > 0 ? $fileId : $filesObj->getNewInsertedIdFiles();
 			// redirect after insert
 			if ('' !== $uploaderErrors) {
-				\redirect_header('files.php?op=edit&file_id=' . $newFileId, 5, $uploaderErrors);
+				\redirect_header('files.php?op=edit&amp;file_id=' . $newFileId, 5, $uploaderErrors);
 			} else {
-				\redirect_header('files.php?op=list', 2, _MA_WGDIARIES_FORM_OK);
+				\redirect_header('files.php?op=list&amp;item_id=' . $itemId, 2, _MA_WGDIARIES_FORM_OK);
 			}
 		}
 		// Get Form Error
@@ -157,6 +165,7 @@ switch ($op) {
 		}
 		// Form Create
 		$filesObj = $filesHandler->create();
+        $filesObj->setVar('file_itemid', $itemId);
 		$form = $filesObj->getFormFiles();
 		$GLOBALS['xoopsTpl']->assign('form', $form->render());
 		break;
@@ -189,11 +198,15 @@ switch ($op) {
 		}
 		$filesObj = $filesHandler->get($fileId);
 		$fileItemid = $filesObj->getVar('file_itemid');
+        $fileName = WGDIARIES_UPLOAD_FILES_PATH . '/' . $filesObj->getVar('file_name');
 		if (isset($_REQUEST['ok']) && 1 == $_REQUEST['ok']) {
 			if (!$GLOBALS['xoopsSecurity']->check()) {
 				\redirect_header('files.php', 3, \implode(', ', $GLOBALS['xoopsSecurity']->getErrors()));
 			}
 			if ($filesHandler->delete($filesObj)) {
+                if (\file_exists($fileName)) {
+                    \unlink($fileName);
+                }
 				\redirect_header('files.php', 3, _MA_WGDIARIES_FORM_DELETE_OK);
 			} else {
 				$GLOBALS['xoopsTpl']->assign('error', $filesObj->getHtmlErrors());

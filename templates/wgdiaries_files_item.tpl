@@ -2,9 +2,8 @@
 <div class='panel-heading'>
 </div>
 <div class='panel-body'>
-	<span class='col-sm-9 justify'><{$file.itemid}></span>
-	<span class='col-sm-9 justify'><{$file.desc}></span>
 	<span class='col-sm-9 justify'><{$file.name}></span>
+	<span class='col-sm-9 justify'><{$file.desc}></span>
 	<span class='col-sm-9 justify'><{$file.datecreated}></span>
 </div>
 <div class='panel-foot'>
@@ -20,3 +19,4 @@
 		<{/if}>
 	</div>
 </div>
+

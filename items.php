@@ -46,9 +46,7 @@ $GLOBALS['xoopsTpl']->assign('wgdiaries_url', WGDIARIES_URL);
 $keywords = [];
 // Breadcrumbs
 $xoBreadcrumbs[] = ['title' => _MA_WGDIARIES_INDEX, 'link' => 'index.php'];
-// Permissions
-$permEdit = $permissionsHandler->getPermGlobalSubmit();
-$GLOBALS['xoopsTpl']->assign('permEdit', $permEdit);
+
 $GLOBALS['xoopsTpl']->assign('showItem', $itemId > 0);
 
 switch ($op) {
@@ -67,13 +65,22 @@ switch ($op) {
 		$crItems->setLimit($limit);
 		$itemsAll = $itemsHandler->getAll($crItems);
 		if ($itemsCount > 0) {
+		    if ($permissionsHandler->getPermItemsGroupView()) {
+                $GLOBALS['xoopsTpl']->assign('itemsTitle', \_MA_WGDIARIES_ITEMS_LISTGROUP);
+             } else {
+                $GLOBALS['xoopsTpl']->assign('itemsTitle', \_MA_WGDIARIES_ITEMS_LISTMY);
+            }
+            $GLOBALS['xoopsTpl']->assign('itemsCount', $itemsCount);
 			$items = [];
 			$itemSubmitter = '';
 			// Get All Items
 			foreach (\array_keys($itemsAll) as $i) {
-				$items[$i] = $itemsAll[$i]->getValuesItems();
-				$itemSubmitter = $itemsAll[$i]->getVar('item_submitter');
-				$keywords[$i] = $itemSubmitter;
+				$item = $itemsAll[$i]->getValuesItems();
+                // Permissions
+                $item['permEdit'] = $permissionsHandler->getPermItemsEdit($item['item_submitter']);
+                if ($permissionsHandler->getPermItemsView($item['item_submitter'])) {
+                    $items[$i] = $item;
+                }
 			}
 			$GLOBALS['xoopsTpl']->assign('items', $items);
 			unset($items);
@@ -177,6 +184,27 @@ switch ($op) {
 				\redirect_header('items.php', 3, \implode(', ', $GLOBALS['xoopsSecurity']->getErrors()));
 			}
 			if ($itemsHandler->delete($itemsObj)) {
+                $crFiles = new \CriteriaCompo();
+                $crFiles->add(new \Criteria('file_itemid', $itemId));
+                $nbfiles = $filesHandler->getCount($crFiles);
+			    if ($filesHandler->getCount($crFiles) > 0) {
+                    $filesAll = $filesHandler->getAll($crFiles);
+                    // Get and delete all related files
+                    foreach (\array_keys($filesAll) as $i) {
+                        $fileName = WGDIARIES_UPLOAD_FILES_PATH . '/' . $filesAll[$i]->getVar('file_name');
+                        if (\file_exists($fileName)) {
+                            \unlink($fileName);
+                        }
+                    }
+                    // Delete data
+                    $filesHandler->deleteAll($crFiles);
+                }
+			    // delete comments
+                $commentHandler = \xoops_getHandler('comment');
+                $critComments   = new CriteriaCompo(new Criteria('com_modid', $helper::getMid()));
+                $critComments->add(new Criteria('com_itemid', $itemId));
+                $commentHandler->deleteAll($critComments);
+
 				\redirect_header('items.php', 3, _MA_WGDIARIES_FORM_DELETE_OK);
 			} else {
 				$GLOBALS['xoopsTpl']->assign('error', $itemsObj->getHtmlErrors());
@@ -185,7 +213,7 @@ switch ($op) {
 			$xoopsconfirm = new Common\XoopsConfirm(
 				['ok' => 1, 'item_id' => $itemId, 'op' => 'delete'],
 				$_SERVER['REQUEST_URI'],
-				\sprintf(_MA_WGDIARIES_FORM_SURE_DELETE, $itemsObj->getVar('item_submitter')));
+				\sprintf(_MA_WGDIARIES_FORM_SURE_DELETE, $itemsObj->getCaption()));
 			$form = $xoopsconfirm->getFormXoopsConfirm();
 			$GLOBALS['xoopsTpl']->assign('form', $form->render());
 		}

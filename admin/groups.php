@@ -94,7 +94,7 @@ switch ($op) {
 		$imgMimetype    = $_FILES['grp_logo']['type'];
 		$imgNameDef     = Request::getString('grp_name');
 		$uploaderErrors = '';
-		$uploader = new \XoopsMediaUploader(WGDIARIES_UPLOAD_IMAGE_PATH . '/groups/', 
+		$uploader = new \XoopsMediaUploader(WGDIARIES_UPLOAD_IMAGE_PATH . '/',
 													$helper->getConfig('mimetypes_image'), 
 													$helper->getConfig('maxsize_image'), null, null);
 		if ($uploader->fetchMedia($_POST['xoops_upload_file'][0])) {
@@ -132,31 +132,6 @@ switch ($op) {
 		$groupsObj->setVar('grp_submitter', Request::getInt('grp_submitter', 0));
 		// Insert Data
 		if ($groupsHandler->insert($groupsObj)) {
-			$newGrpId = $groupsObj->getNewInsertedIdGroups();
-			$permId = isset($_REQUEST['grp_id']) ? $grpId : $newGrpId;
-			$grouppermHandler = \xoops_getHandler('groupperm');
-			$mid = $GLOBALS['xoopsModule']->getVar('mid');
-			// Permission to view_groups
-			$grouppermHandler->deleteByModule($mid, 'wgdiaries_view_groups', $permId);
-			if (isset($_POST['groups_view_groups'])) {
-				foreach ($_POST['groups_view_groups'] as $onegroupId) {
-					$grouppermHandler->addRight('wgdiaries_view_groups', $permId, $onegroupId, $mid);
-				}
-			}
-			// Permission to submit_groups
-			$grouppermHandler->deleteByModule($mid, 'wgdiaries_submit_groups', $permId);
-			if (isset($_POST['groups_submit_groups'])) {
-				foreach ($_POST['groups_submit_groups'] as $onegroupId) {
-					$grouppermHandler->addRight('wgdiaries_submit_groups', $permId, $onegroupId, $mid);
-				}
-			}
-			// Permission to approve_groups
-			$grouppermHandler->deleteByModule($mid, 'wgdiaries_approve_groups', $permId);
-			if (isset($_POST['groups_approve_groups'])) {
-				foreach ($_POST['groups_approve_groups'] as $onegroupId) {
-					$grouppermHandler->addRight('wgdiaries_approve_groups', $permId, $onegroupId, $mid);
-				}
-			}
 			if ('' !== $uploaderErrors) {
 				\redirect_header('groups.php?op=edit&grp_id=' . $grpId, 5, $uploaderErrors);
 			} else {
