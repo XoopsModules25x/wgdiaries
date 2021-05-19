@@ -136,12 +136,10 @@ class GroupusersHandler extends \XoopsPersistableObjectHandler
         if (!$action) {
             $action = $_SERVER['REQUEST_URI'];
         }
-        $isAdmin = $GLOBALS['xoopsUser']->isAdmin($GLOBALS['xoopsModule']->mid());
-        // Title
-        $title = $this->isNew() ? \sprintf(_AM_WGDIARIES_GROUPUSER_ADD) : \sprintf(_AM_WGDIARIES_GROUPUSER_EDIT);
+        //$isAdmin = $GLOBALS['xoopsUser']->isAdmin($GLOBALS['xoopsModule']->mid());
         // Get Theme Form
         \xoops_load('XoopsFormLoader');
-        $form = new \XoopsThemeForm($title, 'form', $action, 'post', true);
+        $form = new \XoopsThemeForm(\_MA_WGDIARIES_GROUPUSERS_EDIT, 'form', $action, 'post', true);
         $form->setExtra('enctype="multipart/form-data"');
         // Form Table groups
         $groupsHandler = $helper->getHandler('Groups');

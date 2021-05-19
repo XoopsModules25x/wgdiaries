@@ -6,7 +6,7 @@
  - fixed bug with group image (mjoel/goffy)
  - added button "submit and add files" to item form (goffy)
  - added group/user management (mjoel/goffy)
- 
+
 ==============================================================
 1.0 [2021/05/16]
 ==============================================================
