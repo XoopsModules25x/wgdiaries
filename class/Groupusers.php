@@ -84,10 +84,6 @@ class Groupusers extends \XoopsObject
 			$action = $_SERVER['REQUEST_URI'];
 		}
 		$isAdmin = $GLOBALS['xoopsUser']->isAdmin($GLOBALS['xoopsModule']->mid());
-		// Permissions for uploader
-		$grouppermHandler = \xoops_getHandler('groupperm');
-		$groups = \is_object($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->getGroups() : XOOPS_GROUP_ANONYMOUS;
-		$permissionUpload = $grouppermHandler->checkRight('upload_groups', 32, $groups, $GLOBALS['xoopsModule']->getVar('mid')) ? true : false;
 		// Title
 		$title = $this->isNew() ? \sprintf(_AM_WGDIARIES_GROUPUSER_ADD) : \sprintf(_AM_WGDIARIES_GROUPUSER_EDIT);
 		// Get Theme Form
@@ -129,7 +125,8 @@ class Groupusers extends \XoopsObject
 		$groupsHandler = $helper->getHandler('Groups');
 		$groupsObj = $groupsHandler->get($this->getVar('gu_groupid'));
 		$ret['groupid']     = $groupsObj->getVar('grp_name');
-		$ret['uid']         = \XoopsUser::getUnameFromId($this->getVar('gu_uid'));
+        $ret['uid']         = $this->getVar('gu_uid');
+		$ret['username']    = \XoopsUser::getUnameFromId($this->getVar('gu_uid'), true);
 		$ret['datecreated'] = \formatTimestamp($this->getVar('gu_datecreated'), 's');
 		$ret['submitter']   = \XoopsUser::getUnameFromId($this->getVar('gu_submitter'));
 		return $ret;

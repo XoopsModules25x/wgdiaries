@@ -54,5 +54,7 @@ interface Constants
     public const PERM_ITEMS_GROUP_VIEW = 6;
     public const PERM_ITEMS_OWN_EDIT   = 7;
     public const PERM_ITEMS_OWN_VIEW   = 8;
+    public const PERM_GROUPS_EDIT      = 9;
+    public const PERM_GROUPS_VIEW      = 10;
 
 }

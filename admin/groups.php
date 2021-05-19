@@ -69,7 +69,7 @@ switch ($op) {
 	case 'new':
 		$templateMain = 'wgdiaries_admin_groups.tpl';
 		$GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('groups.php'));
-		$adminObject->addItemButton(_AM_WGDIARIES_GROUPS_LIST, 'groups.php', 'list');
+		$adminObject->addItemButton(_AM_WGDIARIES_LIST_GROUPS, 'groups.php', 'list');
 		$GLOBALS['xoopsTpl']->assign('buttons', $adminObject->displayButton('left'));
 		// Form Create
 		$groupsObj = $groupsHandler->create();
@@ -135,7 +135,7 @@ switch ($op) {
 			if ('' !== $uploaderErrors) {
 				\redirect_header('groups.php?op=edit&grp_id=' . $grpId, 5, $uploaderErrors);
 			} else {
-				\redirect_header('groups.php?op=list', 2, _AM_WGDIARIES_FORM_OK);
+				\redirect_header('groups.php?op=list', 2, _MA_WGDIARIES_FORM_OK);
 			}
 		}
 		// Get Form
@@ -147,7 +147,7 @@ switch ($op) {
 		$templateMain = 'wgdiaries_admin_groups.tpl';
 		$GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('groups.php'));
 		$adminObject->addItemButton(_AM_WGDIARIES_ADD_GROUP, 'groups.php?op=new', 'add');
-		$adminObject->addItemButton(_AM_WGDIARIES_GROUPS_LIST, 'groups.php', 'list');
+		$adminObject->addItemButton(_AM_WGDIARIES_LIST_GROUPS, 'groups.php', 'list');
 		$GLOBALS['xoopsTpl']->assign('buttons', $adminObject->displayButton('left'));
 		// Get Form
 		$groupsObj = $groupsHandler->get($grpId);
@@ -164,7 +164,7 @@ switch ($op) {
 				\redirect_header('groups.php', 3, \implode(', ', $GLOBALS['xoopsSecurity']->getErrors()));
 			}
 			if ($groupsHandler->delete($groupsObj)) {
-				\redirect_header('groups.php', 3, _AM_WGDIARIES_FORM_DELETE_OK);
+				\redirect_header('groups.php', 3, _MA_WGDIARIES_FORM_DELETE_OK);
 			} else {
 				$GLOBALS['xoopsTpl']->assign('error', $groupsObj->getHtmlErrors());
 			}
@@ -172,7 +172,7 @@ switch ($op) {
 			$xoopsconfirm = new Common\XoopsConfirm(
 				['ok' => 1, 'grp_id' => $grpId, 'op' => 'delete'],
 				$_SERVER['REQUEST_URI'],
-				\sprintf(_AM_WGDIARIES_FORM_SURE_DELETE, $groupsObj->getVar('grp_name')));
+				\sprintf(_MA_WGDIARIES_FORM_SURE_DELETE, $groupsObj->getVar('grp_name')));
 			$form = $xoopsconfirm->getFormXoopsConfirm();
 			$GLOBALS['xoopsTpl']->assign('form', $form->render());
 		}

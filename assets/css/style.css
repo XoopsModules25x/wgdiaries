@@ -37,6 +37,6 @@ ul.menu > li + li:before {
 	display: none;
 }
 
-img {
-	max-width: 300px;
+.wgd-group-img {
+	max-width: 50px;
 }

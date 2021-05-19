@@ -124,4 +124,56 @@ class GroupusersHandler extends \XoopsPersistableObjectHandler
 		$crGroupusers->setOrder($order);
 		return $crGroupusers;
 	}
+
+    /**
+     * @public function getForm
+     * @param bool $action
+     * @return \XoopsThemeForm
+     */
+    public function getFormSelectGroupusers($grpId, $action = false)
+    {
+        $helper = \XoopsModules\Wgdiaries\Helper::getInstance();
+        if (!$action) {
+            $action = $_SERVER['REQUEST_URI'];
+        }
+        $isAdmin = $GLOBALS['xoopsUser']->isAdmin($GLOBALS['xoopsModule']->mid());
+        // Title
+        $title = $this->isNew() ? \sprintf(_AM_WGDIARIES_GROUPUSER_ADD) : \sprintf(_AM_WGDIARIES_GROUPUSER_EDIT);
+        // Get Theme Form
+        \xoops_load('XoopsFormLoader');
+        $form = new \XoopsThemeForm($title, 'form', $action, 'post', true);
+        $form->setExtra('enctype="multipart/form-data"');
+        // Form Table groups
+        $groupsHandler = $helper->getHandler('Groups');
+        $groupsObj = $groupsHandler->get($grpId);
+        $form->addElement(new \XoopsFormlabel(_AM_WGDIARIES_GROUPUSER_GROUPID, $groupsObj->getVar('grp_name')));
+        $form->addElement(new \XoopsFormHidden('grp_id', $grpId));
+        // Form Select User guUid
+        $guUids = [];
+        $groupusersHandler = $helper->getHandler('Groupusers');
+        $crGroupusers = new \CriteriaCompo();
+        $crGroupusers->add(new \Criteria('gu_groupid', $grpId));
+        $groupusersAll = $groupusersHandler->getAll($crGroupusers);
+        foreach (\array_keys($groupusersAll) as $i) {
+            $guUids[$groupusersAll[$i]->getVar('gu_uid')] = $groupusersAll[$i]->getVar('gu_uid');
+        }
+        $guUidSelect = new \XoopsFormSelect(_MA_WGDIARIES_GROUPUSERS_LINKED, 'gu_uids', $guUids, 5, true);
+        $user_handler = xoops_getHandler('user');
+        $crUsers = new \CriteriaCompo();
+        $crUsers->setSort('uname');
+        $crUsers->setOrder('ASC');
+        $guUidSelect->addOptionArray($user_handler->getList($crUsers));
+        $form->addElement($guUidSelect);
+        // Form Text Date Select guDatecreated
+        $guDatecreated = time();
+        // Form Select User guSubmitter
+        $guSubmitter = $GLOBALS['xoopsUser']->uid();
+        $form->addElement(new \XoopsFormHidden('gu_datecreated', $guDatecreated));
+        $form->addElement(new \XoopsFormHidden('gu_submitter', $guSubmitter));
+
+        // To Save
+        $form->addElement(new \XoopsFormHidden('op', 'save'));
+        $form->addElement(new \XoopsFormButtonTray('', _SUBMIT, 'submit', '', false));
+        return $form;
+    }
 }

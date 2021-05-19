@@ -47,7 +47,7 @@ $keywords = [];
 // Breadcrumbs
 $xoBreadcrumbs[] = ['title' => _MA_WGDIARIES_INDEX, 'link' => 'index.php'];
 // Permissions
-$permEdit = $permissionsHandler->getPermGlobalSubmit();
+$permEdit = $permissionsHandler->getPermGroupsEdit();
 $GLOBALS['xoopsTpl']->assign('permEdit', $permEdit);
 $GLOBALS['xoopsTpl']->assign('showItem', $grpId > 0);
 
@@ -72,10 +72,22 @@ switch ($op) {
 			// Get All Groups
 			foreach (\array_keys($groupsAll) as $i) {
 				$groups[$i] = $groupsAll[$i]->getValuesGroups();
+                $crGroupusers = new \CriteriaCompo();
+                $crGroupusers->add(new \Criteria('gu_groupid', $i));
+                $groupusersCount = $groupusersHandler->getCount($crGroupusers);
+                if ($groupusersCount > 0) {
+                    $groupusersAll = $groupusersHandler->getAll($crGroupusers);
+                    // Get All Groupusers
+                    foreach (\array_keys($groupusersAll) as $j) {
+                        $groupusers = $groupusersAll[$j]->getValuesGroupusers();
+                        $groups[$i]['users'][$j] = ['uid' => $groupusers['uid'], 'name' => $groupusers['username']];
+                    }
+                }
 				$grpName = $groupsAll[$i]->getVar('grp_name');
 				$keywords[$i] = $grpName;
 			}
 			$GLOBALS['xoopsTpl']->assign('groups', $groups);
+			//var_dump($groups);
 			unset($groups);
 			// Display Navigation
 			if ($groupsCount > $limit) {
@@ -208,11 +220,18 @@ switch ($op) {
 			if (!$GLOBALS['xoopsSecurity']->check()) {
 				\redirect_header('groups.php', 3, \implode(', ', $GLOBALS['xoopsSecurity']->getErrors()));
 			}
-			if ($groupsHandler->delete($groupsObj)) {
-				\redirect_header('groups.php', 3, _MA_WGDIARIES_FORM_DELETE_OK);
-			} else {
-				$GLOBALS['xoopsTpl']->assign('error', $groupsObj->getHtmlErrors());
-			}
+            $groupusersHandler = $helper->getHandler('Groupusers');
+            $crGroupusers = new \CriteriaCompo();
+            $crGroupusers->add(new \Criteria('gu_groupid', $grpId));
+            if ($groupusersHandler->deleteAll($crGroupusers)) {
+                if ($groupsHandler->delete($groupsObj)) {
+                    \redirect_header('groups.php', 3, _MA_WGDIARIES_FORM_DELETE_OK);
+                } else {
+                    $GLOBALS['xoopsTpl']->assign('error', $groupsObj->getHtmlErrors());
+                }
+            } else {
+                \redirect_header('groups.php', 3, _MA_WGDIARIES_FORM_ERROR_DELETE);
+            }
 		} else {
 			$xoopsconfirm = new Common\XoopsConfirm(
 				['ok' => 1, 'grp_id' => $grpId, 'op' => 'delete'],

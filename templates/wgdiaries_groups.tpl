@@ -4,23 +4,19 @@
 <div class='table-responsive'>
 	<table class='table table-<{$table_type|default:false}>'>
 		<thead>
+			<thead>
 			<tr class='head'>
-				<th colspan='<{$divideby|default:false}>'><{$smarty.const._MA_WGDIARIES_GROUPS_TITLE}></th>
+				<th class="center"><{$smarty.const._MA_WGDIARIES_GROUP_LOGO}></th>
+				<th class="center"><{$smarty.const._MA_WGDIARIES_GROUP_NAME}></th>
+				<th class="center"><{$smarty.const._MA_WGDIARIES_GROUPUSERS}></th>
+				<th class="center width5"><{$smarty.const._MA_WGDIARIES_FORM_ACTION}></th>
 			</tr>
+			</thead>
 		</thead>
 		<tbody>
-			<tr>
-				<{foreach item=group from=$groups name=group}>
-				<td>
-					<div class='panel panel-<{$panel_type|default:false}>'>
-						<{include file='db:wgdiaries_groups_item.tpl' }>
-					</div>
-				</td>
-				<{if $smarty.foreach.group.iteration is div by $divideby}>
-					</tr><tr>
-				<{/if}>
-				<{/foreach}>
-			</tr>
+			<{foreach item=group from=$groups name=group}>
+				<{include file='db:wgdiaries_groups_item.tpl' }>
+			<{/foreach}>
 		</tbody>
 		<tfoot><tr><td>&nbsp;</td></tr></tfoot>
 	</table>

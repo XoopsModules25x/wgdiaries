@@ -36,6 +36,7 @@ $op    = Request::getCmd('op', 'list');
 $start = Request::getInt('start', 0);
 $limit = Request::getInt('limit', $helper->getConfig('userpager'));
 $guId = Request::getInt('gu_id', 0);
+$grpId = Request::getInt('grp_id', 0);
 
 // Define Stylesheet
 $GLOBALS['xoTheme']->addStylesheet($style, null);
@@ -55,43 +56,7 @@ switch ($op) {
 	case 'show':
 	case 'list':
 	default:
-		// Breadcrumbs
-		$xoBreadcrumbs[] = ['title' => _MA_WGDIARIES_GROUPUSERS_LIST];
-		$crGroupusers = new \CriteriaCompo();
-		if ($guId > 0) {
-			$crGroupusers->add(new \Criteria('gu_id', $guId));
-		}
-		$groupusersCount = $groupusersHandler->getCount($crGroupusers);
-		$GLOBALS['xoopsTpl']->assign('groupusersCount', $groupusersCount);
-		$crGroupusers->setStart($start);
-		$crGroupusers->setLimit($limit);
-		$groupusersAll = $groupusersHandler->getAll($crGroupusers);
-		if ($groupusersCount > 0) {
-			$groupusers = [];
-			$guGroupid = '';
-			// Get All Groupusers
-			foreach (\array_keys($groupusersAll) as $i) {
-				$groupusers[$i] = $groupusersAll[$i]->getValuesGroupusers();
-				$guGroupid = $groupusersAll[$i]->getVar('gu_groupid');
-				$keywords[$i] = $guGroupid;
-			}
-			$GLOBALS['xoopsTpl']->assign('groupusers', $groupusers);
-			unset($groupusers);
-			// Display Navigation
-			if ($groupusersCount > $limit) {
-				include_once XOOPS_ROOT_PATH . '/class/pagenav.php';
-				$pagenav = new \XoopsPageNav($groupusersCount, $limit, $start, 'start', 'op=list&limit=' . $limit);
-				$GLOBALS['xoopsTpl']->assign('pagenav', $pagenav->renderNav(4));
-			}
-			$GLOBALS['xoopsTpl']->assign('table_type', $helper->getConfig('table_type'));
-			$GLOBALS['xoopsTpl']->assign('panel_type', $helper->getConfig('panel_type'));
-			$GLOBALS['xoopsTpl']->assign('divideby', $helper->getConfig('divideby'));
-			$GLOBALS['xoopsTpl']->assign('numb_col', $helper->getConfig('numb_col'));
-			if ('show' == $op && '' != $guGroupid) {
-				$GLOBALS['xoopsTpl']->assign('xoops_pagetitle', \strip_tags($guGroupid . ' - ' . $GLOBALS['xoopsModule']->getVar('name')));
-			}
-		}
-		break;
+
 	case 'save':
 		// Security Check
 		if (!$GLOBALS['xoopsSecurity']->check()) {
@@ -101,53 +66,57 @@ switch ($op) {
 		if (!$permissionsHandler->getPermGlobalSubmit()) {
 			\redirect_header('groupusers.php?op=list', 3, _NOPERM);
 		}
-		if ($guId > 0) {
-			$groupusersObj = $groupusersHandler->get($guId);
-		} else {
-			$groupusersObj = $groupusersHandler->create();
-		}
-		$groupusersObj->setVar('gu_groupid', Request::getInt('gu_groupid', 0));
-		$groupusersObj->setVar('gu_uid', Request::getInt('gu_uid', 0));
-		$groupuserDatecreatedObj = \DateTime::createFromFormat(_SHORTDATESTRING, Request::getString('gu_datecreated'));
-		$groupusersObj->setVar('gu_datecreated', $groupuserDatecreatedObj->getTimestamp());
-		$groupusersObj->setVar('gu_submitter', Request::getInt('gu_submitter', 0));
-		// Insert Data
-		if ($groupusersHandler->insert($groupusersObj)) {
-			// redirect after insert
-			\redirect_header('groupusers.php', 2, _MA_WGDIARIES_FORM_OK);
-		}
+
+        // delete existing links
+        $groupusersHandler = $helper->getHandler('Groupusers');
+        $crGroupusers = new \CriteriaCompo();
+        $crGroupusers->add(new \Criteria('gu_groupid', $grpId));
+        if (!$groupusersHandler->deleteAll($crGroupusers)) {
+            \redirect_header('groups.php', 3, _MA_WGDIARIES_FORM_ERROR_DELETE);
+        }
+        // add selected uids
+        $guUids = Request::getArray('gu_uids');
+        $guDatecreated = Request::getInt('gu_datecreated');
+        $guSubmitter = Request::getInt('gu_submitter');
+        $success = 0;
+        $errors = 0;
+        foreach ($guUids as $guUid) {
+            $groupusersObj = $groupusersHandler->create();
+            $groupusersObj->setVar('gu_groupid', $grpId);
+            $groupusersObj->setVar('gu_uid', $guUid);
+            $groupuserDatecreatedObj = \DateTime::createFromFormat(_SHORTDATESTRING, Request::getString('gu_datecreated'));
+            $groupusersObj->setVar('gu_datecreated', $guDatecreated);
+            $groupusersObj->setVar('gu_submitter', $guSubmitter);
+            // Insert Data
+            if ($groupusersHandler->insert($groupusersObj)) {
+                $success++;
+            } else {
+                $errors++;
+            }
+            unset($groupusersObj);
+        }
+        // redirect after insert
+        \redirect_header('groups.php', 2, _MA_WGDIARIES_FORM_OK);
 		// Get Form Error
 		$GLOBALS['xoopsTpl']->assign('error', $groupusersObj->getHtmlErrors());
 		$form = $groupusersObj->getFormGroupusers();
 		$GLOBALS['xoopsTpl']->assign('form', $form->render());
 		break;
-	case 'new':
-		// Breadcrumbs
-		$xoBreadcrumbs[] = ['title' => _MA_WGDIARIES_GROUPUSER_ADD];
-		// Check permissions
-		if (!$permissionsHandler->getPermGlobalSubmit()) {
-			\redirect_header('groupusers.php?op=list', 3, _NOPERM);
-		}
-		// Form Create
-		$groupusersObj = $groupusersHandler->create();
-		$form = $groupusersObj->getFormGroupusers();
-		$GLOBALS['xoopsTpl']->assign('form', $form->render());
-		break;
+
 	case 'edit':
 		// Breadcrumbs
 		$xoBreadcrumbs[] = ['title' => _MA_WGDIARIES_GROUPUSER_EDIT];
 		// Check permissions
-		if (!$permissionsHandler->getPermGlobalSubmit()) {
+		if (!$permissionsHandler->getPermGroupsEdit()) {
 			\redirect_header('groupusers.php?op=list', 3, _NOPERM);
 		}
 		// Check params
-		if (0 == $guId) {
+		if (0 == $grpId) {
 			\redirect_header('groupusers.php?op=list', 3, _MA_WGDIARIES_INVALID_PARAM);
 		}
 		// Get Form
-		$groupusersObj = $groupusersHandler->get($guId);
-		$form = $groupusersObj->getFormGroupusers();
-		$GLOBALS['xoopsTpl']->assign('form', $form->render());
+        $form = $groupusersHandler->getFormSelectGroupusers($grpId);
+        $GLOBALS['xoopsTpl']->assign('form', $form->render());
 		break;
 	case 'delete':
 		// Breadcrumbs
