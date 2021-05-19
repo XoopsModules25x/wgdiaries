@@ -140,8 +140,14 @@ class Files extends \XoopsObject
         }
 		// To Save
 		$form->addElement(new \XoopsFormHidden('op', 'save'));
-		$form->addElement(new \XoopsFormButtonTray('', _SUBMIT, 'submit', '', false));
-		return $form;
+        $buttonTray = new \XoopsFormElementTray('', '&nbsp;');
+        $buttonTray->addElement(new \XoopsFormButtonTray('', \_SUBMIT, 'submit', '', false));
+        $btnAddFile = new \XoopsFormButton('', 'save_add', \_MA_WGDIARIES_ITEM_SAVEADDFILES, 'submit');
+        $btnAddFile->setExtra('class="btn btn-primary"');
+        $buttonTray->addElement($btnAddFile);
+        $form->addElement($buttonTray);
+
+        return $form;
 	}
 
 	/**

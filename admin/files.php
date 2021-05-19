@@ -31,8 +31,12 @@ use XoopsModules\Wgdiaries\Common;
 require __DIR__ . '/header.php';
 // It recovered the value of argument op in URL$
 $op = Request::getCmd('op', 'list');
-// Request file_id
+if (Request::hasVar('save_add')) {
+    $op ='save_add';
+}
 $fileId = Request::getInt('file_id');
+$itemId = Request::getInt('item_id');
+
 switch ($op) {
 	case 'list':
 	default:
@@ -77,6 +81,7 @@ switch ($op) {
 		$GLOBALS['xoopsTpl']->assign('form', $form->render());
 		break;
 	case 'save':
+    case 'save_add':
 		// Security Check
 		if (!$GLOBALS['xoopsSecurity']->check()) {
 			\redirect_header('files.php', 3, \implode(',', $GLOBALS['xoopsSecurity']->getErrors()));
@@ -120,7 +125,11 @@ switch ($op) {
 			if ('' !== $uploaderErrors) {
 				\redirect_header('files.php?op=edit&file_id=' . $fileId, 5, $uploaderErrors);
 			} else {
-				\redirect_header('files.php?op=list', 2, _AM_WGDIARIES_FORM_OK);
+                if ('save_add' == $op) {
+                    \redirect_header('files.php?op=new&amp;item_id=' . $itemId, 2, _MA_WGDIARIES_FORM_OK);
+                } else {
+                    \redirect_header('files.php?op=list#itemId_' . $itemId, 2, _MA_WGDIARIES_FORM_OK);
+                }
 			}
 		}
 		// Get Form

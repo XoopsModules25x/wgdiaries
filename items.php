@@ -32,10 +32,13 @@ require __DIR__ . '/header.php';
 $GLOBALS['xoopsOption']['template_main'] = 'wgdiaries_items.tpl';
 include_once XOOPS_ROOT_PATH . '/header.php';
 
-$op    = Request::getCmd('op', 'list');
-$start = Request::getInt('start', 0);
-$limit = Request::getInt('limit', $helper->getConfig('userpager'));
-$itemId = Request::getInt('item_id', 0);
+$op      = Request::getCmd('op', 'list');
+$start   = Request::getInt('start', 0);
+$limit   = Request::getInt('limit', $helper->getConfig('userpager'));
+$itemId  = Request::getInt('item_id', 0);
+if (Request::hasVar('save_add')) {
+    $op ='save_add';
+}
 
 // Define Stylesheet
 $GLOBALS['xoTheme']->addStylesheet($style, null);
@@ -101,6 +104,7 @@ switch ($op) {
 		}
 		break;
 	case 'save':
+    case 'save_add':
 		// Security Check
 		if (!$GLOBALS['xoopsSecurity']->check()) {
 			\redirect_header('items.php', 3, \implode(',', $GLOBALS['xoopsSecurity']->getErrors()));
@@ -132,8 +136,13 @@ switch ($op) {
 		$itemsObj->setVar('item_submitter', Request::getInt('item_submitter', 0));
 		// Insert Data
 		if ($itemsHandler->insert($itemsObj)) {
+            $newItemId = $itemId > 0 ? $itemId : $itemsObj->getNewInsertedIdItems();
 			// redirect after insert
-			\redirect_header('items.php', 2, _MA_WGDIARIES_FORM_OK);
+            if ('save_add' == $op) {
+                \redirect_header('files.php?op=new&amp;item_id=' . $newItemId, 2, _MA_WGDIARIES_FORM_OK);
+            } else {
+                \redirect_header('items.php?op=list#itemId_' . $newItemId, 2, _MA_WGDIARIES_FORM_OK);
+            }
 		}
 		// Get Form Error
 		$GLOBALS['xoopsTpl']->assign('error', $itemsObj->getHtmlErrors());
