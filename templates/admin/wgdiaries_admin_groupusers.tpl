@@ -10,7 +10,7 @@
 				<th class="center"><{$smarty.const._AM_WGDIARIES_GROUPUSER_UID}></th>
 				<th class="center"><{$smarty.const._AM_WGDIARIES_GROUPUSER_DATECREATED}></th>
 				<th class="center"><{$smarty.const._AM_WGDIARIES_GROUPUSER_SUBMITTER}></th>
-				<th class="center width5"><{$smarty.const._AM_WGDIARIES_FORM_ACTION}></th>
+				<th class="center width5"><{$smarty.const._MA_WGDIARIES_FORM_ACTION}></th>
 			</tr>
 		</thead>
 		<{if $groupusers_count|default:''}>
@@ -19,7 +19,7 @@
 			<tr class='<{cycle values='odd, even'}>'>
 				<td class='center'><{$groupuser.id}></td>
 				<td class='center'><{$groupuser.groupid}></td>
-				<td class='center'><{$groupuser.uid}></td>
+				<td class='center'><{$groupuser.username}></td>
 				<td class='center'><{$groupuser.datecreated}></td>
 				<td class='center'><{$groupuser.submitter}></td>
 				<td class="center  width5">

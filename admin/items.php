@@ -73,7 +73,7 @@ switch ($op) {
 	case 'new':
 		$templateMain = 'wgdiaries_admin_items.tpl';
 		$GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('items.php'));
-		$adminObject->addItemButton(_AM_WGDIARIES_ITEMS_LIST, 'items.php', 'list');
+		$adminObject->addItemButton(_AM_WGDIARIES_LIST_ITEMS, 'items.php', 'list');
 		$GLOBALS['xoopsTpl']->assign('buttons', $adminObject->displayButton('left'));
 		// Form Create
 		$itemsObj = $itemsHandler->create();
@@ -127,7 +127,7 @@ switch ($op) {
 		$templateMain = 'wgdiaries_admin_items.tpl';
 		$GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('items.php'));
 		$adminObject->addItemButton(_AM_WGDIARIES_ADD_ITEM, 'items.php?op=new', 'add');
-		$adminObject->addItemButton(_AM_WGDIARIES_ITEMS_LIST, 'items.php', 'list');
+		$adminObject->addItemButton(_AM_WGDIARIES_LIST_ITEMS, 'items.php', 'list');
 		$GLOBALS['xoopsTpl']->assign('buttons', $adminObject->displayButton('left'));
 		// Get Form
 		$itemsObj = $itemsHandler->get($itemId);
@@ -144,7 +144,7 @@ switch ($op) {
 				\redirect_header('items.php', 3, \implode(', ', $GLOBALS['xoopsSecurity']->getErrors()));
 			}
 			if ($itemsHandler->delete($itemsObj)) {
-				\redirect_header('items.php', 3, _AM_WGDIARIES_FORM_DELETE_OK);
+				\redirect_header('items.php', 3, _MA_WGDIARIES_FORM_DELETE_OK);
 			} else {
 				$GLOBALS['xoopsTpl']->assign('error', $itemsObj->getHtmlErrors());
 			}
@@ -152,7 +152,7 @@ switch ($op) {
 			$xoopsconfirm = new Common\XoopsConfirm(
 				['ok' => 1, 'item_id' => $itemId, 'op' => 'delete'],
 				$_SERVER['REQUEST_URI'],
-				\sprintf(_AM_WGDIARIES_FORM_SURE_DELETE, $itemsObj->getVar('item_submitter')));
+				\sprintf(_MA_WGDIARIES_FORM_SURE_DELETE, $itemsObj->getVar('item_submitter')));
 			$form = $xoopsconfirm->getFormXoopsConfirm();
 			$GLOBALS['xoopsTpl']->assign('form', $form->render());
 		}

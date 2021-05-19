@@ -90,7 +90,7 @@ class Files extends \XoopsObject
 		$groups = \is_object($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->getGroups() : XOOPS_GROUP_ANONYMOUS;
 		$permissionUpload = $grouppermHandler->checkRight('upload_groups', 32, $groups, $GLOBALS['xoopsModule']->getVar('mid')) ? true : false;
 		// Title
-		$title = $this->isNew() ? \sprintf(_AM_WGDIARIES_FILE_ADD) : \sprintf(_AM_WGDIARIES_FILE_EDIT);
+		$title = $this->isNew() ? \sprintf(_MA_WGDIARIES_FILE_ADD) : \sprintf(_MA_WGDIARIES_FILE_EDIT);
 		// Get Theme Form
 		\xoops_load('XoopsFormLoader');
 		$form = new \XoopsThemeForm($title, 'form', $action, 'post', true);
@@ -98,7 +98,7 @@ class Files extends \XoopsObject
 		// Form Table items
         if ($isAdmin) {
             $itemsHandler = $helper->getHandler('Items');
-            $fileItemidSelect = new \XoopsFormSelect(_AM_WGDIARIES_FILE_ITEMID, 'file_itemid', $this->getVar('file_itemid'));
+            $fileItemidSelect = new \XoopsFormSelect(_MA_WGDIARIES_FILE_ITEMID, 'file_itemid', $this->getVar('file_itemid'));
             $crItems = new \CriteriaCompo();
             $itemsAll = $itemsHandler->getAll($crItems);
             foreach (\array_keys($itemsAll) as $i) {
@@ -111,18 +111,18 @@ class Files extends \XoopsObject
         }
 
 		// Form Text fileDesc
-		$form->addElement(new \XoopsFormText(_AM_WGDIARIES_FILE_DESC, 'file_desc', 50, 255, $this->getVar('file_desc')));
+		$form->addElement(new \XoopsFormText(_MA_WGDIARIES_FILE_DESC, 'file_desc', 50, 255, $this->getVar('file_desc')));
 		// Form File: Upload fileName
 		$fileName = $this->isNew() ? '' : $this->getVar('file_name');
 		if ($permissionUpload) {
-			$fileUploadTray = new \XoopsFormElementTray(_AM_WGDIARIES_FILE_NAME, '<br>');
+			$fileUploadTray = new \XoopsFormElementTray(_MA_WGDIARIES_FILE_NAME, '<br>');
 			$fileDirectory = '/uploads/wgdiaries/files';
 			if (!$this->isNew()) {
-				$fileUploadTray->addElement(new \XoopsFormLabel(\sprintf(_AM_WGDIARIES_FILE_NAME_UPLOADS, ".{$fileDirectory}/"), $fileName));
+				$fileUploadTray->addElement(new \XoopsFormLabel(\sprintf(_MA_WGDIARIES_FILE_NAME_UPLOADS, ".{$fileDirectory}/"), $fileName));
 			}
 			$maxsize = $helper->getConfig('maxsize_file');
 			$fileUploadTray->addElement(new \XoopsFormFile('', 'file_name', $maxsize));
-			$fileUploadTray->addElement(new \XoopsFormLabel(_AM_WGDIARIES_FORM_UPLOAD_SIZE, ($maxsize / 1048576) . ' '  . _AM_WGDIARIES_FORM_UPLOAD_SIZE_MB));
+			$fileUploadTray->addElement(new \XoopsFormLabel(_MA_WGDIARIES_FORM_UPLOAD_SIZE, ($maxsize / 1048576) . ' '  . _MA_WGDIARIES_FORM_UPLOAD_SIZE_MB));
 			$form->addElement($fileUploadTray);
 		} else {
 			$form->addElement(new \XoopsFormHidden('file_name', $fileName));
@@ -132,8 +132,8 @@ class Files extends \XoopsObject
 		// Form Select User fileSubmitter
 		$fileSubmitter = $this->isNew() ? $GLOBALS['xoopsUser']->uid() : $this->getVar('file_submitter');
         if ($isAdmin) {
-            $form->addElement(new \XoopsFormTextDateSelect(_AM_WGDIARIES_FILE_DATECREATED, 'file_datecreated', '', $fileDatecreated));
-            $form->addElement(new \XoopsFormSelectUser(_AM_WGDIARIES_FILE_SUBMITTER, 'file_submitter', false, $fileSubmitter));
+            $form->addElement(new \XoopsFormTextDateSelect(_MA_WGDIARIES_FILE_DATECREATED, 'file_datecreated', '', $fileDatecreated));
+            $form->addElement(new \XoopsFormSelectUser(_MA_WGDIARIES_FILE_SUBMITTER, 'file_submitter', false, $fileSubmitter));
         } else {
             $form->addElement(new \XoopsFormHidden('file_datecreated', $fileDatecreated));
             $form->addElement(new \XoopsFormHidden('file_submitter', $fileSubmitter));

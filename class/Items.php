@@ -90,7 +90,7 @@ class Items extends \XoopsObject
         $uid = \is_object($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->uid() : 0;
 
         // Title
-        $title = $this->isNew() ? \sprintf(\_AM_WGDIARIES_ITEM_ADD) : \sprintf(\_AM_WGDIARIES_ITEM_EDIT);
+        $title = $this->isNew() ? \sprintf(\_MA_WGDIARIES_ITEM_ADD) : \sprintf(\_MA_WGDIARIES_ITEM_EDIT);
         // Get Theme Form
         \xoops_load('XoopsFormLoader');
         $form = new \XoopsThemeForm($title, 'form', $action, 'post', true);
@@ -119,11 +119,11 @@ class Items extends \XoopsObject
                 }
             }
             if (\count($groupOptions) > 1) {
-                $itemGroupSelect = new \XoopsFormSelect(\_AM_WGDIARIES_ITEM_GROUPID, 'item_groupid', $itemGroup);
+                $itemGroupSelect = new \XoopsFormSelect(\_MA_WGDIARIES_ITEM_GROUPID, 'item_groupid', $itemGroup);
                 $itemGroupSelect->addOptionArray($groupOptions);
                 $form->addElement($itemGroupSelect);
             } elseif (\count($groupOptions) > 0) {
-                $form->addElement(new \XoopsFormLabel(\_AM_WGDIARIES_ITEM_GROUPID, \array_values($groupOptions)[0]));
+                $form->addElement(new \XoopsFormLabel(\_MA_WGDIARIES_ITEM_GROUPID, \array_values($groupOptions)[0]));
                 $form->addElement(new \XoopsFormHidden('item_groupid', \array_key_first($groupOptions)));
             } else {
                 $form->addElement(new \XoopsFormHidden('item_groupid', 0));

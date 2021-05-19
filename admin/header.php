@@ -47,6 +47,7 @@ if (!isset($xoopsTpl) || !\is_object($xoopsTpl)) {
 // Load languages
 \xoops_loadLanguage('admin');
 \xoops_loadLanguage('modinfo');
+\xoops_loadLanguage('main');
 
 // Local admin menu class
 if (\file_exists($GLOBALS['xoops']->path($pathModuleAdmin.'/moduleadmin.php'))) {

@@ -47,11 +47,8 @@ include_once 'common.php';
 \define('_MI_WGDIARIES_SMNAME1', 'Index page');
 \define('_MI_WGDIARIES_SMNAME2', 'Items');
 \define('_MI_WGDIARIES_SMNAME3', 'Submit Items');
-\define('_MI_WGDIARIES_SMNAME5', 'Submit Files');
-\define('_MI_WGDIARIES_SMNAME6', 'Groups');
-\define('_MI_WGDIARIES_SMNAME7', 'Submit Groups');
-\define('_MI_WGDIARIES_SMNAME8', 'Groupusers');
-\define('_MI_WGDIARIES_SMNAME9', 'Submit Groupusers');
+\define('_MI_WGDIARIES_SMNAME4', 'Groups');
+\define('_MI_WGDIARIES_SMNAME5', 'Submit Group');
 // Config
 \define('_MI_WGDIARIES_EDITOR_ADMIN', 'Editor admin');
 \define('_MI_WGDIARIES_EDITOR_ADMIN_DESC', 'Select the editor which should be used in admin area for text area fields');

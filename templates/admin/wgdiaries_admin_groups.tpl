@@ -5,13 +5,13 @@
 	<table class='table table-bordered'>
 		<thead>
 			<tr class='head'>
-				<th class="center"><{$smarty.const._AM_WGDIARIES_GROUP_ID}></th>
-				<th class="center"><{$smarty.const._AM_WGDIARIES_GROUP_NAME}></th>
-				<th class="center"><{$smarty.const._AM_WGDIARIES_GROUP_LOGO}></th>
-				<th class="center"><{$smarty.const._AM_WGDIARIES_GROUP_ONLINE}></th>
-				<th class="center"><{$smarty.const._AM_WGDIARIES_GROUP_DATECREATED}></th>
-				<th class="center"><{$smarty.const._AM_WGDIARIES_GROUP_SUBMITTER}></th>
-				<th class="center width5"><{$smarty.const._AM_WGDIARIES_FORM_ACTION}></th>
+				<th class="center"><{$smarty.const._MA_WGDIARIES_GROUP_ID}></th>
+				<th class="center"><{$smarty.const._MA_WGDIARIES_GROUP_NAME}></th>
+				<th class="center"><{$smarty.const._MA_WGDIARIES_GROUP_LOGO}></th>
+				<th class="center"><{$smarty.const._MA_WGDIARIES_GROUP_ONLINE}></th>
+				<th class="center"><{$smarty.const._MA_WGDIARIES_GROUP_DATECREATED}></th>
+				<th class="center"><{$smarty.const._MA_WGDIARIES_GROUP_SUBMITTER}></th>
+				<th class="center width5"><{$smarty.const._MA_WGDIARIES_FORM_ACTION}></th>
 			</tr>
 		</thead>
 		<{if $groups_count|default:''}>

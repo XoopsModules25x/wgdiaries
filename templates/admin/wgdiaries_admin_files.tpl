@@ -5,13 +5,13 @@
 	<table class='table table-bordered'>
 		<thead>
 			<tr class='head'>
-				<th class="center"><{$smarty.const._AM_WGDIARIES_FILE_ID}></th>
-				<th class="center"><{$smarty.const._AM_WGDIARIES_FILE_ITEMID}></th>
-				<th class="center"><{$smarty.const._AM_WGDIARIES_FILE_DESC}></th>
-				<th class="center"><{$smarty.const._AM_WGDIARIES_FILE_NAME}></th>
-				<th class="center"><{$smarty.const._AM_WGDIARIES_FILE_DATECREATED}></th>
-				<th class="center"><{$smarty.const._AM_WGDIARIES_FILE_SUBMITTER}></th>
-				<th class="center width5"><{$smarty.const._AM_WGDIARIES_FORM_ACTION}></th>
+				<th class="center"><{$smarty.const._MA_WGDIARIES_FILE_ID}></th>
+				<th class="center"><{$smarty.const._MA_WGDIARIES_FILE_ITEMID}></th>
+				<th class="center"><{$smarty.const._MA_WGDIARIES_FILE_DESC}></th>
+				<th class="center"><{$smarty.const._MA_WGDIARIES_FILE_NAME}></th>
+				<th class="center"><{$smarty.const._MA_WGDIARIES_FILE_DATECREATED}></th>
+				<th class="center"><{$smarty.const._MA_WGDIARIES_FILE_SUBMITTER}></th>
+				<th class="center width5"><{$smarty.const._MA_WGDIARIES_FORM_ACTION}></th>
 			</tr>
 		</thead>
 		<{if $files_count|default:''}>

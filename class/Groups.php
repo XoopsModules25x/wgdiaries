@@ -90,20 +90,20 @@ class Groups extends \XoopsObject
 		$groups = \is_object($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->getGroups() : XOOPS_GROUP_ANONYMOUS;
 		$permissionUpload = $grouppermHandler->checkRight('upload_groups', 32, $groups, $GLOBALS['xoopsModule']->getVar('mid')) ? true : false;
 		// Title
-		$title = $this->isNew() ? \sprintf(_AM_WGDIARIES_GROUP_ADD) : \sprintf(_AM_WGDIARIES_GROUP_EDIT);
+		$title = $this->isNew() ? \sprintf(_MA_WGDIARIES_GROUP_ADD) : \sprintf(_MA_WGDIARIES_GROUP_EDIT);
 		// Get Theme Form
 		\xoops_load('XoopsFormLoader');
 		$form = new \XoopsThemeForm($title, 'form', $action, 'post', true);
 		$form->setExtra('enctype="multipart/form-data"');
 		// Form Text grpName
-		$form->addElement(new \XoopsFormText(_AM_WGDIARIES_GROUP_NAME, 'grp_name', 50, 255, $this->getVar('grp_name')));
+		$form->addElement(new \XoopsFormText(_MA_WGDIARIES_GROUP_NAME, 'grp_name', 50, 255, $this->getVar('grp_name')));
 		// Form Image grpLogo
 		// Form Image grpLogo: Select Uploaded Image 
 		$getGrpLogo = $this->getVar('grp_logo');
 		$grpLogo = $getGrpLogo ?: 'blank.gif';
 		$imageDirectory = '/uploads/wgdiaries/images/groups';
-		$imageTray = new \XoopsFormElementTray(_AM_WGDIARIES_GROUP_LOGO, '<br>');
-		$imageSelect = new \XoopsFormSelect(\sprintf(_AM_WGDIARIES_GROUP_LOGO_UPLOADS, ".{$imageDirectory}/"), 'grp_logo', $grpLogo, 5);
+		$imageTray = new \XoopsFormElementTray(_MA_WGDIARIES_GROUP_LOGO, '<br>');
+		$imageSelect = new \XoopsFormSelect(\sprintf(_MA_WGDIARIES_GROUP_LOGO_UPLOADS, ".{$imageDirectory}/"), 'grp_logo', $grpLogo, 5);
 		$imageArray = \XoopsLists::getImgListAsArray( XOOPS_ROOT_PATH . $imageDirectory );
 		foreach ($imageArray as $image1) {
 			$imageSelect->addOption((string)($image1), $image1);
@@ -114,23 +114,29 @@ class Groups extends \XoopsObject
 		// Form Image grpLogo: Upload new image
 		if ($permissionUpload) {
 			$maxsize = $helper->getConfig('maxsize_image');
-			$imageTray->addElement(new \XoopsFormFile('<br>' . _AM_WGDIARIES_FORM_UPLOAD_NEW, 'grp_logo', $maxsize));
-			$imageTray->addElement(new \XoopsFormLabel(_AM_WGDIARIES_FORM_UPLOAD_SIZE, ($maxsize / 1048576) . ' '  . _AM_WGDIARIES_FORM_UPLOAD_SIZE_MB));
-			$imageTray->addElement(new \XoopsFormLabel(_AM_WGDIARIES_FORM_UPLOAD_IMG_WIDTH, $helper->getConfig('maxwidth_image') . ' px'));
-			$imageTray->addElement(new \XoopsFormLabel(_AM_WGDIARIES_FORM_UPLOAD_IMG_HEIGHT, $helper->getConfig('maxheight_image') . ' px'));
+			$imageTray->addElement(new \XoopsFormFile('<br>' . _MA_WGDIARIES_FORM_UPLOAD_NEW, 'grp_logo', $maxsize));
+			$imageTray->addElement(new \XoopsFormLabel(_MA_WGDIARIES_FORM_UPLOAD_SIZE, ($maxsize / 1048576) . ' '  . _MA_WGDIARIES_FORM_UPLOAD_SIZE_MB));
+			$imageTray->addElement(new \XoopsFormLabel(_MA_WGDIARIES_FORM_UPLOAD_IMG_WIDTH, $helper->getConfig('maxwidth_image') . ' px'));
+			$imageTray->addElement(new \XoopsFormLabel(_MA_WGDIARIES_FORM_UPLOAD_IMG_HEIGHT, $helper->getConfig('maxheight_image') . ' px'));
 		} else {
 			$imageTray->addElement(new \XoopsFormHidden('grp_logo', $grpLogo));
 		}
 		$form->addElement($imageTray);
 		// Form Radio Yes/No grpOnline
 		$grpOnline = $this->isNew() ?: $this->getVar('grp_online');
-		$form->addElement(new \XoopsFormRadioYN(_AM_WGDIARIES_GROUP_ONLINE, 'grp_online', $grpOnline));
+		$form->addElement(new \XoopsFormRadioYN(_MA_WGDIARIES_GROUP_ONLINE, 'grp_online', $grpOnline));
 		// Form Text Date Select grpDatecreated
 		$grpDatecreated = $this->isNew() ? time() : $this->getVar('grp_datecreated');
-		$form->addElement(new \XoopsFormTextDateSelect(_AM_WGDIARIES_GROUP_DATECREATED, 'grp_datecreated', '', $grpDatecreated));
-		// Form Select User grpSubmitter
-		$grpSubmitter = $this->isNew() ? $GLOBALS['xoopsUser']->uid() : $this->getVar('grp_submitter');
-		$form->addElement(new \XoopsFormSelectUser(_AM_WGDIARIES_GROUP_SUBMITTER, 'grp_submitter', false, $grpSubmitter));
+        // Form Select User grpSubmitter
+        $grpSubmitter = $this->isNew() ? $GLOBALS['xoopsUser']->uid() : $this->getVar('grp_submitter');
+        if ($isAdmin) {
+            $form->addElement(new \XoopsFormTextDateSelect(_MA_WGDIARIES_GROUP_DATECREATED, 'grp_datecreated', '', $grpDatecreated));
+            $form->addElement(new \XoopsFormSelectUser(_MA_WGDIARIES_GROUP_SUBMITTER, 'grp_submitter', false, $grpSubmitter));
+        } else {
+            $form->addElement(new \XoopsFormHidden('grp_datecreated', $grpDatecreated));
+            $form->addElement(new \XoopsFormHidden('grp_submitter', $grpSubmitter));
+        }
+
 		// To Save
 		$form->addElement(new \XoopsFormHidden('op', 'save'));
 		$form->addElement(new \XoopsFormButtonTray('', _SUBMIT, 'submit', '', false));

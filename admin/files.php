@@ -73,7 +73,7 @@ switch ($op) {
 	case 'new':
 		$templateMain = 'wgdiaries_admin_files.tpl';
 		$GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('files.php'));
-		$adminObject->addItemButton(_AM_WGDIARIES_FILES_LIST, 'files.php', 'list');
+		$adminObject->addItemButton(_AM_WGDIARIES_LIST_FILES, 'files.php', 'list');
 		$GLOBALS['xoopsTpl']->assign('buttons', $adminObject->displayButton('left'));
 		// Form Create
 		$filesObj = $filesHandler->create();
@@ -141,7 +141,7 @@ switch ($op) {
 		$templateMain = 'wgdiaries_admin_files.tpl';
 		$GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('files.php'));
 		$adminObject->addItemButton(_AM_WGDIARIES_ADD_FILE, 'files.php?op=new', 'add');
-		$adminObject->addItemButton(_AM_WGDIARIES_FILES_LIST, 'files.php', 'list');
+		$adminObject->addItemButton(_AM_WGDIARIES_LIST_FILES, 'files.php', 'list');
 		$GLOBALS['xoopsTpl']->assign('buttons', $adminObject->displayButton('left'));
 		// Get Form
 		$filesObj = $filesHandler->get($fileId);
@@ -158,7 +158,7 @@ switch ($op) {
 				\redirect_header('files.php', 3, \implode(', ', $GLOBALS['xoopsSecurity']->getErrors()));
 			}
 			if ($filesHandler->delete($filesObj)) {
-				\redirect_header('files.php', 3, _AM_WGDIARIES_FORM_DELETE_OK);
+				\redirect_header('files.php', 3, _MA_WGDIARIES_FORM_DELETE_OK);
 			} else {
 				$GLOBALS['xoopsTpl']->assign('error', $filesObj->getHtmlErrors());
 			}
@@ -166,7 +166,7 @@ switch ($op) {
 			$xoopsconfirm = new Common\XoopsConfirm(
 				['ok' => 1, 'file_id' => $fileId, 'op' => 'delete'],
 				$_SERVER['REQUEST_URI'],
-				\sprintf(_AM_WGDIARIES_FORM_SURE_DELETE, $filesObj->getVar('file_itemid')));
+				\sprintf(_MA_WGDIARIES_FORM_SURE_DELETE, $filesObj->getVar('file_itemid')));
 			$form = $xoopsconfirm->getFormXoopsConfirm();
 			$GLOBALS['xoopsTpl']->assign('form', $form->render());
 		}

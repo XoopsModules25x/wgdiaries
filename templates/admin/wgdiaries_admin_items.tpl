@@ -5,16 +5,16 @@
 	<table class='table table-bordered'>
 		<thead>
 			<tr class='head'>
-				<th class="center"><{$smarty.const._AM_WGDIARIES_ITEM_ID}></th>
+				<th class="center"><{$smarty.const._MA_WGDIARIES_ITEM_ID}></th>
 				<{if $useGroups|default:false}>
-					<th class="center"><{$smarty.const._AM_WGDIARIES_ITEM_GROUPID}></th>
+					<th class="center"><{$smarty.const._MA_WGDIARIES_ITEM_GROUPID}></th>
 				<{/if}>
-				<th class="center"><{$smarty.const._AM_WGDIARIES_ITEM_REMARKS}></th>
-				<th class="center"><{$smarty.const._AM_WGDIARIES_ITEM_DATEFROM}></th>
-				<th class="center"><{$smarty.const._AM_WGDIARIES_ITEM_DATETO}></th>
-				<th class="center"><{$smarty.const._AM_WGDIARIES_ITEM_DATECREATED}></th>
-				<th class="center"><{$smarty.const._AM_WGDIARIES_ITEM_SUBMITTER}></th>
-				<th class="center width5"><{$smarty.const._AM_WGDIARIES_FORM_ACTION}></th>
+				<th class="center"><{$smarty.const._MA_WGDIARIES_ITEM_REMARKS}></th>
+				<th class="center"><{$smarty.const._MA_WGDIARIES_ITEM_DATEFROM}></th>
+				<th class="center"><{$smarty.const._MA_WGDIARIES_ITEM_DATETO}></th>
+				<th class="center"><{$smarty.const._MA_WGDIARIES_ITEM_DATECREATED}></th>
+				<th class="center"><{$smarty.const._MA_WGDIARIES_ITEM_SUBMITTER}></th>
+				<th class="center width5"><{$smarty.const._MA_WGDIARIES_FORM_ACTION}></th>
 			</tr>
 		</thead>
 		<{if $items_count|default:''}>

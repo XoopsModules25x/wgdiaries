@@ -94,11 +94,7 @@ $modversion['templates'] = [
     ['file' => 'wgdiaries_files_list.tpl', 'description' => ''],
     ['file' => 'wgdiaries_files_item.tpl', 'description' => ''],
     ['file' => 'wgdiaries_groups.tpl', 'description' => ''],
-    ['file' => 'wgdiaries_groups_list.tpl', 'description' => ''],
     ['file' => 'wgdiaries_groups_item.tpl', 'description' => ''],
-    ['file' => 'wgdiaries_groupusers.tpl', 'description' => ''],
-    ['file' => 'wgdiaries_groupusers_list.tpl', 'description' => ''],
-    ['file' => 'wgdiaries_groupusers_item.tpl', 'description' => ''],
     ['file' => 'wgdiaries_breadcrumbs.tpl', 'description' => ''],
     ['file' => 'wgdiaries_footer.tpl', 'description' => ''],
 ];
@@ -125,19 +121,41 @@ $modversion['comments']['callback'] = [
 $currdirname  = isset($GLOBALS['xoopsModule']) && \is_object($GLOBALS['xoopsModule']) ? $GLOBALS['xoopsModule']->getVar('dirname') : 'system';
 if ($currdirname == $moduleDirName) {
     $modversion['sub'][] = [
-    'name' => \_MI_WGDIARIES_SMNAME1,
-    'url'  => 'index.php',
+        'name' => \_MI_WGDIARIES_SMNAME1,
+        'url'  => 'index.php',
     ];
     // Sub items
     $modversion['sub'][] = [
-    'name' => \_MI_WGDIARIES_SMNAME2,
-    'url'  => 'items.php',
+        'name' => \_MI_WGDIARIES_SMNAME2,
+        'url'  => 'items.php',
     ];
-    // Sub Submit
-    $modversion['sub'][] = [
-    'name' => \_MI_WGDIARIES_SMNAME3,
-    'url'  => 'items.php?op=new',
-    ];
+    require_once \XOOPS_ROOT_PATH . '/modules/' . $moduleDirName . '/include/common.php';
+    /** @var \XoopsModules\Wgdiaries\Helper $helper */
+    $helper = \XoopsModules\Wgdiaries\Helper::getInstance();
+    $permissionsHandler = $helper->getHandler('Permissions');
+    if ($permissionsHandler->getPermItemsSubmit() > 0) {
+        // Sub Submit
+        $modversion['sub'][] = [
+            'name' => \_MI_WGDIARIES_SMNAME3,
+            'url'  => 'items.php?op=new',
+        ];
+    }
+    if ($permissionsHandler->getPermGroupsView() > 0) {
+        // Sub list groups
+        $modversion['sub'][] = [
+            'name' => \_MI_WGDIARIES_SMNAME4,
+            'url'  => 'groups.php?op=list',
+        ];
+    }
+    if ($permissionsHandler->getPermGroupsEdit() > 0) {
+        // Sub Submit group
+        $modversion['sub'][] = [
+            'name' => \_MI_WGDIARIES_SMNAME5,
+            'url'  => 'groups.php?op=new',
+        ];
+    }
+
+
 }
 // ------------------- Config ------------------- //
 // Editor Admin

@@ -34,7 +34,7 @@
 		<thead>
 		<tr class='head'>
 			<{if $useGroups|default:false}>
-				<th><{$smarty.const._AM_WGDIARIES_ITEM_GROUPID}></th>
+				<th><{$smarty.const._MA_WGDIARIES_ITEM_GROUPID}></th>
 			<{/if}>
 			<th><{$smarty.const._MA_WGDIARIES_ITEM_SUBMITTER}></th>
 			<th><{$smarty.const._MA_WGDIARIES_ITEM_REMARKS}></th>

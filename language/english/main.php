@@ -36,6 +36,23 @@ As you can see, you have created a page with a list of links at the top to navig
 \define('_MA_WGDIARIES_DETAILS', 'Show details');
 \define('_MA_WGDIARIES_BROKEN', 'Notify broken');
 // ---------------- Contents ----------------
+// General/forms
+\define('_MA_WGDIARIES_FORM_OK', 'Successfully saved');
+\define('_MA_WGDIARIES_FORM_DELETE_OK', 'Successfully deleted');
+\define('_MA_WGDIARIES_FORM_SURE_DELETE', "Are you sure to delete: <b><span style='color : Red;'>%s </span></b>");
+\define('_MA_WGDIARIES_FORM_SURE_RENEW', "Are you sure to update: <b><span style='color : Red;'>%s </span></b>");
+\define('_MA_WGDIARIES_FORM_UPLOAD', 'Upload file');
+\define('_MA_WGDIARIES_FORM_UPLOAD_NEW', 'Upload new file: ');
+\define('_MA_WGDIARIES_FORM_UPLOAD_SIZE', 'Max file size: ');
+\define('_MA_WGDIARIES_FORM_UPLOAD_SIZE_MB', 'MB');
+\define('_MA_WGDIARIES_FORM_UPLOAD_IMG_WIDTH', 'Max image width: ');
+\define('_MA_WGDIARIES_FORM_UPLOAD_IMG_HEIGHT', 'Max image height: ');
+\define('_MA_WGDIARIES_FORM_IMAGE_PATH', 'Files in %s :');
+\define('_MA_WGDIARIES_FORM_ACTION', 'Action');
+\define('_MA_WGDIARIES_FORM_EDIT', 'Modification');
+\define('_MA_WGDIARIES_FORM_DELETE', 'Clear');
+\define('_MA_WGDIARIES_INVALID_PARAM', "Invalid parameter");
+\define('_MA_WGDIARIES_FORM_ERROR_DELETE', 'Error when deleting data');
 // Item
 \define('_MA_WGDIARIES_ITEM', 'Item');
 \define('_MA_WGDIARIES_ITEM_ADD', 'Add Items');
@@ -88,18 +105,14 @@ As you can see, you have created a page with a list of links at the top to navig
 \define('_MA_WGDIARIES_GROUP_ID', 'Id');
 \define('_MA_WGDIARIES_GROUP_NAME', 'Name');
 \define('_MA_WGDIARIES_GROUP_LOGO', 'Logo');
+\define('_MA_WGDIARIES_GROUP_LOGO_UPLOADS', 'Logo in %s :');
 \define('_MA_WGDIARIES_GROUP_ONLINE', 'Online');
 \define('_MA_WGDIARIES_GROUP_DATECREATED', 'Datecreated');
 \define('_MA_WGDIARIES_GROUP_SUBMITTER', 'Submitter');
 // Groupuser
-\define('_MA_WGDIARIES_GROUPUSER', 'Groupuser');
-\define('_MA_WGDIARIES_GROUPUSER_ADD', 'Add Groupusers');
-\define('_MA_WGDIARIES_GROUPUSER_EDIT', 'Edit Groupusers');
-\define('_MA_WGDIARIES_GROUPUSER_DELETE', 'Delete Groupusers');
-\define('_MA_WGDIARIES_GROUPUSERS', 'Groupusers');
-\define('_MA_WGDIARIES_GROUPUSERS_LIST', 'List of Groupusers');
-\define('_MA_WGDIARIES_GROUPUSERS_TITLE', 'Groupusers title');
-\define('_MA_WGDIARIES_GROUPUSERS_DESC', 'Groupusers description');
+\define('_MA_WGDIARIES_GROUPUSERS', 'Groupuser');
+\define('_MA_WGDIARIES_GROUPUSERS_EDIT', 'Edit Groupusers');
+\define('_MA_WGDIARIES_GROUPUSERS_LINKED', 'Users linked to this group');
 // Caption of Groupuser
 \define('_MA_WGDIARIES_GROUPUSER_ID', 'Id');
 \define('_MA_WGDIARIES_GROUPUSER_GROUPID', 'Groupid');
@@ -110,12 +123,6 @@ As you can see, you have created a page with a list of links at the top to navig
 \define('_MA_WGDIARIES_INDEX_LATEST_LIST', 'Last wgDiaries');
 // Submit
 \define('_MA_WGDIARIES_SUBMIT', 'Submit');
-// Form
-\define('_MA_WGDIARIES_FORM_OK', 'Successfully saved');
-\define('_MA_WGDIARIES_FORM_DELETE_OK', 'Successfully deleted');
-\define('_MA_WGDIARIES_FORM_SURE_DELETE', "Are you sure to delete: <b><span style='color : Red;'>%s </span></b>");
-\define('_MA_WGDIARIES_FORM_SURE_RENEW', "Are you sure to update: <b><span style='color : Red;'>%s </span></b>");
-\define('_MA_WGDIARIES_INVALID_PARAM', "Invalid parameter");
 // Admin link
 \define('_MA_WGDIARIES_ADMIN', 'Admin');
 // ---------------- End ----------------
