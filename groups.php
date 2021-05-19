@@ -113,7 +113,7 @@ switch ($op) {
 		$imgMimetype    = $_FILES['grp_logo']['type'];
 		$imgNameDef     = Request::getString('grp_name');
 		$uploaderErrors = '';
-		$uploader = new \XoopsMediaUploader(WGDIARIES_UPLOAD_IMAGE_PATH . '/',
+		$uploader = new \XoopsMediaUploader(WGDIARIES_UPLOAD_IMAGE_PATH . '/groups/',
 													$helper->getConfig('mimetypes_image'), 
 													$helper->getConfig('maxsize_image'), null, null);
 		if ($uploader->fetchMedia($_POST['xoops_upload_file'][0])) {
