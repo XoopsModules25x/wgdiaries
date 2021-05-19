@@ -6,6 +6,9 @@
 		<thead>
 			<tr class='head'>
 				<th class="center"><{$smarty.const._AM_WGDIARIES_ITEM_ID}></th>
+				<{if $useGroups|default:false}>
+					<th class="center"><{$smarty.const._AM_WGDIARIES_ITEM_GROUPID}></th>
+				<{/if}>
 				<th class="center"><{$smarty.const._AM_WGDIARIES_ITEM_REMARKS}></th>
 				<th class="center"><{$smarty.const._AM_WGDIARIES_ITEM_DATEFROM}></th>
 				<th class="center"><{$smarty.const._AM_WGDIARIES_ITEM_DATETO}></th>
@@ -19,6 +22,9 @@
 			<{foreach item=item from=$items_list}>
 			<tr class='<{cycle values='odd, even'}>'>
 				<td class='center'><{$item.id}></td>
+				<{if $useGroups|default:false}>
+					<td class='center'><{$item.groupname}></td>
+				<{/if}>
 				<td class='center'><{$item.remarks_short}></td>
 				<td class='center'><{$item.datefrom}></td>
 				<td class='center'><{$item.dateto}></td>

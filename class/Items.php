@@ -87,14 +87,50 @@ class Items extends \XoopsObject
             $action = $_SERVER['REQUEST_URI'];
         }
         $isAdmin = $GLOBALS['xoopsUser']->isAdmin($GLOBALS['xoopsModule']->mid());
+        $uid = \is_object($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->uid() : 0;
+
         // Title
         $title = $this->isNew() ? \sprintf(\_AM_WGDIARIES_ITEM_ADD) : \sprintf(\_AM_WGDIARIES_ITEM_EDIT);
         // Get Theme Form
         \xoops_load('XoopsFormLoader');
         $form = new \XoopsThemeForm($title, 'form', $action, 'post', true);
         $form->setExtra('enctype="multipart/form-data"');
+        // Form Table groups
+        if ($helper->getConfig('use_groups')) {
+            $itemGroup = $this->isNew() ? 0 : $this->getVar('item_groupid');
+            $groupOptions = [];
+            $groupsHandler = $helper->getHandler('Groups');
+            $groupusersHandler = $helper->getHandler('Groupusers');
+            $crGroups = new \CriteriaCompo();
+            $groupsAll = $groupsHandler->getAll($crGroups);
+            foreach (\array_keys($groupsAll) as $i) {
+                $groupId = $groupsAll[$i]->getVar('grp_id');
+                $groupName = $groupsAll[$i]->getVar('grp_name');
+                $crGroupusers = new \CriteriaCompo();
+                $guCount = 1;
+                if (!$isAdmin) {
+                    $crGroupusers->add(new \Criteria('gu_groupid', $i));
+                    $crGroupusers->add(new \Criteria('gu_uid', $uid));
+                    $guCount = $groupusersHandler->getCount($crGroupusers);
+                }
+                if ($guCount > 0) {
+                    $groupOptions[$groupId] = $groupName;
 
-        $form->addElement(new \XoopsFormHidden('op', 'save'));
+                }
+            }
+            if (\count($groupOptions) > 1) {
+                $itemGroupSelect = new \XoopsFormSelect(\_AM_WGDIARIES_ITEM_GROUPID, 'item_groupid', $itemGroup);
+                $itemGroupSelect->addOptionArray($groupOptions);
+                $form->addElement($itemGroupSelect);
+            } elseif (\count($groupOptions) > 0) {
+                $form->addElement(new \XoopsFormLabel(\_AM_WGDIARIES_ITEM_GROUPID, \array_values($groupOptions)[0]));
+                $form->addElement(new \XoopsFormHidden('item_groupid', \array_key_first($groupOptions)));
+            } else {
+                $form->addElement(new \XoopsFormHidden('item_groupid', 0));
+            }
+        } else {
+            $form->addElement(new \XoopsFormHidden('item_groupid', 0));
+        }
 
         // Form Editor DhtmlTextArea itemRemarks
         $editorConfigs = [];
@@ -128,7 +164,7 @@ class Items extends \XoopsObject
         // Form Text Date Select itemDatecreated
         $itemDatecreated = $this->isNew() ? \time() : $this->getVar('item_datecreated');
         // Form Select User itemSubmitter
-        $itemSubmitter = $this->isNew() ? $GLOBALS['xoopsUser']->uid() : $this->getVar('item_submitter');
+        $itemSubmitter = $this->isNew() ? $uid : $this->getVar('item_submitter');
         if ($isAdmin) {
             $form->addElement(new \XoopsFormTextDateSelect(\_MA_WGDIARIES_ITEM_DATECREATED, 'item_datecreated', '', $itemDatecreated));
             $form->addElement(new \XoopsFormSelectUser(\_MA_WGDIARIES_ITEM_SUBMITTER, 'item_submitter', false, $itemSubmitter));
@@ -171,7 +207,7 @@ class Items extends \XoopsObject
         $groupsObj = $groupsHandler->get($this->getVar('item_groupid'));
         $ret['groupname'] = '';
         if (\is_object($groupsObj)) {
-            $ret['groupname'] = $groupsObj->getVar('group_name');
+            $ret['groupname'] = $groupsObj->getVar('grp_name');
         }
 
         return $ret;

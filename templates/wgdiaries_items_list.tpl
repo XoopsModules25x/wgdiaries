@@ -1,5 +1,7 @@
 <tr>
-    <td><{$item.group}></td>
+    <{if $useGroups|default:false}>
+        <td><{$item.groupname}></td>
+    <{/if}>
     <td><{$item.submitter}></td>
     <td><{$item.remarks}></td>
     <td><{$item.datefrom}></td>

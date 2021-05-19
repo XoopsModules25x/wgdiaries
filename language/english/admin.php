@@ -60,6 +60,7 @@ include_once __DIR__ . '/main.php';
 \define('_AM_WGDIARIES_ITEM_EDIT', 'Edit Item');
 // Elements of Item
 \define('_AM_WGDIARIES_ITEM_ID', 'Id');
+\define('_AM_WGDIARIES_ITEM_GROUPID', 'Group');
 \define('_AM_WGDIARIES_ITEM_REMARKS', 'Remarks');
 \define('_AM_WGDIARIES_ITEM_DATEFROM', 'Datefrom');
 \define('_AM_WGDIARIES_ITEM_DATETO', 'Dateto');

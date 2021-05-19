@@ -50,6 +50,7 @@ As you can see, you have created a page with a list of links at the top to navig
 \define('_MA_WGDIARIES_ITEM_CAPTION', 'Item No. %s (%s, from %s to %s)');
 // Caption of Item
 \define('_MA_WGDIARIES_ITEM_ID', 'Id');
+\define('_MA_WGDIARIES_ITEM_GROUPID', 'Group');
 \define('_MA_WGDIARIES_ITEM_REMARKS', 'Remarks');
 \define('_MA_WGDIARIES_ITEM_DATEFROM', 'Datefrom');
 \define('_MA_WGDIARIES_ITEM_DATETO', 'Dateto');
