@@ -112,7 +112,9 @@ As you can see, you have created a page with a list of links at the top to navig
 // Groupuser
 \define('_MA_WGDIARIES_GROUPUSERS', 'Groupuser');
 \define('_MA_WGDIARIES_GROUPUSERS_EDIT', 'Edit Groupusers');
+\define('_MA_WGDIARIES_GROUPUSERS_DELETE', 'Delete Groupusers');
 \define('_MA_WGDIARIES_GROUPUSERS_LINKED', 'Users linked to this group');
+
 // Caption of Groupuser
 \define('_MA_WGDIARIES_GROUPUSER_ID', 'Id');
 \define('_MA_WGDIARIES_GROUPUSER_GROUPID', 'Groupid');

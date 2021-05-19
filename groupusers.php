@@ -105,7 +105,7 @@ switch ($op) {
 
 	case 'edit':
 		// Breadcrumbs
-		$xoBreadcrumbs[] = ['title' => _MA_WGDIARIES_GROUPUSER_EDIT];
+		$xoBreadcrumbs[] = ['title' => _MA_WGDIARIES_GROUPUSERS_EDIT];
 		// Check permissions
 		if (!$permissionsHandler->getPermGroupsEdit()) {
 			\redirect_header('groupusers.php?op=list', 3, _NOPERM);
@@ -120,7 +120,7 @@ switch ($op) {
 		break;
 	case 'delete':
 		// Breadcrumbs
-		$xoBreadcrumbs[] = ['title' => _MA_WGDIARIES_GROUPUSER_DELETE];
+		$xoBreadcrumbs[] = ['title' => _MA_WGDIARIES_GROUPUSERS_DELETE];
 		// Check permissions
 		if (!$permissionsHandler->getPermGlobalSubmit()) {
 			\redirect_header('groupusers.php?op=list', 3, _NOPERM);
@@ -156,7 +156,6 @@ wgdiariesMetaKeywords($helper->getConfig('keywords') . ', ' . \implode(',', $key
 unset($keywords);
 
 // Description
-wgdiariesMetaDescription(_MA_WGDIARIES_GROUPUSERS_DESC);
 $GLOBALS['xoopsTpl']->assign('xoops_mpageurl', WGDIARIES_URL.'/groupusers.php');
 $GLOBALS['xoopsTpl']->assign('wgdiaries_upload_url', WGDIARIES_UPLOAD_URL);
 
