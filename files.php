@@ -37,6 +37,9 @@ $start = Request::getInt('start', 0);
 $limit = Request::getInt('limit', $helper->getConfig('userpager'));
 $fileId = Request::getInt('file_id', 0);
 $itemId = Request::getInt('item_id', 0);
+if (Request::hasVar('save_add')) {
+    $op ='save_add';
+}
 
 // Define Stylesheet
 $GLOBALS['xoTheme']->addStylesheet($style, null);
@@ -99,6 +102,7 @@ switch ($op) {
 		}
 		break;
 	case 'save':
+    case 'save_add':
 		// Security Check
 		if (!$GLOBALS['xoopsSecurity']->check()) {
 			\redirect_header('files.php', 3, \implode(',', $GLOBALS['xoopsSecurity']->getErrors()));
@@ -148,7 +152,11 @@ switch ($op) {
 			if ('' !== $uploaderErrors) {
 				\redirect_header('files.php?op=edit&amp;file_id=' . $newFileId, 5, $uploaderErrors);
 			} else {
-				\redirect_header('files.php?op=list&amp;item_id=' . $itemId, 2, _MA_WGDIARIES_FORM_OK);
+                if ('save_add' == $op) {
+                    \redirect_header('files.php?op=new&amp;item_id=' . $itemId, 2, _MA_WGDIARIES_FORM_OK);
+                } else {
+                    \redirect_header('files.php?op=list', 2, _MA_WGDIARIES_FORM_OK);
+                }
 			}
 		}
 		// Get Form Error

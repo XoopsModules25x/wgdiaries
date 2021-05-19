@@ -31,6 +31,9 @@ use XoopsModules\Wgdiaries\Common;
 require __DIR__ . '/header.php';
 // It recovered the value of argument op in URL$
 $op = Request::getCmd('op', 'list');
+if (Request::hasVar('save_add')) {
+    $op ='save_add';
+}
 // Request item_id
 $itemId = Request::getInt('item_id');
 switch ($op) {
@@ -78,6 +81,7 @@ switch ($op) {
 		$GLOBALS['xoopsTpl']->assign('form', $form->render());
 		break;
 	case 'save':
+    case 'save_add':
 		// Security Check
 		if (!$GLOBALS['xoopsSecurity']->check()) {
 			\redirect_header('items.php', 3, \implode(',', $GLOBALS['xoopsSecurity']->getErrors()));
@@ -106,7 +110,13 @@ switch ($op) {
 		$itemsObj->setVar('item_submitter', Request::getInt('item_submitter', 0));
 		// Insert Data
 		if ($itemsHandler->insert($itemsObj)) {
-			\redirect_header('items.php?op=list', 2, _AM_WGDIARIES_FORM_OK);
+            $newItemId = $itemId > 0 ? $itemId : $itemsObj->getNewInsertedIdItems();
+            // redirect after insert
+            if ('save_add' == $op) {
+                \redirect_header('files.php?op=new&amp;item_id=' . $newItemId, 2, _MA_WGDIARIES_FORM_OK);
+            } else {
+                \redirect_header('items.php?op=list#itemId_' . $newItemId, 2, _MA_WGDIARIES_FORM_OK);
+            }
 		}
 		// Get Form
 		$GLOBALS['xoopsTpl']->assign('error', $itemsObj->getHtmlErrors());

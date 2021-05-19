@@ -58,6 +58,7 @@ As you can see, you have created a page with a list of links at the top to navig
 \define('_MA_WGDIARIES_ITEM_SUBMITTER', 'Submitter');
 \define('_MA_WGDIARIES_ITEM_NBFILES', 'Files');
 \define('_MA_WGDIARIES_ITEM_COMMENTS', 'Comments');
+\define('_MA_WGDIARIES_ITEM_SAVEADDFILES', 'Submit and and files');
 // File
 \define('_MA_WGDIARIES_FILE', 'File');
 \define('_MA_WGDIARIES_FILE_ADD', 'Add File');
