@@ -101,7 +101,7 @@ class Groups extends \XoopsObject
 		// Form Image grpLogo: Select Uploaded Image 
 		$getGrpLogo = $this->getVar('grp_logo');
 		$grpLogo = $getGrpLogo ?: 'blank.gif';
-		$imageDirectory = '/uploads/wgdiaries/images';
+		$imageDirectory = '/uploads/wgdiaries/images/groups';
 		$imageTray = new \XoopsFormElementTray(_AM_WGDIARIES_GROUP_LOGO, '<br>');
 		$imageSelect = new \XoopsFormSelect(\sprintf(_AM_WGDIARIES_GROUP_LOGO_UPLOADS, ".{$imageDirectory}/"), 'grp_logo', $grpLogo, 5);
 		$imageArray = \XoopsLists::getImgListAsArray( XOOPS_ROOT_PATH . $imageDirectory );

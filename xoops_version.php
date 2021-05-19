@@ -29,7 +29,7 @@ $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
 // ------------------- Informations ------------------- //
 $modversion = [
     'name'                => \_MI_WGDIARIES_NAME,
-    'version'             => 1.0,
+    'version'             => 1.01,
     'description'         => \_MI_WGDIARIES_DESC,
     'author'              => 'wedega',
     'author_mail'         => 'webmaster@wedega.com',
@@ -173,52 +173,7 @@ $modversion['config'][] = [
     'valuetype'   => 'int',
     'default'     => 50,
 ];
-// Get groups
-$memberHandler = \xoops_getHandler('member');
-$xoopsGroups  = $memberHandler->getGroupList();
-$groups = [];
-foreach ($xoopsGroups as $key => $group) {
-    $groups[$group]  = $key;
-}
-// General access groups
-$modversion['config'][] = [
-    'name'        => 'groups',
-    'title'       => '_MI_WGDIARIES_GROUPS',
-    'description' => '_MI_WGDIARIES_GROUPS_DESC',
-    'formtype'    => 'select_multi',
-    'valuetype'   => 'array',
-    'default'     => $groups,
-    'options'     => $groups,
-];
-// Upload groups
-$modversion['config'][] = [
-    'name'        => 'upload_groups',
-    'title'       => '_MI_WGDIARIES_UPLOAD_GROUPS',
-    'description' => '_MI_WGDIARIES_UPLOAD_GROUPS_DESC',
-    'formtype'    => 'select_multi',
-    'valuetype'   => 'array',
-    'default'     => $groups,
-    'options'     => $groups,
-];
-// Get Admin groups
-$crGroups = new \CriteriaCompo();
-$crGroups->add(new \Criteria('group_type', 'Admin'));
-$memberHandler = \xoops_getHandler('member');
-$adminXoopsGroups  = $memberHandler->getGroupList($crGroups);
-$adminGroups = [];
-foreach ($adminXoopsGroups as $key => $adminGroup) {
-    $adminGroups[$adminGroup]  = $key;
-}
-$modversion['config'][] = [
-    'name'        => 'admin_groups',
-    'title'       => '_MI_WGDIARIES_ADMIN_GROUPS',
-    'description' => '_MI_WGDIARIES_ADMIN_GROUPS_DESC',
-    'formtype'    => 'select_multi',
-    'valuetype'   => 'array',
-    'default'     => $adminGroups,
-    'options'     => $adminGroups,
-];
-unset($crGroups);
+
 // Keywords
 $modversion['config'][] = [
     'name'        => 'keywords',
@@ -339,6 +294,15 @@ $modversion['config'][] = [
     'formtype'    => 'textbox',
     'valuetype'   => 'int',
     'default'     => 10,
+];
+// Use group system
+$modversion['config'][] = [
+    'name'        => 'use_groups',
+    'title'       => '_MI_WGDIARIES_USE_GROUPS',
+    'description' => '_MI_WGDIARIES_USE_GROUPS_DESC',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 1,
 ];
 // Number column
 $modversion['config'][] = [

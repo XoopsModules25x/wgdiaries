@@ -33,7 +33,9 @@
 	<table class='table table-<{$table_type}>'>
 		<thead>
 		<tr class='head'>
-			<th><{$smarty.const._MA_WGDIARIES_GROUP}></th>
+			<{if $useGroups|default:false}>
+				<th><{$smarty.const._AM_WGDIARIES_ITEM_GROUPID}></th>
+			<{/if}>
 			<th><{$smarty.const._MA_WGDIARIES_ITEM_SUBMITTER}></th>
 			<th><{$smarty.const._MA_WGDIARIES_ITEM_REMARKS}></th>
 			<th><{$smarty.const._MA_WGDIARIES_ITEM_DATEFROM}></th>

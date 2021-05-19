@@ -1,7 +1,14 @@
 -
     grp_id: '1'
-    grp_name: group1
+    grp_name: 'Project 1'
     grp_logo: blank.gif
     grp_online: '1'
-    grp_datecreated: '1621273647'
+    grp_datecreated: '1621254179'
+    grp_submitter: '1'
+-
+    grp_id: '2'
+    grp_name: 'Project 2'
+    grp_logo: blank.gif
+    grp_online: '1'
+    grp_datecreated: '1621340563'
     grp_submitter: '1'

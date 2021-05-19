@@ -38,6 +38,7 @@ switch ($op) {
 	default:
 		// Define Stylesheet
 		$GLOBALS['xoTheme']->addStylesheet($style, null);
+        $GLOBALS['xoopsTpl']->assign('useGroups', $helper->getConfig('use_groups'));
 		$start = Request::getInt('start', 0);
 		$limit = Request::getInt('limit', $helper->getConfig('adminpager'));
 		$templateMain = 'wgdiaries_admin_items.tpl';
@@ -87,6 +88,7 @@ switch ($op) {
 			$itemsObj = $itemsHandler->create();
 		}
 		// Set Vars
+        $itemsObj->setVar('item_groupid', Request::getInt('item_groupid', 0));
 		$itemsObj->setVar('item_remarks', Request::getText('item_remarks', ''));
 		$itemDatefromArr = Request::getArray('item_datefrom');
 		$itemDatefromObj = \DateTime::createFromFormat(_SHORTDATESTRING, $itemDatefromArr['date']);

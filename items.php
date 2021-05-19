@@ -94,6 +94,7 @@ switch ($op) {
 			$GLOBALS['xoopsTpl']->assign('panel_type', $helper->getConfig('panel_type'));
 			$GLOBALS['xoopsTpl']->assign('divideby', $helper->getConfig('divideby'));
 			$GLOBALS['xoopsTpl']->assign('numb_col', $helper->getConfig('numb_col'));
+            $GLOBALS['xoopsTpl']->assign('useGroups', $helper->getConfig('use_groups'));
 			if ('show' == $op && '' != $itemSubmitter) {
 				$GLOBALS['xoopsTpl']->assign('xoops_pagetitle', \strip_tags($itemSubmitter . ' - ' . $GLOBALS['xoopsModule']->getVar('name')));
 			}
@@ -113,6 +114,7 @@ switch ($op) {
 		} else {
 			$itemsObj = $itemsHandler->create();
 		}
+        $itemsObj->setVar('item_groupid', Request::getInt('item_groupid', 0));
 		$itemsObj->setVar('item_remarks', Request::getText('item_remarks', ''));
 		$itemDatefromArr = Request::getArray('item_datefrom');
 		$itemDatefromObj = \DateTime::createFromFormat(_SHORTDATESTRING, $itemDatefromArr['date']);

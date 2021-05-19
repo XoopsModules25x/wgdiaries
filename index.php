@@ -67,6 +67,7 @@ if ($itemsCount > 0) {
 	$GLOBALS['xoopsTpl']->assign('lang_thereare', \sprintf(_MA_WGDIARIES_INDEX_THEREARE, $itemsCount));
 	$GLOBALS['xoopsTpl']->assign('divideby', $helper->getConfig('divideby'));
 	$GLOBALS['xoopsTpl']->assign('numb_col', $helper->getConfig('numb_col'));
+    $GLOBALS['xoopsTpl']->assign('useGroups', $helper->getConfig('use_groups'));
 }
 unset($count);
 $GLOBALS['xoopsTpl']->assign('table_type', $helper->getConfig('table_type'));

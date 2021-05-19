@@ -1,5 +1,11 @@
-
 ==============================================================
-1.0 [2021/05/16 8:06:48]
+1.01 [2021/05/19]
 ==============================================================
- - Original release wgdiaries (wedega)
+ - implementation of groups and users (goffy)
+ - added option for use of groups and users (goffy)
+ - fixed bug with group image (mjoel/goffy)
+ 
+==============================================================
+1.0 [2021/05/16]
+==============================================================
+ - Original release wgdiaries (goffy)

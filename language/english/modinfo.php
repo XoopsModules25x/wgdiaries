@@ -74,6 +74,8 @@ include_once 'common.php';
 \define('_MI_WGDIARIES_MAXSIZE_FILE_DESC', 'Define the max size for uploading files');
 \define('_MI_WGDIARIES_MIMETYPES_FILE', 'Mime types file');
 \define('_MI_WGDIARIES_MIMETYPES_FILE_DESC', 'Define the allowed mime types for uploading files');
+\define('_MI_WGDIARIES_USE_GROUPS', 'Use groups');
+\define('_MI_WGDIARIES_USE_GROUPS_DESC', 'Use group system in order to group user items to specific groups/projects');
 \define('_MI_WGDIARIES_NUMB_COL', 'Number Columns');
 \define('_MI_WGDIARIES_NUMB_COL_DESC', 'Number Columns to View');
 \define('_MI_WGDIARIES_DIVIDEBY', 'Divide By');
@@ -92,11 +94,4 @@ include_once 'common.php';
 \define('_MI_WGDIARIES_MAINTAINEDBY_DESC', 'Allow url of support site or community');
 \define('_MI_WGDIARIES_BOOKMARKS', 'Social Bookmarks');
 \define('_MI_WGDIARIES_BOOKMARKS_DESC', 'Show Social Bookmarks in the single page');
-// Permissions Groups
-\define('_MI_WGDIARIES_GROUPS', 'Groups access');
-\define('_MI_WGDIARIES_GROUPS_DESC', 'Select general access permission for groups.');
-\define('_MI_WGDIARIES_ADMIN_GROUPS', 'Admin Group Permissions');
-\define('_MI_WGDIARIES_ADMIN_GROUPS_DESC', 'Which groups have access to tools and permissions page');
-\define('_MI_WGDIARIES_UPLOAD_GROUPS', 'Upload Group Permissions');
-\define('_MI_WGDIARIES_UPLOAD_GROUPS_DESC', 'Which groups have permissions to upload files');
 // ---------------- End ----------------
