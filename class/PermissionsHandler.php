@@ -388,12 +388,11 @@ class PermissionsHandler extends \XoopsPersistableObjectHandler
 
     /**
      * @public function getPermItemsComEdit
-     * returns right for edit/view comments for items
-     *
-     * @param null
+     * returns right for edit/view comments for item
+     * @param $itemSubmitter
      * @return bool
      */
-    public function getPermItemsComEdit()
+    public function getPermItemsComEdit($itemSubmitter)
     {
         global $xoopsUser, $xoopsModule;
         $currentuid = 0;
@@ -411,7 +410,7 @@ class PermissionsHandler extends \XoopsPersistableObjectHandler
         } else {
             $my_group_ids = $memberHandler->getGroupsByUser($currentuid);;
         }
-        if ($grouppermHandler->checkRight('wgdiaries_ac', Constants::PERM_ITEMS_COMEDIT, $my_group_ids, $mid)) {
+        if ($this->getPermItemsEdit($itemSubmitter) && $grouppermHandler->checkRight('wgdiaries_ac', Constants::PERM_ITEMS_COMEDIT, $my_group_ids, $mid)) {
             return true;
         }
 

@@ -79,9 +79,10 @@ switch ($op) {
 			// Get All Items
 			foreach (\array_keys($itemsAll) as $i) {
 				$item = $itemsAll[$i]->getValuesItems();
+                $itemSubmitter = $item['item_submitter'];
                 // Permissions
-                $item['permEdit'] = $permissionsHandler->getPermItemsEdit($item['item_submitter']);
-                if ($permissionsHandler->getPermItemsView($item['item_submitter'])) {
+                $item['permEdit'] = $permissionsHandler->getPermItemsEdit($itemSubmitter);
+                if ($permissionsHandler->getPermItemsView($itemSubmitter)) {
                     $items[$i] = $item;
                 }
 			}
@@ -98,7 +99,9 @@ switch ($op) {
 			$GLOBALS['xoopsTpl']->assign('divideby', $helper->getConfig('divideby'));
 			$GLOBALS['xoopsTpl']->assign('numb_col', $helper->getConfig('numb_col'));
             $GLOBALS['xoopsTpl']->assign('useGroups', $helper->getConfig('use_groups'));
-            $GLOBALS['xoopsTpl']->assign('permItemsComment', $permissionsHandler->getPermItemsComEdit());
+            if (1 == $itemsCount) {
+                $GLOBALS['xoopsTpl']->assign('permItemsComment', $permissionsHandler->getPermItemsComEdit($itemSubmitter));
+            }
 			if ('show' == $op && '' != $itemSubmitter) {
 				$GLOBALS['xoopsTpl']->assign('xoops_pagetitle', \strip_tags($itemSubmitter . ' - ' . $GLOBALS['xoopsModule']->getVar('name')));
 			}
