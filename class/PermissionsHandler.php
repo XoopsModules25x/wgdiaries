@@ -385,4 +385,36 @@ class PermissionsHandler extends \XoopsPersistableObjectHandler
 
         return false;
     }
+
+    /**
+     * @public function getPermItemsComEdit
+     * returns right for edit/view comments for items
+     *
+     * @param null
+     * @return bool
+     */
+    public function getPermItemsComEdit()
+    {
+        global $xoopsUser, $xoopsModule;
+        $currentuid = 0;
+        if (isset($xoopsUser) && \is_object($xoopsUser)) {
+            if ($xoopsUser->isAdmin($xoopsModule->mid())) {
+                return true;
+            }
+            $currentuid = $xoopsUser->uid();
+        }
+        $grouppermHandler = \xoops_getHandler('groupperm');
+        $mid = $xoopsModule->mid();
+        $memberHandler = \xoops_getHandler('member');
+        if (0 == $currentuid) {
+            $my_group_ids = [XOOPS_GROUP_ANONYMOUS];
+        } else {
+            $my_group_ids = $memberHandler->getGroupsByUser($currentuid);;
+        }
+        if ($grouppermHandler->checkRight('wgdiaries_ac', Constants::PERM_ITEMS_COMEDIT, $my_group_ids, $mid)) {
+            return true;
+        }
+
+        return false;
+    }
 }

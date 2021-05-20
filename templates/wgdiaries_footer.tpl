@@ -8,7 +8,7 @@
 	<div class='text-center bold'><a href='<{$admin}>'><{$smarty.const._MA_WGDIARIES_ADMIN}></a></div>
 <{/if}>
 
-<{if $comment_mode|default:''}>
+<{if $comment_mode|default:'' && $permItemsComment|default:false}>
 	<div class='pad2 marg2'>
 		<{if $comment_mode == "flat"}>
 			<{include file='db:system_comments_flat.tpl' }>

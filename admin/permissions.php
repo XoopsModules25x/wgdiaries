@@ -55,6 +55,7 @@ switch ($op) {
             Constants::PERM_ITEMS_OWN_VIEW => \_AM_WGDIARIES_PERMISSIONS_ITEMS_OWN_VIEW,
             Constants::PERM_GROUPS_EDIT => \_AM_WGDIARIES_PERMISSIONS_GROUPS_EDIT,
             Constants::PERM_GROUPS_VIEW => \_AM_WGDIARIES_PERMISSIONS_GROUPS_VIEW,
+            Constants::PERM_ITEMS_COMEDIT => \_AM_WGDIARIES_PERMISSIONS_ITEMS_COMEDIT,
         ];
     break;
 }
