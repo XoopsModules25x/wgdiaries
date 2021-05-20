@@ -52,7 +52,8 @@ As you can see, you have created a page with a list of links at the top to navig
 \define('_MA_WGDIARIES_FORM_EDIT', 'Modification');
 \define('_MA_WGDIARIES_FORM_DELETE', 'Clear');
 \define('_MA_WGDIARIES_INVALID_PARAM', "Invalid parameter");
-\define('_MA_WGDIARIES_FORM_ERROR_DELETE', 'Error when deleting data');
+\define('_MA_WGDIARIES_FORM_ERROR', 'Error when processing data');
+\define('_MA_WGDIARIES_FORM_ERROR_DELETE_GU', 'Error when deleting data of group users');
 // Item
 \define('_MA_WGDIARIES_ITEM', 'Item');
 \define('_MA_WGDIARIES_ITEM_ADD', 'Add Items');

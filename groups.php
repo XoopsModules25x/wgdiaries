@@ -163,13 +163,48 @@ switch ($op) {
 		$groupsObj->setVar('grp_submitter', Request::getInt('grp_submitter', 0));
 		// Insert Data
 		if ($groupsHandler->insert($groupsObj)) {
+            $newGrpId = $grpId > 0 ? $grpId : $groupsObj->getNewInsertedIdGroups();
 			// redirect after insert
 			if ('' !== $uploaderErrors) {
 				\redirect_header('groups.php?op=edit&grp_id=' . $newGrpId, 5, $uploaderErrors);
-			} else {
-				\redirect_header('groups.php?op=list', 2, _MA_WGDIARIES_FORM_OK);
 			}
 		}
+
+        // handle users linked to this group
+        // delete existing links
+        $groupusersHandler = $helper->getHandler('Groupusers');
+        $crGroupusers = new \CriteriaCompo();
+        $crGroupusers->add(new \Criteria('gu_groupid', $newGrpId));
+        if (!$groupusersHandler->deleteAll($crGroupusers)) {
+            \redirect_header('groups.php', 3, _MA_WGDIARIES_FORM_ERROR_DELETE_GU);
+        }
+        // add selected uids
+        $guUids = Request::getArray('gu_uids');
+        $guDatecreated = Request::getInt('gu_datecreated');
+        $guSubmitter = Request::getInt('gu_submitter');
+        $success = 0;
+        $errors = 0;
+        foreach ($guUids as $guUid) {
+            $groupusersObj = $groupusersHandler->create();
+            $groupusersObj->setVar('gu_groupid', $grpId);
+            $groupusersObj->setVar('gu_uid', $guUid);
+            $groupuserDatecreatedObj = \DateTime::createFromFormat(_SHORTDATESTRING, Request::getString('gu_datecreated'));
+            $groupusersObj->setVar('gu_datecreated', $guDatecreated);
+            $groupusersObj->setVar('gu_submitter', $guSubmitter);
+            // Insert Data
+            if ($groupusersHandler->insert($groupusersObj)) {
+                $success++;
+            } else {
+                $errors++;
+            }
+            unset($groupusersObj);
+        }
+        if ($errors > 0) {
+            \redirect_header('groups.php?op=edit&grp_id=' . $newGrpId, 5, _MA_WGDIARIES_FORM_ERROR);
+        } else {
+            \redirect_header('groups.php?op=list', 2, _MA_WGDIARIES_FORM_OK);
+        }
+
 		// Get Form Error
 		$GLOBALS['xoopsTpl']->assign('error', $groupsObj->getHtmlErrors());
 		$form = $groupsObj->getFormGroups();

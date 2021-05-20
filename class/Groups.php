@@ -96,7 +96,25 @@ class Groups extends \XoopsObject
 		$form = new \XoopsThemeForm($title, 'form', $action, 'post', true);
 		$form->setExtra('enctype="multipart/form-data"');
 		// Form Text grpName
-		$form->addElement(new \XoopsFormText(_MA_WGDIARIES_GROUP_NAME, 'grp_name', 50, 255, $this->getVar('grp_name')));
+		$form->addElement(new \XoopsFormText(_MA_WGDIARIES_GROUP_NAME, 'grp_name', 50, 255, $this->getVar('grp_name')), true);
+        // Form Select User
+        $guUids = [];
+        $grpId = $this->isNew() ? 0 : $this->getVar('grp_id');
+        $groupusersHandler = $helper->getHandler('Groupusers');
+        $crGroupusers = new \CriteriaCompo();
+        $crGroupusers->add(new \Criteria('gu_groupid', $grpId));
+        $groupusersAll = $groupusersHandler->getAll($crGroupusers);
+        foreach (\array_keys($groupusersAll) as $i) {
+            $guUids[$groupusersAll[$i]->getVar('gu_uid')] = $groupusersAll[$i]->getVar('gu_uid');
+        }
+        $guUidSelect = new \XoopsFormSelect(_MA_WGDIARIES_GROUPUSERS_LINKED, 'gu_uids', $guUids, 5, true);
+        $user_handler = xoops_getHandler('user');
+        $crUsers = new \CriteriaCompo();
+        $crUsers->setSort('uname');
+        $crUsers->setOrder('ASC');
+        $guUidSelect->addOptionArray($user_handler->getList($crUsers));
+        $form->addElement($guUidSelect, true);
+
 		// Form Image grpLogo
 		// Form Image grpLogo: Select Uploaded Image 
 		$getGrpLogo = $this->getVar('grp_logo');
