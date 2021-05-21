@@ -29,7 +29,7 @@ $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
 // ------------------- Informations ------------------- //
 $modversion = [
     'name'                => \_MI_WGDIARIES_NAME,
-    'version'             => 1.01,
+    'version'             => 1.02,
     'description'         => \_MI_WGDIARIES_DESC,
     'author'              => 'wedega',
     'author_mail'         => 'webmaster@wedega.com',
@@ -82,7 +82,6 @@ $modversion['templates'] = [
     ['file' => 'wgdiaries_admin_items.tpl', 'description' => '', 'type' => 'admin'],
     ['file' => 'wgdiaries_admin_files.tpl', 'description' => '', 'type' => 'admin'],
     ['file' => 'wgdiaries_admin_groups.tpl', 'description' => '', 'type' => 'admin'],
-    ['file' => 'wgdiaries_admin_groupusers.tpl', 'description' => '', 'type' => 'admin'],
     ['file' => 'wgdiaries_admin_permissions.tpl', 'description' => '', 'type' => 'admin'],
     ['file' => 'wgdiaries_admin_footer.tpl', 'description' => '', 'type' => 'admin'],
     // User templates
@@ -121,6 +120,11 @@ $modversion['comments']['callback'] = [
 // ------------------- Menu ------------------- //
 $currdirname  = isset($GLOBALS['xoopsModule']) && \is_object($GLOBALS['xoopsModule']) ? $GLOBALS['xoopsModule']->getVar('dirname') : 'system';
 if ($currdirname == $moduleDirName) {
+    require_once \XOOPS_ROOT_PATH . '/modules/' . $moduleDirName . '/include/common.php';
+    /** @var \XoopsModules\Wgdiaries\Helper $helper */
+    $helper = \XoopsModules\Wgdiaries\Helper::getInstance();
+    $permissionsHandler = $helper->getHandler('Permissions');
+
     $modversion['sub'][] = [
         'name' => \_MI_WGDIARIES_SMNAME1,
         'url'  => 'index.php',
@@ -130,32 +134,37 @@ if ($currdirname == $moduleDirName) {
         'name' => \_MI_WGDIARIES_SMNAME2,
         'url'  => 'items.php',
     ];
-    require_once \XOOPS_ROOT_PATH . '/modules/' . $moduleDirName . '/include/common.php';
-    /** @var \XoopsModules\Wgdiaries\Helper $helper */
-    $helper = \XoopsModules\Wgdiaries\Helper::getInstance();
-    $permissionsHandler = $helper->getHandler('Permissions');
-    if ($permissionsHandler->getPermItemsSubmit() > 0) {
+    if ($permissionsHandler->getPermItemsGroupView()) {
+        // Sub Submit
+        $modversion['sub'][] = [
+            'name' => \_MI_WGDIARIES_SMNAME4,
+            'url'  => 'items.php?op=listgroup',
+        ];
+    }
+    if ($permissionsHandler->getPermItemsSubmit()) {
         // Sub Submit
         $modversion['sub'][] = [
             'name' => \_MI_WGDIARIES_SMNAME3,
             'url'  => 'items.php?op=new',
         ];
     }
+
+    /*
     if ($permissionsHandler->getPermGroupsView() > 0) {
         // Sub list groups
         $modversion['sub'][] = [
-            'name' => \_MI_WGDIARIES_SMNAME4,
+            'name' => \_MI_WGDIARIES_SMNAME5,
             'url'  => 'groups.php?op=list',
         ];
     }
     if ($permissionsHandler->getPermGroupsEdit() > 0) {
         // Sub Submit group
         $modversion['sub'][] = [
-            'name' => \_MI_WGDIARIES_SMNAME5,
+            'name' => \_MI_WGDIARIES_SMNAME6,
             'url'  => 'groups.php?op=new',
         ];
     }
-
+    */
 
 }
 // ------------------- Config ------------------- //

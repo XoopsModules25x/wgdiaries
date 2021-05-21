@@ -31,25 +31,26 @@ include_once __DIR__ . '/main.php';
 // There are
 \define('_AM_WGDIARIES_THEREARE_ITEMS', "There are <span class='bold'>%s</span> items in the database");
 \define('_AM_WGDIARIES_THEREARE_FILES', "There are <span class='bold'>%s</span> files in the database");
-\define('_AM_WGDIARIES_THEREARE_GROUPS', "There are <span class='bold'>%s</span> groups in the database");
-\define('_AM_WGDIARIES_THEREARE_GROUPUSERS', "There are <span class='bold'>%s</span> groupusers in the database");
+//\define('_AM_WGDIARIES_THEREARE_GROUPS', "There are <span class='bold'>%s</span> groups in the database");
+//\define('_AM_WGDIARIES_THEREARE_GROUPUSERS', "There are <span class='bold'>%s</span> groupusers in the database");
 // ---------------- Admin Files ----------------
 // There aren't
 \define('_AM_WGDIARIES_THEREARENT_ITEMS', "There aren't items");
 \define('_AM_WGDIARIES_THEREARENT_FILES', "There aren't files");
-\define('_AM_WGDIARIES_THEREARENT_GROUPS', "There aren't groups");
-\define('_AM_WGDIARIES_THEREARENT_GROUPUSERS', "There aren't groupusers");
+//\define('_AM_WGDIARIES_THEREARENT_GROUPS', "There aren't groups");
+//\define('_AM_WGDIARIES_THEREARENT_GROUPUSERS', "There aren't groupusers");
 // Buttons
 \define('_AM_WGDIARIES_ADD_ITEM', 'Add New Item');
 \define('_AM_WGDIARIES_ADD_FILE', 'Add New File');
-\define('_AM_WGDIARIES_ADD_GROUP', 'Add New Group');
-\define('_AM_WGDIARIES_ADD_GROUPUSER', 'Add New Groupuser');
+//\define('_AM_WGDIARIES_ADD_GROUP', 'Add New Group');
+//\define('_AM_WGDIARIES_ADD_GROUPUSER', 'Add New Groupuser');
 // Lists
 \define('_AM_WGDIARIES_LIST_ITEMS', 'List of Items');
 \define('_AM_WGDIARIES_LIST_FILES', 'List of Files');
 \define('_AM_WGDIARIES_LIST_GROUPS', 'List of Groups');
 \define('_AM_WGDIARIES_LIST_GROUPUSERS', 'List of Groupusers');
 // ---------------- Admin Classes ----------------
+/*
 // Groupuser add/edit
 \define('_AM_WGDIARIES_GROUPUSER_ADD', 'Add Groupuser');
 \define('_AM_WGDIARIES_GROUPUSER_EDIT', 'Edit Groupuser');
@@ -59,7 +60,7 @@ include_once __DIR__ . '/main.php';
 \define('_AM_WGDIARIES_GROUPUSER_UID', 'User');
 \define('_AM_WGDIARIES_GROUPUSER_DATECREATED', 'Datecreated');
 \define('_AM_WGDIARIES_GROUPUSER_SUBMITTER', 'Submitter');
-
+*/
 // ---------------- Admin Permissions ----------------
 // Permissions
 \define('_AM_WGDIARIES_PERMISSIONS_GLOBAL', 'Permissions global');

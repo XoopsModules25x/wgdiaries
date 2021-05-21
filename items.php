@@ -52,24 +52,24 @@ $GLOBALS['xoopsTpl']->assign('showItem', $itemId > 0);
 switch ($op) {
 	case 'show':
 	case 'list':
+    case 'listown':
 	default:
 		// Breadcrumbs
 		$xoBreadcrumbs[] = ['title' => _MA_WGDIARIES_ITEMS_LIST];
+
+        $uid = \is_object($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->uid() : 0;
 		$crItems = new \CriteriaCompo();
 		if ($itemId > 0) {
 			$crItems->add(new \Criteria('item_id', $itemId));
 		}
+        $crItems->add(new \Criteria('item_submitter', $uid));
 		$itemsCount = $itemsHandler->getCount($crItems);
 		$GLOBALS['xoopsTpl']->assign('itemsCount', $itemsCount);
 		$crItems->setStart($start);
 		$crItems->setLimit($limit);
 		$itemsAll = $itemsHandler->getAll($crItems);
 		if ($itemsCount > 0) {
-		    if ($permissionsHandler->getPermItemsGroupView()) {
-                $GLOBALS['xoopsTpl']->assign('itemsTitle', \_MA_WGDIARIES_ITEMS_LISTGROUP);
-             } else {
-                $GLOBALS['xoopsTpl']->assign('itemsTitle', \_MA_WGDIARIES_ITEMS_LISTMY);
-            }
+		    $GLOBALS['xoopsTpl']->assign('itemsTitle', \_MA_WGDIARIES_ITEMS_LISTMY);
             $GLOBALS['xoopsTpl']->assign('itemsCount', $itemsCount);
 			$items = [];
 			$itemSubmitter = '';
@@ -79,9 +79,7 @@ switch ($op) {
                 $itemSubmitter = $item['item_submitter'];
                 // Permissions
                 $item['permEdit'] = $permissionsHandler->getPermItemsEdit($itemSubmitter);
-                if ($permissionsHandler->getPermItemsView($itemSubmitter)) {
-                    $items[$i] = $item;
-                }
+                $items[$i] = $item;
 			}
 			$GLOBALS['xoopsTpl']->assign('items', $items);
 			unset($items);
@@ -104,6 +102,58 @@ switch ($op) {
 			}
 		}
 		break;
+    case 'listgroup':
+        // Breadcrumbs
+        $xoBreadcrumbs[] = ['title' => _MA_WGDIARIES_ITEMS_LIST];
+
+        $uid = \is_object($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->uid() : 0;
+        $crItems = new \CriteriaCompo();
+        $crItems->add(new \Criteria('item_submitter', $uid, '<>'));
+        $memberHandler = \xoops_getHandler('member');
+        $xoopsGroups = $memberHandler->getGroupList();
+        $myGroups = array_keys($xoopsGroups);
+        $crItems->add(new \Criteria('item_groupid', "(" . implode(',', $myGroups) . ")", 'IN'));
+        $itemsCount = $itemsHandler->getCount($crItems);
+        $GLOBALS['xoopsTpl']->assign('itemsCount', $itemsCount);
+        $crItems->setStart($start);
+        $crItems->setLimit($limit);
+        $itemsAll = $itemsHandler->getAll($crItems);
+        if ($itemsCount > 0) {
+            $GLOBALS['xoopsTpl']->assign('itemsTitle', \_MA_WGDIARIES_ITEMS_LISTGROUP);
+            $GLOBALS['xoopsTpl']->assign('itemsCount', $itemsCount);
+            $items = [];
+            $itemSubmitter = '';
+            // Get All Items
+            foreach (\array_keys($itemsAll) as $i) {
+                $item = $itemsAll[$i]->getValuesItems();
+                $itemSubmitter = $item['item_submitter'];
+                // Permissions
+                $item['permEdit'] = $permissionsHandler->getPermItemsEdit($itemSubmitter);
+                if ($permissionsHandler->getPermItemsView($itemSubmitter)) {
+                    $items[$i] = $item;
+                }
+            }
+            $GLOBALS['xoopsTpl']->assign('items', $items);
+            unset($items);
+            // Display Navigation
+            if ($itemsCount > $limit) {
+                include_once XOOPS_ROOT_PATH . '/class/pagenav.php';
+                $pagenav = new \XoopsPageNav($itemsCount, $limit, $start, 'start', 'op=list&limit=' . $limit);
+                $GLOBALS['xoopsTpl']->assign('pagenav', $pagenav->renderNav(4));
+            }
+            $GLOBALS['xoopsTpl']->assign('table_type', $helper->getConfig('table_type'));
+            $GLOBALS['xoopsTpl']->assign('panel_type', $helper->getConfig('panel_type'));
+            $GLOBALS['xoopsTpl']->assign('divideby', $helper->getConfig('divideby'));
+            $GLOBALS['xoopsTpl']->assign('numb_col', $helper->getConfig('numb_col'));
+            $GLOBALS['xoopsTpl']->assign('useGroups', $helper->getConfig('use_groups'));
+            if (1 == $itemsCount) {
+                $GLOBALS['xoopsTpl']->assign('permItemsComment', $permissionsHandler->getPermItemsComEdit($itemSubmitter));
+            }
+            if ('show' == $op && '' != $itemSubmitter) {
+                $GLOBALS['xoopsTpl']->assign('xoops_pagetitle', \strip_tags($itemSubmitter . ' - ' . $GLOBALS['xoopsModule']->getVar('name')));
+            }
+        }
+        break;
 	case 'save':
 		// Security Check
 		if (!$GLOBALS['xoopsSecurity']->check()) {

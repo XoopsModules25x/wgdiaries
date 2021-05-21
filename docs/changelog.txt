@@ -13,6 +13,8 @@
  - added new icons (goffy)
  - added multiupload files for items (mjoel/goffy)
  - added option for max number of uploads per item (goffy)
+ - creation if index page (mjoel/goffy)
+ - removed user-group-management (mjoel/goffy)
 
 ==============================================================
 1.0 [2021/05/16]

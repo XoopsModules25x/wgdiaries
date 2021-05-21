@@ -35,16 +35,12 @@ $templateMain = 'wgdiaries_admin_index.tpl';
 // Count elements
 $countItems = $itemsHandler->getCount();
 $countFiles = $filesHandler->getCount();
-$countGroups = $groupsHandler->getCount();
-$countGroupusers = $groupusersHandler->getCount();
 
 // InfoBox Statistics
 $adminObject->addInfoBox(_AM_WGDIARIES_STATISTICS);
 // Info elements
 $adminObject->addInfoBoxLine(\sprintf( '<label>' . _AM_WGDIARIES_THEREARE_ITEMS . '</label>', $countItems));
 $adminObject->addInfoBoxLine(\sprintf( '<label>' . _AM_WGDIARIES_THEREARE_FILES . '</label>', $countFiles));
-$adminObject->addInfoBoxLine(\sprintf( '<label>' . _AM_WGDIARIES_THEREARE_GROUPS . '</label>', $countGroups));
-$adminObject->addInfoBoxLine(\sprintf( '<label>' . _AM_WGDIARIES_THEREARE_GROUPUSERS . '</label>', $countGroupusers));
 
 // Upload Folders
 $configurator = new Common\Configurator();

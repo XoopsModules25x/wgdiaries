@@ -54,6 +54,9 @@ As you can see, you have created a page with a list of links at the top to navig
 \define('_MA_WGDIARIES_INVALID_PARAM', "Invalid parameter");
 \define('_MA_WGDIARIES_FORM_ERROR', 'Error when processing data');
 \define('_MA_WGDIARIES_FORM_ERROR_DELETE_GU', 'Error when deleting data of group users');
+// Index
+\define('_MA_WGDIARIES_INDEX_ITEMS_OWN', 'My last items');
+\define('_MA_WGDIARIES_INDEX_ITEMS_GROUP', 'Last items of my groups');
 // Item
 \define('_MA_WGDIARIES_ITEM', 'Item');
 \define('_MA_WGDIARIES_ITEM_ADD', 'Add Items');
@@ -97,6 +100,7 @@ As you can see, you have created a page with a list of links at the top to navig
 \define('_MA_WGDIARIES_FILE_DATECREATED', 'Datecreated');
 \define('_MA_WGDIARIES_FILE_SUBMITTER', 'Submitter');
 // Group
+/*
 \define('_MA_WGDIARIES_GROUP', 'Group');
 \define('_MA_WGDIARIES_GROUP_ADD', 'Add Groups');
 \define('_MA_WGDIARIES_GROUP_EDIT', 'Edit Groups');
@@ -125,8 +129,7 @@ As you can see, you have created a page with a list of links at the top to navig
 \define('_MA_WGDIARIES_GROUPUSER_UID', 'Uid');
 \define('_MA_WGDIARIES_GROUPUSER_DATECREATED', 'Datecreated');
 \define('_MA_WGDIARIES_GROUPUSER_SUBMITTER', 'Submitter');
-\define('_MA_WGDIARIES_INDEX_THEREARE', 'There are %s Groupusers');
-\define('_MA_WGDIARIES_INDEX_LATEST_LIST', 'Last wgDiaries');
+*/
 // Submit
 \define('_MA_WGDIARIES_SUBMIT', 'Submit');
 // Admin link
