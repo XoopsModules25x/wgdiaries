@@ -32,6 +32,7 @@ CREATE TABLE `wgdiaries_files` (
   `file_itemid` INT(10) NOT NULL DEFAULT '0',
   `file_desc` VARCHAR(255) NOT NULL DEFAULT '',
   `file_name` VARCHAR(255) NOT NULL DEFAULT '',
+  `file_mimetype` VARCHAR(255) NOT NULL DEFAULT '',
   `file_datecreated` INT(11) NOT NULL DEFAULT '0',
   `file_submitter` INT(10) NOT NULL DEFAULT '0',
   PRIMARY KEY (`file_id`)

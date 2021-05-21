@@ -97,8 +97,10 @@ As you can see, you have created a page with a list of links at the top to navig
 \define('_MA_WGDIARIES_FILE_ITEMID', 'Itemid');
 \define('_MA_WGDIARIES_FILE_DESC', 'Desc');
 \define('_MA_WGDIARIES_FILE_NAME', 'Name');
+\define('_MA_WGDIARIES_FILE_MIMETYPE', 'Mimetype');
 \define('_MA_WGDIARIES_FILE_DATECREATED', 'Datecreated');
 \define('_MA_WGDIARIES_FILE_SUBMITTER', 'Submitter');
+\define('_MA_WGDIARIES_FILE_NAME_UPLOADS', 'Uploaded file in %s :');
 // Group
 /*
 \define('_MA_WGDIARIES_GROUP', 'Group');

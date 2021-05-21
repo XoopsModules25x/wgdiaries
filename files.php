@@ -102,7 +102,6 @@ switch ($op) {
 		}
 		break;
 	case 'save':
-    case 'save_add':
 		// Security Check
 		if (!$GLOBALS['xoopsSecurity']->check()) {
 			\redirect_header('files.php', 3, \implode(',', $GLOBALS['xoopsSecurity']->getErrors()));
@@ -121,8 +120,9 @@ switch ($op) {
 		// Set Var file_name
 		include_once XOOPS_ROOT_PATH . '/class/uploader.php';
         $uploaderErrors = '';
-		$filename       = $_FILES['file_name']['name'];
-		$imgNameDef     = 'itemid_' . Request::getString('file_itemid');
+		$filename     = $_FILES['file_name']['name'];
+        $fileMimetype = $_FILES['file_name']['type'];
+		$imgNameDef   = 'itemid_' . Request::getString('file_itemid');
 		$uploader = new \XoopsMediaUploader(WGDIARIES_UPLOAD_FILES_PATH . '/',
 													$helper->getConfig('mimetypes_file'), 
 													$helper->getConfig('maxsize_file'), null, null);
@@ -135,6 +135,7 @@ switch ($op) {
 				$errors = $uploader->getErrors();
 			} else {
 				$filesObj->setVar('file_name', $uploader->getSavedFileName());
+                $filesObj->setVar('file_mimetype', $fileMimetype);
 			}
 		} else {
 			if ($filename > '') {
