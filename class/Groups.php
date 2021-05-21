@@ -112,7 +112,10 @@ class Groups extends \XoopsObject
         $crUsers = new \CriteriaCompo();
         $crUsers->setSort('uname');
         $crUsers->setOrder('ASC');
-        $guUidSelect->addOptionArray($user_handler->getList($crUsers));
+        $usersAll = $user_handler->getAll($crUsers);
+        foreach (\array_keys($usersAll) as $i) {
+            $guUidSelect->addOption($usersAll[$i]->getVar('uid'), \XoopsUser::getUnameFromId($i, true));
+        }
         $form->addElement($guUidSelect, true);
 
 		// Form Image grpLogo
@@ -176,7 +179,7 @@ class Groups extends \XoopsObject
 		$ret['logo']        = $this->getVar('grp_logo');
 		$ret['online']      = (int)$this->getVar('grp_online') > 0 ? _YES : _NO;
 		$ret['datecreated'] = \formatTimestamp($this->getVar('grp_datecreated'), 's');
-		$ret['submitter']   = \XoopsUser::getUnameFromId($this->getVar('grp_submitter'));
+		$ret['submitter']   = \XoopsUser::getUnameFromId($this->getVar('grp_submitter'), true);
 		return $ret;
 	}
 

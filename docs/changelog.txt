@@ -8,6 +8,9 @@
  - added group/user management (mjoel/goffy)
  - added permissions to view and edit comments for items (mjoel/goffy)
  - integrated user-group-management into group form (goffy)
+ - use of real name in user-group-management (mjoel/goffy)
+ - added clone feature (mjoel/goffy)
+ - added new icons (goffy)
 
 ==============================================================
 1.0 [2021/05/16]
