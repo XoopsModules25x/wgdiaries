@@ -77,6 +77,9 @@ As you can see, you have created a page with a list of links at the top to navig
 \define('_MA_WGDIARIES_ITEM_NBFILES', 'Files');
 \define('_MA_WGDIARIES_ITEM_COMMENTS', 'Comments');
 \define('_MA_WGDIARIES_ITEM_SAVEADDFILES', 'Submit and add files');
+\define('_MA_WGDIARIES_ITEM_UPLOADFILES', 'Upload files');
+\define('_MA_WGDIARIES_ITEM_UPLOADFILES_BTN', 'Add new upload field');
+\define('_MA_WGDIARIES_ITEM_UPLOADFILES_MAX', 'Maximum number of allowed upload fields reached');
 // File
 \define('_MA_WGDIARIES_FILE', 'File');
 \define('_MA_WGDIARIES_FILE_ADD', 'Add File');
