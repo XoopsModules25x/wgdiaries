@@ -36,6 +36,7 @@ include_once 'common.php';
 \define('_MI_WGDIARIES_ADMENU5', 'Groupusers');
 \define('_MI_WGDIARIES_ADMENU6', 'Permissions');
 \define('_MI_WGDIARIES_ADMENU7', 'Feedback');
+\define('_MI_WGDIARIES_ADMENU8', 'Clone');
 \define('_MI_WGDIARIES_ABOUT', 'About');
 // ---------------- Admin Nav ----------------
 \define('_MI_WGDIARIES_ADMIN_PAGER', 'Admin pager');

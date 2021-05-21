@@ -32,40 +32,45 @@ $sysPathIcon32 = $moduleInfo->getInfo('sysicons32');
 $adminmenu[] = [
 	'title' => _MI_WGDIARIES_ADMENU1,
 	'link' => 'admin/index.php',
-	'icon' => $sysPathIcon32.'/dashboard.png',
+	'icon' => 'assets/icons/32/dashboard.png',
 ];
 $adminmenu[] = [
 	'title' => _MI_WGDIARIES_ADMENU2,
 	'link' => 'admin/items.php',
-	'icon' => 'assets/icons/32/event.png',
+	'icon' => 'assets/icons/32/items.png',
 ];
 $adminmenu[] = [
 	'title' => _MI_WGDIARIES_ADMENU3,
 	'link' => 'admin/files.php',
-	'icon' => 'assets/icons/32/fileshare.png',
+	'icon' => 'assets/icons/32/files.png',
 ];
 $adminmenu[] = [
 	'title' => _MI_WGDIARIES_ADMENU4,
 	'link' => 'admin/groups.php',
-	'icon' => 'assets/icons/32/users.png',
+	'icon' => 'assets/icons/32/groups.png',
 ];
 $adminmenu[] = [
 	'title' => _MI_WGDIARIES_ADMENU5,
 	'link' => 'admin/groupusers.php',
-	'icon' => 'assets/icons/32/user-icon.png',
+	'icon' => 'assets/icons/32/groupusers.png',
 ];
 $adminmenu[] = [
 	'title' => _MI_WGDIARIES_ADMENU6,
 	'link' => 'admin/permissions.php',
-	'icon' => $sysPathIcon32.'/permissions.png',
+	'icon' => 'assets/icons/32/permissions.png',
+];
+$adminmenu[] = [
+    'title' => _MI_WGDIARIES_ADMENU8,
+    'link' => 'admin/clone.php',
+    'icon' => 'assets/icons/32/clone.png',
 ];
 $adminmenu[] = [
 	'title' => _MI_WGDIARIES_ADMENU7,
 	'link' => 'admin/feedback.php',
-	'icon' => $sysPathIcon32.'/mail_foward.png',
+	'icon' => 'assets/icons/32/feedback.png',
 ];
 $adminmenu[] = [
 	'title' => _MI_WGDIARIES_ABOUT,
 	'link' => 'admin/about.php',
-	'icon' => $sysPathIcon32.'/about.png',
+	'icon' => 'assets/icons/32/about.png',
 ];

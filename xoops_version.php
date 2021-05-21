@@ -76,6 +76,7 @@ $modversion = [
 $modversion['templates'] = [
     // Admin templates
     ['file' => 'wgdiaries_admin_about.tpl', 'description' => '', 'type' => 'admin'],
+    ['file' => 'wgdiaries_admin_clone.tpl', 'description' => '', 'type' => 'admin'],
     ['file' => 'wgdiaries_admin_header.tpl', 'description' => '', 'type' => 'admin'],
     ['file' => 'wgdiaries_admin_index.tpl', 'description' => '', 'type' => 'admin'],
     ['file' => 'wgdiaries_admin_items.tpl', 'description' => '', 'type' => 'admin'],
