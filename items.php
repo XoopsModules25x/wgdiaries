@@ -193,8 +193,9 @@ switch ($op) {
             $uploaderErrors = [];
             for ($i = 0; $i <= $helper->getConfig('max_fileuploads'); $i++) {
                 //upload of single file
-                $filename = $_FILES['item_file' . $i]['name'];
-                $imgNameDef = $filename; //TODO: add field for description
+                $filename     = $_FILES['item_file' . $i]['name'];
+                $fileMimetype = $_FILES['item_file' . $i]['type'];
+                $imgNameDef   = $filename; //TODO: add field for description
                 $uploader = new \XoopsMediaUploader(WGDIARIES_UPLOAD_FILES_PATH . '/',
                     $helper->getConfig('mimetypes_file'),
                     $helper->getConfig('maxsize_file'), null, null);
@@ -206,7 +207,7 @@ switch ($op) {
                     if (!$uploader->upload()) {
                         $uploaderErrors[] = $uploader->getErrors();
                     } else {
-                        $uploaderFiles[] = $uploader->getSavedFileName();
+                        $uploaderFiles[] = ['name' => $uploader->getSavedFileName(), 'type'=> $fileMimetype];
                     }
                 } else {
                     if ($filename > '') {
@@ -216,12 +217,13 @@ switch ($op) {
                     }
                 }
             }
-            foreach ($uploaderFiles as $fileName) {
+            foreach ($uploaderFiles as $file) {
                 $filesObj = $filesHandler->create();
                 $filesObj->setVar('file_itemid', $newItemId);
                 //TODO: add additional field for name in form
                 $filesObj->setVar('file_desc', Request::getString('file_desc', ''));
-                $filesObj->setVar('file_name', $fileName);
+                $filesObj->setVar('file_name', $file['name']);
+                $filesObj->setVar('file_mimetype', $file['type']);
                 $fileDatecreatedObj = \DateTime::createFromFormat(_SHORTDATESTRING, Request::getString('item_datecreated'));
                 $filesObj->setVar('file_datecreated', $fileDatecreatedObj->getTimestamp());
                 $filesObj->setVar('file_submitter', Request::getInt('item_submitter', 0));

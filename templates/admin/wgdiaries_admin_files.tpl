@@ -9,6 +9,7 @@
 				<th class="center"><{$smarty.const._MA_WGDIARIES_FILE_ITEMID}></th>
 				<th class="center"><{$smarty.const._MA_WGDIARIES_FILE_DESC}></th>
 				<th class="center"><{$smarty.const._MA_WGDIARIES_FILE_NAME}></th>
+				<th class="center"><{$smarty.const._MA_WGDIARIES_FILE_MIMETYPE}></th>
 				<th class="center"><{$smarty.const._MA_WGDIARIES_FILE_DATECREATED}></th>
 				<th class="center"><{$smarty.const._MA_WGDIARIES_FILE_SUBMITTER}></th>
 				<th class="center width5"><{$smarty.const._MA_WGDIARIES_FORM_ACTION}></th>
@@ -22,6 +23,7 @@
 				<td class='center'><{$file.itemid}></td>
 				<td class='center'><{$file.desc}></td>
 				<td class='center'><{$file.name}></td>
+				<td class='center'><{$file.mimetype}></td>
 				<td class='center'><{$file.datecreated}></td>
 				<td class='center'><{$file.submitter}></td>
 				<td class="center  width5">
