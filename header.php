@@ -31,8 +31,6 @@ $xoBreadcrumbs = [];
 $helper = \XoopsModules\Wgdiaries\Helper::getInstance();
 $itemsHandler = $helper->getHandler('Items');
 $filesHandler = $helper->getHandler('Files');
-$groupsHandler = $helper->getHandler('Groups');
-$groupusersHandler = $helper->getHandler('Groupusers');
 $permissionsHandler = $helper->getHandler('Permissions');
 // 
 $myts = MyTextSanitizer::getInstance();

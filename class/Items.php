@@ -27,6 +27,7 @@ namespace XoopsModules\Wgdiaries;
  */
 
 use XoopsModules\Wgdiaries;
+use XoopsGroup;
 
 \defined('\XOOPS_ROOT_PATH') || die('Restricted access');
 
@@ -99,24 +100,10 @@ class Items extends \XoopsObject
         if ($helper->getConfig('use_groups')) {
             $itemGroup = $this->isNew() ? 0 : $this->getVar('item_groupid');
             $groupOptions = [];
-            $groupsHandler = $helper->getHandler('Groups');
-            $groupusersHandler = $helper->getHandler('Groupusers');
-            $crGroups = new \CriteriaCompo();
-            $groupsAll = $groupsHandler->getAll($crGroups);
-            foreach (\array_keys($groupsAll) as $i) {
-                $groupId = $groupsAll[$i]->getVar('grp_id');
-                $groupName = $groupsAll[$i]->getVar('grp_name');
-                $crGroupusers = new \CriteriaCompo();
-                $guCount = 1;
-                if (!$isAdmin) {
-                    $crGroupusers->add(new \Criteria('gu_groupid', $i));
-                    $crGroupusers->add(new \Criteria('gu_uid', $uid));
-                    $guCount = $groupusersHandler->getCount($crGroupusers);
-                }
-                if ($guCount > 0) {
-                    $groupOptions[$groupId] = $groupName;
-
-                }
+            $member_handler   = xoops_getHandler('member');
+            $userGroups = $member_handler->getGroupList();
+            foreach ($userGroups as $group_id => $group_name) {
+                $groupOptions[$group_id] = $group_name;
             }
             if (\count($groupOptions) > 1) {
                 $itemGroupSelect = new \XoopsFormSelect(\_MA_WGDIARIES_ITEM_GROUPID, 'item_groupid', $itemGroup);
@@ -211,12 +198,9 @@ class Items extends \XoopsObject
         $crFiles = new \CriteriaCompo();
         $crFiles->add(new \Criteria('file_itemid', $this->getVar('item_id')));
         $ret['nbfiles'] = $filesHandler->getCount($crFiles);
-        $groupsHandler = $helper->getHandler('Groups');
-        $groupsObj = $groupsHandler->get($this->getVar('item_groupid'));
-        $ret['groupname'] = '';
-        if (\is_object($groupsObj)) {
-            $ret['groupname'] = $groupsObj->getVar('grp_name');
-        }
+        $group_handler = xoops_getHandler('group');
+        $groupObj     = $group_handler->get($this->getVar('item_groupid'));
+        $ret['groupname'] = $groupObj->getVar('name');
 
         return $ret;
     }

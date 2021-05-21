@@ -32,8 +32,8 @@ include_once 'common.php';
 \define('_MI_WGDIARIES_ADMENU1', 'Dashboard');
 \define('_MI_WGDIARIES_ADMENU2', 'Items');
 \define('_MI_WGDIARIES_ADMENU3', 'Files');
-\define('_MI_WGDIARIES_ADMENU4', 'Groups');
-\define('_MI_WGDIARIES_ADMENU5', 'Groupusers');
+//\define('_MI_WGDIARIES_ADMENU4', 'Groups');
+//\define('_MI_WGDIARIES_ADMENU5', 'Groupusers');
 \define('_MI_WGDIARIES_ADMENU6', 'Permissions');
 \define('_MI_WGDIARIES_ADMENU7', 'Feedback');
 \define('_MI_WGDIARIES_ADMENU8', 'Clone');
@@ -46,10 +46,11 @@ include_once 'common.php';
 \define('_MI_WGDIARIES_USER_PAGER_DESC', 'User per page list');
 // Submenu
 \define('_MI_WGDIARIES_SMNAME1', 'Index page');
-\define('_MI_WGDIARIES_SMNAME2', 'Items');
+\define('_MI_WGDIARIES_SMNAME2', 'My Items');
 \define('_MI_WGDIARIES_SMNAME3', 'Submit Items');
-\define('_MI_WGDIARIES_SMNAME4', 'Groups');
-\define('_MI_WGDIARIES_SMNAME5', 'Submit Group');
+\define('_MI_WGDIARIES_SMNAME4', 'Items of my groups');
+\define('_MI_WGDIARIES_SMNAME5', 'Groups');
+\define('_MI_WGDIARIES_SMNAME6', 'Submit Group');
 // Config
 \define('_MI_WGDIARIES_EDITOR_ADMIN', 'Editor admin');
 \define('_MI_WGDIARIES_EDITOR_ADMIN_DESC', 'Select the editor which should be used in admin area for text area fields');
