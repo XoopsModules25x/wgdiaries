@@ -240,42 +240,6 @@ while ($i * 1048576 <= $maxSize) {
     $optionMaxsize[$i . ' ' . \_MI_WGDIARIES_SIZE_MB] = $i * 1048576;
     $i += $increment;
 }
-// Uploads : maxsize of image
-$modversion['config'][] = [
-    'name'        => 'maxsize_image',
-    'title'       => '_MI_WGDIARIES_MAXSIZE_IMAGE',
-    'description' => '_MI_WGDIARIES_MAXSIZE_IMAGE_DESC',
-    'formtype'    => 'select',
-    'valuetype'   => 'int',
-    'default'     => 3145728,
-    'options'     => $optionMaxsize,
-];
-// Uploads : mimetypes of image
-$modversion['config'][] = [
-    'name'        => 'mimetypes_image',
-    'title'       => '_MI_WGDIARIES_MIMETYPES_IMAGE',
-    'description' => '_MI_WGDIARIES_MIMETYPES_IMAGE_DESC',
-    'formtype'    => 'select_multi',
-    'valuetype'   => 'array',
-    'default'     => ['image/gif', 'image/jpeg', 'image/png'],
-    'options'     => ['bmp' => 'image/bmp','gif' => 'image/gif','pjpeg' => 'image/pjpeg', 'jpeg' => 'image/jpeg','jpg' => 'image/jpg','jpe' => 'image/jpe', 'png' => 'image/png'],
-];
-$modversion['config'][] = [
-    'name'        => 'maxwidth_image',
-    'title'       => '_MI_WGDIARIES_MAXWIDTH_IMAGE',
-    'description' => '_MI_WGDIARIES_MAXWIDTH_IMAGE_DESC',
-    'formtype'    => 'textbox',
-    'valuetype'   => 'int',
-    'default'     => 800,
-];
-$modversion['config'][] = [
-    'name'        => 'maxheight_image',
-    'title'       => '_MI_WGDIARIES_MAXHEIGHT_IMAGE',
-    'description' => '_MI_WGDIARIES_MAXHEIGHT_IMAGE_DESC',
-    'formtype'    => 'textbox',
-    'valuetype'   => 'int',
-    'default'     => 800,
-];
 // Uploads : maxsize of file
 $modversion['config'][] = [
     'name'        => 'maxsize_file',
@@ -295,6 +259,15 @@ $modversion['config'][] = [
     'valuetype'   => 'array',
     'default'     => ['application/pdf', 'application/zip', 'text/comma-separated-values', 'text/plain', 'image/gif', 'image/jpeg', 'image/png'],
     'options'     => ['gif' => 'image/gif','pjpeg' => 'image/pjpeg', 'jpeg' => 'image/jpeg','jpg' => 'image/jpg','jpe' => 'image/jpe', 'png' => 'image/png', 'pdf' => 'application/pdf','zip' => 'application/zip','csv' => 'text/comma-separated-values', 'txt' => 'text/plain', 'xml' => 'application/xml', 'xlsx' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'docx' => 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'],
+];
+// Upload: max number of files for upload
+$modversion['config'][] = [
+    'name'        => 'max_fileuploads',
+    'title'       => '_MI_WGDIARIES_MAX_FILEUPLOADS',
+    'description' => '_MI_WGDIARIES_MAX_FILEUPLOADS_DESC',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'int',
+    'default'     => 10,
 ];
 // Admin pager
 $modversion['config'][] = [

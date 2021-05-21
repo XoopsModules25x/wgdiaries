@@ -37,3 +37,18 @@
 <{/if}>
 
 <{include file='db:wgdiaries_footer.tpl' }>
+
+<script>
+	$(document).ready(function(){
+		countFields = 0;
+		$('.add_more').click(function(e){
+			countFields++;
+			if (countFields == <{$maxfileuploads|default:0}>) {
+				alert('<{$smarty.const._MA_WGDIARIES_ITEM_UPLOADFILES_MAX}>');
+			} else {
+				e.preventDefault();
+				$(this).before("<input type='file' class='form-control' name='item_file" + countFields + "' id='item_file" + countFields + "' title=''><input type='hidden' name='xoops_upload_file[]' id='xoops_upload_file[]' value='item_file" + countFields + "'>");
+			}
+		});
+	});
+</script>

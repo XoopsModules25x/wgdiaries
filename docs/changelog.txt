@@ -11,6 +11,8 @@
  - use of real name in user-group-management (mjoel/goffy)
  - added clone feature (mjoel/goffy)
  - added new icons (goffy)
+ - added multiupload files for items (mjoel/goffy)
+ - added option for max number of uploads per item (goffy)
 
 ==============================================================
 1.0 [2021/05/16]

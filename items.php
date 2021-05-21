@@ -36,9 +36,6 @@ $op      = Request::getCmd('op', 'list');
 $start   = Request::getInt('start', 0);
 $limit   = Request::getInt('limit', $helper->getConfig('userpager'));
 $itemId  = Request::getInt('item_id', 0);
-if (Request::hasVar('save_add')) {
-    $op ='save_add';
-}
 
 // Define Stylesheet
 $GLOBALS['xoTheme']->addStylesheet($style, null);
@@ -108,7 +105,6 @@ switch ($op) {
 		}
 		break;
 	case 'save':
-    case 'save_add':
 		// Security Check
 		if (!$GLOBALS['xoopsSecurity']->check()) {
 			\redirect_header('items.php', 3, \implode(',', $GLOBALS['xoopsSecurity']->getErrors()));
@@ -141,15 +137,55 @@ switch ($op) {
 		// Insert Data
 		if ($itemsHandler->insert($itemsObj)) {
             $newItemId = $itemId > 0 ? $itemId : $itemsObj->getNewInsertedIdItems();
-			// redirect after insert
-            if ('save_add' == $op) {
-                \redirect_header('files.php?op=new&amp;item_id=' . $newItemId, 2, _MA_WGDIARIES_FORM_OK);
-            } else {
+
+            include_once XOOPS_ROOT_PATH . '/class/uploader.php';
+            $uploaderFiles  = [];
+            $uploaderErrors = [];
+            for ($i = 0; $i <= $helper->getConfig('max_fileuploads'); $i++) {
+                //upload of single file
+                $filename = $_FILES['item_file' . $i]['name'];
+                $imgNameDef = $filename; //TODO: add field for description
+                $uploader = new \XoopsMediaUploader(WGDIARIES_UPLOAD_FILES_PATH . '/',
+                    $helper->getConfig('mimetypes_file'),
+                    $helper->getConfig('maxsize_file'), null, null);
+                if ($uploader->fetchMedia($_POST['xoops_upload_file'][$i])) {
+                    $extension = \preg_replace('/^.+\.([^.]+)$/sU', '', $filename);
+                    $imgName = \str_replace(' ', '', $imgNameDef) . '.' . $extension;
+                    $uploader->setPrefix($imgName);
+                    $uploader->fetchMedia($_POST['xoops_upload_file'][$i]);
+                    if (!$uploader->upload()) {
+                        $uploaderErrors[] = $uploader->getErrors();
+                    } else {
+                        $uploaderFiles[] = $uploader->getSavedFileName();
+                    }
+                } else {
+                    if ($filename > '') {
+                        $uploaderErrors[] = $uploader->getErrors();
+                    } else {
+                        break; // no more files - exit loop
+                    }
+                }
+            }
+            foreach ($uploaderFiles as $fileName) {
+                $filesObj = $filesHandler->create();
+                $filesObj->setVar('file_itemid', $newItemId);
+                //TODO: add additional field for name in form
+                $filesObj->setVar('file_desc', Request::getString('file_desc', ''));
+                $filesObj->setVar('file_name', $fileName);
+                $fileDatecreatedObj = \DateTime::createFromFormat(_SHORTDATESTRING, Request::getString('item_datecreated'));
+                $filesObj->setVar('file_datecreated', $fileDatecreatedObj->getTimestamp());
+                $filesObj->setVar('file_submitter', Request::getInt('item_submitter', 0));
+                if (!$filesHandler->insert($filesObj)) {
+                    $uploaderErrors[] = $filesObj->getErrors();
+                }
+            }
+            // redirect after insert
+            if (0 == \count($uploaderErrors)) {
                 \redirect_header('items.php?op=list#itemId_' . $newItemId, 2, _MA_WGDIARIES_FORM_OK);
             }
 		}
 		// Get Form Error
-		$GLOBALS['xoopsTpl']->assign('error', $itemsObj->getHtmlErrors());
+		$GLOBALS['xoopsTpl']->assign('error', implode('<br>', $uploaderErrors));
 		$form = $itemsObj->getFormItems();
 		$GLOBALS['xoopsTpl']->assign('form', $form->render());
 		break;
@@ -160,6 +196,7 @@ switch ($op) {
 		if (!$permissionsHandler->getPermGlobalSubmit()) {
 			\redirect_header('items.php?op=list', 3, _NOPERM);
 		}
+        $GLOBALS['xoopsTpl']->assign('maxfileuploads', $helper->getConfig('max_fileuploads'));
 		// Form Create
 		$itemsObj = $itemsHandler->create();
 		$form = $itemsObj->getFormItems();
@@ -176,6 +213,7 @@ switch ($op) {
 		if (0 == $itemId) {
 			\redirect_header('items.php?op=list', 3, _MA_WGDIARIES_INVALID_PARAM);
 		}
+        $GLOBALS['xoopsTpl']->assign('maxfileuploads', $helper->getConfig('max_fileuploads'));
 		// Get Form
 		$itemsObj = $itemsHandler->get($itemId);
 		$form = $itemsObj->getFormItems();

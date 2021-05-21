@@ -156,11 +156,19 @@ class Items extends \XoopsObject
         // Form Text itemComments
         $itemComments = $this->getVar('item_comments');
         if ($isAdmin) {
-            $form->addElement(new \XoopsFormText(_MA_WGDIARIES_ITEM_COMMENTS, 'item_comments', 50, 255, $itemComments));
+            $form->addElement(new \XoopsFormText(\_MA_WGDIARIES_ITEM_COMMENTS, 'item_comments', 50, 255, $itemComments));
         } else {
             $form->addElement(new \XoopsFormHidden('item_comments', $itemComments));
-            $form->addElement(new \XoopsFormLabel(_MA_WGDIARIES_ITEM_COMMENTS, $itemComments));
+            $form->addElement(new \XoopsFormLabel(\_MA_WGDIARIES_ITEM_COMMENTS, $itemComments));
         }
+        // Form File: Upload File
+        $fileUploadTray = new \XoopsFormElementTray(\_MA_WGDIARIES_ITEM_UPLOADFILES, '<br><br>');
+        $maxsize = $helper->getConfig('maxsize_file');
+        $fileUploadTray->addElement(new \XoopsFormFile('', 'item_file0', $maxsize));
+        $fileUploadTray->addElement(new \XoopsFormLabel('', '<a class="add_more btn btn-primary" href="#">' . \_MA_WGDIARIES_ITEM_UPLOADFILES_BTN . '</a>'));
+        $form->addElement($fileUploadTray);
+        $form->addElement(new \XoopsFormLabel('', \_MA_WGDIARIES_FORM_UPLOAD_SIZE . ($maxsize / 1048576) . ' '  . \_MA_WGDIARIES_FORM_UPLOAD_SIZE_MB));
+
         // Form Text Date Select itemDatecreated
         $itemDatecreated = $this->isNew() ? \time() : $this->getVar('item_datecreated');
         // Form Select User itemSubmitter
@@ -174,12 +182,7 @@ class Items extends \XoopsObject
         }
         // To Save
         $form->addElement(new \XoopsFormHidden('op', 'save'));
-        $buttonTray = new \XoopsFormElementTray('', '&nbsp;');
-        $buttonTray->addElement(new \XoopsFormButtonTray('', \_SUBMIT, 'submit', '', false));
-        $btnAddFile = new \XoopsFormButton('', 'save_add', \_MA_WGDIARIES_ITEM_SAVEADDFILES, 'submit');
-        $btnAddFile->setExtra('class="btn btn-primary"');
-        $buttonTray->addElement($btnAddFile);
-        $form->addElement($buttonTray);
+        $form->addElement(new \XoopsFormButtonTray('', \_SUBMIT, 'submit', '', false));
         return $form;
     }
 
