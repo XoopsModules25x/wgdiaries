@@ -114,19 +114,20 @@ class Files extends \XoopsObject
 		// Form Text fileDesc
 		$form->addElement(new \XoopsFormText(\_MA_WGDIARIES_FILE_DESC, 'file_desc', 50, 255, $this->getVar('file_desc')));
 		// Form File: Upload fileName
-		$fileName = $this->isNew() ? '' : $this->getVar('file_name');
+        if ($this->isNew()) {
+            $fileName = '';
+        } else {
+            $fileName = $this->getVar('file_name');
+            $form->addElement(new \XoopsFormLabel(\_MA_WGDIARIES_FILE_NAME, $fileName));
+        }
+        $form->addElement(new \XoopsFormHidden('file_name_old', $fileName));
 		if ($permissionUpload) {
-			$fileUploadTray = new \XoopsFormElementTray(\_MA_WGDIARIES_FILE_NAME, '<br>');
+			$fileUploadTray = new \XoopsFormElementTray(\_MA_WGDIARIES_FILE_UPLOAD, '<br>');
 			$fileDirectory = '/uploads/wgdiaries/files';
-			if (!$this->isNew()) {
-				$fileUploadTray->addElement(new \XoopsFormLabel(\sprintf(\_MA_WGDIARIES_FILE_NAME_UPLOADS, ".{$fileDirectory}/"), $fileName));
-			}
 			$maxsize = $helper->getConfig('maxsize_file');
 			$fileUploadTray->addElement(new \XoopsFormFile('', 'file_name', $maxsize));
 			$fileUploadTray->addElement(new \XoopsFormLabel(\_MA_WGDIARIES_FORM_UPLOAD_SIZE, ($maxsize / 1048576) . ' '  . _MA_WGDIARIES_FORM_UPLOAD_SIZE_MB));
 			$form->addElement($fileUploadTray);
-		} else {
-			$form->addElement(new \XoopsFormHidden('file_name', $fileName));
 		}
         $form->addElement(new \XoopsFormText(\_MA_WGDIARIES_FILE_MIMETYPE, 'file_mimetype', 50, 255, $this->getVar('file_mimetype')));
 		// Form Text Date Select fileDatecreated
@@ -175,10 +176,32 @@ class Files extends \XoopsObject
 		$ret['desc']        = $this->getVar('file_desc');
 		$ret['name']        = $this->getVar('file_name');
         $ret['mimetype']    = $this->getVar('file_mimetype');
+        $ret['isimage']     = $this->is_image($this->getVar('file_mimetype'));
+        $ret['icon']        = $this->get_icon($this->getVar('file_name'));
 		$ret['datecreated'] = \formatTimestamp($this->getVar('file_datecreated'), 's');
 		$ret['submitter']   = \XoopsUser::getUnameFromId($this->getVar('file_submitter'));
 		return $ret;
 	}
+
+    private function is_image($mimetype)
+    {
+        $ret = in_array($mimetype, ['image/gif', 'image/jpeg', 'image/pjpeg', 'image/x-png', 'image/png', 'image/bmp']);
+
+        return $ret;
+    }
+
+    private function get_icon($fileName)
+    {
+        $path = WGDIARIES_ICONS_PATH . '/files/';
+        $path_parts = pathinfo($path . $fileName);
+        $extension = $path_parts['extension'];
+        $icon = $extension . '.png';
+        if (\file_exists($path . $icon)) {
+            return $icon;
+        }
+
+        return '_blank.png';
+    }
 
 	/**
 	 * Returns an array representation of the object

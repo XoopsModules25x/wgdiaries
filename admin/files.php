@@ -96,27 +96,33 @@ switch ($op) {
 		$filesObj->setVar('file_desc', Request::getString('file_desc', ''));
 		// Set Var file_name
 		include_once XOOPS_ROOT_PATH . '/class/uploader.php';
-		$filename       = $_FILES['file_name']['name'];
-		$imgNameDef     = Request::getString('file_itemid');
-		$uploader = new \XoopsMediaUploader(WGDIARIES_UPLOAD_FILES_PATH . '/',
-													$helper->getConfig('mimetypes_file'), 
-													$helper->getConfig('maxsize_file'), null, null);
-		if ($uploader->fetchMedia($_POST['xoops_upload_file'][0])) {
-			$extension = \preg_replace('/^.+\.([^.]+)$/sU', '', $filename);
-			$imgName = \str_replace(' ', '', $imgNameDef) . '.' . $extension;
-			$uploader->setPrefix($imgName);
-			$uploader->fetchMedia($_POST['xoops_upload_file'][0]);
-			if (!$uploader->upload()) {
-				$errors = $uploader->getErrors();
-			} else {
-				$filesObj->setVar('file_name', $uploader->getSavedFileName());
-			}
-		} else {
-			if ($filename > '') {
-				$uploaderErrors = $uploader->getErrors();
-			}
-			$filesObj->setVar('file_name', Request::getString('file_name'));
-		}
+        $uploaderErrors = '';
+        $filename     = (string) $_FILES['file_name']['name'];
+        if ( '' !== $filename) {
+            //upload new file
+            $fileMimetype = $_FILES['file_name']['type'];
+            $imgNameDef = 'itemid_' . Request::getString('file_itemid');
+            $uploader = new \XoopsMediaUploader(WGDIARIES_UPLOAD_FILES_PATH . '/',
+                $helper->getConfig('mimetypes_file'),
+                $helper->getConfig('maxsize_file'), null, null);
+            if ($uploader->fetchMedia($_POST['xoops_upload_file'][0])) {
+                $extension = \preg_replace('/^.+\.([^.]+)$/sU', '', $filename);
+                $imgName = \str_replace(' ', '', $imgNameDef) . '.' . $extension;
+                $uploader->setPrefix($imgName);
+                $uploader->fetchMedia($_POST['xoops_upload_file'][0]);
+                if (!$uploader->upload()) {
+                    $errors = $uploader->getErrors();
+                } else {
+                    $filesObj->setVar('file_name', $uploader->getSavedFileName());
+                    $filesObj->setVar('file_mimetype', $fileMimetype);
+                }
+            } else {
+                if ($filename > '') {
+                    $uploaderErrors = $uploader->getErrors();
+                }
+                $filesObj->setVar('file_name', Request::getString('file_name'));
+            }
+        }
 		$fileDatecreatedObj = \DateTime::createFromFormat(_SHORTDATESTRING, Request::getString('file_datecreated'));
 		$filesObj->setVar('file_datecreated', $fileDatecreatedObj->getTimestamp());
 		$filesObj->setVar('file_submitter', Request::getInt('file_submitter', 0));

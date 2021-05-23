@@ -46,6 +46,9 @@ $GLOBALS['xoTheme']->addStylesheet($style, null);
 // Paths
 $GLOBALS['xoopsTpl']->assign('xoops_icons32_url', XOOPS_ICONS32_URL);
 $GLOBALS['xoopsTpl']->assign('wgdiaries_url', WGDIARIES_URL);
+$GLOBALS['xoopsTpl']->assign('wgdiaries_uploadfileurl', WGDIARIES_UPLOAD_FILES_URL . '/');
+$GLOBALS['xoopsTpl']->assign('wgdiaries_fileiconurl', WGDIARIES_ICONS_URL . '/files/');
+
 // Keywords
 $keywords = [];
 // Breadcrumbs
@@ -120,29 +123,32 @@ switch ($op) {
 		// Set Var file_name
 		include_once XOOPS_ROOT_PATH . '/class/uploader.php';
         $uploaderErrors = '';
-		$filename     = $_FILES['file_name']['name'];
-        $fileMimetype = $_FILES['file_name']['type'];
-		$imgNameDef   = 'itemid_' . Request::getString('file_itemid');
-		$uploader = new \XoopsMediaUploader(WGDIARIES_UPLOAD_FILES_PATH . '/',
-													$helper->getConfig('mimetypes_file'), 
-													$helper->getConfig('maxsize_file'), null, null);
-		if ($uploader->fetchMedia($_POST['xoops_upload_file'][0])) {
-			$extension = \preg_replace('/^.+\.([^.]+)$/sU', '', $filename);
-			$imgName = \str_replace(' ', '', $imgNameDef) . '.' . $extension;
-			$uploader->setPrefix($imgName);
-			$uploader->fetchMedia($_POST['xoops_upload_file'][0]);
-			if (!$uploader->upload()) {
-				$errors = $uploader->getErrors();
-			} else {
-				$filesObj->setVar('file_name', $uploader->getSavedFileName());
-                $filesObj->setVar('file_mimetype', $fileMimetype);
-			}
-		} else {
-			if ($filename > '') {
-				$uploaderErrors = $uploader->getErrors();
-			}
-			$filesObj->setVar('file_name', Request::getString('file_name'));
-		}
+		$filename     = (string) $_FILES['file_name']['name'];
+		if ( '' !== $filename) {
+		    //upload new file
+            $fileMimetype = $_FILES['file_name']['type'];
+            $imgNameDef = 'itemid_' . Request::getString('file_itemid');
+            $uploader = new \XoopsMediaUploader(WGDIARIES_UPLOAD_FILES_PATH . '/',
+                $helper->getConfig('mimetypes_file'),
+                $helper->getConfig('maxsize_file'), null, null);
+            if ($uploader->fetchMedia($_POST['xoops_upload_file'][0])) {
+                $name = \substr($filename, 0, (\strlen ($filename)) - (\strlen (\strrchr($filename,'.'))));
+                $imgName = \preg_replace("/[^a-zA-Z0-9]+/", "_", $name);
+                $uploader->setPrefix($imgName);
+                $uploader->fetchMedia($_POST['xoops_upload_file'][0]);
+                if (!$uploader->upload()) {
+                    $uploaderErrors = $uploader->getErrors();
+                } else {
+                    $filesObj->setVar('file_name', $uploader->getSavedFileName());
+                    $filesObj->setVar('file_mimetype', $fileMimetype);
+                }
+            } else {
+                if ($filename > '') {
+                    $uploaderErrors = $uploader->getErrors();
+                }
+                $filesObj->setVar('file_name', Request::getString('file_name'));
+            }
+        }
 		$fileDatecreatedObj = \DateTime::createFromFormat(_SHORTDATESTRING, Request::getString('file_datecreated'));
 		$filesObj->setVar('file_datecreated', $fileDatecreatedObj->getTimestamp());
 		$filesObj->setVar('file_submitter', Request::getInt('file_submitter', 0));
@@ -156,7 +162,7 @@ switch ($op) {
                 if ('save_add' == $op) {
                     \redirect_header('files.php?op=new&amp;item_id=' . $itemId, 2, _MA_WGDIARIES_FORM_OK);
                 } else {
-                    \redirect_header('files.php?op=list', 2, _MA_WGDIARIES_FORM_OK);
+                    \redirect_header('files.php?op=list&amp;item_id=' . $itemId, 2, _MA_WGDIARIES_FORM_OK);
                 }
 			}
 		}
