@@ -257,7 +257,7 @@ switch ($op) {
             }
             // redirect after insert
             if (0 == \count($uploaderErrors)) {
-                \redirect_header('items.php?op=list#itemId_' . $newItemId, 2, _MA_WGDIARIES_FORM_OK);
+                \redirect_header('items.php?op=show&amp;item_id=' . $newItemId, 2, _MA_WGDIARIES_FORM_OK);
             }
 		}
 		// Get Form Error
