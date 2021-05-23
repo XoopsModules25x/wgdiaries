@@ -1,10 +1,11 @@
 Read Me First
 =============
 
-Originally created by the TDM Team.
-
-Modified by Timgno (http://www.txmodxoops.org)
+Originally created by the Goffy - Webdesign Gabor.
 
 Contributors: Mamba (https://xoops.org), Goffy (German Xoops)
 
-Included ideas for Logo Generator from Trabis (Publisher module) and Suin (Koins module)
+File icons:
+Teambox Technologies S.L. (2009)
+- Website: <http://teambox.com/>
+- Copyright: (cc) 2009 Teambox Technologies

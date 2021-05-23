@@ -8,7 +8,6 @@
 			<tr class='head'>
 				<th>&nbsp;</th>
 				<th><{$smarty.const._MA_WGDIARIES_FILE_NAME}></th>
-				<th><{$smarty.const._MA_WGDIARIES_FILE_MIMETYPE}></th>
 				<th><{$smarty.const._MA_WGDIARIES_FILE_DESC}></th>
 				<th><{$smarty.const._MA_WGDIARIES_FILE_DATECREATED}></th>
 				<th>&nbsp;</th>

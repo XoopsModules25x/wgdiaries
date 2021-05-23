@@ -91,6 +91,7 @@ As you can see, you have created a page with a list of links at the top to navig
 \define('_MA_WGDIARIES_FILE_ADD', 'Add File');
 \define('_MA_WGDIARIES_FILE_EDIT', 'Edit File');
 \define('_MA_WGDIARIES_FILE_DELETE', 'Delete File');
+\define('_MA_WGDIARIES_FILE_OPEN', 'Open File');
 \define('_MA_WGDIARIES_FILES', 'Files');
 \define('_MA_WGDIARIES_FILES_LIST', 'List of Files');
 \define('_MA_WGDIARIES_FILES_TITLE', 'Files title');
@@ -103,7 +104,7 @@ As you can see, you have created a page with a list of links at the top to navig
 \define('_MA_WGDIARIES_FILE_MIMETYPE', 'Mimetype');
 \define('_MA_WGDIARIES_FILE_DATECREATED', 'Datecreated');
 \define('_MA_WGDIARIES_FILE_SUBMITTER', 'Submitter');
-\define('_MA_WGDIARIES_FILE_NAME_UPLOADS', 'Uploaded file in %s :');
+\define('_MA_WGDIARIES_FILE_UPLOAD', 'Upload new file');
 // Group
 /*
 \define('_MA_WGDIARIES_GROUP', 'Group');
