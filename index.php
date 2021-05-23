@@ -41,6 +41,10 @@ $GLOBALS['xoopsTpl']->assign('xoops_icons32_url', XOOPS_ICONS32_URL);
 $GLOBALS['xoopsTpl']->assign('wgdiaries_url', WGDIARIES_URL);
 
 $uid = \is_object($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->uid() : 0;
+
+$start = 0;
+$limit = Request::getInt('limit', $helper->getConfig('indexpager'));
+
 // own items
 $crItems = new \CriteriaCompo();
 $crItems->add(new \Criteria('item_submitter', $uid));
@@ -48,8 +52,6 @@ $itemsCount = $itemsHandler->getCount($crItems);
 $GLOBALS['xoopsTpl']->assign('itemsOwnCount', $itemsCount);
 $count = 1;
 if ($itemsCount > 0) {
-	$start = Request::getInt('start', 0);
-	$limit = Request::getInt('limit', $helper->getConfig('userpager'));
     $crItems->setStart($start);
     $crItems->setLimit($limit);
     $itemsAll = $itemsHandler->getAll($crItems);
@@ -77,8 +79,6 @@ if ($permissionsHandler->getPermItemsGroupView()) {
     $GLOBALS['xoopsTpl']->assign('itemsGroupCount', $itemsCount);
     $count = 1;
     if ($itemsCount > 0) {
-        $start = Request::getInt('start', 0);
-        $limit = Request::getInt('limit', $helper->getConfig('userpager'));
         $crItems->setStart($start);
         $crItems->setLimit($limit);
         $itemsAll = $itemsHandler->getAll($crItems);

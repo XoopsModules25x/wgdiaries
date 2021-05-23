@@ -42,6 +42,8 @@ include_once 'common.php';
 \define('_MI_WGDIARIES_ADMIN_PAGER', 'Admin pager');
 \define('_MI_WGDIARIES_ADMIN_PAGER_DESC', 'Admin per page list');
 // User
+\define('_MI_WGDIARIES_INDEX_PAGER', 'Index page');
+\define('_MI_WGDIARIES_INDEX_PAGER_DESC', 'Items per list on index page');
 \define('_MI_WGDIARIES_USER_PAGER', 'User pager');
 \define('_MI_WGDIARIES_USER_PAGER_DESC', 'User per page list');
 // Submenu

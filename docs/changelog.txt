@@ -9,6 +9,7 @@
  - redirect after save file (mjoel/goffy)
  - added icons to files (goffy)
  - added custom intro for index page (mjoel/goffy)
+ - added preference for items per list index page (goffy)
 
 ==============================================================
 1.01 [2021/05/19]
