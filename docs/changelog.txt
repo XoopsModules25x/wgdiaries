@@ -10,6 +10,7 @@
  - added icons to files (goffy)
  - added custom intro for index page (mjoel/goffy)
  - added preference for items per list index page (goffy)
+ - added custom theme xswatch4_wgdiary (goffy)
 
 ==============================================================
 1.01 [2021/05/19]
