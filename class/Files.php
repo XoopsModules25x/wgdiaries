@@ -123,7 +123,6 @@ class Files extends \XoopsObject
         $form->addElement(new \XoopsFormHidden('file_name_old', $fileName));
 		if ($permissionUpload) {
 			$fileUploadTray = new \XoopsFormElementTray(\_MA_WGDIARIES_FILE_UPLOAD, '<br>');
-			$fileDirectory = '/uploads/wgdiaries/files';
 			$maxsize = $helper->getConfig('maxsize_file');
 			$fileUploadTray->addElement(new \XoopsFormFile('', 'file_name', $maxsize));
 			$fileUploadTray->addElement(new \XoopsFormLabel(\_MA_WGDIARIES_FORM_UPLOAD_SIZE, ($maxsize / 1048576) . ' '  . _MA_WGDIARIES_FORM_UPLOAD_SIZE_MB));

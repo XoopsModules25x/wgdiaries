@@ -3,7 +3,9 @@
 	<{if $useGroups|default:false}>
 		<td><{$item.groupname}></td>
 	<{/if}>
-	<td><{$item.submitter}></td>
+	<{if $listGroup|default:false}>
+		<td><{$item.submitter}></td>
+	<{/if}>
 	<td><{$item.remarks}></td>
 	<td><{$item.datefrom}></td>
 	<td><{$item.dateto}></td>

@@ -10,7 +10,9 @@
 						<{if $useGroups|default:false}>
 							<th><{$smarty.const._MA_WGDIARIES_ITEM_GROUPID}></th>
 						<{/if}>
-						<th><{$smarty.const._MA_WGDIARIES_ITEM_SUBMITTER}></th>
+						<{if $listGroup|default:false}>
+							<th><{$smarty.const._MA_WGDIARIES_ITEM_SUBMITTER}></th>
+						<{/if}>
 						<th><{$smarty.const._MA_WGDIARIES_ITEM_REMARKS}></th>
 						<th><{$smarty.const._MA_WGDIARIES_ITEM_DATEFROM}></th>
 						<th><{$smarty.const._MA_WGDIARIES_ITEM_DATETO}></th>

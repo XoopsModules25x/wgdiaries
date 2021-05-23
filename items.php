@@ -170,6 +170,7 @@ switch ($op) {
             $GLOBALS['xoopsTpl']->assign('divideby', $helper->getConfig('divideby'));
             $GLOBALS['xoopsTpl']->assign('numb_col', $helper->getConfig('numb_col'));
             $GLOBALS['xoopsTpl']->assign('useGroups', $helper->getConfig('use_groups'));
+            $GLOBALS['xoopsTpl']->assign('listGroup', true);
             if (1 == $itemsCount) {
                 $GLOBALS['xoopsTpl']->assign('permItemsComment', $permissionsHandler->getPermItemsComEdit($itemSubmitter));
             }

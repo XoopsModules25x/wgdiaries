@@ -1,12 +1,13 @@
 <{include file='db:wgdiaries_header.tpl' }>
 
+<h2 class='center'><{$smarty.const._MA_WGDIARIES_TITLE}></h2>
+<{if $indexHeader|default:''}>
+	<h3><{$indexHeader}></h3>
+<{/if}>
+
 <!-- Start index list -->
 <table>
-	<thead>
-		<tr class='center'>
-			<th><{$smarty.const._MA_WGDIARIES_TITLE}>  -  <{$smarty.const._MA_WGDIARIES_DESC}></th>
-		</tr>
-	</thead>
+	<thead></thead>
 	<tbody>
 		<tr class='center'>
 			<td class='bold pad5'>
@@ -36,7 +37,6 @@
 			<{if $useGroups|default:false}>
 				<th><{$smarty.const._MA_WGDIARIES_ITEM_GROUPID}></th>
 			<{/if}>
-			<th><{$smarty.const._MA_WGDIARIES_ITEM_SUBMITTER}></th>
 			<th><{$smarty.const._MA_WGDIARIES_ITEM_REMARKS}></th>
 			<th><{$smarty.const._MA_WGDIARIES_ITEM_DATEFROM}></th>
 			<th><{$smarty.const._MA_WGDIARIES_ITEM_DATETO}></th>
@@ -76,7 +76,7 @@
 		<tbody>
 			<!-- Start new link loop -->
 			<{foreach item=itemgroup from=$itemsgroup name=itemgroup}>
-				<{include file='db:wgdiaries_items_list.tpl' item=$itemgroup}>
+				<{include file='db:wgdiaries_items_list.tpl' item=$itemgroup group=true}>
 			<{/foreach}>
 			<!-- End new link loop -->
 		</tbody>
