@@ -71,6 +71,7 @@ As you can see, you have created a page with a list of links at the top to navig
 \define('_MA_WGDIARIES_ITEMS_TITLE', 'Items title');
 \define('_MA_WGDIARIES_ITEMS_DESC', 'Items description');
 \define('_MA_WGDIARIES_ITEM_CAPTION', 'Item No. %s (%s, from %s to %s)');
+\define('_MA_WGDIARIES_ITEM_CAPTION_SINGLE', '%s - Item No. %s - %s)');
 // Caption of Item
 \define('_MA_WGDIARIES_ITEM_ID', 'Id');
 \define('_MA_WGDIARIES_ITEM_GROUPID', 'Group');

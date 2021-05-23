@@ -222,17 +222,30 @@ class Items extends \XoopsObject
 
     /**
      * Returns a string which shows basic info of item
-     *
+     * @param string $target
      * @return string
      */
-    public function getCaption()
+    public function getCaption($target = 'default')
     {
-        $ret = \sprintf(_MA_WGDIARIES_ITEM_CAPTION,
+        switch ($target) {
+            case 'default':
+            default:
+                $ret = \sprintf(_MA_WGDIARIES_ITEM_CAPTION,
                     $this->getVar('item_id'),
                     \XoopsUser::getUnameFromId($this->getVar('item_submitter'), true),
                     \formatTimestamp($this->getVar('item_datefrom'), 'm'),
                     \formatTimestamp($this->getVar('item_dateto'), 'm')
-            );
+                );
+                break;
+            case 'single':
+                $ret = \sprintf(_MA_WGDIARIES_ITEM_CAPTION_SINGLE,
+                    \XoopsUser::getUnameFromId($this->getVar('item_submitter'), true),
+                    $this->getVar('item_id'),
+                    \formatTimestamp($this->getVar('item_datefrom'), 's'),
+                );
+                break;
+        }
+
         return $ret;
     }
 }
