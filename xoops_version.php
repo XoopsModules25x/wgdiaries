@@ -285,7 +285,16 @@ $modversion['config'][] = [
     'description' => '_MI_WGDIARIES_ADMIN_PAGER_DESC',
     'formtype'    => 'textbox',
     'valuetype'   => 'int',
-    'default'     => 10,
+    'default'     => 25,
+];
+// Index pager
+$modversion['config'][] = [
+    'name'        => 'indexpager',
+    'title'       => '_MI_WGDIARIES_INDEX_PAGER',
+    'description' => '_MI_WGDIARIES_INDEX_PAGER_DESC',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'int',
+    'default'     => 5,
 ];
 // User pager
 $modversion['config'][] = [
