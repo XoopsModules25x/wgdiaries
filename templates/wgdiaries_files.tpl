@@ -19,9 +19,14 @@
 					<{include file='db:wgdiaries_files_item.tpl' }>
 				<{/foreach}>
 			</tbody>
-			<tfoot><tr><td>&nbsp;
-					<a class='btn btn-success right' href='files.php?op=new&amp;item_id=<{$itemId}>' title='<{$smarty.const._ADD}>'><{$smarty.const._ADD}></a>
-				</td></tr></tfoot>
+			<tfoot>
+				<tr>
+					<td colspan="6" class="center">
+						<a class='btn btn-success right' href='items.php?op=show&amp;item_id=<{$itemId}>' title='<{$smarty.const._MA_WGDIARIES_ITEM_GOBACK}>'><{$smarty.const._MA_WGDIARIES_ITEM_GOBACK}></a>
+						<a class='btn btn-primary right' href='files.php?op=new&amp;item_id=<{$itemId}>' title='<{$smarty.const._ADD}>'><{$smarty.const._ADD}></a>
+					</td>
+				</tr>
+			</tfoot>
 		</table>
 	</div>
 <{/if}>

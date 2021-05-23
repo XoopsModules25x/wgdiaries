@@ -29,7 +29,7 @@ $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
 // ------------------- Informations ------------------- //
 $modversion = [
     'name'                => \_MI_WGDIARIES_NAME,
-    'version'             => 1.0,
+    'version'             => 1.02,
     'description'         => \_MI_WGDIARIES_DESC,
     'author'              => 'wedega',
     'author_mail'         => 'webmaster@wedega.com',
@@ -90,6 +90,7 @@ $modversion['templates'] = [
     ['file' => 'wgdiaries_items.tpl', 'description' => ''],
     ['file' => 'wgdiaries_items_list.tpl', 'description' => ''],
     ['file' => 'wgdiaries_items_item.tpl', 'description' => ''],
+    ['file' => 'wgdiaries_items_single.tpl', 'description' => ''],
     ['file' => 'wgdiaries_files.tpl', 'description' => ''],
     ['file' => 'wgdiaries_files_item.tpl', 'description' => ''],
     ['file' => 'wgdiaries_groups.tpl', 'description' => ''],
