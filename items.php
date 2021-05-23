@@ -57,6 +57,11 @@ switch ($op) {
 		// Breadcrumbs
 		$xoBreadcrumbs[] = ['title' => _MA_WGDIARIES_ITEMS_LIST];
 
+        if ('show' == $op) {
+            $GLOBALS['xoopsTpl']->assign('itemsTitle', \_MA_WGDIARIES_ITEM_DETAILS);
+        } else {
+            $GLOBALS['xoopsTpl']->assign('itemsTitle', \_MA_WGDIARIES_ITEMS_LISTMY);
+        }
         $uid = \is_object($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->uid() : 0;
 		$crItems = new \CriteriaCompo();
 		if ($itemId > 0) {
@@ -65,11 +70,11 @@ switch ($op) {
         $crItems->add(new \Criteria('item_submitter', $uid));
 		$itemsCount = $itemsHandler->getCount($crItems);
 		$GLOBALS['xoopsTpl']->assign('itemsCount', $itemsCount);
-		$crItems->setStart($start);
-		$crItems->setLimit($limit);
-		$itemsAll = $itemsHandler->getAll($crItems);
 		if ($itemsCount > 0) {
-		    $GLOBALS['xoopsTpl']->assign('itemsTitle', \_MA_WGDIARIES_ITEMS_LISTMY);
+            $crItems->setStart($start);
+            $crItems->setLimit($limit);
+            $itemsAll = $itemsHandler->getAll($crItems);
+
             $GLOBALS['xoopsTpl']->assign('itemsCount', $itemsCount);
 			$items = [];
 			$itemSubmitter = '';
@@ -79,6 +84,23 @@ switch ($op) {
                 $itemSubmitter = $item['item_submitter'];
                 // Permissions
                 $item['permEdit'] = $permissionsHandler->getPermItemsEdit($itemSubmitter);
+                if ('show' == $op) {
+                    $crFiles = new \CriteriaCompo();
+                    $crFiles->add(new \Criteria('file_itemid', $i));
+                    $filesCount = $filesHandler->getCount($crFiles);
+                    if ($filesCount > 0) {
+                        $crFiles->setStart($start);
+                        $crFiles->setLimit($limit);
+                        $filesAll = $filesHandler->getAll($crFiles);
+                        $files = [];
+                        // Get All Files
+                        foreach (\array_keys($filesAll) as $j) {
+                            $files[$j] = $filesAll[$j]->getValuesFiles();
+                        }
+                        $item['files'] = $files;
+                        $item['moreFiles'] = ($filesCount > $limit);
+                    }
+                }
                 $items[$i] = $item;
 			}
 			$GLOBALS['xoopsTpl']->assign('items', $items);
@@ -97,9 +119,11 @@ switch ($op) {
             if (1 == $itemsCount) {
                 $GLOBALS['xoopsTpl']->assign('permItemsComment', $permissionsHandler->getPermItemsComEdit($itemSubmitter));
             }
+            /*
 			if ('show' == $op && '' != $itemSubmitter) {
 				$GLOBALS['xoopsTpl']->assign('xoops_pagetitle', \strip_tags($itemSubmitter . ' - ' . $GLOBALS['xoopsModule']->getVar('name')));
 			}
+            */
 		}
 		break;
     case 'listgroup':

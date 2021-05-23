@@ -5,23 +5,29 @@
 	<div class='table-responsive'>
 		<table class='table table-<{$table_type|default:false}>'>
 			<thead>
-				<tr class='head'>
-					<{if $useGroups|default:false}>
-						<th><{$smarty.const._MA_WGDIARIES_ITEM_GROUPID}></th>
-					<{/if}>
-					<th><{$smarty.const._MA_WGDIARIES_ITEM_SUBMITTER}></th>
-					<th><{$smarty.const._MA_WGDIARIES_ITEM_REMARKS}></th>
-					<th><{$smarty.const._MA_WGDIARIES_ITEM_DATEFROM}></th>
-					<th><{$smarty.const._MA_WGDIARIES_ITEM_DATETO}></th>
-					<th><{$smarty.const._MA_WGDIARIES_ITEM_NBFILES}></th>
-					<th><{$smarty.const._MA_WGDIARIES_ITEM_COMMENTS}></th>
-					<th>&nbsp;</th>
-				</tr>
+				<{if $showItem|default:false == false}>
+					<tr class='head'>
+						<{if $useGroups|default:false}>
+							<th><{$smarty.const._MA_WGDIARIES_ITEM_GROUPID}></th>
+						<{/if}>
+						<th><{$smarty.const._MA_WGDIARIES_ITEM_SUBMITTER}></th>
+						<th><{$smarty.const._MA_WGDIARIES_ITEM_REMARKS}></th>
+						<th><{$smarty.const._MA_WGDIARIES_ITEM_DATEFROM}></th>
+						<th><{$smarty.const._MA_WGDIARIES_ITEM_DATETO}></th>
+						<th><{$smarty.const._MA_WGDIARIES_ITEM_NBFILES}></th>
+						<th><{$smarty.const._MA_WGDIARIES_ITEM_COMMENTS}></th>
+						<th>&nbsp;</th>
+					</tr>
+				<{/if}>
 			</thead>
 			<tbody>
 				<tr>
 					<{foreach item=item from=$items name=item}>
-						<{include file='db:wgdiaries_items_item.tpl' }>
+						<{if $showItem|default:false}>
+							<{include file='db:wgdiaries_items_single.tpl' }>
+						<{else}>
+							<{include file='db:wgdiaries_items_item.tpl' }>
+						<{/if}>
 					<{/foreach}>
 				</tr>
 			</tbody>
