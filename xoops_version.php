@@ -305,6 +305,15 @@ $modversion['config'][] = [
     'valuetype'   => 'int',
     'default'     => 1,
 ];
+// Show module description
+$modversion['config'][] = [
+    'name'        => 'index_header',
+    'title'       => '_MI_WGDIARIES_INDEXHEADER',
+    'description' => '_MI_WGDIARIES_INDEXHEADER_DESC',
+    'formtype'    => 'textarea',
+    'valuetype'   => 'text',
+    'default'     => \_MI_WGDIARIES_DESC,
+];
 // Number column
 $modversion['config'][] = [
     'name'        => 'numb_col',
