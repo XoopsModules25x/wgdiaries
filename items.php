@@ -78,10 +78,12 @@ switch ($op) {
             $GLOBALS['xoopsTpl']->assign('itemsCount', $itemsCount);
 			$items = [];
 			$itemSubmitter = '';
+            $itemCaption  = '';
 			// Get All Items
 			foreach (\array_keys($itemsAll) as $i) {
 				$item = $itemsAll[$i]->getValuesItems();
                 $itemSubmitter = $item['item_submitter'];
+                $itemCaption   = $itemsAll[$i]->getCaption('single');
                 // Permissions
                 $item['permEdit'] = $permissionsHandler->getPermItemsEdit($itemSubmitter);
                 if ('show' == $op) {
@@ -119,11 +121,9 @@ switch ($op) {
             if (1 == $itemsCount) {
                 $GLOBALS['xoopsTpl']->assign('permItemsComment', $permissionsHandler->getPermItemsComEdit($itemSubmitter));
             }
-            /*
 			if ('show' == $op && '' != $itemSubmitter) {
-				$GLOBALS['xoopsTpl']->assign('xoops_pagetitle', \strip_tags($itemSubmitter . ' - ' . $GLOBALS['xoopsModule']->getVar('name')));
+				$GLOBALS['xoopsTpl']->assign('xoops_pagetitle', $itemCaption);
 			}
-            */
 		}
 		break;
     case 'listgroup':
