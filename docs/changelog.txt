@@ -5,6 +5,7 @@
  - added mimetype to files (goffy)
  - added file list to single itempage (mjoel/goffy)
  - new page title for single itempage (mjoel/goffy)
+ - redirect after save item (mjoel/goffy)
 
 ==============================================================
 1.01 [2021/05/19]
