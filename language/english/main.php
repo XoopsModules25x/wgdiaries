@@ -111,11 +111,15 @@ As you can see, you have created a page with a list of links at the top to navig
 \define('_MA_WGDIARIES_STATISTICS_MY_MONTH', 'Statistics of my items of current month');
 \define('_MA_WGDIARIES_STATISTICS_GROUP_YEAR', 'Statistics of my groups of current year');
 \define('_MA_WGDIARIES_STATISTICS_GROUP_MONTH', 'Statistics of my groups of current month');
+\define('_MA_WGDIARIES_STATISTICS_USER_YEAR', 'Statistics per user of my groups of current year');
+\define('_MA_WGDIARIES_STATISTICS_USER_MONTH', 'Statistics per user of my groups of current month');
 \define('_MA_WGDIARIES_STATS_PERIOD', 'Period');
 \define('_MA_WGDIARIES_STATS_PERIOD_FROMTO', 'From %s to %s');
 \define('_MA_WGDIARIES_STATS_ITEMS_NB', 'Number of items');
 \define('_MA_WGDIARIES_STATS_DAYSHOURS', '%s hours total (%s days and %s hours)');
+\define('_MA_WGDIARIES_STATS_DAYSHOURSMINUTES', '%s hours total (%a days, %h hours, %i minutes)');
 \define('_MA_WGDIARIES_STATS_HOURS', 'Hours');
+\define('_MA_WGDIARIES_STATS_USER', 'User');
 // calendar
 define('_MA_WGDIARIES_CAL_MIN_SUNDAY', 'Su');
 define('_MA_WGDIARIES_CAL_MIN_MONDAY', 'Mo');

@@ -37,31 +37,3 @@ CREATE TABLE `wgdiaries_files` (
   `file_submitter` INT(10) NOT NULL DEFAULT '0',
   PRIMARY KEY (`file_id`)
 ) ENGINE=InnoDB;
-
-#
-# Structure table for `wgdiaries_groups` 6
-#
-
-CREATE TABLE `wgdiaries_groups` (
-  `grp_id` INT(8) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `grp_name` VARCHAR(255) NOT NULL DEFAULT '',
-  `grp_logo` VARCHAR(255) NOT NULL DEFAULT '',
-  `grp_online` INT(1) NOT NULL DEFAULT '0',
-  `grp_datecreated` INT(11) NOT NULL DEFAULT '0',
-  `grp_submitter` INT(10) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`grp_id`)
-) ENGINE=InnoDB;
-
-#
-# Structure table for `wgdiaries_groupusers` 5
-#
-
-CREATE TABLE `wgdiaries_groupusers` (
-  `gu_id` INT(8) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `gu_groupid` INT(10) NOT NULL DEFAULT '0',
-  `gu_uid` INT(10) NOT NULL DEFAULT '0',
-  `gu_datecreated` INT(11) NOT NULL DEFAULT '0',
-  `gu_submitter` INT(10) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`gu_id`)
-) ENGINE=InnoDB;
-
