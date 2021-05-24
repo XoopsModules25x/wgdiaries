@@ -105,6 +105,17 @@ As you can see, you have created a page with a list of links at the top to navig
 \define('_MA_WGDIARIES_FILE_DATECREATED', 'Datecreated');
 \define('_MA_WGDIARIES_FILE_SUBMITTER', 'Submitter');
 \define('_MA_WGDIARIES_FILE_UPLOAD', 'Upload new file');
+// Statistics
+\define('_MA_WGDIARIES_STATISTICS', 'Statistics');
+\define('_MA_WGDIARIES_STATISTICS_MY_YEAR', 'Statistics of my items of current year');
+\define('_MA_WGDIARIES_STATISTICS_MY_MONTH', 'Statistics of my items of current month');
+\define('_MA_WGDIARIES_STATISTICS_GROUP_YEAR', 'Statistics of my groups of current year');
+\define('_MA_WGDIARIES_STATISTICS_GROUP_MONTH', 'Statistics of my groups of current month');
+\define('_MA_WGDIARIES_STATS_PERIOD', 'Period');
+\define('_MA_WGDIARIES_STATS_PERIOD_FROMTO', 'From %s to %s');
+\define('_MA_WGDIARIES_STATS_ITEMS_NB', 'Number of items');
+\define('_MA_WGDIARIES_STATS_DAYSHOURS', '%s hours total (%s days and %s hours)');
+\define('_MA_WGDIARIES_STATS_HOURS', 'Hours');
 // Group
 /*
 \define('_MA_WGDIARIES_GROUP', 'Group');

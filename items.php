@@ -67,6 +67,8 @@ switch ($op) {
 		if ($itemId > 0) {
 			$crItems->add(new \Criteria('item_id', $itemId));
 		}
+        $crItems->setSort('item_id');
+        $crItems->setOrder('DESC');
         $crItems->add(new \Criteria('item_submitter', $uid));
 		$itemsCount = $itemsHandler->getCount($crItems);
 		$GLOBALS['xoopsTpl']->assign('itemsCount', $itemsCount);
@@ -141,6 +143,8 @@ switch ($op) {
         $GLOBALS['xoopsTpl']->assign('itemsCount', $itemsCount);
         $crItems->setStart($start);
         $crItems->setLimit($limit);
+        $crItems->setSort('item_id');
+        $crItems->setOrder('DESC');
         $itemsAll = $itemsHandler->getAll($crItems);
         if ($itemsCount > 0) {
             $GLOBALS['xoopsTpl']->assign('itemsTitle', \_MA_WGDIARIES_ITEMS_LISTGROUP);

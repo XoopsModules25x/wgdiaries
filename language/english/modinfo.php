@@ -53,6 +53,7 @@ include_once 'common.php';
 \define('_MI_WGDIARIES_SMNAME4', 'Items of my groups');
 \define('_MI_WGDIARIES_SMNAME5', 'Groups');
 \define('_MI_WGDIARIES_SMNAME6', 'Submit Group');
+\define('_MI_WGDIARIES_SMNAME7', 'Statistics');
 // Config
 \define('_MI_WGDIARIES_EDITOR_ADMIN', 'Editor admin');
 \define('_MI_WGDIARIES_EDITOR_ADMIN_DESC', 'Select the editor which should be used in admin area for text area fields');
