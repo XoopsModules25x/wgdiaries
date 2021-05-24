@@ -3,7 +3,7 @@
 <{if $itemsCount|default:0 > 0}>
 	<h3><{$itemsTitle}></h3>
 	<div class="row">
-			<{if $items_calendar|default:''}>
+			<{if $items_calendar|default:'' && $showItem|default:false == false}>
 				<div class="col-2"><{$items_calendar}></div>
 				<div class="col-10">
 			<{else}>

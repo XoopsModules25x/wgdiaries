@@ -222,7 +222,7 @@ switch ($op) {
                 if (\file_exists($fileName)) {
                     \unlink($fileName);
                 }
-				\redirect_header('files.php', 3, _MA_WGDIARIES_FORM_DELETE_OK);
+				\redirect_header('files.php?op=list&amp;item_id=' . $fileItemid, 3, _MA_WGDIARIES_FORM_DELETE_OK);
 			} else {
 				$GLOBALS['xoopsTpl']->assign('error', $filesObj->getHtmlErrors());
 			}
@@ -230,7 +230,7 @@ switch ($op) {
 			$xoopsconfirm = new Common\XoopsConfirm(
 				['ok' => 1, 'file_id' => $fileId, 'op' => 'delete'],
 				$_SERVER['REQUEST_URI'],
-				\sprintf(_MA_WGDIARIES_FORM_SURE_DELETE, $filesObj->getVar('file_itemid')));
+				\sprintf(_MA_WGDIARIES_FORM_SURE_DELETE, $filesObj->getVar('file_name')));
 			$form = $xoopsconfirm->getFormXoopsConfirm();
 			$GLOBALS['xoopsTpl']->assign('form', $form->render());
 		}
