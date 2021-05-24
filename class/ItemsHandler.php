@@ -124,4 +124,53 @@ class ItemsHandler extends \XoopsPersistableObjectHandler
 		$crItems->setOrder($order);
 		return $crItems;
 	}
+
+    /**
+     * @public function to get items for given params
+     *
+     * @param int  $uid
+     * @param int  $start
+     * @param int  $limit
+     * @param int  $from
+     * @param int  $to
+     * @param bool $mygroups
+     * @return bool|array
+     */
+    public function getItems($uid = 0, $start = 0, $limit = 0, $from = 0, $to = 0, $mygroups = false)
+    {
+        $helper  = \XoopsModules\Wgdiaries\Helper::getInstance();
+        $itemsHandler = $helper->getHandler('Items');
+
+        $crItems = new \CriteriaCompo();
+        if ($uid > 0) {
+            $crItems->add(new \Criteria('item_submitter', $uid));
+        }
+        if ($mygroups) {
+            $memberHandler = \xoops_getHandler('member');
+            $xoopsGroups = $memberHandler->getGroupList();
+            $myGroups = array_keys($xoopsGroups);
+            $crItems->add(new \Criteria('item_groupid', "(" . implode(',', $myGroups) . ")", 'IN'));
+        }
+        $crItems->setSort('item_id');
+        $crItems->setOrder('DESC');
+        $itemsCount = $itemsHandler->getCount($crItems);
+        if ($itemsCount > 0) {
+            if ($start > 0) {
+                $crItems->setStart($start);
+            }
+            if ($limit > 0) {
+                $crItems->setLimit($limit);
+            }
+            $itemsAll = $itemsHandler->getAll($crItems);
+            // Get All Items
+            $items = [];
+            foreach (\array_keys($itemsAll) as $i) {
+                $items[$i] = $itemsAll[$i]->getValuesItems();
+            }
+
+            return $items;
+        }
+
+        return false;
+    }
 }

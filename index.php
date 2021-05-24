@@ -46,53 +46,19 @@ $start = 0;
 $limit = Request::getInt('limit', $helper->getConfig('indexpager'));
 
 // own items
-$crItems = new \CriteriaCompo();
-$crItems->add(new \Criteria('item_submitter', $uid));
-$itemsCount = $itemsHandler->getCount($crItems);
-$GLOBALS['xoopsTpl']->assign('itemsOwnCount', $itemsCount);
-$count = 1;
-if ($itemsCount > 0) {
-    $crItems->setStart($start);
-    $crItems->setLimit($limit);
-    $itemsAll = $itemsHandler->getAll($crItems);
-	// Get All Items
-	$items = [];
-	foreach (\array_keys($itemsAll) as $i) {
-		$item = $itemsAll[$i]->getValuesItems();
-		$items[$count] = $item;
-        $count++;
-	}
-	$GLOBALS['xoopsTpl']->assign('itemsown', $items);
-	unset($items);
+$items = $itemsHandler->getItems($uid, $start, $limit);
+if (\is_array($items)) {
+    $GLOBALS['xoopsTpl']->assign('itemsOwnCount', \count($items));
+    $GLOBALS['xoopsTpl']->assign('itemsown', $items);
 }
-unset($crItems);
 
 if ($permissionsHandler->getPermItemsGroupView()) {
 // items of my groups
-    $crItems = new \CriteriaCompo();
-    $crItems->add(new \Criteria('item_submitter', $uid, '<>'));
-    $memberHandler = \xoops_getHandler('member');
-    $xoopsGroups = $memberHandler->getGroupList();
-    $myGroups = array_keys($xoopsGroups);
-    $crItems->add(new \Criteria('item_groupid', "(" . implode(',', $myGroups) . ")", 'IN'));
-    $itemsCount = $itemsHandler->getCount($crItems);
-    $GLOBALS['xoopsTpl']->assign('itemsGroupCount', $itemsCount);
-    $count = 1;
-    if ($itemsCount > 0) {
-        $crItems->setStart($start);
-        $crItems->setLimit($limit);
-        $itemsAll = $itemsHandler->getAll($crItems);
-        // Get All Items
-        $items = [];
-        foreach (\array_keys($itemsAll) as $i) {
-            $item = $itemsAll[$i]->getValuesItems();
-            $items[$count] = $item;
-            $count++;
-        }
+    $items = $itemsHandler->getItems($uid, $start, $limit, 0, 0, true);
+    if (\is_array($items)) {
+        $GLOBALS['xoopsTpl']->assign('itemsGroupCount', \count($items));
         $GLOBALS['xoopsTpl']->assign('itemsgroup', $items);
-        unset($items);
     }
-    unset($crItems);
 }
 
 $GLOBALS['xoopsTpl']->assign('table_type', $helper->getConfig('table_type'));

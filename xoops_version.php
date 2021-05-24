@@ -96,6 +96,7 @@ $modversion['templates'] = [
     ['file' => 'wgdiaries_groups.tpl', 'description' => ''],
     ['file' => 'wgdiaries_groups_item.tpl', 'description' => ''],
     ['file' => 'wgdiaries_breadcrumbs.tpl', 'description' => ''],
+    ['file' => 'wgdiaries_statistics.tpl', 'description' => ''],
     ['file' => 'wgdiaries_footer.tpl', 'description' => ''],
 ];
 // ------------------- Mysql ------------------- //
@@ -148,7 +149,10 @@ if ($currdirname == $moduleDirName) {
             'url'  => 'items.php?op=new',
         ];
     }
-
+    $modversion['sub'][] = [
+        'name' => \_MI_WGDIARIES_SMNAME7,
+        'url'  => 'statistics.php',
+    ];
     /*
     if ($permissionsHandler->getPermGroupsView() > 0) {
         // Sub list groups
