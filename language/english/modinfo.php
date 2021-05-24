@@ -74,6 +74,8 @@ include_once 'common.php';
 \define('_MI_WGDIARIES_USE_GROUPS_DESC', 'Use group system in order to group user items to specific groups/projects');
 \define('_MI_WGDIARIES_INDEXHEADER', 'Index header');
 \define('_MI_WGDIARIES_INDEXHEADER_DESC', 'Show this text as header on index page');
+\define('_MI_WGDIARIES_ITEMS_CALENDAR', 'Show calendar items');
+\define('_MI_WGDIARIES_ITEMS_CALENDAR_DESC', 'Show calendar for own items on items page');
 \define('_MI_WGDIARIES_NUMB_COL', 'Number Columns');
 \define('_MI_WGDIARIES_NUMB_COL_DESC', 'Number Columns to View');
 \define('_MI_WGDIARIES_DIVIDEBY', 'Divide By');

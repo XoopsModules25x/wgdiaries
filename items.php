@@ -27,6 +27,7 @@ use Xmf\Request;
 use XoopsModules\Wgdiaries;
 use XoopsModules\Wgdiaries\Constants;
 use XoopsModules\Wgdiaries\Common;
+use XoopsModules\Wgdiaries\SimpleCalendar;
 
 require __DIR__ . '/header.php';
 $GLOBALS['xoopsOption']['template_main'] = 'wgdiaries_items.tpl';
@@ -54,6 +55,23 @@ switch ($op) {
 	case 'list':
     case 'listown':
 	default:
+        $itemsCalendar = (bool)$helper->getConfig('items_calendar');
+        $GLOBALS['xoopsTpl']->assign('itemsCalendar', $itemsCalendar);
+        if ($itemsCalendar) {
+            $GLOBALS['xoTheme']->addStylesheet(WGDIARIES_URL . '/class/SimpleCalendar/css/SimpleCalendar.css', null);
+            $calendar = new SimpleCalendar\SimpleCalendar();
+            $calendar->setDate(time());
+            $calendar->setStartOfWeek(\_MA_WGDIARIES_CAL_MONDAY);
+            $calendar->setWeekDayNames([
+                \_MA_WGDIARIES_CAL_MIN_SUNDAY,
+                \_MA_WGDIARIES_CAL_MIN_MONDAY,
+                \_MA_WGDIARIES_CAL_MIN_TUESDAY,
+                \_MA_WGDIARIES_CAL_MIN_WEDNESDAY,
+                \_MA_WGDIARIES_CAL_MIN_THURSDAY,
+                \_MA_WGDIARIES_CAL_MIN_FRIDAY,
+                \_MA_WGDIARIES_CAL_MIN_SATURDAY ]);
+        }
+
 		// Breadcrumbs
 		$xoBreadcrumbs[] = ['title' => _MA_WGDIARIES_ITEMS_LIST];
 
@@ -106,10 +124,19 @@ switch ($op) {
                     }
                 }
                 $items[$i] = $item;
+                if ($itemsCalendar) {
+                    $calendar->addDailyHtml('', $items[$i]['item_datefrom'], $items[$i]['item_dateto']);
+                }
 			}
 			$GLOBALS['xoopsTpl']->assign('items', $items);
-			unset($items);
-			// Display Navigation
+
+			if (\count($items) > 0 && $itemsCalendar) {
+                $GLOBALS['xoopsTpl']->assign('items_calendar', $calendar->render());
+            }
+
+            unset($items);
+
+            // Display Navigation
 			if ($itemsCount > $limit) {
 				include_once XOOPS_ROOT_PATH . '/class/pagenav.php';
 				$pagenav = new \XoopsPageNav($itemsCount, $limit, $start, 'start', 'op=list&limit=' . $limit);

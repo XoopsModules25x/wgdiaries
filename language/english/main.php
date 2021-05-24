@@ -116,6 +116,22 @@ As you can see, you have created a page with a list of links at the top to navig
 \define('_MA_WGDIARIES_STATS_ITEMS_NB', 'Number of items');
 \define('_MA_WGDIARIES_STATS_DAYSHOURS', '%s hours total (%s days and %s hours)');
 \define('_MA_WGDIARIES_STATS_HOURS', 'Hours');
+// calendar
+define('_MA_WGDIARIES_CAL_MIN_SUNDAY', 'Su');
+define('_MA_WGDIARIES_CAL_MIN_MONDAY', 'Mo');
+define('_MA_WGDIARIES_CAL_MIN_TUESDAY', 'Tu');
+define('_MA_WGDIARIES_CAL_MIN_WEDNESDAY', 'We');
+define('_MA_WGDIARIES_CAL_MIN_THURSDAY', 'Th');
+define('_MA_WGDIARIES_CAL_MIN_FRIDAY', 'Fr');
+define('_MA_WGDIARIES_CAL_MIN_SATURDAY', 'Sa');
+// Normal Text
+define('_MA_WGDIARIES_CAL_SUNDAY', 'Sunday');
+define('_MA_WGDIARIES_CAL_MONDAY', 'Monday');
+define('_MA_WGDIARIES_CAL_TUESDAY', 'Tuesday');
+define('_MA_WGDIARIES_CAL_WEDNESDAY', 'Wednesday');
+define('_MA_WGDIARIES_CAL_THURSDAY', 'Thursday');
+define('_MA_WGDIARIES_CAL_FRIDAY', 'Friday');
+define('_MA_WGDIARIES_CAL_SATURDAY', 'Saturday');
 // Group
 /*
 \define('_MA_WGDIARIES_GROUP', 'Group');

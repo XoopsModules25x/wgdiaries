@@ -12,6 +12,7 @@
  - added preference for items per list index page (goffy)
  - added custom theme xswatch4_wgdiary (goffy)
  - added first statistics (mjoel/goffy)
+ - added simple calendar (mjoel/goffy)
 
 ==============================================================
 1.01 [2021/05/19]
