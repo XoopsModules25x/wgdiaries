@@ -309,6 +309,15 @@ $modversion['config'][] = [
     'valuetype'   => 'int',
     'default'     => 10,
 ];
+// Show items calendar
+$modversion['config'][] = [
+    'name'        => 'items_calendar',
+    'title'       => '_MI_WGDIARIES_ITEMS_CALENDAR',
+    'description' => '_MI_WGDIARIES_ITEMS_CALENDAR_DESC',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 1,
+];
 // Use group system
 $modversion['config'][] = [
     'name'        => 'use_groups',
