@@ -11,27 +11,27 @@
 <{$uploadavatar.javascript}>
 <legend class="bold"><{$uploadavatar.title}></legend>
 <form name="<{$uploadavatar.name}>" action="<{$uploadavatar.action}>" method="<{$uploadavatar.method}>" <{$uploadavatar.extra}>>
-	<div class="form-group row">
-		<!-- start of form elements loop -->
-		<{foreach item=element from=$uploadavatar.elements}>
-			<{if !$element.hidden|default:false}>
-				<label class="col-2 col-form-label">
-					<span class='caption-text'><{$element.caption|default:''}></span>
-				</label>
-				<div class="col-10">
-					<{$element.body}>
-				</div>
-		    <{else}>
-			<{$element.body}>
-			<{/if}>
-			<{if $element.description|default:'' != ''}>
-				<small id="passwordHelpBlock" class="form-text text-muted">
-					<{$element.description}>
-				</small>
-			<{/if}>
-		<{/foreach}>
-		<!-- end of form elements loop -->
-	</div>
+    <div class="form-group row">
+        <!-- start of form elements loop -->
+        <{foreach item=element from=$uploadavatar.elements}>
+            <{if !$element.hidden|default:false}>
+                <label class="col-2 col-form-label">
+                    <span class='caption-text'><{$element.caption|default:''}></span>
+                </label>
+                <div class="col-10">
+                    <{$element.body}>
+                </div>
+            <{else}>
+            <{$element.body}>
+            <{/if}>
+            <{if $element.description|default:'' != ''}>
+                <small id="passwordHelpBlock" class="form-text text-muted">
+                    <{$element.description}>
+                </small>
+            <{/if}>
+        <{/foreach}>
+        <!-- end of form elements loop -->
+    </div>
 </form>
 <br>
 <{/if}>
@@ -40,25 +40,25 @@
 <{$chooseavatar.javascript}>
 <legend class="bold"><{$chooseavatar.title}></legend>
 <form name="<{$chooseavatar.name}>" action="<{$chooseavatar.action}>" method="<{$chooseavatar.method}>" <{$chooseavatar.extra}>>
-	<div class="form-group">
-		<!-- start of form elements loop -->
-		<{foreach item=element from=$chooseavatar.elements}>
-			<{if !$element.hidden}>
-				<label class="col-sm-2 col-form-label">
-					<span class='caption-text'><{$element.caption|default:''}></span>
-				</label>
-				<div class="col-sm-10">
-					<{$element.body}>
-				</div>
-			<{else}>
-			<{$element.body}>
-			<{/if}>
-			<{if $element.description|default:'' != ''}>
-				<small id="passwordHelpBlock" class="form-text text-muted">
-					<{$element.description}>
-				</small>
-			<{/if}>
-		<{/foreach}>
-		<!-- end of form elements loop -->
-	</div>
+    <div class="form-group">
+        <!-- start of form elements loop -->
+        <{foreach item=element from=$chooseavatar.elements}>
+            <{if !$element.hidden}>
+                <label class="col-sm-2 col-form-label">
+                    <span class='caption-text'><{$element.caption|default:''}></span>
+                </label>
+                <div class="col-sm-10">
+                    <{$element.body}>
+                </div>
+            <{else}>
+            <{$element.body}>
+            <{/if}>
+            <{if $element.description|default:'' != ''}>
+                <small id="passwordHelpBlock" class="form-text text-muted">
+                    <{$element.description}>
+                </small>
+            <{/if}>
+        <{/foreach}>
+        <!-- end of form elements loop -->
+    </div>
 </form>

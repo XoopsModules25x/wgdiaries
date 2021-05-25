@@ -16,5 +16,5 @@
     </div>
 </div>
 <{if $category.linebreak}>
-	<div class='clear'>&nbsp;</div>
+    <div class='clear'>&nbsp;</div>
 <{/if}>

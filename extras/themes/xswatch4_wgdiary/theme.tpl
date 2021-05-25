@@ -15,7 +15,7 @@
 
     <link href="<{$xoops_url}>/favicon.ico" rel="shortcut icon">
 
-	<{* Edit tpl/xswatchCss.tpl to pick the css directory you want to use *}>
+    <{* Edit tpl/xswatchCss.tpl to pick the css directory you want to use *}>
     <{include file="$theme_name/tpl/xswatchCss.tpl" assign="xswatchCss"}>
     <{* Edit tpl/xswatchDarkCss.tpl to pick the css directory you want to use for dark mode *}>
     <{include file="$theme_name/tpl/xswatchDarkCss.tpl" assign="xswatchDarkCss"}>

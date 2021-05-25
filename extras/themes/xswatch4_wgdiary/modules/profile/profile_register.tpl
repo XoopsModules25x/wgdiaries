@@ -17,16 +17,16 @@
 <{/if}>
 
 <{if $stop}>
-	<div class="alert alert-danger" role="alert">
-		<{$stop}>
+    <div class="alert alert-danger" role="alert">
+        <{$stop}>
     </div>
 <{/if}>
 
 <{if $confirm}>
     <{foreach item=msg from=$confirm}>
         <div class="alert alert-primary" role="alert">
-			<{$msg}>
-		</div>
+            <{$msg}>
+        </div>
     <{/foreach}>
 <{/if}>
 

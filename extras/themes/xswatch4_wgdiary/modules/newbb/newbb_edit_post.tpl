@@ -48,22 +48,22 @@
 
 <form name="<{$form_post.name}>" id="<{$form_post.name}>" action="<{$form_post.action}>"
       method="<{$form_post.method}>" <{$form_post.extra}> >
-	  <div class="form-group row">
+      <div class="form-group row">
         <{foreach item=element from=$form_post.elements}>
         <{if $element.hidden != true}>
-			<label class="col-xs-12 col-sm-2 col-form-label text-sm-right">
-				<{$element.caption}>
+            <label class="col-xs-12 col-sm-2 col-form-label text-sm-right">
+                <{$element.caption}>
                 <{if $element.required}><span class="caption-required">*</span><{/if}>
-			</label>
-			<div class="col-xs-12 col-sm-10">
-				<{$element.body}>
-				<{if $element.description != ''}>
-					<p class="form-text text-muted"><{$element.description}></p>
-				 <{/if}>
-			</div>
+            </label>
+            <div class="col-xs-12 col-sm-10">
+                <{$element.body}>
+                <{if $element.description != ''}>
+                    <p class="form-text text-muted"><{$element.description}></p>
+                 <{/if}>
+            </div>
         <{/if}>
         <{/foreach}>
-		</div>
+        </div>
     <{foreach item=element from=$form_post.elements}>
     <{if $element.hidden == true}>
         <{$element.body}>

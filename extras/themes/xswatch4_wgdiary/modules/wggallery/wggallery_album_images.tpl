@@ -28,7 +28,7 @@
     });
 </script>
     <h3><{$album.name}></h3>
-	<div id="imghandler" class="col-12">
+    <div id="imghandler" class="col-12">
         <ul class="nav nav-tabs" id="imghandler-tabs" role="tablist">
             <li class="nav-item">
                 <a class="nav-link active" id="navtab_main" data-toggle="tab" href="#main" role="tab" aria-controls="main" aria-selected="true"><{$smarty.const._CO_WGGALLERY_ALBUM_IH_CURRENT}></a>
@@ -47,19 +47,19 @@
             </li>
         </ul>
 
-		<div class="tab-content" role="tablist">
-			<!-- *************** Basic Tab ***************-->
+        <div class="tab-content" role="tablist">
+            <!-- *************** Basic Tab ***************-->
             <div class="tab-pane fade show active center" id="main" role="tabpanel" aria-labelledby="navtab_main">
-				<img id="currentImg" class="img-fluid wgg-album-img" src="<{$album.image}>" alt="<{$album.name}>">
+                <img id="currentImg" class="img-fluid wgg-album-img" src="<{$album.image}>" alt="<{$album.name}>">
                 <{if $album.image_path}>
                     <p><{$smarty.const._CO_WGGALLERY_ALBUM_IMGTYPE}>: <{$album.image_path}><br>
                     <{$smarty.const._CO_WGGALLERY_IMAGE_RES}>: <{$albimage_width}> / <{$albimage_height}></p>
                     <input type="button" class="btn btn-secondary wg-color1" value="<{$smarty.const._CANCEL}>" onclick="history.go(-1);return true;">
                 <{/if}>
-			</div>
+            </div>
 
             <!-- *************** Tab for select image of albums ***************-->
-			<div class="tab-pane fade" id="exist" role="tabpanel" aria-labelledby="navtab_exist">
+            <div class="tab-pane fade" id="exist" role="tabpanel" aria-labelledby="navtab_exist">
                 <div class="row">
                 <div class="col-12 col-md-6">
                     <div class="row">
@@ -83,60 +83,60 @@
                 </div>
                 </div>
                 <div class="col-12 col-sm-12 center">
-					<form class="form-horizontal" name="form" id="form_selectalbimage" action="album_images.php" method="post" enctype="multipart/form-data">
-						<input type="hidden" name="alb_imgid" id="alb_imgid" value="<{$album.alb_imgid}>">
-						<input type="hidden" name="op" id="op" value="saveAlbumImage">
-						<input type="hidden" name="alb_id" value="<{$album.id}>">
-						<input type="hidden" name="alb_pid" value="<{$album.alb_pid}>">
-						<input type="hidden" name="alb_state" value="<{$album.alb_state}>">
-						<input type="submit" class="btn btn-secondary  wg-color1 disabled" name="btnApplySelected" id="btnApplySelected" value="<{$smarty.const._CO_WGGALLERY_ALBUM_IH_APPLY}>">
-					</form>
+                    <form class="form-horizontal" name="form" id="form_selectalbimage" action="album_images.php" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="alb_imgid" id="alb_imgid" value="<{$album.alb_imgid}>">
+                        <input type="hidden" name="op" id="op" value="saveAlbumImage">
+                        <input type="hidden" name="alb_id" value="<{$album.id}>">
+                        <input type="hidden" name="alb_pid" value="<{$album.alb_pid}>">
+                        <input type="hidden" name="alb_state" value="<{$album.alb_state}>">
+                        <input type="submit" class="btn btn-secondary  wg-color1 disabled" name="btnApplySelected" id="btnApplySelected" value="<{$smarty.const._CO_WGGALLERY_ALBUM_IH_APPLY}>">
+                    </form>
                 </div>
-			</div>
+            </div>
 
             <!-- *************** Tab for image grid ***************-->
-			<div class="tab-pane fade" id="grid" role="tabpanel" aria-labelledby="navtab_grid">
-				<div class="col-xs-12 col-sm-12">
-					<label class="radio-inline"><input type="radio" name="gridtype" id="alb_imgtype1" title="<{$smarty.const._CO_WGGALLERY_ALBUM_IH_GRID4}>" value="1" checked onchange="changeGridSetting(this)"><{$smarty.const._CO_WGGALLERY_ALBUM_IH_GRID4}>&nbsp;</label>
-					<label class="radio-inline"><input type="radio" name="gridtype" id="alb_imgtype2" title="<{$smarty.const._CO_WGGALLERY_ALBUM_IH_GRID6}>" value="2" onchange="changeGridSetting(this)"><{$smarty.const._CO_WGGALLERY_ALBUM_IH_GRID6}>&nbsp;</label>
-				</div>
-				<div class="col-xs-12 col-sm-4">
-					<button id="btnGridAdd1" type="button" class="btn btn-secondary wg-color1" style="display:inline;margin:5px" data-toggle="modal" data-target="#myModalImagePicker1"><{$smarty.const._CO_WGGALLERY_ALBUM_IH_GRID_SRC1}></button>
-					<img src="<{$wggallery_upload_image_url}>/medium/blank.gif" name="imageGrid1" id="imageGrid1" alt="imageGrid1" style="margin:5px;max-width:75px">
-					<br>
-					<button id="btnGridAdd2" type="button" class="btn btn-secondary wg-color1" style="display:inline;margin:5px" data-toggle="modal" data-target="#myModalImagePicker2"><{$smarty.const._CO_WGGALLERY_ALBUM_IH_GRID_SRC2}></button>
-					<img src="<{$wggallery_upload_image_url}>/medium/blank.gif" name="imageGrid2" id="imageGrid2" alt="imageGrid2" style="margin:5px;max-width:75px">
-					<br>
-					<button id="btnGridAdd3" type="button" class="btn btn-secondary wg-color1" style="display:inline;margin:5px" data-toggle="modal" data-target="#myModalImagePicker3"><{$smarty.const._CO_WGGALLERY_ALBUM_IH_GRID_SRC3}></button>
-					<img src="<{$wggallery_upload_image_url}>/medium/blank.gif" name="imageGrid3" id="imageGrid3" alt="imageGrid3" style="margin:5px;max-width:75px">
-					<br>
-					<button id="btnGridAdd4" type="button" class="btn btn-secondary wg-color1" style="display:inline;margin:5px" data-toggle="modal" data-target="#myModalImagePicker4"><{$smarty.const._CO_WGGALLERY_ALBUM_IH_GRID_SRC4}></button>
-					<img src="<{$wggallery_upload_image_url}>/medium/blank.gif" name="imageGrid4" id="imageGrid4" alt="imageGrid4" style="margin:5px;max-width:75px">
-					<br>
-					<button id="btnGridAdd5" type="button" class="btn btn-secondary wg-color1" style="display:inline;margin:5px" data-toggle="modal" data-target="#myModalImagePicker5" disabled="disabled"><{$smarty.const._CO_WGGALLERY_ALBUM_IH_GRID_SRC5}></button>
-					<img src="<{$wggallery_upload_image_url}>/medium/blank.gif" name="imageGrid5" id="imageGrid5" alt="imageGrid5" style="margin:5px;max-width:75px">
-					<br>
-					<button id="btnGridAdd6" type="button" class="btn btn-secondary wg-color1" style="display:inline;margin:5px" data-toggle="modal" data-target="#myModalImagePicker6" disabled="disabled"><{$smarty.const._CO_WGGALLERY_ALBUM_IH_GRID_SRC6}></button>
-					<img src="<{$wggallery_upload_image_url}>/medium/blank.gif" name="imageGrid6" id="imageGrid6" alt="imageGrid6" style="margin:5px;max-width:75px">
-				</div>
+            <div class="tab-pane fade" id="grid" role="tabpanel" aria-labelledby="navtab_grid">
+                <div class="col-xs-12 col-sm-12">
+                    <label class="radio-inline"><input type="radio" name="gridtype" id="alb_imgtype1" title="<{$smarty.const._CO_WGGALLERY_ALBUM_IH_GRID4}>" value="1" checked onchange="changeGridSetting(this)"><{$smarty.const._CO_WGGALLERY_ALBUM_IH_GRID4}>&nbsp;</label>
+                    <label class="radio-inline"><input type="radio" name="gridtype" id="alb_imgtype2" title="<{$smarty.const._CO_WGGALLERY_ALBUM_IH_GRID6}>" value="2" onchange="changeGridSetting(this)"><{$smarty.const._CO_WGGALLERY_ALBUM_IH_GRID6}>&nbsp;</label>
+                </div>
+                <div class="col-xs-12 col-sm-4">
+                    <button id="btnGridAdd1" type="button" class="btn btn-secondary wg-color1" style="display:inline;margin:5px" data-toggle="modal" data-target="#myModalImagePicker1"><{$smarty.const._CO_WGGALLERY_ALBUM_IH_GRID_SRC1}></button>
+                    <img src="<{$wggallery_upload_image_url}>/medium/blank.gif" name="imageGrid1" id="imageGrid1" alt="imageGrid1" style="margin:5px;max-width:75px">
+                    <br>
+                    <button id="btnGridAdd2" type="button" class="btn btn-secondary wg-color1" style="display:inline;margin:5px" data-toggle="modal" data-target="#myModalImagePicker2"><{$smarty.const._CO_WGGALLERY_ALBUM_IH_GRID_SRC2}></button>
+                    <img src="<{$wggallery_upload_image_url}>/medium/blank.gif" name="imageGrid2" id="imageGrid2" alt="imageGrid2" style="margin:5px;max-width:75px">
+                    <br>
+                    <button id="btnGridAdd3" type="button" class="btn btn-secondary wg-color1" style="display:inline;margin:5px" data-toggle="modal" data-target="#myModalImagePicker3"><{$smarty.const._CO_WGGALLERY_ALBUM_IH_GRID_SRC3}></button>
+                    <img src="<{$wggallery_upload_image_url}>/medium/blank.gif" name="imageGrid3" id="imageGrid3" alt="imageGrid3" style="margin:5px;max-width:75px">
+                    <br>
+                    <button id="btnGridAdd4" type="button" class="btn btn-secondary wg-color1" style="display:inline;margin:5px" data-toggle="modal" data-target="#myModalImagePicker4"><{$smarty.const._CO_WGGALLERY_ALBUM_IH_GRID_SRC4}></button>
+                    <img src="<{$wggallery_upload_image_url}>/medium/blank.gif" name="imageGrid4" id="imageGrid4" alt="imageGrid4" style="margin:5px;max-width:75px">
+                    <br>
+                    <button id="btnGridAdd5" type="button" class="btn btn-secondary wg-color1" style="display:inline;margin:5px" data-toggle="modal" data-target="#myModalImagePicker5" disabled="disabled"><{$smarty.const._CO_WGGALLERY_ALBUM_IH_GRID_SRC5}></button>
+                    <img src="<{$wggallery_upload_image_url}>/medium/blank.gif" name="imageGrid5" id="imageGrid5" alt="imageGrid5" style="margin:5px;max-width:75px">
+                    <br>
+                    <button id="btnGridAdd6" type="button" class="btn btn-secondary wg-color1" style="display:inline;margin:5px" data-toggle="modal" data-target="#myModalImagePicker6" disabled="disabled"><{$smarty.const._CO_WGGALLERY_ALBUM_IH_GRID_SRC6}></button>
+                    <img src="<{$wggallery_upload_image_url}>/medium/blank.gif" name="imageGrid6" id="imageGrid6" alt="imageGrid6" style="margin:5px;max-width:75px">
+                </div>
                 <div class="col-xs-12 col-sm-8">
                     <img id="gridImg" class="img-fluid" src="<{$wggallery_upload_image_url}>/temp/blank.gif" alt="<{$album.name}>">
                 </div>
-				<div class="col-xs-12 col-sm-12 center">
-					<button id="btnCreateGrid4" type="button" class="btn btn-secondary wg-color1" style="display:inline;margin:5px"><{$smarty.const._CO_WGGALLERY_ALBUM_IH_GRID_CREATE}></button>
-					<button id="btnCreateGrid6" type="button" class="btn btn-secondary hidden wg-color1" style="display:inline;margin:5px"><{$smarty.const._CO_WGGALLERY_ALBUM_IH_GRID_CREATE}></button>
-					<form class="form-horizontal" name="form" id="form_selectalbimage" action="album_images.php" method="post" enctype="multipart/form-data">
-						<input type="hidden" name="op" value="saveGrid">
-						<input type="hidden" name="alb_id" value="<{$album.id}>">
-						<input type="hidden" name="alb_pid" value="<{$album.alb_pid}>">
-						<input type="hidden" name="alb_state" value="<{$album.alb_state}>">
-						<input type="submit" class="btn btn-secondary  wg-color1 disabled" name="btnApplyGrid" id="btnApplyGrid" value="<{$smarty.const._CO_WGGALLERY_ALBUM_IH_APPLY}>">
-					</form>
-				</div>
-			</div>
+                <div class="col-xs-12 col-sm-12 center">
+                    <button id="btnCreateGrid4" type="button" class="btn btn-secondary wg-color1" style="display:inline;margin:5px"><{$smarty.const._CO_WGGALLERY_ALBUM_IH_GRID_CREATE}></button>
+                    <button id="btnCreateGrid6" type="button" class="btn btn-secondary hidden wg-color1" style="display:inline;margin:5px"><{$smarty.const._CO_WGGALLERY_ALBUM_IH_GRID_CREATE}></button>
+                    <form class="form-horizontal" name="form" id="form_selectalbimage" action="album_images.php" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="op" value="saveGrid">
+                        <input type="hidden" name="alb_id" value="<{$album.id}>">
+                        <input type="hidden" name="alb_pid" value="<{$album.alb_pid}>">
+                        <input type="hidden" name="alb_state" value="<{$album.alb_state}>">
+                        <input type="submit" class="btn btn-secondary  wg-color1 disabled" name="btnApplyGrid" id="btnApplyGrid" value="<{$smarty.const._CO_WGGALLERY_ALBUM_IH_APPLY}>">
+                    </form>
+                </div>
+            </div>
 
-			<!-- ***************Tab for crop image ***************-->
-			<div class="tab-pane fade center" id="crop" role="tabpanel" aria-labelledby="navtab_crop">
+            <!-- ***************Tab for crop image ***************-->
+            <div class="tab-pane fade center" id="crop" role="tabpanel" aria-labelledby="navtab_crop">
                 <input type="hidden" name="alb_id" id="alb_id" value="<{$album.id}>">
                 <!-- Content -->
                 <div class="container-crop">
@@ -147,8 +147,8 @@
                     </div>
                 </div>
                 <div class="row" id="actions">
-					<div class="col-md-12 docs-toggles">
-						<!-- <h3>Toggles:</h3> -->
+                    <div class="col-md-12 docs-toggles">
+                        <!-- <h3>Toggles:</h3> -->
                         <div class="btn-group d-flex flex-nowrap" data-toggle="buttons">
                             <label class="btn btn-crop btn-secondary">
                                 <input type="radio" class="sr-only" id="aspectRatio1" name="aspectRatio" value="1.7777777777777777">
@@ -179,9 +179,9 @@
                                 <span class="docs-tooltip" data-toggle="tooltip" title="<{$smarty.const._CO_WGGALLERY_ALBUM_IH_CROP_MOVE}>"><span class="fa fa-arrows"></span></span>
                             </button>
                             <button type="button" class="btn btn-crop btn-secondary wg-color1" data-method="setDragMode" data-option="crop" title="<{$smarty.const._CO_WGGALLERY_ALBUM_CROP_IMAGE}>">
-								<span class="docs-tooltip" data-toggle="tooltip" title="<{$smarty.const._CO_WGGALLERY_ALBUM_CROP_IMAGE}>"><span class="fa fa-crop"></span>
-								</span>
-							</button>
+                                <span class="docs-tooltip" data-toggle="tooltip" title="<{$smarty.const._CO_WGGALLERY_ALBUM_CROP_IMAGE}>"><span class="fa fa-crop"></span>
+                                </span>
+                            </button>
                         </div>
 
                         <div class="btn-group">
@@ -271,11 +271,11 @@
             </div>
 
             <!-- ***************Tab for upload image ***************-->
-			<div class="tab-pane fade center" id="upload" role="tabpanel" aria-labelledby="navtab_upload">
-				<{$form_uploadimage}>
-			</div>
-		</div>
-	</div>
+            <div class="tab-pane fade center" id="upload" role="tabpanel" aria-labelledby="navtab_upload">
+                <{$form_uploadimage}>
+            </div>
+        </div>
+    </div>
 
 <div class="clear">&nbsp;</div>
 
@@ -307,7 +307,7 @@
     $( document ).ready(function() {
         $('#btnCropCreate').click(function () {
             $('#btnCropApply').removeClass('disabled');
-	    });
+        });
     });
 
     $( document ).ready(function() {

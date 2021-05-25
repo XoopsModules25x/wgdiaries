@@ -35,46 +35,46 @@ use XoopsModules\Wgdiaries\Constants;
  */
 class PermissionsHandler extends \XoopsPersistableObjectHandler
 {
-	/**
-	 * Constructor
-	 *
-	 * @param null
-	 */
-	public function __construct()
-	{
-	}
+    /**
+     * Constructor
+     *
+     * @param null
+     */
+    public function __construct()
+    {
+    }
 
-	/**
-	 * @public function permGlobalSubmit
-	 * returns right for global submit
-	 *
-	 * @param null
-	 * @return bool
-	 */
-	public function getPermGlobalSubmit()
-	{
-		global $xoopsUser, $xoopsModule;
-		$currentuid = 0;
-		if (isset($xoopsUser) && \is_object($xoopsUser)) {
-			if ($xoopsUser->isAdmin($xoopsModule->mid())) {
-				return true;
-			}
-			$currentuid = $xoopsUser->uid();
-		}
-		$grouppermHandler = \xoops_getHandler('groupperm');
-		$mid = $xoopsModule->mid();
-		$memberHandler = \xoops_getHandler('member');
-		if (0 == $currentuid) {
-			$my_group_ids = [XOOPS_GROUP_ANONYMOUS];
-		} else {
-			$my_group_ids = $memberHandler->getGroupsByUser($currentuid);;
-		}
-		if ($grouppermHandler->checkRight('wgdiaries_ac', Constants::PERM_GLOBAL_SUBMIT, $my_group_ids, $mid)) {
-			return true;
-		}
-		
-		return false;
-	}
+    /**
+     * @public function permGlobalSubmit
+     * returns right for global submit
+     *
+     * @param null
+     * @return bool
+     */
+    public function getPermGlobalSubmit()
+    {
+        global $xoopsUser, $xoopsModule;
+        $currentuid = 0;
+        if (isset($xoopsUser) && \is_object($xoopsUser)) {
+            if ($xoopsUser->isAdmin($xoopsModule->mid())) {
+                return true;
+            }
+            $currentuid = $xoopsUser->uid();
+        }
+        $grouppermHandler = \xoops_getHandler('groupperm');
+        $mid = $xoopsModule->mid();
+        $memberHandler = \xoops_getHandler('member');
+        if (0 == $currentuid) {
+            $my_group_ids = [XOOPS_GROUP_ANONYMOUS];
+        } else {
+            $my_group_ids = $memberHandler->getGroupsByUser($currentuid);;
+        }
+        if ($grouppermHandler->checkRight('wgdiaries_ac', Constants::PERM_GLOBAL_SUBMIT, $my_group_ids, $mid)) {
+            return true;
+        }
+        
+        return false;
+    }
 
     /**
      * @public function permGlobalEdit
@@ -108,43 +108,43 @@ class PermissionsHandler extends \XoopsPersistableObjectHandler
         return false;
     }
 
-	/**
-	 * @public function permGlobalView
-	 * returns right for global view
-	 *
-	 * @param null
-	 * @return bool
-	 */
-	public function getPermGlobalView()
-	{
-		global $xoopsUser, $xoopsModule;
+    /**
+     * @public function permGlobalView
+     * returns right for global view
+     *
+     * @param null
+     * @return bool
+     */
+    public function getPermGlobalView()
+    {
+        global $xoopsUser, $xoopsModule;
 
         if ($this->getPermGlobalSubmit()) {
             return true;
         }
         
-		$currentuid = 0;
-		if (isset($xoopsUser) && \is_object($xoopsUser)) {
-			if ($xoopsUser->isAdmin($xoopsModule->mid())) {
-				return true;
-			}
-			$currentuid = $xoopsUser->uid();
-		}
-		$grouppermHandler = \xoops_getHandler('groupperm');
-		$mid = $xoopsModule->mid();
-		$memberHandler = \xoops_getHandler('member');
-		if (0 == $currentuid) {
-			$my_group_ids = [XOOPS_GROUP_ANONYMOUS];
-		} else {
-			$my_group_ids = $memberHandler->getGroupsByUser($currentuid);;
-		}
-		
-		if ($grouppermHandler->checkRight('wgdiaries_ac', Constants::PERM_GLOBAL_VIEW, $my_group_ids, $mid)) {
-			return true;
-		}
-		
-		return false;
-	}
+        $currentuid = 0;
+        if (isset($xoopsUser) && \is_object($xoopsUser)) {
+            if ($xoopsUser->isAdmin($xoopsModule->mid())) {
+                return true;
+            }
+            $currentuid = $xoopsUser->uid();
+        }
+        $grouppermHandler = \xoops_getHandler('groupperm');
+        $mid = $xoopsModule->mid();
+        $memberHandler = \xoops_getHandler('member');
+        if (0 == $currentuid) {
+            $my_group_ids = [XOOPS_GROUP_ANONYMOUS];
+        } else {
+            $my_group_ids = $memberHandler->getGroupsByUser($currentuid);;
+        }
+        
+        if ($grouppermHandler->checkRight('wgdiaries_ac', Constants::PERM_GLOBAL_VIEW, $my_group_ids, $mid)) {
+            return true;
+        }
+        
+        return false;
+    }
 
     /**
      * @public function getPermItemsSubmit

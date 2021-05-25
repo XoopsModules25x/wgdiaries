@@ -34,94 +34,94 @@ use XoopsModules\Wgdiaries;
  */
 class FilesHandler extends \XoopsPersistableObjectHandler
 {
-	/**
-	 * Constructor
-	 *
-	 * @param \XoopsDatabase $db
-	 */
-	public function __construct(\XoopsDatabase $db)
-	{
-		parent::__construct($db, 'wgdiaries_files', Files::class, 'file_id', 'file_itemid');
-	}
+    /**
+     * Constructor
+     *
+     * @param \XoopsDatabase $db
+     */
+    public function __construct(\XoopsDatabase $db)
+    {
+        parent::__construct($db, 'wgdiaries_files', Files::class, 'file_id', 'file_itemid');
+    }
 
-	/**
-	 * @param bool $isNew
-	 *
-	 * @return object
-	 */
-	public function create($isNew = true)
-	{
-		return parent::create($isNew);
-	}
+    /**
+     * @param bool $isNew
+     *
+     * @return object
+     */
+    public function create($isNew = true)
+    {
+        return parent::create($isNew);
+    }
 
-	/**
-	 * retrieve a field
-	 *
-	 * @param int $i field id
-	 * @param null fields
-	 * @return mixed reference to the {@link Get} object
-	 */
-	public function get($i = null, $fields = null)
-	{
-		return parent::get($i, $fields);
-	}
+    /**
+     * retrieve a field
+     *
+     * @param int $i field id
+     * @param null fields
+     * @return mixed reference to the {@link Get} object
+     */
+    public function get($i = null, $fields = null)
+    {
+        return parent::get($i, $fields);
+    }
 
-	/**
-	 * get inserted id
-	 *
-	 * @param null
-	 * @return int reference to the {@link Get} object
-	 */
-	public function getInsertId()
-	{
-		return $this->db->getInsertId();
-	}
+    /**
+     * get inserted id
+     *
+     * @param null
+     * @return int reference to the {@link Get} object
+     */
+    public function getInsertId()
+    {
+        return $this->db->getInsertId();
+    }
 
-	/**
-	 * Get Count Files in the database
-	 * @param int    $start
-	 * @param int    $limit
-	 * @param string $sort
-	 * @param string $order
-	 * @return int
-	 */
-	public function getCountFiles($start = 0, $limit = 0, $sort = 'file_id ASC, file_itemid', $order = 'ASC')
-	{
-		$crCountFiles = new \CriteriaCompo();
-		$crCountFiles = $this->getFilesCriteria($crCountFiles, $start, $limit, $sort, $order);
-		return $this->getCount($crCountFiles);
-	}
+    /**
+     * Get Count Files in the database
+     * @param int    $start
+     * @param int    $limit
+     * @param string $sort
+     * @param string $order
+     * @return int
+     */
+    public function getCountFiles($start = 0, $limit = 0, $sort = 'file_id ASC, file_itemid', $order = 'ASC')
+    {
+        $crCountFiles = new \CriteriaCompo();
+        $crCountFiles = $this->getFilesCriteria($crCountFiles, $start, $limit, $sort, $order);
+        return $this->getCount($crCountFiles);
+    }
 
-	/**
-	 * Get All Files in the database
-	 * @param int    $start
-	 * @param int    $limit
-	 * @param string $sort
-	 * @param string $order
-	 * @return array
-	 */
-	public function getAllFiles($start = 0, $limit = 0, $sort = 'file_id ASC, file_itemid', $order = 'ASC')
-	{
-		$crAllFiles = new \CriteriaCompo();
-		$crAllFiles = $this->getFilesCriteria($crAllFiles, $start, $limit, $sort, $order);
-		return $this->getAll($crAllFiles);
-	}
+    /**
+     * Get All Files in the database
+     * @param int    $start
+     * @param int    $limit
+     * @param string $sort
+     * @param string $order
+     * @return array
+     */
+    public function getAllFiles($start = 0, $limit = 0, $sort = 'file_id ASC, file_itemid', $order = 'ASC')
+    {
+        $crAllFiles = new \CriteriaCompo();
+        $crAllFiles = $this->getFilesCriteria($crAllFiles, $start, $limit, $sort, $order);
+        return $this->getAll($crAllFiles);
+    }
 
-	/**
-	 * Get Criteria Files
-	 * @param        $crFiles
-	 * @param int    $start
-	 * @param int    $limit
-	 * @param string $sort
-	 * @param string $order
-	 * @return int
-	 */
-	private function getFilesCriteria($crFiles, $start, $limit, $sort, $order)
-	{
-		$crFiles->setStart($start);
-		$crFiles->setLimit($limit);
-		$crFiles->setSort($sort);
-		$crFiles->setOrder($order);
-		return $crFiles;
-	}
+    /**
+     * Get Criteria Files
+     * @param        $crFiles
+     * @param int    $start
+     * @param int    $limit
+     * @param string $sort
+     * @param string $order
+     * @return int
+     */
+    private function getFilesCriteria($crFiles, $start, $limit, $sort, $order)
+    {
+        $crFiles->setStart($start);
+        $crFiles->setLimit($limit);
+        $crFiles->setSort($sort);
+        $crFiles->setOrder($order);
+        return $crFiles;
+    }
 }

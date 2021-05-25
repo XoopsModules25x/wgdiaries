@@ -35,30 +35,30 @@ use XoopsModules\Wgdiaries\Constants;
  */
 class StatisticsHandler extends \XoopsPersistableObjectHandler
 {
-	/**
-	 * Constructor
-	 *
-	 * @param null
-	 */
-	public function __construct()
-	{
-	}
+    /**
+     * Constructor
+     *
+     * @param null
+     */
+    public function __construct()
+    {
+    }
 
-	/**
-	 * @public function to get items for given params
-	 * @param     $from
+    /**
+     * @public function to get items for given params
+     * @param     $from
      * @param     $to
      * @param int $groupId
      * @param int $uid
-	 * @return bool|array
-	 */
-	public function getStatisticItems($from, $to, $mygroups = false, $uid = 0 )
-	{
+     * @return bool|array
+     */
+    public function getStatisticItems($from, $to, $mygroups = false, $uid = 0 )
+    {
         $helper  = \XoopsModules\Wgdiaries\Helper::getInstance();
         $itemsHandler = $helper->getHandler('Items');
 
-		return false;
-	}
+        return false;
+    }
 
     /**
      * @public function to get form for filter items
