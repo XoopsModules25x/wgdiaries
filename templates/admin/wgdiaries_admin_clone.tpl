@@ -2,13 +2,13 @@
 <{include file='db:wgdiaries_admin_header.tpl' }>
 
 <{if $form|default:''}>
-	<{$form|default:false}>
+    <{$form|default:false}>
 <{/if}>
 <{if $result|default:''}>
-	<{$result|default:false}>
+    <{$result|default:false}>
 <{/if}>
 <{if $error|default:''}>
-	<div class="errorMsg"><strong><{$error|default:false}></strong></div>
+    <div class="errorMsg"><strong><{$error|default:false}></strong></div>
 <{/if}>
 
 <!-- Footer -->

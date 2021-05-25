@@ -34,96 +34,96 @@ use XoopsModules\Wgdiaries;
  */
 class ItemsHandler extends \XoopsPersistableObjectHandler
 {
-	/**
-	 * Constructor
-	 *
-	 * @param \XoopsDatabase $db
-	 */
-	public function __construct(\XoopsDatabase $db)
-	{
-		parent::__construct($db, 'wgdiaries_items', Items::class, 'item_id', 'item_submitter');
-	}
+    /**
+     * Constructor
+     *
+     * @param \XoopsDatabase $db
+     */
+    public function __construct(\XoopsDatabase $db)
+    {
+        parent::__construct($db, 'wgdiaries_items', Items::class, 'item_id', 'item_submitter');
+    }
 
-	/**
-	 * @param bool $isNew
-	 *
-	 * @return object
-	 */
-	public function create($isNew = true)
-	{
-		return parent::create($isNew);
-	}
+    /**
+     * @param bool $isNew
+     *
+     * @return object
+     */
+    public function create($isNew = true)
+    {
+        return parent::create($isNew);
+    }
 
-	/**
-	 * retrieve a field
-	 *
-	 * @param int $i field id
-	 * @param null fields
-	 * @return mixed reference to the {@link Get} object
-	 */
-	public function get($i = null, $fields = null)
-	{
-		return parent::get($i, $fields);
-	}
+    /**
+     * retrieve a field
+     *
+     * @param int $i field id
+     * @param null fields
+     * @return mixed reference to the {@link Get} object
+     */
+    public function get($i = null, $fields = null)
+    {
+        return parent::get($i, $fields);
+    }
 
-	/**
-	 * get inserted id
-	 *
-	 * @param null
-	 * @return int reference to the {@link Get} object
-	 */
-	public function getInsertId()
-	{
-		return $this->db->getInsertId();
-	}
+    /**
+     * get inserted id
+     *
+     * @param null
+     * @return int reference to the {@link Get} object
+     */
+    public function getInsertId()
+    {
+        return $this->db->getInsertId();
+    }
 
-	/**
-	 * Get Count Items in the database
-	 * @param int    $start
-	 * @param int    $limit
-	 * @param string $sort
-	 * @param string $order
-	 * @return int
-	 */
-	public function getCountItems($start = 0, $limit = 0, $sort = 'item_id ASC, item_submitter', $order = 'ASC')
-	{
-		$crCountItems = new \CriteriaCompo();
-		$crCountItems = $this->getItemsCriteria($crCountItems, $start, $limit, $sort, $order);
-		return $this->getCount($crCountItems);
-	}
+    /**
+     * Get Count Items in the database
+     * @param int    $start
+     * @param int    $limit
+     * @param string $sort
+     * @param string $order
+     * @return int
+     */
+    public function getCountItems($start = 0, $limit = 0, $sort = 'item_id ASC, item_submitter', $order = 'ASC')
+    {
+        $crCountItems = new \CriteriaCompo();
+        $crCountItems = $this->getItemsCriteria($crCountItems, $start, $limit, $sort, $order);
+        return $this->getCount($crCountItems);
+    }
 
-	/**
-	 * Get All Items in the database
-	 * @param int    $start
-	 * @param int    $limit
-	 * @param string $sort
-	 * @param string $order
-	 * @return array
-	 */
-	public function getAllItems($start = 0, $limit = 0, $sort = 'item_id ASC, item_submitter', $order = 'ASC')
-	{
-		$crAllItems = new \CriteriaCompo();
-		$crAllItems = $this->getItemsCriteria($crAllItems, $start, $limit, $sort, $order);
-		return $this->getAll($crAllItems);
-	}
+    /**
+     * Get All Items in the database
+     * @param int    $start
+     * @param int    $limit
+     * @param string $sort
+     * @param string $order
+     * @return array
+     */
+    public function getAllItems($start = 0, $limit = 0, $sort = 'item_id ASC, item_submitter', $order = 'ASC')
+    {
+        $crAllItems = new \CriteriaCompo();
+        $crAllItems = $this->getItemsCriteria($crAllItems, $start, $limit, $sort, $order);
+        return $this->getAll($crAllItems);
+    }
 
-	/**
-	 * Get Criteria Items
-	 * @param        $crItems
-	 * @param int    $start
-	 * @param int    $limit
-	 * @param string $sort
-	 * @param string $order
-	 * @return int
-	 */
-	private function getItemsCriteria($crItems, $start, $limit, $sort, $order)
-	{
-		$crItems->setStart($start);
-		$crItems->setLimit($limit);
-		$crItems->setSort($sort);
-		$crItems->setOrder($order);
-		return $crItems;
-	}
+    /**
+     * Get Criteria Items
+     * @param        $crItems
+     * @param int    $start
+     * @param int    $limit
+     * @param string $sort
+     * @param string $order
+     * @return int
+     */
+    private function getItemsCriteria($crItems, $start, $limit, $sort, $order)
+    {
+        $crItems->setStart($start);
+        $crItems->setLimit($limit);
+        $crItems->setSort($sort);
+        $crItems->setOrder($order);
+        return $crItems;
+    }
 
     /**
      * @public function to get items for given params

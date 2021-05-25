@@ -30,19 +30,19 @@ $moduleInfo    = $moduleHandler->get($xoopsModule->getVar('mid'));
 $sysPathIcon32 = $moduleInfo->getInfo('sysicons32');
 
 $adminmenu[] = [
-	'title' => _MI_WGDIARIES_ADMENU1,
-	'link' => 'admin/index.php',
-	'icon' => 'assets/icons/32/dashboard.png',
+    'title' => _MI_WGDIARIES_ADMENU1,
+    'link' => 'admin/index.php',
+    'icon' => 'assets/icons/32/dashboard.png',
 ];
 $adminmenu[] = [
-	'title' => _MI_WGDIARIES_ADMENU2,
-	'link' => 'admin/items.php',
-	'icon' => 'assets/icons/32/items.png',
+    'title' => _MI_WGDIARIES_ADMENU2,
+    'link' => 'admin/items.php',
+    'icon' => 'assets/icons/32/items.png',
 ];
 $adminmenu[] = [
-	'title' => _MI_WGDIARIES_ADMENU3,
-	'link' => 'admin/files.php',
-	'icon' => 'assets/icons/32/files.png',
+    'title' => _MI_WGDIARIES_ADMENU3,
+    'link' => 'admin/files.php',
+    'icon' => 'assets/icons/32/files.png',
 ];
 $adminmenu[] = [
     'title' => _MI_WGDIARIES_ADMENU4,
@@ -50,9 +50,9 @@ $adminmenu[] = [
     'icon' => 'assets/icons/32/categories.png',
 ];
 $adminmenu[] = [
-	'title' => _MI_WGDIARIES_ADMENU6,
-	'link' => 'admin/permissions.php',
-	'icon' => 'assets/icons/32/permissions.png',
+    'title' => _MI_WGDIARIES_ADMENU6,
+    'link' => 'admin/permissions.php',
+    'icon' => 'assets/icons/32/permissions.png',
 ];
 $adminmenu[] = [
     'title' => _MI_WGDIARIES_ADMENU8,
@@ -60,12 +60,12 @@ $adminmenu[] = [
     'icon' => 'assets/icons/32/clone.png',
 ];
 $adminmenu[] = [
-	'title' => _MI_WGDIARIES_ADMENU7,
-	'link' => 'admin/feedback.php',
-	'icon' => 'assets/icons/32/feedback.png',
+    'title' => _MI_WGDIARIES_ADMENU7,
+    'link' => 'admin/feedback.php',
+    'icon' => 'assets/icons/32/feedback.png',
 ];
 $adminmenu[] = [
-	'title' => _MI_WGDIARIES_ABOUT,
-	'link' => 'admin/about.php',
-	'icon' => 'assets/icons/32/about.png',
+    'title' => _MI_WGDIARIES_ABOUT,
+    'link' => 'admin/about.php',
+    'icon' => 'assets/icons/32/about.png',
 ];

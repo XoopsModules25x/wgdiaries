@@ -1,5 +1,5 @@
 <{if $error|default:false}>
-	<div class='errorMsg'><strong><{$error}></strong></div>
+    <div class='errorMsg'><strong><{$error}></strong></div>
 <{/if}>
 <div class='clear spacer'></div>
 <{if $copyright}>

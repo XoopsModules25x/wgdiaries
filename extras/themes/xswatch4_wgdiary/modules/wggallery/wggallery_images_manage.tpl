@@ -1,7 +1,7 @@
 <{include file='db:wggallery_header.tpl'}>
 
 <{if $form}>
-	<{$form}>
+    <{$form}>
 <{else}>
     <div class='card panel-<{$panel_type}>'>
             <div class='card-header wgg-imgindex-header'>
@@ -57,7 +57,7 @@
 <{/if}>
 
 <{if $error}>
-	<div class='errorMsg'><strong><{$error}></strong></div>
+    <div class='errorMsg'><strong><{$error}></strong></div>
 <{/if}>
 
 <{include file='db:wggallery_footer.tpl'}>

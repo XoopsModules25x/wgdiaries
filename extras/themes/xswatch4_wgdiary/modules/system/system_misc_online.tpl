@@ -25,7 +25,7 @@
                     </a>
                 <{else}>        
                     <h6><{if $online.name==''}><{$online.uname}><{else}><{$online.name}><{/if}></h6>
-                <{/if}>	
+                <{/if}>    
             <{/if}>
         </div>
     

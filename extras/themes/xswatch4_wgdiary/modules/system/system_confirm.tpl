@@ -4,7 +4,7 @@
     <hr>
 
     <form class="form-inline" method="post" action="<{$action}>">
-	<{$hiddens}>
+    <{$hiddens}>
 <{if ($addtoken)}>
     <{$token}>
 <{/if}>

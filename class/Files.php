@@ -35,68 +35,68 @@ use XoopsModules\Wgdiaries;
  */
 class Files extends \XoopsObject
 {
-	/**
-	 * Constructor
-	 *
-	 * @param null
-	 */
-	public function __construct()
-	{
-		$this->initVar('file_id', \XOBJ_DTYPE_INT);
-		$this->initVar('file_itemid', \XOBJ_DTYPE_INT);
-		$this->initVar('file_desc', \XOBJ_DTYPE_TXTBOX);
-		$this->initVar('file_name', \XOBJ_DTYPE_TXTBOX);
+    /**
+     * Constructor
+     *
+     * @param null
+     */
+    public function __construct()
+    {
+        $this->initVar('file_id', \XOBJ_DTYPE_INT);
+        $this->initVar('file_itemid', \XOBJ_DTYPE_INT);
+        $this->initVar('file_desc', \XOBJ_DTYPE_TXTBOX);
+        $this->initVar('file_name', \XOBJ_DTYPE_TXTBOX);
         $this->initVar('file_mimetype', \XOBJ_DTYPE_TXTBOX);
-		$this->initVar('file_datecreated', \XOBJ_DTYPE_INT);
-		$this->initVar('file_submitter', \XOBJ_DTYPE_INT);
-	}
+        $this->initVar('file_datecreated', \XOBJ_DTYPE_INT);
+        $this->initVar('file_submitter', \XOBJ_DTYPE_INT);
+    }
 
-	/**
-	 * @static function &getInstance
-	 *
-	 * @param null
-	 */
-	public static function getInstance()
-	{
-		static $instance = false;
-		if (!$instance) {
-			$instance = new self();
-		}
-	}
+    /**
+     * @static function &getInstance
+     *
+     * @param null
+     */
+    public static function getInstance()
+    {
+        static $instance = false;
+        if (!$instance) {
+            $instance = new self();
+        }
+    }
 
-	/**
-	 * The new inserted $Id
-	 * @return inserted id
-	 */
-	public function getNewInsertedIdFiles()
-	{
-		$newInsertedId = $GLOBALS['xoopsDB']->getInsertId();
-		return $newInsertedId;
-	}
+    /**
+     * The new inserted $Id
+     * @return inserted id
+     */
+    public function getNewInsertedIdFiles()
+    {
+        $newInsertedId = $GLOBALS['xoopsDB']->getInsertId();
+        return $newInsertedId;
+    }
 
-	/**
-	 * @public function getForm
-	 * @param bool $action
-	 * @return \XoopsThemeForm
-	 */
-	public function getFormFiles($action = false)
-	{
-		$helper = \XoopsModules\Wgdiaries\Helper::getInstance();
-		if (!$action) {
-			$action = $_SERVER['REQUEST_URI'];
-		}
-		$isAdmin = $GLOBALS['xoopsUser']->isAdmin($GLOBALS['xoopsModule']->mid());
-		// Permissions for uploader
-		$grouppermHandler = \xoops_getHandler('groupperm');
-		$groups = \is_object($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->getGroups() : XOOPS_GROUP_ANONYMOUS;
-		$permissionUpload = $grouppermHandler->checkRight('upload_groups', 32, $groups, $GLOBALS['xoopsModule']->getVar('mid')) ? true : false;
-		// Title
-		$title = $this->isNew() ? \sprintf(\_MA_WGDIARIES_FILE_ADD) : \sprintf(\_MA_WGDIARIES_FILE_EDIT);
-		// Get Theme Form
-		\xoops_load('XoopsFormLoader');
-		$form = new \XoopsThemeForm($title, 'form', $action, 'post', true);
-		$form->setExtra('enctype="multipart/form-data"');
-		// Form Table items
+    /**
+     * @public function getForm
+     * @param bool $action
+     * @return \XoopsThemeForm
+     */
+    public function getFormFiles($action = false)
+    {
+        $helper = \XoopsModules\Wgdiaries\Helper::getInstance();
+        if (!$action) {
+            $action = $_SERVER['REQUEST_URI'];
+        }
+        $isAdmin = $GLOBALS['xoopsUser']->isAdmin($GLOBALS['xoopsModule']->mid());
+        // Permissions for uploader
+        $grouppermHandler = \xoops_getHandler('groupperm');
+        $groups = \is_object($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->getGroups() : XOOPS_GROUP_ANONYMOUS;
+        $permissionUpload = $grouppermHandler->checkRight('upload_groups', 32, $groups, $GLOBALS['xoopsModule']->getVar('mid')) ? true : false;
+        // Title
+        $title = $this->isNew() ? \sprintf(\_MA_WGDIARIES_FILE_ADD) : \sprintf(\_MA_WGDIARIES_FILE_EDIT);
+        // Get Theme Form
+        \xoops_load('XoopsFormLoader');
+        $form = new \XoopsThemeForm($title, 'form', $action, 'post', true);
+        $form->setExtra('enctype="multipart/form-data"');
+        // Form Table items
         if ($isAdmin) {
             $itemsHandler = $helper->getHandler('Items');
             $fileItemidSelect = new \XoopsFormSelect(\_MA_WGDIARIES_FILE_ITEMID, 'file_itemid', $this->getVar('file_itemid'));
@@ -111,9 +111,9 @@ class Files extends \XoopsObject
             $form->addElement(new \XoopsFormHidden('item_id', $this->getVar('file_itemid')));
         }
 
-		// Form Text fileDesc
-		$form->addElement(new \XoopsFormText(\_MA_WGDIARIES_FILE_DESC, 'file_desc', 50, 255, $this->getVar('file_desc')));
-		// Form File: Upload fileName
+        // Form Text fileDesc
+        $form->addElement(new \XoopsFormText(\_MA_WGDIARIES_FILE_DESC, 'file_desc', 50, 255, $this->getVar('file_desc')));
+        // Form File: Upload fileName
         if ($this->isNew()) {
             $fileName = '';
         } else {
@@ -121,18 +121,18 @@ class Files extends \XoopsObject
             $form->addElement(new \XoopsFormLabel(\_MA_WGDIARIES_FILE_NAME, $fileName));
         }
         $form->addElement(new \XoopsFormHidden('file_name_old', $fileName));
-		if ($permissionUpload) {
-			$fileUploadTray = new \XoopsFormElementTray(\_MA_WGDIARIES_FILE_UPLOAD, '<br>');
-			$maxsize = $helper->getConfig('maxsize_file');
-			$fileUploadTray->addElement(new \XoopsFormFile('', 'file_name', $maxsize));
-			$fileUploadTray->addElement(new \XoopsFormLabel(\_MA_WGDIARIES_FORM_UPLOAD_SIZE, ($maxsize / 1048576) . ' '  . _MA_WGDIARIES_FORM_UPLOAD_SIZE_MB));
-			$form->addElement($fileUploadTray);
-		}
+        if ($permissionUpload) {
+            $fileUploadTray = new \XoopsFormElementTray(\_MA_WGDIARIES_FILE_UPLOAD, '<br>');
+            $maxsize = $helper->getConfig('maxsize_file');
+            $fileUploadTray->addElement(new \XoopsFormFile('', 'file_name', $maxsize));
+            $fileUploadTray->addElement(new \XoopsFormLabel(\_MA_WGDIARIES_FORM_UPLOAD_SIZE, ($maxsize / 1048576) . ' '  . _MA_WGDIARIES_FORM_UPLOAD_SIZE_MB));
+            $form->addElement($fileUploadTray);
+        }
         $form->addElement(new \XoopsFormText(\_MA_WGDIARIES_FILE_MIMETYPE, 'file_mimetype', 50, 255, $this->getVar('file_mimetype')));
-		// Form Text Date Select fileDatecreated
-		$fileDatecreated = $this->isNew() ? time() : $this->getVar('file_datecreated');
-		// Form Select User fileSubmitter
-		$fileSubmitter = $this->isNew() ? $GLOBALS['xoopsUser']->uid() : $this->getVar('file_submitter');
+        // Form Text Date Select fileDatecreated
+        $fileDatecreated = $this->isNew() ? time() : $this->getVar('file_datecreated');
+        // Form Select User fileSubmitter
+        $fileSubmitter = $this->isNew() ? $GLOBALS['xoopsUser']->uid() : $this->getVar('file_submitter');
         if ($isAdmin) {
             $form->addElement(new \XoopsFormTextDateSelect(\_MA_WGDIARIES_FILE_DATECREATED, 'file_datecreated', '', $fileDatecreated));
             $form->addElement(new \XoopsFormSelectUser(\_MA_WGDIARIES_FILE_SUBMITTER, 'file_submitter', false, $fileSubmitter));
@@ -140,8 +140,8 @@ class Files extends \XoopsObject
             $form->addElement(new \XoopsFormHidden('file_datecreated', $fileDatecreated));
             $form->addElement(new \XoopsFormHidden('file_submitter', $fileSubmitter));
         }
-		// To Save
-		$form->addElement(new \XoopsFormHidden('op', 'save'));
+        // To Save
+        $form->addElement(new \XoopsFormHidden('op', 'save'));
         $buttonTray = new \XoopsFormElementTray('', '&nbsp;');
         $buttonTray->addElement(new \XoopsFormButtonTray('', \_SUBMIT, 'submit', '', false));
         $btnAddFile = new \XoopsFormButton('', 'save_add', \_MA_WGDIARIES_ITEM_SAVEADDFILES, 'submit');
@@ -150,37 +150,37 @@ class Files extends \XoopsObject
         $form->addElement($buttonTray);
 
         return $form;
-	}
+    }
 
-	/**
-	 * Get Values
-	 * @param null $keys
-	 * @param null $format
-	 * @param null $maxDepth
-	 * @return array
-	 */
-	public function getValuesFiles($keys = null, $format = null, $maxDepth = null)
-	{
-		$helper  = \XoopsModules\Wgdiaries\Helper::getInstance();
-		$ret = $this->getValues($keys, $format, $maxDepth);
-		$ret['id']          = $this->getVar('file_id');
-		$itemsHandler = $helper->getHandler('Items');
-		$itemsObj = $itemsHandler->get($this->getVar('file_itemid'));
+    /**
+     * Get Values
+     * @param null $keys
+     * @param null $format
+     * @param null $maxDepth
+     * @return array
+     */
+    public function getValuesFiles($keys = null, $format = null, $maxDepth = null)
+    {
+        $helper  = \XoopsModules\Wgdiaries\Helper::getInstance();
+        $ret = $this->getValues($keys, $format, $maxDepth);
+        $ret['id']          = $this->getVar('file_id');
+        $itemsHandler = $helper->getHandler('Items');
+        $itemsObj = $itemsHandler->get($this->getVar('file_itemid'));
         $ret['itemid']  = 0;
         $ret['caption'] = '';
-		if (\is_object($itemsObj)) {
+        if (\is_object($itemsObj)) {
             $ret['itemid']      = $itemsObj->getVar('item_submitter');
             $ret['caption']      = $itemsObj->getCaption();
         }
-		$ret['desc']        = $this->getVar('file_desc');
-		$ret['name']        = $this->getVar('file_name');
+        $ret['desc']        = $this->getVar('file_desc');
+        $ret['name']        = $this->getVar('file_name');
         $ret['mimetype']    = $this->getVar('file_mimetype');
         $ret['isimage']     = $this->is_image($this->getVar('file_mimetype'));
         $ret['icon']        = $this->get_icon($this->getVar('file_name'));
-		$ret['datecreated'] = \formatTimestamp($this->getVar('file_datecreated'), 's');
-		$ret['submitter']   = \XoopsUser::getUnameFromId($this->getVar('file_submitter'));
-		return $ret;
-	}
+        $ret['datecreated'] = \formatTimestamp($this->getVar('file_datecreated'), 's');
+        $ret['submitter']   = \XoopsUser::getUnameFromId($this->getVar('file_submitter'));
+        return $ret;
+    }
 
     private function is_image($mimetype)
     {
@@ -202,18 +202,18 @@ class Files extends \XoopsObject
         return '_blank.png';
     }
 
-	/**
-	 * Returns an array representation of the object
-	 *
-	 * @return array
-	 */
-	public function toArrayFiles()
-	{
-		$ret = [];
-		$vars = $this->getVars();
-		foreach (\array_keys($vars) as $var) {
-			$ret[$var] = $this->getVar('"{$var}"');
-		}
-		return $ret;
-	}
+    /**
+     * Returns an array representation of the object
+     *
+     * @return array
+     */
+    public function toArrayFiles()
+    {
+        $ret = [];
+        $vars = $this->getVars();
+        foreach (\array_keys($vars) as $var) {
+            $ret[$var] = $this->getVar('"{$var}"');
+        }
+        return $ret;
+    }
 }

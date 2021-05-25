@@ -53,10 +53,10 @@ $xoBreadcrumbs[] = ['title' => _MA_WGDIARIES_INDEX, 'link' => 'index.php'];
 $GLOBALS['xoopsTpl']->assign('showItem', $itemId > 0);
 
 switch ($op) {
-	case 'show':
-	case 'list':
+    case 'show':
+    case 'list':
     case 'listown':
-	default:
+    default:
         $itemsCalendar = (bool)$helper->getConfig('items_calendar');
         $GLOBALS['xoopsTpl']->assign('itemsCalendar', $itemsCalendar);
         if ($itemsCalendar) {
@@ -74,8 +74,8 @@ switch ($op) {
                 \_MA_WGDIARIES_CAL_MIN_SATURDAY ]);
         }
 
-		// Breadcrumbs
-		$xoBreadcrumbs[] = ['title' => _MA_WGDIARIES_ITEMS_LIST];
+        // Breadcrumbs
+        $xoBreadcrumbs[] = ['title' => _MA_WGDIARIES_ITEMS_LIST];
 
         if ('show' == $op) {
             $GLOBALS['xoopsTpl']->assign('itemsTitle', \_MA_WGDIARIES_ITEM_DETAILS);
@@ -83,27 +83,27 @@ switch ($op) {
             $GLOBALS['xoopsTpl']->assign('itemsTitle', \_MA_WGDIARIES_ITEMS_LISTMY);
         }
         $uid = \is_object($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->uid() : 0;
-		$crItems = new \CriteriaCompo();
-		if ($itemId > 0) {
-			$crItems->add(new \Criteria('item_id', $itemId));
-		}
+        $crItems = new \CriteriaCompo();
+        if ($itemId > 0) {
+            $crItems->add(new \Criteria('item_id', $itemId));
+        }
         $crItems->setSort('item_id');
         $crItems->setOrder('DESC');
         $crItems->add(new \Criteria('item_submitter', $uid));
-		$itemsCount = $itemsHandler->getCount($crItems);
-		$GLOBALS['xoopsTpl']->assign('itemsCount', $itemsCount);
-		if ($itemsCount > 0) {
+        $itemsCount = $itemsHandler->getCount($crItems);
+        $GLOBALS['xoopsTpl']->assign('itemsCount', $itemsCount);
+        if ($itemsCount > 0) {
             $crItems->setStart($start);
             $crItems->setLimit($limit);
             $itemsAll = $itemsHandler->getAll($crItems);
 
             $GLOBALS['xoopsTpl']->assign('itemsCount', $itemsCount);
-			$items = [];
-			$itemSubmitter = '';
+            $items = [];
+            $itemSubmitter = '';
             $itemCaption  = '';
-			// Get All Items
-			foreach (\array_keys($itemsAll) as $i) {
-				$item = $itemsAll[$i]->getValuesItems();
+            // Get All Items
+            foreach (\array_keys($itemsAll) as $i) {
+                $item = $itemsAll[$i]->getValuesItems();
                 $itemSubmitter = $item['item_submitter'];
                 $itemCaption   = $itemsAll[$i]->getCaption('single');
                 // Permissions
@@ -129,34 +129,34 @@ switch ($op) {
                 if ($itemsCalendar) {
                     $calendar->addDailyHtml($items[$i]['item_name'], $items[$i]['item_datefrom'], $items[$i]['item_dateto']);
                 }
-			}
-			$GLOBALS['xoopsTpl']->assign('items', $items);
+            }
+            $GLOBALS['xoopsTpl']->assign('items', $items);
 
-			if (\count($items) > 0 && $itemsCalendar) {
+            if (\count($items) > 0 && $itemsCalendar) {
                 $GLOBALS['xoopsTpl']->assign('items_calendar', $calendar->render());
             }
 
             unset($items);
 
             // Display Navigation
-			if ($itemsCount > $limit) {
-				include_once XOOPS_ROOT_PATH . '/class/pagenav.php';
-				$pagenav = new \XoopsPageNav($itemsCount, $limit, $start, 'start', 'op=list&limit=' . $limit);
-				$GLOBALS['xoopsTpl']->assign('pagenav', $pagenav->renderNav(4));
-			}
-			$GLOBALS['xoopsTpl']->assign('table_type', $helper->getConfig('table_type'));
-			$GLOBALS['xoopsTpl']->assign('panel_type', $helper->getConfig('panel_type'));
-			$GLOBALS['xoopsTpl']->assign('divideby', $helper->getConfig('divideby'));
-			$GLOBALS['xoopsTpl']->assign('numb_col', $helper->getConfig('numb_col'));
+            if ($itemsCount > $limit) {
+                include_once XOOPS_ROOT_PATH . '/class/pagenav.php';
+                $pagenav = new \XoopsPageNav($itemsCount, $limit, $start, 'start', 'op=list&limit=' . $limit);
+                $GLOBALS['xoopsTpl']->assign('pagenav', $pagenav->renderNav(4));
+            }
+            $GLOBALS['xoopsTpl']->assign('table_type', $helper->getConfig('table_type'));
+            $GLOBALS['xoopsTpl']->assign('panel_type', $helper->getConfig('panel_type'));
+            $GLOBALS['xoopsTpl']->assign('divideby', $helper->getConfig('divideby'));
+            $GLOBALS['xoopsTpl']->assign('numb_col', $helper->getConfig('numb_col'));
             $GLOBALS['xoopsTpl']->assign('useGroups', $helper->getConfig('use_groups'));
             if (1 == $itemsCount) {
                 $GLOBALS['xoopsTpl']->assign('permItemsComment', $permissionsHandler->getPermItemsComEdit($itemSubmitter));
             }
-			if ('show' == $op && '' != $itemSubmitter) {
-				$GLOBALS['xoopsTpl']->assign('xoops_pagetitle', $itemCaption);
-			}
-		}
-		break;
+            if ('show' == $op && '' != $itemSubmitter) {
+                $GLOBALS['xoopsTpl']->assign('xoops_pagetitle', $itemCaption);
+            }
+        }
+        break;
     case 'listgroup':
         // Breadcrumbs
         $xoBreadcrumbs[] = ['title' => _MA_WGDIARIES_ITEMS_LIST];
@@ -212,33 +212,33 @@ switch ($op) {
             }
         }
         break;
-	case 'save':
-		// Security Check
-		if (!$GLOBALS['xoopsSecurity']->check()) {
-			\redirect_header('items.php', 3, \implode(',', $GLOBALS['xoopsSecurity']->getErrors()));
-		}
-		// Check permissions
-		if (!$permissionsHandler->getPermGlobalSubmit()) {
-			\redirect_header('items.php?op=list', 3, _NOPERM);
-		}
-		if ($itemId > 0) {
-			$itemsObj = $itemsHandler->get($itemId);
-		} else {
-			$itemsObj = $itemsHandler->create();
-		}
+    case 'save':
+        // Security Check
+        if (!$GLOBALS['xoopsSecurity']->check()) {
+            \redirect_header('items.php', 3, \implode(',', $GLOBALS['xoopsSecurity']->getErrors()));
+        }
+        // Check permissions
+        if (!$permissionsHandler->getPermGlobalSubmit()) {
+            \redirect_header('items.php?op=list', 3, _NOPERM);
+        }
+        if ($itemId > 0) {
+            $itemsObj = $itemsHandler->get($itemId);
+        } else {
+            $itemsObj = $itemsHandler->create();
+        }
         $itemsObj->setVar('item_groupid', Request::getInt('item_groupid', 0));
         $itemsObj->setVar('item_name', Request::getString('item_name', ''));
-		$itemsObj->setVar('item_remarks', Request::getText('item_remarks', ''));
-		$itemDatefromArr = Request::getArray('item_datefrom');
-		$itemDatefromObj = \DateTime::createFromFormat(_SHORTDATESTRING, $itemDatefromArr['date']);
-		$itemDatefromObj->setTime(0, 0, 0);
-		$itemDatefrom = $itemDatefromObj->getTimestamp() + (int)$itemDatefromArr['time'];
-		$itemsObj->setVar('item_datefrom', $itemDatefrom);
-		$itemDatetoArr = Request::getArray('item_dateto');
-		$itemDatetoObj = \DateTime::createFromFormat(_SHORTDATESTRING, $itemDatetoArr['date']);
-		$itemDatetoObj->setTime(0, 0, 0);
-		$itemDateto = $itemDatetoObj->getTimestamp() + (int)$itemDatetoArr['time'];
-		$itemsObj->setVar('item_dateto', $itemDateto);
+        $itemsObj->setVar('item_remarks', Request::getText('item_remarks', ''));
+        $itemDatefromArr = Request::getArray('item_datefrom');
+        $itemDatefromObj = \DateTime::createFromFormat(_SHORTDATESTRING, $itemDatefromArr['date']);
+        $itemDatefromObj->setTime(0, 0, 0);
+        $itemDatefrom = $itemDatefromObj->getTimestamp() + (int)$itemDatefromArr['time'];
+        $itemsObj->setVar('item_datefrom', $itemDatefrom);
+        $itemDatetoArr = Request::getArray('item_dateto');
+        $itemDatetoObj = \DateTime::createFromFormat(_SHORTDATESTRING, $itemDatetoArr['date']);
+        $itemDatetoObj->setTime(0, 0, 0);
+        $itemDateto = $itemDatetoObj->getTimestamp() + (int)$itemDatetoArr['time'];
+        $itemsObj->setVar('item_dateto', $itemDateto);
         $itemsObj->setVar('item_catid', Request::getInt('item_catid', 0));
         $itemsObj->setVar('item_tags', Request::getString('item_tags', ''));
         // Set Var item_logo
@@ -278,12 +278,12 @@ switch ($op) {
             }
             $itemsObj->setVar('item_logo', Request::getString('item_logo'));
         }
-		$itemsObj->setVar('item_comments', Request::getInt('item_comments', 0));
-		$itemDatecreatedObj = \DateTime::createFromFormat(_SHORTDATESTRING, Request::getString('item_datecreated'));
-		$itemsObj->setVar('item_datecreated', $itemDatecreatedObj->getTimestamp());
-		$itemsObj->setVar('item_submitter', Request::getInt('item_submitter', 0));
-		// Insert Data
-		if ($itemsHandler->insert($itemsObj)) {
+        $itemsObj->setVar('item_comments', Request::getInt('item_comments', 0));
+        $itemDatecreatedObj = \DateTime::createFromFormat(_SHORTDATESTRING, Request::getString('item_datecreated'));
+        $itemsObj->setVar('item_datecreated', $itemDatecreatedObj->getTimestamp());
+        $itemsObj->setVar('item_submitter', Request::getInt('item_submitter', 0));
+        // Insert Data
+        if ($itemsHandler->insert($itemsObj)) {
             $newItemId = $itemId > 0 ? $itemId : $itemsObj->getNewInsertedIdItems();
 
             include_once XOOPS_ROOT_PATH . '/class/uploader.php';
@@ -332,64 +332,64 @@ switch ($op) {
             if (0 == \count($uploaderErrors)) {
                 \redirect_header('items.php?op=show&amp;item_id=' . $newItemId, 2, _MA_WGDIARIES_FORM_OK);
             }
-		}
-		// Get Form Error
-		$GLOBALS['xoopsTpl']->assign('error', implode('<br>', $uploaderErrors));
-		$form = $itemsObj->getFormItems();
-		$GLOBALS['xoopsTpl']->assign('form', $form->render());
-		break;
-	case 'new':
-		// Breadcrumbs
-		$xoBreadcrumbs[] = ['title' => _MA_WGDIARIES_ITEM_ADD];
-		// Check permissions
-		if (!$permissionsHandler->getPermGlobalSubmit()) {
-			\redirect_header('items.php?op=list', 3, _NOPERM);
-		}
+        }
+        // Get Form Error
+        $GLOBALS['xoopsTpl']->assign('error', implode('<br>', $uploaderErrors));
+        $form = $itemsObj->getFormItems();
+        $GLOBALS['xoopsTpl']->assign('form', $form->render());
+        break;
+    case 'new':
+        // Breadcrumbs
+        $xoBreadcrumbs[] = ['title' => _MA_WGDIARIES_ITEM_ADD];
+        // Check permissions
+        if (!$permissionsHandler->getPermGlobalSubmit()) {
+            \redirect_header('items.php?op=list', 3, _NOPERM);
+        }
         $GLOBALS['xoopsTpl']->assign('maxfileuploads', $helper->getConfig('max_fileuploads'));
-		// Form Create
-		$itemsObj = $itemsHandler->create();
-		$form = $itemsObj->getFormItems();
-		$GLOBALS['xoopsTpl']->assign('form', $form->render());
-		break;
-	case 'edit':
-		// Breadcrumbs
-		$xoBreadcrumbs[] = ['title' => _MA_WGDIARIES_ITEM_EDIT];
-		// Check permissions
-		if (!$permissionsHandler->getPermGlobalSubmit()) {
-			\redirect_header('items.php?op=list', 3, _NOPERM);
-		}
-		// Check params
-		if (0 == $itemId) {
-			\redirect_header('items.php?op=list', 3, _MA_WGDIARIES_INVALID_PARAM);
-		}
+        // Form Create
+        $itemsObj = $itemsHandler->create();
+        $form = $itemsObj->getFormItems();
+        $GLOBALS['xoopsTpl']->assign('form', $form->render());
+        break;
+    case 'edit':
+        // Breadcrumbs
+        $xoBreadcrumbs[] = ['title' => _MA_WGDIARIES_ITEM_EDIT];
+        // Check permissions
+        if (!$permissionsHandler->getPermGlobalSubmit()) {
+            \redirect_header('items.php?op=list', 3, _NOPERM);
+        }
+        // Check params
+        if (0 == $itemId) {
+            \redirect_header('items.php?op=list', 3, _MA_WGDIARIES_INVALID_PARAM);
+        }
         $GLOBALS['xoopsTpl']->assign('maxfileuploads', $helper->getConfig('max_fileuploads'));
-		// Get Form
-		$itemsObj = $itemsHandler->get($itemId);
-		$form = $itemsObj->getFormItems();
-		$GLOBALS['xoopsTpl']->assign('form', $form->render());
-		break;
-	case 'delete':
-		// Breadcrumbs
-		$xoBreadcrumbs[] = ['title' => _MA_WGDIARIES_ITEM_DELETE];
-		// Check permissions
-		if (!$permissionsHandler->getPermGlobalSubmit()) {
-			\redirect_header('items.php?op=list', 3, _NOPERM);
-		}
-		// Check params
-		if (0 == $itemId) {
-			\redirect_header('items.php?op=list', 3, _MA_WGDIARIES_INVALID_PARAM);
-		}
-		$itemsObj = $itemsHandler->get($itemId);
-		$itemSubmitter = $itemsObj->getVar('item_submitter');
-		if (isset($_REQUEST['ok']) && 1 == $_REQUEST['ok']) {
-			if (!$GLOBALS['xoopsSecurity']->check()) {
-				\redirect_header('items.php', 3, \implode(', ', $GLOBALS['xoopsSecurity']->getErrors()));
-			}
-			if ($itemsHandler->delete($itemsObj)) {
+        // Get Form
+        $itemsObj = $itemsHandler->get($itemId);
+        $form = $itemsObj->getFormItems();
+        $GLOBALS['xoopsTpl']->assign('form', $form->render());
+        break;
+    case 'delete':
+        // Breadcrumbs
+        $xoBreadcrumbs[] = ['title' => _MA_WGDIARIES_ITEM_DELETE];
+        // Check permissions
+        if (!$permissionsHandler->getPermGlobalSubmit()) {
+            \redirect_header('items.php?op=list', 3, _NOPERM);
+        }
+        // Check params
+        if (0 == $itemId) {
+            \redirect_header('items.php?op=list', 3, _MA_WGDIARIES_INVALID_PARAM);
+        }
+        $itemsObj = $itemsHandler->get($itemId);
+        $itemSubmitter = $itemsObj->getVar('item_submitter');
+        if (isset($_REQUEST['ok']) && 1 == $_REQUEST['ok']) {
+            if (!$GLOBALS['xoopsSecurity']->check()) {
+                \redirect_header('items.php', 3, \implode(', ', $GLOBALS['xoopsSecurity']->getErrors()));
+            }
+            if ($itemsHandler->delete($itemsObj)) {
                 $crFiles = new \CriteriaCompo();
                 $crFiles->add(new \Criteria('file_itemid', $itemId));
                 $nbfiles = $filesHandler->getCount($crFiles);
-			    if ($filesHandler->getCount($crFiles) > 0) {
+                if ($filesHandler->getCount($crFiles) > 0) {
                     $filesAll = $filesHandler->getAll($crFiles);
                     // Get and delete all related files
                     foreach (\array_keys($filesAll) as $i) {
@@ -401,25 +401,25 @@ switch ($op) {
                     // Delete data
                     $filesHandler->deleteAll($crFiles);
                 }
-			    // delete comments
+                // delete comments
                 $commentHandler = \xoops_getHandler('comment');
                 $critComments   = new CriteriaCompo(new Criteria('com_modid', $helper::getMid()));
                 $critComments->add(new Criteria('com_itemid', $itemId));
                 $commentHandler->deleteAll($critComments);
 
-				\redirect_header('items.php', 3, _MA_WGDIARIES_FORM_DELETE_OK);
-			} else {
-				$GLOBALS['xoopsTpl']->assign('error', $itemsObj->getHtmlErrors());
-			}
-		} else {
-			$xoopsconfirm = new Common\XoopsConfirm(
-				['ok' => 1, 'item_id' => $itemId, 'op' => 'delete'],
-				$_SERVER['REQUEST_URI'],
-				\sprintf(_MA_WGDIARIES_FORM_SURE_DELETE, $itemsObj->getCaption()));
-			$form = $xoopsconfirm->getFormXoopsConfirm();
-			$GLOBALS['xoopsTpl']->assign('form', $form->render());
-		}
-		break;
+                \redirect_header('items.php', 3, _MA_WGDIARIES_FORM_DELETE_OK);
+            } else {
+                $GLOBALS['xoopsTpl']->assign('error', $itemsObj->getHtmlErrors());
+            }
+        } else {
+            $xoopsconfirm = new Common\XoopsConfirm(
+                ['ok' => 1, 'item_id' => $itemId, 'op' => 'delete'],
+                $_SERVER['REQUEST_URI'],
+                \sprintf(_MA_WGDIARIES_FORM_SURE_DELETE, $itemsObj->getCaption()));
+            $form = $xoopsconfirm->getFormXoopsConfirm();
+            $GLOBALS['xoopsTpl']->assign('form', $form->render());
+        }
+        break;
 }
 
 // Keywords

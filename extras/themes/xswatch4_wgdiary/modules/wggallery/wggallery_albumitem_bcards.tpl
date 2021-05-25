@@ -5,7 +5,7 @@
 <{elseif $number_cols_album == 2}><{assign var='cols' value='col-12 col-md-6'}>
 <{/if}>
 
-	<div class="card <{$cols}>">
+    <div class="card <{$cols}>">
         <{if $album.image}>
             <{if $album.nb_images}>
                 <{if $gallery}>
@@ -19,7 +19,7 @@
             </a>
             <{/if}>
         <{/if}>
-		<div class="card-body text-center">
+        <div class="card-body text-center">
             <{if $showTitle}><h5><{$album.name}></h5><{/if}>
             <{if $showDesc}><p><{$album.desc}></p><{/if}>
             <p class="center">
@@ -30,8 +30,8 @@
                 <{/if}>
             </p>
         </div>
-	</div>
+    </div>
 
 <{if $album.linebreak}>
-	<div class='clear'>&nbsp;</div>
+    <div class='clear'>&nbsp;</div>
 <{/if}>
