@@ -56,7 +56,7 @@ if (\is_array($items)) {
 
 if ($permissionsHandler->getPermItemsGroupView()) {
 // items of my groups
-    $items = $itemsHandler->getItems($uid, $start, $limit, 0, 0, true);
+    $items = $itemsHandler->getItems($uid, $start, $limit, 0, 0, true, true);
     if (\is_array($items)) {
         $GLOBALS['xoopsTpl']->assign('itemsGroupCount', \count($items));
         $GLOBALS['xoopsTpl']->assign('itemsgroup', $items);
