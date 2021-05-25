@@ -57,6 +57,7 @@ As you can see, you have created a page with a list of links at the top to navig
 // Index
 \define('_MA_WGDIARIES_INDEX_ITEMS_OWN', 'My last items');
 \define('_MA_WGDIARIES_INDEX_ITEMS_GROUP', 'Last items of my groups');
+\define('_MA_WGDIARIES_INDEX_ITEMS_GROUPOTHER', 'Last items of other users of my groups');
 // Item
 \define('_MA_WGDIARIES_ITEM', 'Item');
 \define('_MA_WGDIARIES_ITEM_ADD', 'Add Items');

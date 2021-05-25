@@ -134,16 +134,21 @@ class ItemsHandler extends \XoopsPersistableObjectHandler
      * @param int  $from
      * @param int  $to
      * @param bool $mygroups
+     * @param bool $excludeuid
      * @return bool|array
      */
-    public function getItems($uid = 0, $start = 0, $limit = 0, $from = 0, $to = 0, $mygroups = false)
+    public function getItems($uid = 0, $start = 0, $limit = 0, $from = 0, $to = 0, $mygroups = false, $excludeuid = false)
     {
         $helper  = \XoopsModules\Wgdiaries\Helper::getInstance();
         $itemsHandler = $helper->getHandler('Items');
 
         $crItems = new \CriteriaCompo();
         if ($uid > 0) {
-            $crItems->add(new \Criteria('item_submitter', $uid));
+            if ($excludeuid) {
+                $crItems->add(new \Criteria('item_submitter', $uid, '<>'));
+            } else {
+                $crItems->add(new \Criteria('item_submitter', $uid));
+            }
         }
         if ($mygroups) {
             $memberHandler = \xoops_getHandler('member');

@@ -28,7 +28,7 @@
 </table>
 <!-- End index list -->
 
-<div class='wgdiaries-linetitle'><{$smarty.const._MA_WGDIARIES_INDEX_ITEMS_OWN}></div>
+<h3><{$smarty.const._MA_WGDIARIES_INDEX_ITEMS_OWN}></h3>
 <{if $itemsOwnCount|default:0 > 0}>
 	<!-- Start show new items in index -->
 	<table class='table table-<{$table_type}>'>
@@ -57,7 +57,7 @@
 	</table>
 <{/if}>
 
-<div class='wgdiaries-linetitle'><{$smarty.const._MA_WGDIARIES_INDEX_ITEMS_GROUP}></div>
+<h3><{$smarty.const._MA_WGDIARIES_INDEX_ITEMS_GROUPOTHER}></h3>
 <{if $itemsGroupCount|default:0 > 0}>
 <!-- Start show new items in index -->
 	<table class='table table-<{$table_type}>'>
