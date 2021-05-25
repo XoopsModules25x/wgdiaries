@@ -9,9 +9,12 @@
 				<{if $useGroups|default:false}>
 					<th class="center"><{$smarty.const._MA_WGDIARIES_ITEM_GROUPID}></th>
 				<{/if}>
+				<th class="center"><{$smarty.const._MA_WGDIARIES_ITEM_NAME}></th>
 				<th class="center"><{$smarty.const._MA_WGDIARIES_ITEM_REMARKS}></th>
 				<th class="center"><{$smarty.const._MA_WGDIARIES_ITEM_DATEFROM}></th>
 				<th class="center"><{$smarty.const._MA_WGDIARIES_ITEM_DATETO}></th>
+				<th class="center"><{$smarty.const._MA_WGDIARIES_ITEM_CATID}></th>
+				<th class="center"><{$smarty.const._MA_WGDIARIES_ITEM_TAGS}></th>
 				<th class="center"><{$smarty.const._MA_WGDIARIES_ITEM_DATECREATED}></th>
 				<th class="center"><{$smarty.const._MA_WGDIARIES_ITEM_SUBMITTER}></th>
 				<th class="center width5"><{$smarty.const._MA_WGDIARIES_FORM_ACTION}></th>
@@ -25,9 +28,15 @@
 				<{if $useGroups|default:false}>
 					<td class='center'><{$item.groupname}></td>
 				<{/if}>
+				<td class='center'><{$item.name}></td>
 				<td class='center'><{$item.remarks_short}></td>
 				<td class='center'><{$item.datefrom}></td>
 				<td class='center'><{$item.dateto}></td>
+				<td class='center'><{$item.category}></td>
+				<td class='center'><{$item.tags}></td>
+				<td class='center'>
+					<img class="wgd-items-logo" src="<{$wgdiaries_upload_itemsurl}>/logos/<{$item.logo}>" alt="<{$item.logo}>" title="<{$item.logo}>">
+				</td>
 				<td class='center'><{$item.datecreated}></td>
 				<td class='center'><{$item.submitter}></td>
 				<td class="center  width5">

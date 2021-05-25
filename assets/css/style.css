@@ -47,3 +47,11 @@ ul.menu > li + li:before {
 	padding-top:20px;
 	border-top: 1px solid #ccc;
 }
+.wgd-items-catlogo {
+	max-height:30px;
+	border: 1px solid #ccc;
+	border-radius: 50%;
+}
+.wgd-items-logo {
+	max-height:50px;
+}

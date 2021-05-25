@@ -45,6 +45,11 @@ $adminmenu[] = [
 	'icon' => 'assets/icons/32/files.png',
 ];
 $adminmenu[] = [
+    'title' => _MI_WGDIARIES_ADMENU4,
+    'link' => 'admin/categories.php',
+    'icon' => 'assets/icons/32/categories.png',
+];
+$adminmenu[] = [
 	'title' => _MI_WGDIARIES_ADMENU6,
 	'link' => 'admin/permissions.php',
 	'icon' => 'assets/icons/32/permissions.png',

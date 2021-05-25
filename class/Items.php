@@ -45,9 +45,13 @@ class Items extends \XoopsObject
     {
         $this->initVar('item_id', \XOBJ_DTYPE_INT);
         $this->initVar('item_groupid', \XOBJ_DTYPE_INT);
+        $this->initVar('item_name', \XOBJ_DTYPE_TXTBOX);
         $this->initVar('item_remarks', \XOBJ_DTYPE_OTHER);
         $this->initVar('item_datefrom', \XOBJ_DTYPE_INT);
         $this->initVar('item_dateto', \XOBJ_DTYPE_INT);
+        $this->initVar('item_catid', \XOBJ_DTYPE_INT);
+        $this->initVar('item_tags', \XOBJ_DTYPE_TXTBOX);
+        $this->initVar('item_logo', \XOBJ_DTYPE_TXTBOX);
         $this->initVar('item_comments', \XOBJ_DTYPE_INT);
         $this->initVar('item_datecreated', \XOBJ_DTYPE_INT);
         $this->initVar('item_submitter', \XOBJ_DTYPE_INT);
@@ -118,7 +122,8 @@ class Items extends \XoopsObject
         } else {
             $form->addElement(new \XoopsFormHidden('item_groupid', 0));
         }
-
+        // Form Text itemName
+        $form->addElement(new \XoopsFormText(\_MA_WGDIARIES_ITEM_NAME, 'item_name', 50, 255, $this->getVar('item_name')));
         // Form Editor DhtmlTextArea itemRemarks
         $editorConfigs = [];
         if ($isAdmin) {
@@ -140,6 +145,41 @@ class Items extends \XoopsObject
         // Form Text Date Select itemDateto
         $itemDateto = $this->isNew() ? \time() : $this->getVar('item_dateto');
         $form->addElement(new \XoopsFormDateTime(\_MA_WGDIARIES_ITEM_DATETO, 'item_dateto', '', $itemDateto), true);
+        // Form Table categories
+        $categoriesHandler = $helper->getHandler('Categories');
+        $itemCatidSelect = new \XoopsFormSelect(\_MA_WGDIARIES_ITEM_CATID, 'item_catid', $this->getVar('item_catid'));
+        $itemCatidSelect->addOptionArray($categoriesHandler->getList());
+        $form->addElement($itemCatidSelect);
+        // Form Text itemTags
+        $form->addElement(new \XoopsFormText(\_MA_WGDIARIES_ITEM_TAGS, 'item_tags', 50, 255, $this->getVar('item_tags')));
+        // Form Image itemLogo
+        // Form Image itemLogo: Select Uploaded Image
+        $getItemLogo = $this->getVar('item_logo');
+        $itemLogo = $getItemLogo ?: 'blank.gif';
+        $imageDirectory = '/uploads/wgdiaries/items/logos';
+        $imageTray = new \XoopsFormElementTray(\_MA_WGDIARIES_ITEM_LOGO, '<br>');
+        $imageSelect = new \XoopsFormSelect(\sprintf(\_MA_WGDIARIES_ITEM_LOGO_UPLOADS, ".{$imageDirectory}/"), 'item_logo', $itemLogo, 5);
+        $imageArray = \XoopsLists::getImgListAsArray( \XOOPS_ROOT_PATH . $imageDirectory );
+        foreach ($imageArray as $image1) {
+            $imageSelect->addOption((string)($image1), $image1);
+        }
+        $imageSelect->setExtra("onchange='showImgSelected(\"imglabel_item_logo\", \"item_logo\", \"" . $imageDirectory . '", "", "' . \XOOPS_URL . "\")'");
+        $imageTray->addElement($imageSelect, false);
+        $imageTray->addElement(new \XoopsFormLabel('', "<br><img src='" . \XOOPS_URL . '/' . $imageDirectory . '/' . $itemLogo . "' id='imglabel_item_logo' alt='' style='max-width:100px' />"));
+        // Form Image itemLogo: Upload new image
+        $maxsize = $helper->getConfig('maxsize_image');
+        $imageTray->addElement(new \XoopsFormFile('<br>' . \_MA_WGDIARIES_FORM_UPLOAD_NEW, 'item_logo', $maxsize));
+        $imageTray->addElement(new \XoopsFormLabel(\_MA_WGDIARIES_FORM_UPLOAD_SIZE, ($maxsize / 1048576) . ' '  . \_MA_WGDIARIES_FORM_UPLOAD_SIZE_MB));
+        $imageTray->addElement(new \XoopsFormLabel(\_MA_WGDIARIES_FORM_UPLOAD_IMG_WIDTH, $helper->getConfig('maxwidth_image') . ' px'));
+        $imageTray->addElement(new \XoopsFormLabel(\_MA_WGDIARIES_FORM_UPLOAD_IMG_HEIGHT, $helper->getConfig('maxheight_image') . ' px'));
+        $form->addElement($imageTray);
+        // Form File: Upload File
+        $fileUploadTray = new \XoopsFormElementTray(\_MA_WGDIARIES_ITEM_UPLOADFILES, '<br><br>');
+        $maxsize = $helper->getConfig('maxsize_file');
+        $fileUploadTray->addElement(new \XoopsFormFile('', 'item_file0', $maxsize));
+        $fileUploadTray->addElement(new \XoopsFormLabel('', '<a class="add_more btn btn-primary" href="#">' . \_MA_WGDIARIES_ITEM_UPLOADFILES_BTN . '</a>'));
+        $form->addElement($fileUploadTray);
+        $form->addElement(new \XoopsFormLabel('', \_MA_WGDIARIES_FORM_UPLOAD_SIZE . ($maxsize / 1048576) . ' '  . \_MA_WGDIARIES_FORM_UPLOAD_SIZE_MB));
         // Form Text itemComments
         $itemComments = $this->getVar('item_comments');
         if ($isAdmin) {
@@ -148,14 +188,6 @@ class Items extends \XoopsObject
             $form->addElement(new \XoopsFormHidden('item_comments', $itemComments));
             $form->addElement(new \XoopsFormLabel(\_MA_WGDIARIES_ITEM_COMMENTS, $itemComments));
         }
-        // Form File: Upload File
-        $fileUploadTray = new \XoopsFormElementTray(\_MA_WGDIARIES_ITEM_UPLOADFILES, '<br><br>');
-        $maxsize = $helper->getConfig('maxsize_file');
-        $fileUploadTray->addElement(new \XoopsFormFile('', 'item_file0', $maxsize));
-        $fileUploadTray->addElement(new \XoopsFormLabel('', '<a class="add_more btn btn-primary" href="#">' . \_MA_WGDIARIES_ITEM_UPLOADFILES_BTN . '</a>'));
-        $form->addElement($fileUploadTray);
-        $form->addElement(new \XoopsFormLabel('', \_MA_WGDIARIES_FORM_UPLOAD_SIZE . ($maxsize / 1048576) . ' '  . \_MA_WGDIARIES_FORM_UPLOAD_SIZE_MB));
-
         // Form Text Date Select itemDatecreated
         $itemDatecreated = $this->isNew() ? \time() : $this->getVar('item_datecreated');
         // Form Select User itemSubmitter
@@ -182,27 +214,45 @@ class Items extends \XoopsObject
      */
     public function getValuesItems($keys = null, $format = null, $maxDepth = null)
     {
+        global $XoopsGroup;
         $helper  = \XoopsModules\Wgdiaries\Helper::getInstance();
         $filesHandler = $helper->getHandler('Files');
         $utility = new \XoopsModules\Wgdiaries\Utility();
         $ret = $this->getValues($keys, $format, $maxDepth);
         $ret['id']            = $this->getVar('item_id');
+        // Get groups
+        $memberHandler = \xoops_getHandler('member');
+        $xoopsGroups  = $memberHandler->getGroupList();
+        $ret['groupname']     = $xoopsGroups[$this->getVar('item_groupid')];
+        $ret['name']          = $this->getVar('item_name');
         $ret['remarks']       = $this->getVar('item_remarks', 'e');
         $editorMaxchar = $helper->getConfig('editor_maxchar');
         $ret['remarks_short'] = $utility::truncateHtml($ret['remarks'], $editorMaxchar);
         $ret['datefrom']      = \formatTimestamp($this->getVar('item_datefrom'), 'm');
         $ret['dateto']        = \formatTimestamp($this->getVar('item_dateto'), 'm');
+        $categoriesHandler = $helper->getHandler('Categories');
+        $categoriesObj = $categoriesHandler->get($this->getVar('item_catid'));
+        $ret['catid']         = $this->getVar('item_catid');
+        $ret['category']      = '';
+        if (\is_object($categoriesObj)) {
+            $ret['category'] = $categoriesObj->getVar('cat_name');
+            $ret['catlogo']  = $categoriesObj->getVar('cat_logo');
+        }
+        $ret['tags']          = $this->getVar('item_tags');
+        if ('blank.gif' === $this->getVar('item_logo') || 'blank.png' === $this->getVar('item_logo')) {
+            $ret['logo'] = '';
+        } else {
+            $ret['logo']          = $this->getVar('item_logo');
+        }
         $ret['comments']      = $this->getVar('item_comments');
         $ret['datecreated']   = \formatTimestamp($this->getVar('item_datecreated'), 's');
         $ret['submitter']     = \XoopsUser::getUnameFromId($this->getVar('item_submitter'), true);
         $crFiles = new \CriteriaCompo();
         $crFiles->add(new \Criteria('file_itemid', $this->getVar('item_id')));
         $ret['nbfiles'] = $filesHandler->getCount($crFiles);
-        $group_handler = xoops_getHandler('group');
-        $groupObj     = $group_handler->get($this->getVar('item_groupid'));
-        $ret['groupname'] = $groupObj->getVar('name');
 
         return $ret;
+
     }
 
     /**
@@ -230,7 +280,7 @@ class Items extends \XoopsObject
         switch ($target) {
             case 'default':
             default:
-                $ret = \sprintf(_MA_WGDIARIES_ITEM_CAPTION,
+                $ret = \sprintf(\_MA_WGDIARIES_ITEM_CAPTION,
                     $this->getVar('item_id'),
                     \XoopsUser::getUnameFromId($this->getVar('item_submitter'), true),
                     \formatTimestamp($this->getVar('item_datefrom'), 'm'),
@@ -238,7 +288,7 @@ class Items extends \XoopsObject
                 );
                 break;
             case 'single':
-                $ret = \sprintf(_MA_WGDIARIES_ITEM_CAPTION_SINGLE,
+                $ret = \sprintf(\_MA_WGDIARIES_ITEM_CAPTION_SINGLE,
                     \XoopsUser::getUnameFromId($this->getVar('item_submitter'), true),
                     $this->getVar('item_id'),
                     \formatTimestamp($this->getVar('item_datefrom'), 's'),

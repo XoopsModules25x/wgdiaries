@@ -39,6 +39,8 @@ $xoBreadcrumbs[] = ['title' => _MA_WGDIARIES_INDEX];
 // Paths
 $GLOBALS['xoopsTpl']->assign('xoops_icons32_url', XOOPS_ICONS32_URL);
 $GLOBALS['xoopsTpl']->assign('wgdiaries_url', WGDIARIES_URL);
+$GLOBALS['xoopsTpl']->assign('wgdiaries_upload_itemsurl', WGDIARIES_UPLOAD_ITEMS_URL);
+$GLOBALS['xoopsTpl']->assign('wgdiaries_upload_categoriesurl', WGDIARIES_UPLOAD_CATEGORIES_URL);
 
 $uid = \is_object($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->uid() : 0;
 

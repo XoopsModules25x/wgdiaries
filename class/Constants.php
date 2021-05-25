@@ -34,15 +34,7 @@ interface Constants
     // Constants for tables
     const TABLE_ITEMS = 0;
     const TABLE_FILES = 1;
-    const TABLE_GROUPS = 2;
-    const TABLE_GROUPUSERS = 3;
-
-    // Constants for status
-    public const STATUS_NONE      = 0;
-    public const STATUS_OFFLINE   = 1;
-    public const STATUS_SUBMITTED = 2;
-    public const STATUS_APPROVED  = 3;
-    public const STATUS_BROKEN    = 4;
+    const TABLE_CATEGORIES = 2;
 
     // Constants for permissions
     public const PERM_GLOBAL_NONE      = 0;

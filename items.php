@@ -43,6 +43,8 @@ $GLOBALS['xoTheme']->addStylesheet($style, null);
 // Paths
 $GLOBALS['xoopsTpl']->assign('xoops_icons32_url', XOOPS_ICONS32_URL);
 $GLOBALS['xoopsTpl']->assign('wgdiaries_url', WGDIARIES_URL);
+$GLOBALS['xoopsTpl']->assign('wgdiaries_upload_categoriesurl', WGDIARIES_UPLOAD_CATEGORIES_URL);
+$GLOBALS['xoopsTpl']->assign('wgdiaries_upload_itemsurl', WGDIARIES_UPLOAD_ITEMS_URL);
 // Keywords
 $keywords = [];
 // Breadcrumbs
@@ -125,7 +127,7 @@ switch ($op) {
                 }
                 $items[$i] = $item;
                 if ($itemsCalendar) {
-                    $calendar->addDailyHtml('', $items[$i]['item_datefrom'], $items[$i]['item_dateto']);
+                    $calendar->addDailyHtml($items[$i]['item_name'], $items[$i]['item_datefrom'], $items[$i]['item_dateto']);
                 }
 			}
 			$GLOBALS['xoopsTpl']->assign('items', $items);
@@ -225,6 +227,7 @@ switch ($op) {
 			$itemsObj = $itemsHandler->create();
 		}
         $itemsObj->setVar('item_groupid', Request::getInt('item_groupid', 0));
+        $itemsObj->setVar('item_name', Request::getString('item_name', ''));
 		$itemsObj->setVar('item_remarks', Request::getText('item_remarks', ''));
 		$itemDatefromArr = Request::getArray('item_datefrom');
 		$itemDatefromObj = \DateTime::createFromFormat(_SHORTDATESTRING, $itemDatefromArr['date']);
@@ -236,6 +239,45 @@ switch ($op) {
 		$itemDatetoObj->setTime(0, 0, 0);
 		$itemDateto = $itemDatetoObj->getTimestamp() + (int)$itemDatetoArr['time'];
 		$itemsObj->setVar('item_dateto', $itemDateto);
+        $itemsObj->setVar('item_catid', Request::getInt('item_catid', 0));
+        $itemsObj->setVar('item_tags', Request::getString('item_tags', ''));
+        // Set Var item_logo
+        include_once XOOPS_ROOT_PATH . '/class/uploader.php';
+        $filename       = $_FILES['item_logo']['name'];
+        $imgMimetype    = $_FILES['item_logo']['type'];
+        $uploaderErrors = '';
+        $uploader = new \XoopsMediaUploader(WGDIARIES_UPLOAD_ITEMS_PATH . '/logos/',
+            $helper->getConfig('mimetypes_image'),
+            $helper->getConfig('maxsize_image'), null, null);
+        if ($uploader->fetchMedia($_POST['xoops_upload_file'][0])) {
+            $name = \substr($filename, 0, (\strlen ($filename)) - (\strlen (\strrchr($filename,'.'))));
+            $imgName = \preg_replace("/[^a-zA-Z0-9]+/", "_", $name) . '_';
+            $uploader->setPrefix($imgName);
+            $uploader->fetchMedia($_POST['xoops_upload_file'][0]);
+            if (!$uploader->upload()) {
+                $uploaderErrors = $uploader->getErrors();
+            } else {
+                $savedFilename = $uploader->getSavedFileName();
+                $maxwidth  = (int)$helper->getConfig('maxwidth_image');
+                $maxheight = (int)$helper->getConfig('maxheight_image');
+                if ($maxwidth > 0 && $maxheight > 0) {
+                    // Resize image
+                    $imgHandler                = new Wgdiaries\Common\Resizer();
+                    $imgHandler->sourceFile    = WGDIARIES_UPLOAD_ITEMS_PATH . '/logos/' . $savedFilename;
+                    $imgHandler->endFile       = WGDIARIES_UPLOAD_ITEMS_PATH . '/logos/' . $savedFilename;
+                    $imgHandler->imageMimetype = $imgMimetype;
+                    $imgHandler->maxWidth      = $maxwidth;
+                    $imgHandler->maxHeight     = $maxheight;
+                    $result                    = $imgHandler->resizeImage();
+                }
+                $itemsObj->setVar('item_logo', $savedFilename);
+            }
+        } else {
+            if ($filename > '') {
+                $uploaderErrors = $uploader->getErrors();
+            }
+            $itemsObj->setVar('item_logo', Request::getString('item_logo'));
+        }
 		$itemsObj->setVar('item_comments', Request::getInt('item_comments', 0));
 		$itemDatecreatedObj = \DateTime::createFromFormat(_SHORTDATESTRING, Request::getString('item_datecreated'));
 		$itemsObj->setVar('item_datecreated', $itemDatecreatedObj->getTimestamp());
@@ -251,15 +293,14 @@ switch ($op) {
                 //upload of single file
                 $filename     = $_FILES['item_file' . $i]['name'];
                 $fileMimetype = $_FILES['item_file' . $i]['type'];
-                $imgNameDef   = $filename; //TODO: add field for description
                 $uploader = new \XoopsMediaUploader(WGDIARIES_UPLOAD_FILES_PATH . '/',
                     $helper->getConfig('mimetypes_file'),
                     $helper->getConfig('maxsize_file'), null, null);
-                if ($uploader->fetchMedia($_POST['xoops_upload_file'][$i])) {
-                    $extension = \preg_replace('/^.+\.([^.]+)$/sU', '', $filename);
-                    $imgName = \str_replace(' ', '', $imgNameDef) . '.' . $extension;
+                if ($uploader->fetchMedia($_POST['xoops_upload_file'][$i + 1])) {
+                    $name = \substr($filename, 0, (\strlen ($filename)) - (\strlen (\strrchr($filename,'.'))));
+                    $imgName = \preg_replace("/[^a-zA-Z0-9]+/", "_", $name) . '_';
                     $uploader->setPrefix($imgName);
-                    $uploader->fetchMedia($_POST['xoops_upload_file'][$i]);
+                    $uploader->fetchMedia($_POST['xoops_upload_file'][$i + 1]);
                     if (!$uploader->upload()) {
                         $uploaderErrors[] = $uploader->getErrors();
                     } else {

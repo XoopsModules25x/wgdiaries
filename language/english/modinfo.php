@@ -32,7 +32,7 @@ include_once 'common.php';
 \define('_MI_WGDIARIES_ADMENU1', 'Dashboard');
 \define('_MI_WGDIARIES_ADMENU2', 'Items');
 \define('_MI_WGDIARIES_ADMENU3', 'Files');
-//\define('_MI_WGDIARIES_ADMENU4', 'Groups');
+\define('_MI_WGDIARIES_ADMENU4', 'Categories');
 //\define('_MI_WGDIARIES_ADMENU5', 'Groupusers');
 \define('_MI_WGDIARIES_ADMENU6', 'Permissions');
 \define('_MI_WGDIARIES_ADMENU7', 'Feedback');
