@@ -12,6 +12,10 @@
 	<td><{$item.submitter}></td>
 </tr>
 <tr>
+	<td><{$smarty.const._MA_WGDIARIES_ITEM_NAME}></td>
+	<td><{$item.name}></td>
+</tr>
+<tr>
 	<td><{$smarty.const._MA_WGDIARIES_ITEM_REMARKS}></td>
 	<td><{$item.remarks}></td>
 </tr>
@@ -22,6 +26,19 @@
 <tr>
 	<td><{$smarty.const._MA_WGDIARIES_ITEM_DATETO}></td>
 	<td><{$item.dateto}></td>
+</tr>
+<tr>
+	<td><{$smarty.const._MA_WGDIARIES_ITEM_CATID}></td>
+	<td>
+		<{if $item.catlogo|default:''}>
+			<img style="max-height:30px" src="<{$wgdiaries_upload_categoriesurl}>/<{$item.catlogo}>" alt="<{$item.category}>" title="<{$item.category}>">
+		<{/if}>
+		<{$item.category}>
+	</td>
+</tr>
+<tr>
+	<td><{$smarty.const._MA_WGDIARIES_ITEM_TAGS}></td>
+	<td><{$item.tags}></td>
 </tr>
 <tr>
 	<td><{$smarty.const._MA_WGDIARIES_ITEM_NBFILES}></td>

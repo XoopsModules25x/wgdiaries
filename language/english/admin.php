@@ -31,24 +31,20 @@ include_once __DIR__ . '/main.php';
 // There are
 \define('_AM_WGDIARIES_THEREARE_ITEMS', "There are <span class='bold'>%s</span> items in the database");
 \define('_AM_WGDIARIES_THEREARE_FILES', "There are <span class='bold'>%s</span> files in the database");
-//\define('_AM_WGDIARIES_THEREARE_GROUPS', "There are <span class='bold'>%s</span> groups in the database");
-//\define('_AM_WGDIARIES_THEREARE_GROUPUSERS', "There are <span class='bold'>%s</span> groupusers in the database");
+\define('_AM_WGDIARIES_THEREARE_CATEGORIES', "There are <span class='bold'>%s</span> categories in the database");
 // ---------------- Admin Files ----------------
 // There aren't
 \define('_AM_WGDIARIES_THEREARENT_ITEMS', "There aren't items");
 \define('_AM_WGDIARIES_THEREARENT_FILES', "There aren't files");
-//\define('_AM_WGDIARIES_THEREARENT_GROUPS', "There aren't groups");
-//\define('_AM_WGDIARIES_THEREARENT_GROUPUSERS', "There aren't groupusers");
+\define('_AM_WGDIARIES_THEREARENT_CATEGORIES', "There aren't categories");
 // Buttons
 \define('_AM_WGDIARIES_ADD_ITEM', 'Add New Item');
 \define('_AM_WGDIARIES_ADD_FILE', 'Add New File');
-//\define('_AM_WGDIARIES_ADD_GROUP', 'Add New Group');
-//\define('_AM_WGDIARIES_ADD_GROUPUSER', 'Add New Groupuser');
+\define('_AM_WGDIARIES_ADD_CATEGORY', 'Add New Category');
 // Lists
 \define('_AM_WGDIARIES_LIST_ITEMS', 'List of Items');
 \define('_AM_WGDIARIES_LIST_FILES', 'List of Files');
-\define('_AM_WGDIARIES_LIST_GROUPS', 'List of Groups');
-\define('_AM_WGDIARIES_LIST_GROUPUSERS', 'List of Groupusers');
+\define('_AM_WGDIARIES_LIST_CATEGORIES', 'List of Categories');
 // ---------------- Admin Classes ----------------
 /*
 // Groupuser add/edit
@@ -61,6 +57,16 @@ include_once __DIR__ . '/main.php';
 \define('_AM_WGDIARIES_GROUPUSER_DATECREATED', 'Datecreated');
 \define('_AM_WGDIARIES_GROUPUSER_SUBMITTER', 'Submitter');
 */
+// Category add/edit
+\define('_AM_WGDIARIES_CATEGORY_ADD', 'Add Category');
+\define('_AM_WGDIARIES_CATEGORY_EDIT', 'Edit Category');
+// Elements of Category
+\define('_AM_WGDIARIES_CATEGORY_ID', 'Id');
+\define('_AM_WGDIARIES_CATEGORY_NAME', 'Name');
+\define('_AM_WGDIARIES_CATEGORY_LOGO', 'Logo');
+\define('_AM_WGDIARIES_CATEGORY_LOGO_UPLOADS', 'Logo in %s :');
+\define('_AM_WGDIARIES_CATEGORY_DATECREATED', 'Datecreated');
+\define('_AM_WGDIARIES_CATEGORY_SUBMITTER', 'Submitter');
 // ---------------- Admin Permissions ----------------
 // Permissions
 \define('_AM_WGDIARIES_PERMISSIONS_GLOBAL', 'Permissions global');

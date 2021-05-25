@@ -43,11 +43,13 @@ return (object)[
         XOOPS_UPLOAD_PATH . '/' . $moduleDirName,
         XOOPS_UPLOAD_PATH . '/' . $moduleDirName . '/items',
         XOOPS_UPLOAD_PATH . '/' . $moduleDirName . '/files',
+        XOOPS_UPLOAD_PATH . '/' . $moduleDirName . '/categories',
         XOOPS_UPLOAD_PATH . '/' . $moduleDirName . '/temp',
     ],
     'copyBlankFiles'  => [
         XOOPS_UPLOAD_PATH . '/' . $moduleDirName . '/items',
         XOOPS_UPLOAD_PATH . '/' . $moduleDirName . '/files',
+        XOOPS_UPLOAD_PATH . '/' . $moduleDirName . '/categories',
     ],
     'copyTestFolders'  => [
         [\XOOPS_ROOT_PATH . '/modules/' . $moduleDirName . '/testdata/uploads',

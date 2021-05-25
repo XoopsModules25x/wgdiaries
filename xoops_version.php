@@ -29,7 +29,7 @@ $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
 // ------------------- Informations ------------------- //
 $modversion = [
     'name'                => \_MI_WGDIARIES_NAME,
-    'version'             => 1.02,
+    'version'             => 1.03,
     'description'         => \_MI_WGDIARIES_DESC,
     'author'              => 'wedega',
     'author_mail'         => 'webmaster@wedega.com',
@@ -76,6 +76,7 @@ $modversion = [
 $modversion['templates'] = [
     // Admin templates
     ['file' => 'wgdiaries_admin_about.tpl', 'description' => '', 'type' => 'admin'],
+    ['file' => 'wgdiaries_admin_categories.tpl', 'description' => '', 'type' => 'admin'],
     ['file' => 'wgdiaries_admin_clone.tpl', 'description' => '', 'type' => 'admin'],
     ['file' => 'wgdiaries_admin_header.tpl', 'description' => '', 'type' => 'admin'],
     ['file' => 'wgdiaries_admin_index.tpl', 'description' => '', 'type' => 'admin'],
@@ -279,6 +280,42 @@ $modversion['config'][] = [
     'formtype'    => 'textbox',
     'valuetype'   => 'int',
     'default'     => 10,
+];
+// Uploads : maxsize of image
+$modversion['config'][] = [
+    'name'        => 'maxsize_image',
+    'title'       => '_MI_WGDIARIES_MAXSIZE_IMAGE',
+    'description' => '_MI_WGDIARIES_MAXSIZE_IMAGE_DESC',
+    'formtype'    => 'select',
+    'valuetype'   => 'int',
+    'default'     => 3145728,
+    'options'     => $optionMaxsize,
+];
+// Uploads : mimetypes of image
+$modversion['config'][] = [
+    'name'        => 'mimetypes_image',
+    'title'       => '_MI_WGDIARIES_MIMETYPES_IMAGE',
+    'description' => '_MI_WGDIARIES_MIMETYPES_IMAGE_DESC',
+    'formtype'    => 'select_multi',
+    'valuetype'   => 'array',
+    'default'     => ['image/gif', 'image/jpeg', 'image/png'],
+    'options'     => ['bmp' => 'image/bmp','gif' => 'image/gif','pjpeg' => 'image/pjpeg', 'jpeg' => 'image/jpeg','jpg' => 'image/jpg','jpe' => 'image/jpe', 'png' => 'image/png'],
+];
+$modversion['config'][] = [
+    'name'        => 'maxwidth_image',
+    'title'       => '_MI_WGDIARIES_MAXWIDTH_IMAGE',
+    'description' => '_MI_WGDIARIES_MAXWIDTH_IMAGE_DESC',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'int',
+    'default'     => 800,
+];
+$modversion['config'][] = [
+    'name'        => 'maxheight_image',
+    'title'       => '_MI_WGDIARIES_MAXHEIGHT_IMAGE',
+    'description' => '_MI_WGDIARIES_MAXHEIGHT_IMAGE_DESC',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'int',
+    'default'     => 800,
 ];
 // Admin pager
 $modversion['config'][] = [

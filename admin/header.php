@@ -35,6 +35,7 @@ $modPathIcon32   = WGDIARIES_URL . '/' . $GLOBALS['xoopsModule']->getInfo('modic
 $helper = \XoopsModules\Wgdiaries\Helper::getInstance();
 $itemsHandler = $helper->getHandler('Items');
 $filesHandler = $helper->getHandler('Files');
+$categoriesHandler = $helper->getHandler('Categories');
 $myts = MyTextSanitizer::getInstance();
 // 
 if (!isset($xoopsTpl) || !\is_object($xoopsTpl)) {

@@ -37,9 +37,11 @@
 			<{if $useGroups|default:false}>
 				<th><{$smarty.const._MA_WGDIARIES_ITEM_GROUPID}></th>
 			<{/if}>
-			<th><{$smarty.const._MA_WGDIARIES_ITEM_REMARKS}></th>
+			<th><{$smarty.const._MA_WGDIARIES_ITEM_LOGO}></th>
+			<th><{$smarty.const._MA_WGDIARIES_ITEM_NAME}></th>
 			<th><{$smarty.const._MA_WGDIARIES_ITEM_DATEFROM}></th>
 			<th><{$smarty.const._MA_WGDIARIES_ITEM_DATETO}></th>
+			<th><{$smarty.const._MA_WGDIARIES_ITEM_CATID}></th>
 			<th><{$smarty.const._MA_WGDIARIES_ITEM_NBFILES}></th>
 			<th><{$smarty.const._MA_WGDIARIES_ITEM_COMMENTS}></th>
 			<th>&nbsp;</th>
@@ -65,9 +67,11 @@
 			<th><{$smarty.const._MA_WGDIARIES_ITEM_GROUPID}></th>
 			<{/if}>
 			<th><{$smarty.const._MA_WGDIARIES_ITEM_SUBMITTER}></th>
+			<th><{$smarty.const._MA_WGDIARIES_ITEM_LOGO}></th>
 			<th><{$smarty.const._MA_WGDIARIES_ITEM_REMARKS}></th>
 			<th><{$smarty.const._MA_WGDIARIES_ITEM_DATEFROM}></th>
 			<th><{$smarty.const._MA_WGDIARIES_ITEM_DATETO}></th>
+			<th><{$smarty.const._MA_WGDIARIES_ITEM_CATID}></th>
 			<th><{$smarty.const._MA_WGDIARIES_ITEM_NBFILES}></th>
 			<th><{$smarty.const._MA_WGDIARIES_ITEM_COMMENTS}></th>
 			<th>&nbsp;</th>

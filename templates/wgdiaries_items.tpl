@@ -2,46 +2,46 @@
 
 <{if $itemsCount|default:0 > 0}>
 	<h3><{$itemsTitle}></h3>
-	<div class="row">
-			<{if $items_calendar|default:'' && $showItem|default:false == false}>
-				<div class="col-2"><{$items_calendar}></div>
-				<div class="col-10">
-			<{else}>
-				<div class="col-12">
-			<{/if}>
+	<{if $items_calendar|default:'' && $showItem|default:false == false}>
+		<div class="row"><div class="col-12"><{$items_calendar}></div></div>
+	<{/if}>
 
-			<div class='table-responsive'>
-				<table class='table table-<{$table_type|default:false}>'>
-					<thead>
-						<{if $showItem|default:false == false}>
-							<tr class='head'>
-								<{if $useGroups|default:false}>
-									<th><{$smarty.const._MA_WGDIARIES_ITEM_GROUPID}></th>
-								<{/if}>
-								<{if $listGroup|default:false}>
-									<th><{$smarty.const._MA_WGDIARIES_ITEM_SUBMITTER}></th>
-								<{/if}>
-								<th><{$smarty.const._MA_WGDIARIES_ITEM_REMARKS}></th>
-								<th><{$smarty.const._MA_WGDIARIES_ITEM_DATEFROM}></th>
-								<th><{$smarty.const._MA_WGDIARIES_ITEM_DATETO}></th>
-								<th><{$smarty.const._MA_WGDIARIES_ITEM_NBFILES}></th>
-								<th><{$smarty.const._MA_WGDIARIES_ITEM_COMMENTS}></th>
-								<th>&nbsp;</th>
-							</tr>
-						<{/if}>
-					</thead>
-					<tbody>
-						<{foreach item=item from=$items name=item}>
-							<{if $showItem|default:false}>
-								<{include file='db:wgdiaries_items_single.tpl' }>
-							<{else}>
-								<{include file='db:wgdiaries_items_item.tpl' }>
+	<div class="row">
+		<div class='table-responsive'>
+			<table class='table table-<{$table_type|default:false}>'>
+				<thead>
+					<{if $showItem|default:false == false}>
+						<tr class='head'>
+							<{if $useGroups|default:false}>
+								<th><{$smarty.const._MA_WGDIARIES_ITEM_GROUPID}></th>
 							<{/if}>
-						<{/foreach}>
-					</tbody>
-					<tfoot><tr><td>&nbsp;</td></tr></tfoot>
-				</table>
-			</div>
+							<{if $listGroup|default:false}>
+								<th><{$smarty.const._MA_WGDIARIES_ITEM_SUBMITTER}></th>
+							<{/if}>
+							<th><{$smarty.const._MA_WGDIARIES_ITEM_LOGO}></th>
+							<th><{$smarty.const._MA_WGDIARIES_ITEM_NAME}></th>
+							<th><{$smarty.const._MA_WGDIARIES_ITEM_REMARKS}></th>
+							<th><{$smarty.const._MA_WGDIARIES_ITEM_DATEFROM}></th>
+							<th><{$smarty.const._MA_WGDIARIES_ITEM_DATETO}></th>
+							<th><{$smarty.const._MA_WGDIARIES_ITEM_CATID}></th>
+							<th><{$smarty.const._MA_WGDIARIES_ITEM_TAGS}></th>
+							<th><{$smarty.const._MA_WGDIARIES_ITEM_NBFILES}></th>
+							<th><{$smarty.const._MA_WGDIARIES_ITEM_COMMENTS}></th>
+							<th>&nbsp;</th>
+						</tr>
+					<{/if}>
+				</thead>
+				<tbody>
+					<{foreach item=item from=$items name=item}>
+						<{if $showItem|default:false}>
+							<{include file='db:wgdiaries_items_single.tpl' }>
+						<{else}>
+							<{include file='db:wgdiaries_items_item.tpl' }>
+						<{/if}>
+					<{/foreach}>
+				</tbody>
+				<tfoot><tr><td>&nbsp;</td></tr></tfoot>
+			</table>
 		</div>
 	</div>
 <{/if}>
