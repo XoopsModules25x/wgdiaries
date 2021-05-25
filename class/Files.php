@@ -42,13 +42,13 @@ class Files extends \XoopsObject
 	 */
 	public function __construct()
 	{
-		$this->initVar('file_id', XOBJ_DTYPE_INT);
-		$this->initVar('file_itemid', XOBJ_DTYPE_INT);
-		$this->initVar('file_desc', XOBJ_DTYPE_TXTBOX);
-		$this->initVar('file_name', XOBJ_DTYPE_TXTBOX);
-        $this->initVar('file_mimetype', XOBJ_DTYPE_TXTBOX);
-		$this->initVar('file_datecreated', XOBJ_DTYPE_INT);
-		$this->initVar('file_submitter', XOBJ_DTYPE_INT);
+		$this->initVar('file_id', \XOBJ_DTYPE_INT);
+		$this->initVar('file_itemid', \XOBJ_DTYPE_INT);
+		$this->initVar('file_desc', \XOBJ_DTYPE_TXTBOX);
+		$this->initVar('file_name', \XOBJ_DTYPE_TXTBOX);
+        $this->initVar('file_mimetype', \XOBJ_DTYPE_TXTBOX);
+		$this->initVar('file_datecreated', \XOBJ_DTYPE_INT);
+		$this->initVar('file_submitter', \XOBJ_DTYPE_INT);
 	}
 
 	/**

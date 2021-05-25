@@ -42,11 +42,11 @@ class Categories extends \XoopsObject
 	 */
 	public function __construct()
 	{
-		$this->initVar('cat_id', XOBJ_DTYPE_INT);
-		$this->initVar('cat_name', XOBJ_DTYPE_TXTBOX);
-		$this->initVar('cat_logo', XOBJ_DTYPE_TXTBOX);
-		$this->initVar('cat_datecreated', XOBJ_DTYPE_INT);
-		$this->initVar('cat_submitter', XOBJ_DTYPE_INT);
+		$this->initVar('cat_id', \XOBJ_DTYPE_INT);
+		$this->initVar('cat_name', \XOBJ_DTYPE_TXTBOX);
+		$this->initVar('cat_logo', \XOBJ_DTYPE_TXTBOX);
+		$this->initVar('cat_datecreated', \XOBJ_DTYPE_INT);
+		$this->initVar('cat_submitter', \XOBJ_DTYPE_INT);
 	}
 
 	/**
@@ -83,7 +83,7 @@ class Categories extends \XoopsObject
 		if (!$action) {
 			$action = $_SERVER['REQUEST_URI'];
 		}
-		$isAdmin = $GLOBALS['xoopsUser']->isAdmin($GLOBALS['xoopsModule']->mid());
+		//$isAdmin = $GLOBALS['xoopsUser']->isAdmin($GLOBALS['xoopsModule']->mid());
 		// Title
 		$title = $this->isNew() ? \sprintf(\_AM_WGDIARIES_CATEGORY_ADD) : \sprintf(\_AM_WGDIARIES_CATEGORY_EDIT);
 		// Get Theme Form

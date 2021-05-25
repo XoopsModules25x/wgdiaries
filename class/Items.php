@@ -43,18 +43,18 @@ class Items extends \XoopsObject
      */
     public function __construct()
     {
-        $this->initVar('item_id', XOBJ_DTYPE_INT);
-        $this->initVar('item_groupid', XOBJ_DTYPE_INT);
-        $this->initVar('item_name', XOBJ_DTYPE_TXTBOX);
-        $this->initVar('item_remarks', XOBJ_DTYPE_OTHER);
-        $this->initVar('item_datefrom', XOBJ_DTYPE_INT);
-        $this->initVar('item_dateto', XOBJ_DTYPE_INT);
-        $this->initVar('item_catid', XOBJ_DTYPE_INT);
-        $this->initVar('item_tags', XOBJ_DTYPE_TXTBOX);
-        $this->initVar('item_logo', XOBJ_DTYPE_TXTBOX);
-        $this->initVar('item_comments', XOBJ_DTYPE_INT);
-        $this->initVar('item_datecreated', XOBJ_DTYPE_INT);
-        $this->initVar('item_submitter', XOBJ_DTYPE_INT);
+        $this->initVar('item_id', \XOBJ_DTYPE_INT);
+        $this->initVar('item_groupid', \XOBJ_DTYPE_INT);
+        $this->initVar('item_name', \XOBJ_DTYPE_TXTBOX);
+        $this->initVar('item_remarks', \XOBJ_DTYPE_OTHER);
+        $this->initVar('item_datefrom', \XOBJ_DTYPE_INT);
+        $this->initVar('item_dateto', \XOBJ_DTYPE_INT);
+        $this->initVar('item_catid', \XOBJ_DTYPE_INT);
+        $this->initVar('item_tags', \XOBJ_DTYPE_TXTBOX);
+        $this->initVar('item_logo', \XOBJ_DTYPE_TXTBOX);
+        $this->initVar('item_comments', \XOBJ_DTYPE_INT);
+        $this->initVar('item_datecreated', \XOBJ_DTYPE_INT);
+        $this->initVar('item_submitter', \XOBJ_DTYPE_INT);
     }
 
     /**

@@ -163,7 +163,7 @@ switch ($op) {
 				\redirect_header('categories.php', 3, \implode(', ', $GLOBALS['xoopsSecurity']->getErrors()));
 			}
 			if ($categoriesHandler->delete($categoriesObj)) {
-				\redirect_header('categories.php', 3, \_AM_WGDIARIES_FORM_DELETE_OK);
+				\redirect_header('categories.php', 3, \_MA_WGDIARIES_FORM_DELETE_OK);
 			} else {
 				$GLOBALS['xoopsTpl']->assign('error', $categoriesObj->getHtmlErrors());
 			}
@@ -171,7 +171,7 @@ switch ($op) {
 			$xoopsconfirm = new Common\XoopsConfirm(
 				['ok' => 1, 'cat_id' => $catId, 'op' => 'delete'],
 				$_SERVER['REQUEST_URI'],
-				\sprintf(\_AM_WGDIARIES_FORM_SURE_DELETE, $categoriesObj->getVar('cat_name')));
+				\sprintf(\_MA_WGDIARIES_FORM_SURE_DELETE, $categoriesObj->getVar('cat_name')));
 			$form = $xoopsconfirm->getFormXoopsConfirm();
 			$GLOBALS['xoopsTpl']->assign('form', $form->render());
 		}
