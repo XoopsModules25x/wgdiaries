@@ -1,0 +1,18 @@
+-
+    cat_id: '1'
+    cat_name: Planning
+    cat_logo: cat1.png
+    cat_datecreated: '1622039487'
+    cat_submitter: '1'
+-
+    cat_id: '2'
+    cat_name: 'In progress'
+    cat_logo: cat2.png
+    cat_datecreated: '1622039501'
+    cat_submitter: '1'
+-
+    cat_id: '3'
+    cat_name: Done
+    cat_logo: cat3.png
+    cat_datecreated: '1622039511'
+    cat_submitter: '1'

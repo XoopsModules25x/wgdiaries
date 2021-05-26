@@ -106,6 +106,7 @@ $modversion['sqlfile']['mysql'] = 'sql/mysql.sql';
 $modversion['tables'] = [
     'wgdiaries_items',
     'wgdiaries_files',
+    'wgdiaries_categories',
 ];
 // ------------------- Comments ------------------- //
 $modversion['hasComments'] = 1;
