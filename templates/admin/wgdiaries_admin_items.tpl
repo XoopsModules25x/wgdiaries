@@ -15,6 +15,7 @@
                 <th class="center"><{$smarty.const._MA_WGDIARIES_ITEM_DATETO}></th>
                 <th class="center"><{$smarty.const._MA_WGDIARIES_ITEM_CATID}></th>
                 <th class="center"><{$smarty.const._MA_WGDIARIES_ITEM_TAGS}></th>
+                <th class="center"><{$smarty.const._MA_WGDIARIES_ITEM_LOGO}></th>
                 <th class="center"><{$smarty.const._MA_WGDIARIES_ITEM_DATECREATED}></th>
                 <th class="center"><{$smarty.const._MA_WGDIARIES_ITEM_SUBMITTER}></th>
                 <th class="center width5"><{$smarty.const._MA_WGDIARIES_FORM_ACTION}></th>

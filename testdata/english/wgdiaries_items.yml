@@ -1,7 +1,7 @@
 -
     item_id: '4'
-    item_name: ''
     item_groupid: '1'
+    item_name: ''
     item_remarks: 'Remarks user1 item 1 for group1'
     item_datefrom: '1620028800'
     item_dateto: '1620057600'
@@ -13,8 +13,8 @@
     item_submitter: '1'
 -
     item_id: '5'
-    item_name: ''
     item_groupid: '1'
+    item_name: ''
     item_remarks: 'Remarks user2 item 1 for group1'
     item_datefrom: '1621273800'
     item_dateto: '1621273800'
@@ -26,8 +26,8 @@
     item_submitter: '2'
 -
     item_id: '6'
-    item_name: ''
     item_groupid: '1'
+    item_name: ''
     item_remarks: 'Remarks user1 item 2 for group1'
     item_datefrom: '1620117000'
     item_dateto: '1620145800'
@@ -39,8 +39,8 @@
     item_submitter: '1'
 -
     item_id: '7'
-    item_name: ''
     item_groupid: '2'
+    item_name: ''
     item_remarks: 'Remarks user1 item 1 for group2'
     item_datefrom: '1620203400'
     item_dateto: '1620232200'
@@ -52,8 +52,8 @@
     item_submitter: '1'
 -
     item_id: '8'
-    item_name: ''
     item_groupid: '1'
+    item_name: ''
     item_remarks: 'Remarks user1 item 3 for group1'
     item_datefrom: '1620289800'
     item_dateto: '1620318600'
@@ -65,8 +65,8 @@
     item_submitter: '1'
 -
     item_id: '9'
-    item_name: ''
     item_groupid: '1'
+    item_name: ''
     item_remarks: 'Remarks user1 item 4 for group1'
     item_datefrom: '1620370800'
     item_dateto: '1620405000'
@@ -78,8 +78,8 @@
     item_submitter: '1'
 -
     item_id: '10'
-    item_name: ''
     item_groupid: '1'
+    item_name: ''
     item_remarks: 'Remarks user1 item 5 for group1'
     item_datefrom: '1620631800'
     item_dateto: '1620667800'
@@ -91,8 +91,8 @@
     item_submitter: '1'
 -
     item_id: '11'
-    item_name: ''
     item_groupid: '1'
+    item_name: ''
     item_remarks: 'Remarks user1 item 6 for group1'
     item_datefrom: '1620721800'
     item_dateto: '1620750600'
@@ -104,8 +104,8 @@
     item_submitter: '1'
 -
     item_id: '12'
-    item_name: ''
     item_groupid: '1'
+    item_name: ''
     item_remarks: 'Remarks user1 item 7 for group1'
     item_datefrom: '1620808200'
     item_dateto: '1620837000'
@@ -117,8 +117,8 @@
     item_submitter: '1'
 -
     item_id: '13'
-    item_name: ''
     item_groupid: '1'
+    item_name: ''
     item_remarks: 'Remarks user1 item 8 for group1'
     item_datefrom: '1620894600'
     item_dateto: '1620923400'
@@ -130,8 +130,8 @@
     item_submitter: '1'
 -
     item_id: '14'
-    item_name: ''
     item_groupid: '1'
+    item_name: ''
     item_remarks: 'Remarks user1 item 9 for group1'
     item_datefrom: '1620978000'
     item_dateto: '1621006200'
@@ -143,8 +143,8 @@
     item_submitter: '1'
 -
     item_id: '15'
-    item_name: ''
     item_groupid: '1'
+    item_name: ''
     item_remarks: 'Remarks user1 item 10 for group1'
     item_datefrom: '1621067400'
     item_dateto: '1621096200'
@@ -156,8 +156,8 @@
     item_submitter: '1'
 -
     item_id: '16'
-    item_name: ''
     item_groupid: '1'
+    item_name: ''
     item_remarks: 'Remarks user1 item 11 for group1'
     item_datefrom: '1621326600'
     item_dateto: '1621355400'
@@ -169,8 +169,8 @@
     item_submitter: '1'
 -
     item_id: '17'
-    item_name: ''
     item_groupid: '1'
+    item_name: ''
     item_remarks: 'Remarks user1 item 12 for group1'
     item_datefrom: '1621413000'
     item_dateto: '1621441800'
@@ -182,8 +182,8 @@
     item_submitter: '1'
 -
     item_id: '18'
-    item_name: 'Item A'
     item_groupid: '1'
+    item_name: 'Item A'
     item_remarks: 'Remarks user1 item 13 for group1'
     item_datefrom: '1621499400'
     item_dateto: '1621504800'
@@ -195,8 +195,8 @@
     item_submitter: '1'
 -
     item_id: '19'
-    item_name: 'item B'
     item_groupid: '1'
+    item_name: 'item B'
     item_remarks: 'Remarks user1 item 14 for group1'
     item_datefrom: '1621504800'
     item_dateto: '1621517400'
@@ -208,8 +208,8 @@
     item_submitter: '1'
 -
     item_id: '20'
-    item_name: 'Item C'
     item_groupid: '1'
+    item_name: 'Item C'
     item_remarks: 'Remarks user1 item 15 for group1'
     item_datefrom: '1621517400'
     item_dateto: '1621528200'
@@ -221,8 +221,8 @@
     item_submitter: '1'
 -
     item_id: '21'
-    item_name: 'My item no. 21'
     item_groupid: '2'
+    item_name: 'My item no. 21'
     item_remarks: 'Remarks user2 item 2 for group2'
     item_datefrom: '1620117000'
     item_dateto: '1620145800'
@@ -234,8 +234,8 @@
     item_submitter: '2'
 -
     item_id: '22'
-    item_name: 'Item 22'
     item_groupid: '2'
+    item_name: 'Item 22'
     item_remarks: 'Remarks user2 item 3 for group2'
     item_datefrom: '1620117000'
     item_dateto: '1620145800'
