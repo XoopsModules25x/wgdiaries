@@ -51,9 +51,9 @@ include_once 'common.php';
 \define('_MI_WGDIARIES_SMNAME2', 'My Items');
 \define('_MI_WGDIARIES_SMNAME3', 'Submit Items');
 \define('_MI_WGDIARIES_SMNAME4', 'Items of my groups');
-\define('_MI_WGDIARIES_SMNAME5', 'Groups');
-\define('_MI_WGDIARIES_SMNAME6', 'Submit Group');
-\define('_MI_WGDIARIES_SMNAME7', 'Statistics');
+\define('_MI_WGDIARIES_SMNAME5', 'Statistics');
+\define('_MI_WGDIARIES_SMNAME6', 'Outputs');
+
 // Config
 \define('_MI_WGDIARIES_EDITOR_ADMIN', 'Editor admin');
 \define('_MI_WGDIARIES_EDITOR_ADMIN_DESC', 'Select the editor which should be used in admin area for text area fields');
@@ -76,14 +76,8 @@ include_once 'common.php';
 \define('_MI_WGDIARIES_INDEXHEADER_DESC', 'Show this text as header on index page');
 \define('_MI_WGDIARIES_ITEMS_CALENDAR', 'Show calendar items');
 \define('_MI_WGDIARIES_ITEMS_CALENDAR_DESC', 'Show calendar for own items on items page');
-\define('_MI_WGDIARIES_NUMB_COL', 'Number Columns');
-\define('_MI_WGDIARIES_NUMB_COL_DESC', 'Number Columns to View');
-\define('_MI_WGDIARIES_DIVIDEBY', 'Divide By');
-\define('_MI_WGDIARIES_DIVIDEBY_DESC', 'Divide by columns number');
 \define('_MI_WGDIARIES_TABLE_TYPE', 'Table Type');
 \define('_MI_WGDIARIES_TABLE_TYPE_DESC', 'Table Type is the bootstrap html table');
-\define('_MI_WGDIARIES_PANEL_TYPE', 'Panel Type');
-\define('_MI_WGDIARIES_PANEL_TYPE_DESC', 'Panel Type is the bootstrap html div');
 \define('_MI_WGDIARIES_IDPAYPAL', 'Paypal ID');
 \define('_MI_WGDIARIES_IDPAYPAL_DESC', 'Insert here your PayPal ID for donations');
 \define('_MI_WGDIARIES_SHOW_BREADCRUMBS', 'Show breadcrumb navigation');

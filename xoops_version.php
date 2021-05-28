@@ -82,7 +82,6 @@ $modversion['templates'] = [
     ['file' => 'wgdiaries_admin_index.tpl', 'description' => '', 'type' => 'admin'],
     ['file' => 'wgdiaries_admin_items.tpl', 'description' => '', 'type' => 'admin'],
     ['file' => 'wgdiaries_admin_files.tpl', 'description' => '', 'type' => 'admin'],
-    ['file' => 'wgdiaries_admin_groups.tpl', 'description' => '', 'type' => 'admin'],
     ['file' => 'wgdiaries_admin_permissions.tpl', 'description' => '', 'type' => 'admin'],
     ['file' => 'wgdiaries_admin_footer.tpl', 'description' => '', 'type' => 'admin'],
     // User templates
@@ -94,10 +93,9 @@ $modversion['templates'] = [
     ['file' => 'wgdiaries_items_single.tpl', 'description' => ''],
     ['file' => 'wgdiaries_files.tpl', 'description' => ''],
     ['file' => 'wgdiaries_files_item.tpl', 'description' => ''],
-    ['file' => 'wgdiaries_groups.tpl', 'description' => ''],
-    ['file' => 'wgdiaries_groups_item.tpl', 'description' => ''],
     ['file' => 'wgdiaries_breadcrumbs.tpl', 'description' => ''],
     ['file' => 'wgdiaries_statistics.tpl', 'description' => ''],
+    ['file' => 'wgdiaries_outputs.tpl', 'description' => ''],
     ['file' => 'wgdiaries_footer.tpl', 'description' => ''],
 ];
 // ------------------- Mysql ------------------- //
@@ -150,7 +148,7 @@ if ($currdirname == $moduleDirName) {
         ];
     }
     $modversion['sub'][] = [
-        'name' => \_MI_WGDIARIES_SMNAME7,
+        'name' => \_MI_WGDIARIES_SMNAME5,
         'url'  => 'statistics.php',
     ];
     /*
@@ -169,7 +167,10 @@ if ($currdirname == $moduleDirName) {
         ];
     }
     */
-
+    $modversion['sub'][] = [
+        'name' => \_MI_WGDIARIES_SMNAME6,
+        'url'  => 'outputs.php',
+    ];
 }
 // ------------------- Config ------------------- //
 // Editor Admin
@@ -372,26 +373,6 @@ $modversion['config'][] = [
     'valuetype'   => 'text',
     'default'     => \_MI_WGDIARIES_DESC,
 ];
-// Number column
-$modversion['config'][] = [
-    'name'        => 'numb_col',
-    'title'       => '_MI_WGDIARIES_NUMB_COL',
-    'description' => '_MI_WGDIARIES_NUMB_COL_DESC',
-    'formtype'    => 'select',
-    'valuetype'   => 'int',
-    'default'     => 1,
-    'options'     => [1 => '1', 2 => '2', 3 => '3', 4 => '4'],
-];
-// Divide by
-$modversion['config'][] = [
-    'name'        => 'divideby',
-    'title'       => '_MI_WGDIARIES_DIVIDEBY',
-    'description' => '_MI_WGDIARIES_DIVIDEBY_DESC',
-    'formtype'    => 'select',
-    'valuetype'   => 'int',
-    'default'     => 1,
-    'options'     => [1 => '1', 2 => '2', 3 => '3', 4 => '4'],
-];
 // Table type
 $modversion['config'][] = [
     'name'        => 'table_type',
@@ -402,16 +383,7 @@ $modversion['config'][] = [
     'default'     => 'bordered',
     'options'     => ['bordered' => 'bordered', 'striped' => 'striped', 'hover' => 'hover', 'condensed' => 'condensed'],
 ];
-// Panel by
-$modversion['config'][] = [
-    'name'        => 'panel_type',
-    'title'       => '_MI_WGDIARIES_PANEL_TYPE',
-    'description' => '_MI_WGDIARIES_PANEL_TYPE_DESC',
-    'formtype'    => 'select',
-    'valuetype'   => 'text',
-    'default'     => 'default',
-    'options'     => ['default' => 'default', 'primary' => 'primary', 'success' => 'success', 'info' => 'info', 'warning' => 'warning', 'danger' => 'danger'],
-];
+
 // Paypal ID
 $modversion['config'][] = [
     'name'        => 'donations',

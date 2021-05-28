@@ -147,8 +147,12 @@ class Items extends \XoopsObject
         $form->addElement(new \XoopsFormDateTime(\_MA_WGDIARIES_ITEM_DATETO, 'item_dateto', '', $itemDateto), true);
         // Form Table categories
         $categoriesHandler = $helper->getHandler('Categories');
+        $crCategories = new \CriteriaCompo();
+        $crCategories->add(new \Criteria('cat_online', 1));
+        $crCategories->setSort('cat_weight');
+        $crCategories->setOrder('ASC');
         $itemCatidSelect = new \XoopsFormSelect(\_MA_WGDIARIES_ITEM_CATID, 'item_catid', $this->getVar('item_catid'));
-        $itemCatidSelect->addOptionArray($categoriesHandler->getList());
+        $itemCatidSelect->addOptionArray($categoriesHandler->getList($crCategories));
         $form->addElement($itemCatidSelect);
         // Form Text itemTags
         $form->addElement(new \XoopsFormText(\_MA_WGDIARIES_ITEM_TAGS, 'item_tags', 50, 255, $this->getVar('item_tags')));

@@ -50,6 +50,8 @@ CREATE TABLE `wgdiaries_categories` (
   `cat_id` INT(8) UNSIGNED NOT NULL AUTO_INCREMENT,
   `cat_name` VARCHAR(255) NOT NULL DEFAULT '',
   `cat_logo` VARCHAR(255) NOT NULL DEFAULT '',
+  `cat_online` INT(1) NOT NULL DEFAULT '1',
+  `cat_weight` INT(10) NOT NULL DEFAULT '0',
   `cat_datecreated` INT(11) NOT NULL DEFAULT '0',
   `cat_submitter` INT(10) NOT NULL DEFAULT '0',
   PRIMARY KEY (`cat_id`)

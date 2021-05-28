@@ -127,54 +127,55 @@ As you can see, you have created a page with a list of links at the top to navig
 \define('_MA_WGDIARIES_STATS_HOURS', 'Hours');
 \define('_MA_WGDIARIES_STATS_USER', 'User');
 // calendar
-define('_MA_WGDIARIES_CAL_MIN_SUNDAY', 'Su');
-define('_MA_WGDIARIES_CAL_MIN_MONDAY', 'Mo');
-define('_MA_WGDIARIES_CAL_MIN_TUESDAY', 'Tu');
-define('_MA_WGDIARIES_CAL_MIN_WEDNESDAY', 'We');
-define('_MA_WGDIARIES_CAL_MIN_THURSDAY', 'Th');
-define('_MA_WGDIARIES_CAL_MIN_FRIDAY', 'Fr');
-define('_MA_WGDIARIES_CAL_MIN_SATURDAY', 'Sa');
+\define('_MA_WGDIARIES_CAL_MIN_SUNDAY', 'Su');
+\define('_MA_WGDIARIES_CAL_MIN_MONDAY', 'Mo');
+\define('_MA_WGDIARIES_CAL_MIN_TUESDAY', 'Tu');
+\define('_MA_WGDIARIES_CAL_MIN_WEDNESDAY', 'We');
+\define('_MA_WGDIARIES_CAL_MIN_THURSDAY', 'Th');
+\define('_MA_WGDIARIES_CAL_MIN_FRIDAY', 'Fr');
+\define('_MA_WGDIARIES_CAL_MIN_SATURDAY', 'Sa');
 // Normal Text
-define('_MA_WGDIARIES_CAL_SUNDAY', 'Sunday');
-define('_MA_WGDIARIES_CAL_MONDAY', 'Monday');
-define('_MA_WGDIARIES_CAL_TUESDAY', 'Tuesday');
-define('_MA_WGDIARIES_CAL_WEDNESDAY', 'Wednesday');
-define('_MA_WGDIARIES_CAL_THURSDAY', 'Thursday');
-define('_MA_WGDIARIES_CAL_FRIDAY', 'Friday');
-define('_MA_WGDIARIES_CAL_SATURDAY', 'Saturday');
-// Group
-/*
-\define('_MA_WGDIARIES_GROUP', 'Group');
-\define('_MA_WGDIARIES_GROUP_ADD', 'Add Groups');
-\define('_MA_WGDIARIES_GROUP_EDIT', 'Edit Groups');
-\define('_MA_WGDIARIES_GROUP_DELETE', 'Delete Groups');
-\define('_MA_WGDIARIES_GROUPS', 'Groups');
-\define('_MA_WGDIARIES_GROUPS_LIST', 'List of Groups');
-\define('_MA_WGDIARIES_GROUPS_TITLE', 'Groups title');
-\define('_MA_WGDIARIES_GROUPS_DESC', 'Groups description');
-// Caption of Group
-\define('_MA_WGDIARIES_GROUP_ID', 'Id');
-\define('_MA_WGDIARIES_GROUP_NAME', 'Name');
-\define('_MA_WGDIARIES_GROUP_LOGO', 'Logo');
-\define('_MA_WGDIARIES_GROUP_LOGO_UPLOADS', 'Logo in %s :');
-\define('_MA_WGDIARIES_GROUP_ONLINE', 'Online');
-\define('_MA_WGDIARIES_GROUP_DATECREATED', 'Datecreated');
-\define('_MA_WGDIARIES_GROUP_SUBMITTER', 'Submitter');
-// Groupuser
-\define('_MA_WGDIARIES_GROUPUSERS', 'Groupuser');
-\define('_MA_WGDIARIES_GROUPUSERS_EDIT', 'Edit Groupusers');
-\define('_MA_WGDIARIES_GROUPUSERS_DELETE', 'Delete Groupusers');
-\define('_MA_WGDIARIES_GROUPUSERS_LINKED', 'Users linked to this group');
+\define('_MA_WGDIARIES_CAL_SUNDAY', 'Sunday');
+\define('_MA_WGDIARIES_CAL_MONDAY', 'Monday');
+\define('_MA_WGDIARIES_CAL_TUESDAY', 'Tuesday');
+\define('_MA_WGDIARIES_CAL_WEDNESDAY', 'Wednesday');
+\define('_MA_WGDIARIES_CAL_THURSDAY', 'Thursday');
+\define('_MA_WGDIARIES_CAL_FRIDAY', 'Friday');
+\define('_MA_WGDIARIES_CAL_SATURDAY', 'Saturday');
+\define('_MA_WGDIARIES_CAL_JANUARY', 'January');
+\define('_MA_WGDIARIES_CAL_FEBRUARY', 'February');
+\define('_MA_WGDIARIES_CAL_MARCH', 'March');
+\define('_MA_WGDIARIES_CAL_APRIL', 'April');
+\define('_MA_WGDIARIES_CAL_MAY', 'May');
+\define('_MA_WGDIARIES_CAL_JUNE', 'June');
+\define('_MA_WGDIARIES_CAL_JULY', 'July');
+\define('_MA_WGDIARIES_CAL_AUGUST', 'August');
+\define('_MA_WGDIARIES_CAL_SEPTEMBER', 'September');
+\define('_MA_WGDIARIES_CAL_OCTOBER', 'October');
+\define('_MA_WGDIARIES_CAL_NOVEMBER', 'November');
+\define('_MA_WGDIARIES_CAL_DECEMBER', 'December');
+// Filter
+\define('_MA_WGDIARIES_FILTER_APPLY', 'Apply filter');
+\define('_MA_WGDIARIES_FILTER_RESULT', 'Result of applied filter');
+\define('_MA_WGDIARIES_FILTER_NODATA', 'No data found');
+\define('_MA_WGDIARIES_FILTERBY_PERIOD', 'Filter by period');
+\define('_MA_WGDIARIES_FILTER_PERIODFROM', 'From');
+\define('_MA_WGDIARIES_FILTER_PERIODTO', 'To');
+\define('_MA_WGDIARIES_FILTERBY_OWNER', 'Filter by owners');
+\define('_MA_WGDIARIES_FILTERBY_OWN', 'Only own items');
+\define('_MA_WGDIARIES_FILTERBY_GROUP', 'All items of the group');
+\define('_MA_WGDIARIES_FILTER_TYPEALL', 'All');
+\define('_AM_WGDIARIES_FILTER_LIMIT', 'Number of lines');
 
-// Caption of Groupuser
-\define('_MA_WGDIARIES_GROUPUSER_ID', 'Id');
-\define('_MA_WGDIARIES_GROUPUSER_GROUPID', 'Groupid');
-\define('_MA_WGDIARIES_GROUPUSER_UID', 'Uid');
-\define('_MA_WGDIARIES_GROUPUSER_DATECREATED', 'Datecreated');
-\define('_MA_WGDIARIES_GROUPUSER_SUBMITTER', 'Submitter');
-*/
-// Submit
+// ---------------- Online ----------------
+\define('_MA_WGDIARIES_ONLINE', 'Online');
+\define('_MA_WGDIARIES_OFFLINE', 'Offline');
+// ---------------- Activate ----------------
+\define('_MA_WGDIARIES_ACTIVE', 'Activated (click to deactivate)');
+\define('_MA_WGDIARIES_NONACTIVE', 'Deactivated (click to activate)');
+// General
 \define('_MA_WGDIARIES_SUBMIT', 'Submit');
+\define('_MA_WGDIARIES_PRINT_LIST', 'Print list');
 // Admin link
 \define('_MA_WGDIARIES_ADMIN', 'Admin');
 // ---------------- End ----------------

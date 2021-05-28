@@ -45,6 +45,8 @@ class Categories extends \XoopsObject
         $this->initVar('cat_id', \XOBJ_DTYPE_INT);
         $this->initVar('cat_name', \XOBJ_DTYPE_TXTBOX);
         $this->initVar('cat_logo', \XOBJ_DTYPE_TXTBOX);
+        $this->initVar('cat_online', \XOBJ_DTYPE_INT);
+        $this->initVar('cat_weight', \XOBJ_DTYPE_INT);
         $this->initVar('cat_datecreated', \XOBJ_DTYPE_INT);
         $this->initVar('cat_submitter', \XOBJ_DTYPE_INT);
     }
@@ -113,6 +115,11 @@ class Categories extends \XoopsObject
         $imageTray->addElement(new \XoopsFormLabel(\_MA_WGDIARIES_FORM_UPLOAD_IMG_WIDTH, $helper->getConfig('maxwidth_image') . ' px'));
         $imageTray->addElement(new \XoopsFormLabel(\_MA_WGDIARIES_FORM_UPLOAD_IMG_HEIGHT, $helper->getConfig('maxheight_image') . ' px'));
         $form->addElement($imageTray);
+        // Form Radio Yes/No catOnline
+        $catOnline = $this->isNew() ? 0 : $this->getVar('cat_online');
+        $form->addElement(new \XoopsFormRadioYN(\_AM_WGDIARIES_CATEGORY_ONLINE, 'cat_online', $catOnline));
+        // Form Text catWeight
+        $form->addElement(new \XoopsFormText(\_AM_WGDIARIES_CATEGORY_WEIGHT, 'cat_weight', 50, 255, $this->getVar('cat_weight')));
         // Form Text Date Select catDatecreated
         $catDatecreated = $this->isNew() ? time() : $this->getVar('cat_datecreated');
         $form->addElement(new \XoopsFormTextDateSelect(\_AM_WGDIARIES_CATEGORY_DATECREATED, 'cat_datecreated', '', $catDatecreated));
@@ -138,6 +145,8 @@ class Categories extends \XoopsObject
         $ret['id']          = $this->getVar('cat_id');
         $ret['name']        = $this->getVar('cat_name');
         $ret['logo']        = $this->getVar('cat_logo');
+        $ret['online']      = (int)$this->getVar('cata_online') > 0 ? _YES : _NO;
+        $ret['weight']      = $this->getVar('cat_weight');
         $ret['datecreated'] = \formatTimestamp($this->getVar('cat_datecreated'), 's');
         $ret['submitter']   = \XoopsUser::getUnameFromId($this->getVar('cat_submitter'), true);
         return $ret;

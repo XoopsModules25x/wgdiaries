@@ -31,6 +31,7 @@ if (!\defined('XOOPS_ICONS32_URL')) {
 \define('WGDIARIES_DIRNAME', 'wgdiaries');
 \define('WGDIARIES_PATH', \XOOPS_ROOT_PATH . '/modules/' . WGDIARIES_DIRNAME);
 \define('WGDIARIES_URL', \XOOPS_URL . '/modules/' . WGDIARIES_DIRNAME);
+\define('WGDIARIES_CSS_URL', WGDIARIES_URL . '/assets/css');
 \define('WGDIARIES_ICONS_PATH', WGDIARIES_PATH . '/assets/icons');
 \define('WGDIARIES_ICONS_URL', WGDIARIES_URL . '/assets/icons');
 \define('WGDIARIES_IMAGE_PATH', WGDIARIES_PATH . '/assets/images');

@@ -50,4 +50,12 @@ interface Constants
     public const PERM_GROUPS_VIEW      = 10;
     public const PERM_ITEMS_COMEDIT    = 11;
 
+    //Constants Filter
+    public const FILTERBY_OWN   = 1;
+    public const FILTERBY_GROUP = 2;
+
+    public const FILTER_TYPEALL   = 0;
+
+
+
 }
