@@ -44,12 +44,12 @@ $limit      = Request::getInt('limit', $helper->getConfig('userpager'));
 $filterByOwner = Request::getInt('filterByOwner', Constants::FILTERBY_OWN);
 $filterGroup   = Request::getInt('filterGroup', 0);
 if ('filter' == $op) {
-    $dateObj = \DateTime::createFromFormat(_SHORTDATESTRING, Request::getString('filterFrom'));
+    $dateObj = \DateTime::createFromFormat(\_SHORTDATESTRING, Request::getString('filterFrom'));
     $dateString = $dateObj->format('Y-m-d 00:00:00');
     $dateObj = DateTime::createFromFormat('Y-m-d H:i:s', $dateString);
     $filterFrom  = $dateObj->getTimestamp();
     unset($dateObj);
-    $dateObj = \DateTime::createFromFormat(_SHORTDATESTRING, Request::getString('filterTo'));
+    $dateObj = \DateTime::createFromFormat(\_SHORTDATESTRING, Request::getString('filterTo'));
     $dateString = $dateObj->format('Y-m-d 23:59:59');
     $dateObj = DateTime::createFromFormat('Y-m-d H:i:s', $dateString);
     $filterTo    = $dateObj->getTimestamp();

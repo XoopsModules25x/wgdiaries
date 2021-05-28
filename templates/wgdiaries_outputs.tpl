@@ -5,7 +5,7 @@
 <{if $formFilter|default:''}><{$formFilter}><{/if}>
 
 <{if $itemsCount|default:0 > 0}>
-    <div id="divToPrint">divToPrint
+    <div id="divToPrint">
         <style></style>
         <h3><{$resultTitle|default:''}></h3>
         <link href="<{$wgdiaries_css_print_1}>" rel="stylesheet">
