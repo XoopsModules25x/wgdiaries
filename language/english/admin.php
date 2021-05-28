@@ -65,6 +65,8 @@ include_once __DIR__ . '/main.php';
 \define('_AM_WGDIARIES_CATEGORY_NAME', 'Name');
 \define('_AM_WGDIARIES_CATEGORY_LOGO', 'Logo');
 \define('_AM_WGDIARIES_CATEGORY_LOGO_UPLOADS', 'Logo in %s :');
+\define('_AM_WGDIARIES_CATEGORY_ONLINE', 'Online');
+\define('_AM_WGDIARIES_CATEGORY_WEIGHT', 'Weight');
 \define('_AM_WGDIARIES_CATEGORY_DATECREATED', 'Datecreated');
 \define('_AM_WGDIARIES_CATEGORY_SUBMITTER', 'Submitter');
 // ---------------- Admin Permissions ----------------

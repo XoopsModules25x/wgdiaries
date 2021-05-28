@@ -49,6 +49,7 @@ switch ($op) {
         $GLOBALS['xoopsTpl']->assign('categories_count', $categoriesCount);
         $GLOBALS['xoopsTpl']->assign('wgdiaries_url', \WGDIARIES_URL);
         $GLOBALS['xoopsTpl']->assign('wgdiaries_upload_url', \WGDIARIES_UPLOAD_URL);
+        $GLOBALS['xoopsTpl']->assign('wgdiaries_icons_url', \WGDIARIES_ICONS_URL);
         // Table view categories
         if ($categoriesCount > 0) {
             foreach (\array_keys($categoriesAll) as $i) {
@@ -126,6 +127,8 @@ switch ($op) {
             }
             $categoriesObj->setVar('cat_logo', Request::getString('cat_logo'));
         }
+        $categoriesObj->setVar('cat_online', Request::getInt('cat_online', 0));
+        $categoriesObj->setVar('cat_weight', Request::getInt('cat_weight', 0));
         $categoryDatecreatedObj = \DateTime::createFromFormat(\_SHORTDATESTRING, Request::getString('cat_datecreated'));
         $categoriesObj->setVar('cat_datecreated', $categoryDatecreatedObj->getTimestamp());
         $categoriesObj->setVar('cat_submitter', Request::getInt('cat_submitter', 0));
@@ -174,6 +177,16 @@ switch ($op) {
                 \sprintf(\_MA_WGDIARIES_FORM_SURE_DELETE, $categoriesObj->getVar('cat_name')));
             $form = $xoopsconfirm->getFormXoopsConfirm();
             $GLOBALS['xoopsTpl']->assign('form', $form->render());
+        }
+        break;
+    case 'change_yn':
+        if ($catId > 0) {
+            $categoriesObj = $categoriesHandler->get($catId);
+            $categoriesObj->setVar(Request::getString('field'), Request::getInt('value', 0));
+            // Insert Data
+            if ($categoriesHandler->insert($categoriesObj, true)) {
+                \redirect_header('categories.php?op=list&amp;start=' . $start . '&amp;limit=' . $limit, 2, \_MA_WGDIARIES_FORM_OK);
+            }
         }
         break;
 }

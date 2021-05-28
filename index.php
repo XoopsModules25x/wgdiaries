@@ -64,8 +64,6 @@ if ($permissionsHandler->getPermItemsGroupView()) {
 }
 
 $GLOBALS['xoopsTpl']->assign('table_type', $helper->getConfig('table_type'));
-$GLOBALS['xoopsTpl']->assign('divideby', $helper->getConfig('divideby'));
-$GLOBALS['xoopsTpl']->assign('numb_col', $helper->getConfig('numb_col'));
 $GLOBALS['xoopsTpl']->assign('useGroups', $helper->getConfig('use_groups'));
 $GLOBALS['xoopsTpl']->assign('indexHeader', $helper->getConfig('index_header'));
 // Keywords

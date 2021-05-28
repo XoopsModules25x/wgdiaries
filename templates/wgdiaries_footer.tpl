@@ -1,4 +1,4 @@
-<div class='pull-left'><{$copyright}></div>
+<div class='clear'></div>
 
 <{if $pagenav|default:''}>
     <div class='pull-right'><{$pagenav}></div>
@@ -20,3 +20,5 @@
     </div>
 <{/if}>
 <{include file='db:system_notification_select.tpl' }>
+
+<div class='pull-left'><{$copyright}></div>
