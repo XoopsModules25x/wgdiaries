@@ -145,7 +145,7 @@ class Categories extends \XoopsObject
         $ret['id']          = $this->getVar('cat_id');
         $ret['name']        = $this->getVar('cat_name');
         $ret['logo']        = $this->getVar('cat_logo');
-        $ret['online']      = (int)$this->getVar('cata_online') > 0 ? _YES : _NO;
+        $ret['online']      = (int)$this->getVar('cata_online') > 0 ? \_YES : \_NO;
         $ret['weight']      = $this->getVar('cat_weight');
         $ret['datecreated'] = \formatTimestamp($this->getVar('cat_datecreated'), 's');
         $ret['submitter']   = \XoopsUser::getUnameFromId($this->getVar('cat_submitter'), true);
