@@ -165,8 +165,8 @@ As you can see, you have created a page with a list of links at the top to navig
 \define('_MA_WGDIARIES_FILTERBY_OWN', 'Only own items');
 \define('_MA_WGDIARIES_FILTERBY_GROUP', 'All items of the group');
 \define('_MA_WGDIARIES_FILTER_TYPEALL', 'All');
-\define('_AM_WGDIARIES_FILTER_LIMIT', 'Number of lines');
-
+\define('_MA_WGDIARIES_FILTER_LIMIT', 'Number of lines');
+\define('_MA_WGDIARIES_FILTER_LIMIT_EXCEED', 'The number of lines in the result list are less then available items for choosen filter');
 // ---------------- Online ----------------
 \define('_MA_WGDIARIES_ONLINE', 'Online');
 \define('_MA_WGDIARIES_OFFLINE', 'Offline');

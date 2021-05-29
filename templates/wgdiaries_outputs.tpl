@@ -4,6 +4,10 @@
 
 <{if $formFilter|default:''}><{$formFilter}><{/if}>
 
+<{if $filterResult|default:''}>
+    <h3><{$filterResult}></h3>
+<{/if}>
+
 <{if $itemsCount|default:0 > 0}>
     <div id="divToPrint">
         <style></style>
@@ -47,8 +51,6 @@
     <div class="row">
         <div class="col-12 center"><input class="btn btn-primary" type="button" value="<{$smarty.const._MA_WGDIARIES_PRINT_LIST}>" onclick="PrintDiv();" /></div>
     </div>
-<{else}>
-    <p><{$smarty.const._MA_WGDIARIES_FILTER_NODATA}></p>
 <{/if}>
 
 <{if $error|default:''}>

@@ -126,18 +126,20 @@ class ItemsHandler extends \XoopsPersistableObjectHandler
     }
 
     /**
- * @public function to get items for given params
- *
- * @param int  $uid         : select by/exclude given uid
- * @param int  $start
- * @param int  $limit
- * @param int  $from        : filter date created from (timestamp)
- * @param int  $to          : filter date created to (timestamp)
- * @param bool $mygroups    : show items of all groups of current user
- * @param bool $excludeuid  : exclude given uid from result
- * @return bool|array
- */
-    public function getItems($uid = 0, $start = 0, $limit = 0, $from = 0, $to = 0, $mygroups = false, $excludeuid = false, $groupid = 0)
+     * @public function to get items for given params
+     *
+     * @param int  $uid         : select by/exclude given uid
+     * @param int  $start
+     * @param int  $limit
+     * @param int  $from        : filter date created from (timestamp)
+     * @param int  $to          : filter date created to (timestamp)
+     * @param bool $mygroups    : show items of all groups of current user
+     * @param bool $excludeuid  : exclude given uid from result
+     * @param int  $groupid     : filter by given group id
+     * @param int  $catid       : filter by given cat id
+     * @return bool|array
+     */
+    public function getItems($uid = 0, $start = 0, $limit = 0, $from = 0, $to = 0, $mygroups = false, $excludeuid = false, $groupid = 0, $catid = 0)
     {
         $helper  = Wgdiaries\Helper::getInstance();
         $itemsHandler = $helper->getHandler('Items');
@@ -158,6 +160,9 @@ class ItemsHandler extends \XoopsPersistableObjectHandler
         }
         if ($groupid >  0) {
             $crItems->add(new \Criteria('item_groupid', $groupid));
+        }
+        if ($catid >  0) {
+            $crItems->add(new \Criteria('item_catid', $catid));
         }
         if ($from >  0) {
             $crItems->add(new \Criteria('item_datefrom', $from, '>='));
@@ -183,7 +188,7 @@ class ItemsHandler extends \XoopsPersistableObjectHandler
             return $items;
         }
 
-        return false;
+        return [];
     }
 
     /**
@@ -194,9 +199,11 @@ class ItemsHandler extends \XoopsPersistableObjectHandler
      * @param int  $to          : filter date created to (timestamp)
      * @param bool $mygroups    : show items of all groups of current user
      * @param bool $excludeuid  : exclude given uid from result
+     * @param int  $groupid     : filter by given group id
+     * @param int  $catid       : filter by given cat id
      * @return int
      */
-    public function getItemsCount($uid = 0, $from = 0, $to = 0, $mygroups = false, $excludeuid = false, $groupid = 0)
+    public function getItemsCount($uid = 0, $from = 0, $to = 0, $mygroups = false, $excludeuid = false, $groupid = 0, $catid = 0)
     {
         $helper  = Wgdiaries\Helper::getInstance();
         $itemsHandler = $helper->getHandler('Items');
@@ -218,6 +225,9 @@ class ItemsHandler extends \XoopsPersistableObjectHandler
         if ($groupid >  0) {
             $crItems->add(new \Criteria('item_groupid', $groupid));
         }
+        if ($catid >  0) {
+            $crItems->add(new \Criteria('item_catid', $catid));
+        }
         if ($from >  0) {
             $crItems->add(new \Criteria('item_datefrom', $from, '>='));
             $crItems->add(new \Criteria('item_dateto', $to, '<='));
@@ -230,17 +240,16 @@ class ItemsHandler extends \XoopsPersistableObjectHandler
 
     /**
      * @public function to get form for filter items
-     * @param $filterYear
-     * @param $filterMonthFrom
-     * @param $filterYearFrom
-     * @param $filterMonthTo
-     * @param $filterYearTo
-     * @param $yearMin
-     * @param $yearMax
-     * @param string $op
+     * @param $filterFrom
+     * @param $filterTo
+     * @param $start
+     * @param $limit
+     * @param $filterByOwner
+     * @param $filterGroup
+     * @param $filterCat
      * @return FormInline
      */
-    public static function getFormFilterItems($filterFrom, $filterTo, $start, $limit, $filterByOwner, $filterGroup)
+    public static function getFormFilterItems($filterFrom, $filterTo, $start, $limit, $filterByOwner, $filterGroup, $filterCat)
     {
 
         $helper = Wgdiaries\Helper::getInstance();
@@ -291,9 +300,22 @@ class ItemsHandler extends \XoopsPersistableObjectHandler
             $form->addElement(new \XoopsFormHidden('filterOwner', Constants::FILTERBY_OWN));
         }
 
+        //linebreak
+        $form->addElement(new \XoopsFormHidden('linebreak', ''));
+        // Form Table categories
+        $categoriesHandler = $helper->getHandler('Categories');
+        $crCategories = new \CriteriaCompo();
+        $crCategories->add(new \Criteria('cat_online', 1));
+        $crCategories->setSort('cat_weight');
+        $crCategories->setOrder('ASC');
+        $itemCatidSelect = new \XoopsFormSelect(\_MA_WGDIARIES_ITEM_CATID, 'filterCat', $filterCat);
+        $itemCatidSelect->addOption(0, \_MA_WGDIARIES_FILTER_TYPEALL);
+        $itemCatidSelect->addOptionArray($categoriesHandler->getList($crCategories));
+        $form->addElement($itemCatidSelect);
+
         $form->addElement(new \XoopsFormHidden('start', $start));
         // Form Text limit
-        $form->addElement(new \XoopsFormText(\_AM_WGDIARIES_FILTER_LIMIT, 'limit', 50, 255, $limit));
+        $form->addElement(new \XoopsFormText(\_MA_WGDIARIES_FILTER_LIMIT, 'limit', 50, 255, $limit));
 
         //linebreak
         $form->addElement(new \XoopsFormHidden('linebreak', ''));
