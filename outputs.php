@@ -43,6 +43,7 @@ $start      = Request::getInt('start', 0);
 $limit      = Request::getInt('limit', $helper->getConfig('userpager'));
 $filterByOwner = Request::getInt('filterByOwner', Constants::FILTERBY_OWN);
 $filterGroup   = Request::getInt('filterGroup', 0);
+$filterCat     = Request::getInt('filterCat', 0);
 if ('filter' == $op) {
     $dateObj = \DateTime::createFromFormat(\_SHORTDATESTRING, Request::getString('filterFrom'));
     $dateString = $dateObj->format('Y-m-d 00:00:00');
@@ -84,10 +85,11 @@ $GLOBALS['xoopsTpl']->assign('wgdiaries_css_print_1', WGDIARIES_CSS_URL . '/styl
 
 $uid = \is_object($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->uid() : 0;
 
-$formFilter = $itemsHandler->getFormFilterItems($filterFrom, $filterTo, $start, $limit, $filterByOwner, $filterGroup);
+$formFilter = $itemsHandler->getFormFilterItems($filterFrom, $filterTo, $start, $limit, $filterByOwner, $filterGroup, $filterCat);
 $GLOBALS['xoopsTpl']->assign('formFilter', $formFilter->render());
 
-$items = null;
+$filtered = false;
+$items = [];
 switch ($op) {
     case 'list':
     default:
@@ -96,26 +98,38 @@ switch ($op) {
     case 'filterOwn':
         $GLOBALS['xoopsTpl']->assign('resultTitle', \_MA_WGDIARIES_FILTER_RESULT);
         if ($uid > 0) {
-            $items = $itemsHandler->getItems($uid, $start, $limit, $filterFrom, $filterTo);
+            $itemsTotal = $itemsHandler->getItemsCount($uid, $start, $limit, $filterFrom, $filterTo, false, false, 0, $filterCat);
+            $items = $itemsHandler->getItems($uid, $start, $limit, $filterFrom, $filterTo, false, false, 0, $filterCat);
         }
+        $filtered = true;
         break;
     case 'filterGroup':
         $GLOBALS['xoopsTpl']->assign('resultTitle', \_MA_WGDIARIES_FILTER_RESULT);
         if ($permissionsHandler->getPermItemsGroupView()) {
             if (Constants::FILTER_TYPEALL == $filterGroup) {
-                $items = $itemsHandler->getItems(0, $start, $limit, $filterFrom, $filterTo, true);
+                $itemsTotal = $itemsHandler->getItemsCount(0, $start, $limit, $filterFrom, $filterTo, true, false, 0, $filterCat);
+                $items = $itemsHandler->getItems(0, $start, $limit, $filterFrom, $filterTo, true, false, 0, $filterCat);
             } else {
-                $items = $itemsHandler->getItems(0, $start, $limit, $filterFrom, $filterTo, false, false, $filterGroup);
+                $itemsTotal = $itemsHandler->getItemsCount(0, $start, $limit, $filterFrom, $filterTo, false, false, $filterGroup, $filterCat);
+                $items = $itemsHandler->getItems(0, $start, $limit, $filterFrom, $filterTo, false, false, $filterGroup, $filterCat);
             }
         }
+        $filtered = true;
         break;
-
+}
+if ($filtered) {
+    $itemsCount = \count($items);
+    if ($itemsCount > 0) {
+        $GLOBALS['xoopsTpl']->assign('itemsCount', $itemsCount);
+        $GLOBALS['xoopsTpl']->assign('items', $items);
+        if ($itemsTotal > $itemsCount) {
+            $GLOBALS['xoopsTpl']->assign('filterResult', \_MA_WGDIARIES_FILTER_LIMIT_EXCEED);
+        }
+    } else {
+        $GLOBALS['xoopsTpl']->assign('filterResult', \_MA_WGDIARIES_FILTER_NODATA);
+    }
 }
 
-if (\is_array($items)) {
-    $GLOBALS['xoopsTpl']->assign('itemsCount', \count($items));
-    $GLOBALS['xoopsTpl']->assign('items', $items);
-}
 
 
 $GLOBALS['xoopsTpl']->assign('table_type', $helper->getConfig('table_type'));

@@ -5,6 +5,7 @@
  - added category weight (goffy)
  - added items list output (mjoel/goffy)
  - added single item output (mjoel/goffy)
+ - added categories to filter (goffy)
 
 ==============================================================
 1.02 [2021/05/19]
