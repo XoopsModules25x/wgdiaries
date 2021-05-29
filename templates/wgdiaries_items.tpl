@@ -48,11 +48,6 @@
 
             </div>
         </div>
-        <{if $showItem|default:false}>
-            <div class="row">
-                <div class="col-12 center"><input class="btn btn-primary" type="button" value="<{$smarty.const._MA_WGDIARIES_PRINT_ITEM}>" onclick="PrintDiv();" /></div>
-            </div>
-        <{/if}>
     </div>
 <{/if}>
 
