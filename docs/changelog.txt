@@ -3,7 +3,8 @@
 ==============================================================
  - added category online (goffy)
  - added category weight (goffy)
- - added items output (mjoel/goffy)
+ - added items list output (mjoel/goffy)
+ - added single item output (mjoel/goffy)
 
 ==============================================================
 1.02 [2021/05/19]

@@ -127,6 +127,5 @@ unset($keywords);
 // Description
 wgdiariesMetaDescription(_MA_WGDIARIES_INDEX_DESC);
 $GLOBALS['xoopsTpl']->assign('xoops_mpageurl', WGDIARIES_URL.'/index.php');
-$GLOBALS['xoopsTpl']->assign('xoops_icons32_url', XOOPS_ICONS32_URL);
-$GLOBALS['xoopsTpl']->assign('wgdiaries_upload_url', WGDIARIES_UPLOAD_URL);
+
 require __DIR__ . '/footer.php';

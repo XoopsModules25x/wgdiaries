@@ -79,6 +79,8 @@ switch ($op) {
 
         if ('show' == $op) {
             $GLOBALS['xoopsTpl']->assign('itemsTitle', \_MA_WGDIARIES_ITEM_DETAILS);
+            //add stylesheets for print output
+            $GLOBALS['xoopsTpl']->assign('wgdiaries_css_print_1', WGDIARIES_CSS_URL . '/style.css');
         } else {
             $GLOBALS['xoopsTpl']->assign('itemsTitle', \_MA_WGDIARIES_ITEMS_LISTMY);
         }

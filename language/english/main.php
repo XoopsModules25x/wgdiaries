@@ -176,6 +176,7 @@ As you can see, you have created a page with a list of links at the top to navig
 // General
 \define('_MA_WGDIARIES_SUBMIT', 'Submit');
 \define('_MA_WGDIARIES_PRINT_LIST', 'Print list');
+\define('_MA_WGDIARIES_PRINT_ITEM', 'Print item');
 // Admin link
 \define('_MA_WGDIARIES_ADMIN', 'Admin');
 // ---------------- End ----------------
