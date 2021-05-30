@@ -177,6 +177,12 @@ As you can see, you have created a page with a list of links at the top to navig
 \define('_MA_WGDIARIES_SUBMIT', 'Submit');
 \define('_MA_WGDIARIES_PRINT_LIST', 'Print list');
 \define('_MA_WGDIARIES_PRINT_ITEM', 'Print item');
+\define('_MA_WGDIARIES_SORT', 'Sort result');
+\define('_MA_WGDIARIES_SORT_DATEFROM_ASC', 'Sort date from ascending');
+\define('_MA_WGDIARIES_SORT_DATEFROM_DESC', 'Sort date from descending');
+\define('_MA_WGDIARIES_SORT_DATECREATED_ASC', 'Sort date created ascending');
+\define('_MA_WGDIARIES_SORT_DATECREATED_DESC', 'Sort date created descending');
+
 // Admin link
 \define('_MA_WGDIARIES_ADMIN', 'Admin');
 // ---------------- End ----------------

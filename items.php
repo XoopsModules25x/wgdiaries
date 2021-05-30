@@ -37,6 +37,8 @@ $op      = Request::getCmd('op', 'list');
 $start   = Request::getInt('start', 0);
 $limit   = Request::getInt('limit', $helper->getConfig('userpager'));
 $itemId  = Request::getInt('item_id', 0);
+$sortBy  = Request::getString('sortBy', 'item_datefrom');
+$orderBy = Request::getString('orderBy', 'DESC');
 
 // Define Stylesheet
 $GLOBALS['xoTheme']->addStylesheet($style, null);
@@ -89,8 +91,8 @@ switch ($op) {
         if ($itemId > 0) {
             $crItems->add(new \Criteria('item_id', $itemId));
         }
-        $crItems->setSort('item_id');
-        $crItems->setOrder('DESC');
+        $crItems->setSort($sortBy);
+        $crItems->setOrder($orderBy);
         $crItems->add(new \Criteria('item_submitter', $uid));
         $itemsCount = $itemsHandler->getCount($crItems);
         $GLOBALS['xoopsTpl']->assign('itemsCount', $itemsCount);
@@ -143,7 +145,7 @@ switch ($op) {
             // Display Navigation
             if ($itemsCount > $limit) {
                 include_once XOOPS_ROOT_PATH . '/class/pagenav.php';
-                $pagenav = new \XoopsPageNav($itemsCount, $limit, $start, 'start', 'op=list&limit=' . $limit);
+                $pagenav = new \XoopsPageNav($itemsCount, $limit, $start, 'start', 'op=list&amp;limit=' . $limit . '&amp;sortBy=' . $sortBy . '&amp;orderBy=' . $orderBy);
                 $GLOBALS['xoopsTpl']->assign('pagenav', $pagenav->renderNav(4));
             }
             $GLOBALS['xoopsTpl']->assign('table_type', $helper->getConfig('table_type'));
@@ -195,7 +197,7 @@ switch ($op) {
             // Display Navigation
             if ($itemsCount > $limit) {
                 include_once XOOPS_ROOT_PATH . '/class/pagenav.php';
-                $pagenav = new \XoopsPageNav($itemsCount, $limit, $start, 'start', 'op=list&limit=' . $limit);
+                $pagenav = new \XoopsPageNav($itemsCount, $limit, $start, 'start', 'op=list&amp;limit=' . $limit . '&amp;sortBy=' . $sortBy . '&amp;orderBy=' . $orderBy);
                 $GLOBALS['xoopsTpl']->assign('pagenav', $pagenav->renderNav(4));
             }
             $GLOBALS['xoopsTpl']->assign('table_type', $helper->getConfig('table_type'));

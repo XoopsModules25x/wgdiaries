@@ -128,18 +128,20 @@ class ItemsHandler extends \XoopsPersistableObjectHandler
     /**
      * @public function to get items for given params
      *
-     * @param int  $uid         : select by/exclude given uid
-     * @param int  $start
-     * @param int  $limit
-     * @param int  $from        : filter date created from (timestamp)
-     * @param int  $to          : filter date created to (timestamp)
-     * @param bool $mygroups    : show items of all groups of current user
-     * @param bool $excludeuid  : exclude given uid from result
-     * @param int  $groupid     : filter by given group id
-     * @param int  $catid       : filter by given cat id
+     * @param int    $uid         : select by/exclude given uid
+     * @param int    $start
+     * @param int    $limit
+     * @param int    $from        : filter date created from (timestamp)
+     * @param int    $to          : filter date created to (timestamp)
+     * @param bool   $mygroups    : show items of all groups of current user
+     * @param bool   $excludeuid  : exclude given uid from result
+     * @param int    $groupid     : filter by given group id
+     * @param int    $catid       : filter by given cat id
+     * @param string $sortBy
+     * @param string $orderBy
      * @return bool|array
      */
-    public function getItems($uid = 0, $start = 0, $limit = 0, $from = 0, $to = 0, $mygroups = false, $excludeuid = false, $groupid = 0, $catid = 0)
+    public function getItems($uid = 0, $start = 0, $limit = 0, $from = 0, $to = 0, $mygroups = false, $excludeuid = false, $groupid = 0, $catid = 0, $sortBy = 'item_id', $orderBy = 'DESC')
     {
         $helper  = Wgdiaries\Helper::getInstance();
         $itemsHandler = $helper->getHandler('Items');
@@ -168,8 +170,8 @@ class ItemsHandler extends \XoopsPersistableObjectHandler
             $crItems->add(new \Criteria('item_datefrom', $from, '>='));
             $crItems->add(new \Criteria('item_dateto', $to, '<='));
         }
-        $crItems->setSort('item_id');
-        $crItems->setOrder('DESC');
+        $crItems->setSort($sortBy);
+        $crItems->setOrder($orderBy);
         $itemsCount = $itemsHandler->getCount($crItems);
         if ($itemsCount > 0) {
             if ($start > 0) {
@@ -247,9 +249,10 @@ class ItemsHandler extends \XoopsPersistableObjectHandler
      * @param $filterByOwner
      * @param $filterGroup
      * @param $filterCat
+     * @param $filterSort
      * @return FormInline
      */
-    public static function getFormFilterItems($filterFrom, $filterTo, $start, $limit, $filterByOwner, $filterGroup, $filterCat)
+    public static function getFormFilterItems($filterFrom, $filterTo, $start, $limit, $filterByOwner, $filterGroup, $filterCat, $filterSort)
     {
 
         $helper = Wgdiaries\Helper::getInstance();
@@ -316,6 +319,15 @@ class ItemsHandler extends \XoopsPersistableObjectHandler
         $form->addElement(new \XoopsFormHidden('start', $start));
         // Form Text limit
         $form->addElement(new \XoopsFormText(\_MA_WGDIARIES_FILTER_LIMIT, 'limit', 50, 255, $limit));
+
+        //linebreak
+        $form->addElement(new \XoopsFormHidden('linebreak', ''));
+        $filterSortSelect = new \XoopsFormSelect(\_MA_WGDIARIES_SORT, 'filterSort', $filterSort);
+        $filterSortSelect->addOption('item_datefrom-DESC', \_MA_WGDIARIES_SORT_DATEFROM_DESC);
+        $filterSortSelect->addOption('item_datefrom-ASC', \_MA_WGDIARIES_SORT_DATEFROM_ASC);
+        $filterSortSelect->addOption('item_datecreated-DESC', \_MA_WGDIARIES_SORT_DATECREATED_DESC);
+        $filterSortSelect->addOption('item_datecreated-ASC', \_MA_WGDIARIES_SORT_DATECREATED_ASC);
+        $form->addElement($filterSortSelect);
 
         //linebreak
         $form->addElement(new \XoopsFormHidden('linebreak', ''));

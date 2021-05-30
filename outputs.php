@@ -31,29 +31,29 @@ require __DIR__ . '/header.php';
 $GLOBALS['xoopsOption']['template_main'] = 'wgdiaries_outputs.tpl';
 include_once XOOPS_ROOT_PATH . '/header.php';
 
-$op         = Request::getCmd('op', 'list');
-$year       = Request::getInt('year', (int) date('Y'));
-$month      = Request::getInt('month', (int) date('n'));
-$lastday    = (int) date('t', \strtotime($month . '/1/' . $year));
-//$yearStart  = mktime(0, 0, 0, 1, 1, $year);
-//$yearEnd    = mktime(23, 59, 59, 12, 31, $year) ;
+$year     = (int) date('Y');
+$month    = (int) date('n');
+$lastday  = (int) date('t', \strtotime($month . '/1/' . $year));
 $dayStart = mktime(0, 0, 0, $month, 1, $year);
 $dayEnd   = mktime(23, 59, 59, $month, $lastday, $year);
-$start      = Request::getInt('start', 0);
-$limit      = Request::getInt('limit', $helper->getConfig('userpager'));
+
+$op            = Request::getCmd('op', 'list');
+$start         = Request::getInt('start', 0);
+$limit         = Request::getInt('limit', $helper->getConfig('userpager'));
 $filterByOwner = Request::getInt('filterByOwner', Constants::FILTERBY_OWN);
 $filterGroup   = Request::getInt('filterGroup', 0);
 $filterCat     = Request::getInt('filterCat', 0);
+$filterSort    = Request::getString('filterSort', 'item_datefrom-DESC');
 if ('filter' == $op) {
     $dateObj = \DateTime::createFromFormat(\_SHORTDATESTRING, Request::getString('filterFrom'));
     $dateString = $dateObj->format('Y-m-d 00:00:00');
     $dateObj = DateTime::createFromFormat('Y-m-d H:i:s', $dateString);
-    $filterFrom  = $dateObj->getTimestamp();
+    $filterFrom = $dateObj->getTimestamp();
     unset($dateObj);
     $dateObj = \DateTime::createFromFormat(\_SHORTDATESTRING, Request::getString('filterTo'));
     $dateString = $dateObj->format('Y-m-d 23:59:59');
     $dateObj = DateTime::createFromFormat('Y-m-d H:i:s', $dateString);
-    $filterTo    = $dateObj->getTimestamp();
+    $filterTo = $dateObj->getTimestamp();
     unset($dateObj);
 } else {
     $filterFrom = $dayStart;
@@ -69,6 +69,7 @@ if ('filter' === $op) {
         $op = 'list';
     }
 }
+list($sortBy, $orderBy) = explode('-', $filterSort);
 // Define Stylesheet
 $GLOBALS['xoTheme']->addStylesheet($style, null);
 // Keywords
@@ -80,12 +81,14 @@ $GLOBALS['xoopsTpl']->assign('xoops_icons32_url', XOOPS_ICONS32_URL);
 $GLOBALS['xoopsTpl']->assign('wgdiaries_url', WGDIARIES_URL);
 $GLOBALS['xoopsTpl']->assign('wgdiaries_upload_itemsurl', WGDIARIES_UPLOAD_ITEMS_URL);
 $GLOBALS['xoopsTpl']->assign('wgdiaries_upload_categoriesurl', WGDIARIES_UPLOAD_CATEGORIES_URL);
+$GLOBALS['xoopsTpl']->assign('wgdiaries_icons_url_16', WGDIARIES_ICONS_URL . '/16/');
 //add stylesheets for print output
 $GLOBALS['xoopsTpl']->assign('wgdiaries_css_print_1', WGDIARIES_CSS_URL . '/style.css');
 
+
 $uid = \is_object($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->uid() : 0;
 
-$formFilter = $itemsHandler->getFormFilterItems($filterFrom, $filterTo, $start, $limit, $filterByOwner, $filterGroup, $filterCat);
+$formFilter = $itemsHandler->getFormFilterItems($filterFrom, $filterTo, $start, $limit, $filterByOwner, $filterGroup, $filterCat, $filterSort);
 $GLOBALS['xoopsTpl']->assign('formFilter', $formFilter->render());
 
 $filtered = false;
@@ -99,7 +102,7 @@ switch ($op) {
         $GLOBALS['xoopsTpl']->assign('resultTitle', \_MA_WGDIARIES_FILTER_RESULT);
         if ($uid > 0) {
             $itemsTotal = $itemsHandler->getItemsCount($uid, $start, $limit, $filterFrom, $filterTo, false, false, 0, $filterCat);
-            $items = $itemsHandler->getItems($uid, $start, $limit, $filterFrom, $filterTo, false, false, 0, $filterCat);
+            $items = $itemsHandler->getItems($uid, $start, $limit, $filterFrom, $filterTo, false, false, 0, $filterCat, $sortBy, $orderBy);
         }
         $filtered = true;
         break;
@@ -108,10 +111,10 @@ switch ($op) {
         if ($permissionsHandler->getPermItemsGroupView()) {
             if (Constants::FILTER_TYPEALL == $filterGroup) {
                 $itemsTotal = $itemsHandler->getItemsCount(0, $start, $limit, $filterFrom, $filterTo, true, false, 0, $filterCat);
-                $items = $itemsHandler->getItems(0, $start, $limit, $filterFrom, $filterTo, true, false, 0, $filterCat);
+                $items = $itemsHandler->getItems(0, $start, $limit, $filterFrom, $filterTo, true, false, 0, $filterCat, $sortBy, $orderBy);
             } else {
                 $itemsTotal = $itemsHandler->getItemsCount(0, $start, $limit, $filterFrom, $filterTo, false, false, $filterGroup, $filterCat);
-                $items = $itemsHandler->getItems(0, $start, $limit, $filterFrom, $filterTo, false, false, $filterGroup, $filterCat);
+                $items = $itemsHandler->getItems(0, $start, $limit, $filterFrom, $filterTo, false, false, $filterGroup, $filterCat, $sortBy, $orderBy);
             }
         }
         $filtered = true;
@@ -130,11 +133,8 @@ if ($filtered) {
     }
 }
 
-
-
 $GLOBALS['xoopsTpl']->assign('table_type', $helper->getConfig('table_type'));
 $GLOBALS['xoopsTpl']->assign('useGroups', $helper->getConfig('use_groups'));
-$GLOBALS['xoopsTpl']->assign('indexHeader', $helper->getConfig('index_header'));
 // Keywords
 wgdiariesMetaKeywords($helper->getConfig('keywords') . ', ' . \implode(',', $keywords));
 unset($keywords);
