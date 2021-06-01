@@ -29,18 +29,18 @@ use XoopsModules\Wgdiaries\Constants;
 
 require __DIR__ . '/header.php';
 $GLOBALS['xoopsOption']['template_main'] = 'wgdiaries_index.tpl';
-include_once XOOPS_ROOT_PATH . '/header.php';
+require_once \XOOPS_ROOT_PATH . '/header.php';
 // Define Stylesheet
 $GLOBALS['xoTheme']->addStylesheet($style, null);
 // Keywords
 $keywords = [];
 // Breadcrumbs
-$xoBreadcrumbs[] = ['title' => _MA_WGDIARIES_INDEX];
+$xoBreadcrumbs[] = ['title' => \_MA_WGDIARIES_INDEX];
 // Paths
-$GLOBALS['xoopsTpl']->assign('xoops_icons32_url', XOOPS_ICONS32_URL);
-$GLOBALS['xoopsTpl']->assign('wgdiaries_url', WGDIARIES_URL);
-$GLOBALS['xoopsTpl']->assign('wgdiaries_upload_itemsurl', WGDIARIES_UPLOAD_ITEMS_URL);
-$GLOBALS['xoopsTpl']->assign('wgdiaries_upload_categoriesurl', WGDIARIES_UPLOAD_CATEGORIES_URL);
+$GLOBALS['xoopsTpl']->assign('xoops_icons32_url', \XOOPS_ICONS32_URL);
+$GLOBALS['xoopsTpl']->assign('wgdiaries_url', \WGDIARIES_URL);
+$GLOBALS['xoopsTpl']->assign('wgdiaries_upload_itemsurl', \WGDIARIES_UPLOAD_ITEMS_URL);
+$GLOBALS['xoopsTpl']->assign('wgdiaries_upload_categoriesurl', \WGDIARIES_UPLOAD_CATEGORIES_URL);
 
 $uid = \is_object($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->uid() : 0;
 
@@ -77,8 +77,8 @@ $GLOBALS['xoopsTpl']->assign('indexHeader', $helper->getConfig('index_header'));
 wgdiariesMetaKeywords($helper->getConfig('keywords') . ', ' . \implode(',', $keywords));
 unset($keywords);
 // Description
-wgdiariesMetaDescription(_MA_WGDIARIES_INDEX_DESC);
-$GLOBALS['xoopsTpl']->assign('xoops_mpageurl', WGDIARIES_URL.'/index.php');
-$GLOBALS['xoopsTpl']->assign('xoops_icons32_url', XOOPS_ICONS32_URL);
-$GLOBALS['xoopsTpl']->assign('wgdiaries_upload_url', WGDIARIES_UPLOAD_URL);
+wgdiariesMetaDescription(\_MA_WGDIARIES_INDEX_DESC);
+$GLOBALS['xoopsTpl']->assign('xoops_mpageurl', \WGDIARIES_URL.'/index.php');
+$GLOBALS['xoopsTpl']->assign('xoops_icons32_url', \XOOPS_ICONS32_URL);
+$GLOBALS['xoopsTpl']->assign('wgdiaries_upload_url', \WGDIARIES_UPLOAD_URL);
 require __DIR__ . '/footer.php';

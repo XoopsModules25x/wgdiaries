@@ -46,13 +46,13 @@ switch ($op) {
         $limit = Request::getInt('limit', $helper->getConfig('adminpager'));
         $templateMain = 'wgdiaries_admin_files.tpl';
         $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('files.php'));
-        $adminObject->addItemButton(_AM_WGDIARIES_ADD_FILE, 'files.php?op=new', 'add');
+        $adminObject->addItemButton(\_AM_WGDIARIES_ADD_FILE, 'files.php?op=new', 'add');
         $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->displayButton('left'));
         $filesCount = $filesHandler->getCountFiles();
         $filesAll = $filesHandler->getAllFiles($start, $limit);
         $GLOBALS['xoopsTpl']->assign('files_count', $filesCount);
-        $GLOBALS['xoopsTpl']->assign('wgdiaries_url', WGDIARIES_URL);
-        $GLOBALS['xoopsTpl']->assign('wgdiaries_upload_url', WGDIARIES_UPLOAD_URL);
+        $GLOBALS['xoopsTpl']->assign('wgdiaries_url', \WGDIARIES_URL);
+        $GLOBALS['xoopsTpl']->assign('wgdiaries_upload_url', \WGDIARIES_UPLOAD_URL);
         // Table view files
         if ($filesCount > 0) {
             foreach (\array_keys($filesAll) as $i) {
@@ -62,18 +62,18 @@ switch ($op) {
             }
             // Display Navigation
             if ($filesCount > $limit) {
-                include_once XOOPS_ROOT_PATH . '/class/pagenav.php';
+                require_once \XOOPS_ROOT_PATH . '/class/pagenav.php';
                 $pagenav = new \XoopsPageNav($filesCount, $limit, $start, 'start', 'op=list&limit=' . $limit);
                 $GLOBALS['xoopsTpl']->assign('pagenav', $pagenav->renderNav(4));
             }
         } else {
-            $GLOBALS['xoopsTpl']->assign('error', _AM_WGDIARIES_THEREARENT_FILES);
+            $GLOBALS['xoopsTpl']->assign('error', \_AM_WGDIARIES_THEREARENT_FILES);
         }
         break;
     case 'new':
         $templateMain = 'wgdiaries_admin_files.tpl';
         $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('files.php'));
-        $adminObject->addItemButton(_AM_WGDIARIES_LIST_FILES, 'files.php', 'list');
+        $adminObject->addItemButton(\_AM_WGDIARIES_LIST_FILES, 'files.php', 'list');
         $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->displayButton('left'));
         // Form Create
         $filesObj = $filesHandler->create();
@@ -95,14 +95,14 @@ switch ($op) {
         $filesObj->setVar('file_itemid', Request::getInt('file_itemid', 0));
         $filesObj->setVar('file_desc', Request::getString('file_desc', ''));
         // Set Var file_name
-        include_once XOOPS_ROOT_PATH . '/class/uploader.php';
+        require_once \XOOPS_ROOT_PATH . '/class/uploader.php';
         $uploaderErrors = '';
         $filename     = (string) $_FILES['file_name']['name'];
         if ( '' !== $filename) {
             //upload new file
             $fileMimetype = $_FILES['file_name']['type'];
             $imgNameDef = 'itemid_' . Request::getString('file_itemid');
-            $uploader = new \XoopsMediaUploader(WGDIARIES_UPLOAD_FILES_PATH . '/',
+            $uploader = new \XoopsMediaUploader(\WGDIARIES_UPLOAD_FILES_PATH . '/',
                 $helper->getConfig('mimetypes_file'),
                 $helper->getConfig('maxsize_file'), null, null);
             if ($uploader->fetchMedia($_POST['xoops_upload_file'][0])) {
@@ -132,9 +132,9 @@ switch ($op) {
                 \redirect_header('files.php?op=edit&file_id=' . $fileId, 5, $uploaderErrors);
             } else {
                 if ('save_add' == $op) {
-                    \redirect_header('files.php?op=new&amp;item_id=' . $itemId, 2, _MA_WGDIARIES_FORM_OK);
+                    \redirect_header('files.php?op=new&amp;item_id=' . $itemId, 2, \_MA_WGDIARIES_FORM_OK);
                 } else {
-                    \redirect_header('files.php?op=list#itemId_' . $itemId, 2, _MA_WGDIARIES_FORM_OK);
+                    \redirect_header('files.php?op=list#itemId_' . $itemId, 2, \_MA_WGDIARIES_FORM_OK);
                 }
             }
         }
@@ -146,8 +146,8 @@ switch ($op) {
     case 'edit':
         $templateMain = 'wgdiaries_admin_files.tpl';
         $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('files.php'));
-        $adminObject->addItemButton(_AM_WGDIARIES_ADD_FILE, 'files.php?op=new', 'add');
-        $adminObject->addItemButton(_AM_WGDIARIES_LIST_FILES, 'files.php', 'list');
+        $adminObject->addItemButton(\_AM_WGDIARIES_ADD_FILE, 'files.php?op=new', 'add');
+        $adminObject->addItemButton(\_AM_WGDIARIES_LIST_FILES, 'files.php', 'list');
         $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->displayButton('left'));
         // Get Form
         $filesObj = $filesHandler->get($fileId);
@@ -164,7 +164,7 @@ switch ($op) {
                 \redirect_header('files.php', 3, \implode(', ', $GLOBALS['xoopsSecurity']->getErrors()));
             }
             if ($filesHandler->delete($filesObj)) {
-                \redirect_header('files.php', 3, _MA_WGDIARIES_FORM_DELETE_OK);
+                \redirect_header('files.php', 3, \_MA_WGDIARIES_FORM_DELETE_OK);
             } else {
                 $GLOBALS['xoopsTpl']->assign('error', $filesObj->getHtmlErrors());
             }
@@ -172,7 +172,7 @@ switch ($op) {
             $xoopsconfirm = new Common\XoopsConfirm(
                 ['ok' => 1, 'file_id' => $fileId, 'op' => 'delete'],
                 $_SERVER['REQUEST_URI'],
-                \sprintf(_MA_WGDIARIES_FORM_SURE_DELETE, $filesObj->getVar('file_itemid')));
+                \sprintf(\_MA_WGDIARIES_FORM_SURE_DELETE, $filesObj->getVar('file_itemid')));
             $form = $xoopsconfirm->getFormXoopsConfirm();
             $GLOBALS['xoopsTpl']->assign('form', $form->render());
         }

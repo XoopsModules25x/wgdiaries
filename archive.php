@@ -29,7 +29,7 @@ use XoopsModules\Wgdiaries\Constants;
 
 require __DIR__ . '/header.php';
 $GLOBALS['xoopsOption']['template_main'] = 'wgdiaries_archive.tpl';
-include_once XOOPS_ROOT_PATH . '/header.php';
+require_once \XOOPS_ROOT_PATH . '/header.php';
 
 $op = Request::getCmd('op', 'list');
 
@@ -38,10 +38,10 @@ $GLOBALS['xoTheme']->addStylesheet($style, null);
 // Keywords
 $keywords = [];
 // Breadcrumbs
-$xoBreadcrumbs[] = ['title' => _MA_WGDIARIES_ARCHIVE];
+$xoBreadcrumbs[] = ['title' => \_MA_WGDIARIES_ARCHIVE];
 // Paths
-$GLOBALS['xoopsTpl']->assign('wgdiaries_url', WGDIARIES_URL);
-$GLOBALS['xoopsTpl']->assign('wgdiaries_upload_categoriesurl', WGDIARIES_UPLOAD_CATEGORIES_URL);
+$GLOBALS['xoopsTpl']->assign('wgdiaries_url', \WGDIARIES_URL);
+$GLOBALS['xoopsTpl']->assign('wgdiaries_upload_categoriesurl', \WGDIARIES_UPLOAD_CATEGORIES_URL);
 
 $uid = \is_object($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->uid() : 0;
 
@@ -92,9 +92,7 @@ switch ($op) {
         }
         $GLOBALS['xoopsTpl']->assign('itemsCount', \count($items));
         $GLOBALS['xoopsTpl']->assign('items', $items);
-
-
-
+        
         $GLOBALS['xoopsTpl']->assign('table_type', $helper->getConfig('table_type'));
         $GLOBALS['xoopsTpl']->assign('useGroups', $helper->getConfig('use_groups'));
         $GLOBALS['xoopsTpl']->assign('indexHeader', $helper->getConfig('index_header'));
@@ -102,5 +100,5 @@ switch ($op) {
 }
 
 
-$GLOBALS['xoopsTpl']->assign('xoops_mpageurl', WGDIARIES_URL.'/index.php');
+$GLOBALS['xoopsTpl']->assign('xoops_mpageurl', \WGDIARIES_URL.'/index.php');
 require __DIR__ . '/footer.php';

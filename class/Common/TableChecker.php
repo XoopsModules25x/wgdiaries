@@ -117,7 +117,7 @@ class TableChecker extends \XoopsObject
         $sql_file_path = \XOOPS_ROOT_PATH . '/modules/' . $this->mydirname . '/' . $sqlfile[XOOPS_DB_TYPE];
 
         if (\file_exists($sql_file_path)) {
-            include_once \XOOPS_ROOT_PATH . '/class/database/sqlutility.php';
+            require_once \XOOPS_ROOT_PATH . '/class/database/sqlutility.php';
             $sqlutil = new \SqlUtility;
             $pieces = [];
             $sql_query = \trim(file_get_contents($sql_file_path));

@@ -26,7 +26,7 @@ declare(strict_types=1);
 
 use XoopsModules\Wgdiaries\Common;
 
-include_once \dirname(__DIR__) . '/preloads/autoloader.php';
+require_once \dirname(__DIR__) . '/preloads/autoloader.php';
 require __DIR__ . '/header.php';
 
 // Template Index
@@ -37,10 +37,10 @@ $countItems = $itemsHandler->getCount();
 $countFiles = $filesHandler->getCount();
 
 // InfoBox Statistics
-$adminObject->addInfoBox(_AM_WGDIARIES_STATISTICS);
+$adminObject->addInfoBox(\_AM_WGDIARIES_STATISTICS);
 // Info elements
-$adminObject->addInfoBoxLine(\sprintf( '<label>' . _AM_WGDIARIES_THEREARE_ITEMS . '</label>', $countItems));
-$adminObject->addInfoBoxLine(\sprintf( '<label>' . _AM_WGDIARIES_THEREARE_FILES . '</label>', $countFiles));
+$adminObject->addInfoBoxLine(\sprintf( '<label>' . \_AM_WGDIARIES_THEREARE_ITEMS . '</label>', $countItems));
+$adminObject->addInfoBoxLine(\sprintf( '<label>' . \_AM_WGDIARIES_THEREARE_FILES . '</label>', $countFiles));
 
 // Upload Folders
 $configurator = new Common\Configurator();
@@ -60,7 +60,7 @@ $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('inde
 // Test Data
 if ($helper->getConfig('displaySampleButton')) {
     \xoops_loadLanguage('admin/modulesadmin', 'system');
-    include_once \dirname(__DIR__) . '/testdata/index.php';
+    require_once \dirname(__DIR__) . '/testdata/index.php';
     $adminObject->addItemButton(\constant('CO_' . $moduleDirNameUpper . '_ADD_SAMPLEDATA'), '__DIR__ . /../../testdata/index.php?op=load', 'add');
     $adminObject->addItemButton(\constant('CO_' . $moduleDirNameUpper . '_SAVE_SAMPLEDATA'), '__DIR__ . /../../testdata/index.php?op=save', 'add');
 //    $adminObject->addItemButton(\constant('CO_' . $moduleDirNameUpper . '_EXPORT_SCHEMA'), '__DIR__ . /../../testdata/index.php?op=exportschema', 'add');

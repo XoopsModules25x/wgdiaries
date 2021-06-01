@@ -59,7 +59,7 @@ switch ($op) {
             }
             // Display Navigation
             if ($categoriesCount > $limit) {
-                include_once \XOOPS_ROOT_PATH . '/class/pagenav.php';
+                require_once \XOOPS_ROOT_PATH . '/class/pagenav.php';
                 $pagenav = new \XoopsPageNav($categoriesCount, $limit, $start, 'start', 'op=list&limit=' . $limit);
                 $GLOBALS['xoopsTpl']->assign('pagenav', $pagenav->renderNav(4));
             }
@@ -90,7 +90,7 @@ switch ($op) {
         // Set Vars
         $categoriesObj->setVar('cat_name', Request::getString('cat_name', ''));
         // Set Var cat_logo
-        include_once \XOOPS_ROOT_PATH . '/class/uploader.php';
+        require_once \XOOPS_ROOT_PATH . '/class/uploader.php';
         $filename       = $_FILES['cat_logo']['name'];
         $imgMimetype    = $_FILES['cat_logo']['type'];
         $imgNameDef     = Request::getString('cat_name');
