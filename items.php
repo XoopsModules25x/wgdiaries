@@ -58,8 +58,11 @@ switch ($op) {
     case 'listown':
     default:
         // Breadcrumbs
-        $xoBreadcrumbs[] = ['title' => _MA_WGDIARIES_ITEMS_LISTMY];
-
+        if ('show' === $op) {
+            $xoBreadcrumbs[] = ['title' => _MA_WGDIARIES_ITEM_DETAILS];
+        } else {
+            $xoBreadcrumbs[] = ['title' => _MA_WGDIARIES_ITEMS_LISTMY];
+        }
         $itemsCalendar = (bool)$helper->getConfig('items_calendar');
         $GLOBALS['xoopsTpl']->assign('itemsCalendar', $itemsCalendar);
         if ($itemsCalendar) {
