@@ -49,6 +49,9 @@ interface Constants
     public const PERM_GROUPS_EDIT      = 9;
     public const PERM_GROUPS_VIEW      = 10;
     public const PERM_ITEMS_COMEDIT    = 11;
+    public const PERM_CALPAGE_VIEW     = 12;
+    public const PERM_OUTPUTS_VIEW     = 13;
+    public const PERM_STATISTICS_VIEW  = 14;
 
     //Constants Filter
     public const FILTERBY_OWN   = 1;

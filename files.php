@@ -32,6 +32,10 @@ require __DIR__ . '/header.php';
 $GLOBALS['xoopsOption']['template_main'] = 'wgdiaries_files.tpl';
 include_once XOOPS_ROOT_PATH . '/header.php';
 
+if (!$permissionsHandler->getPermItemsSubmit()) {
+    \redirect_header('index.php?op=list', 3, _NOPERM);
+}
+
 $op    = Request::getCmd('op', 'list');
 $start = Request::getInt('start', 0);
 $limit = Request::getInt('limit', $helper->getConfig('userpager'));

@@ -416,4 +416,110 @@ class PermissionsHandler extends \XoopsPersistableObjectHandler
 
         return false;
     }
+
+    /**
+     * @public function getPermCalPageView
+     * returns right to view calendar page
+     * @return bool
+     */
+    public function getPermCalPageView()
+    {
+        global $xoopsUser, $xoopsModule;
+
+        if ($this->getPermGlobalView()) {
+            return true;
+        }
+        $currentuid = 0;
+        if (isset($xoopsUser) && \is_object($xoopsUser)) {
+            if ($xoopsUser->isAdmin($xoopsModule->mid())) {
+                return true;
+            }
+            $currentuid = $xoopsUser->uid();
+        }
+        $grouppermHandler = \xoops_getHandler('groupperm');
+        $mid = $xoopsModule->mid();
+        $memberHandler = \xoops_getHandler('member');
+        if (0 == $currentuid) {
+            $my_group_ids = [XOOPS_GROUP_ANONYMOUS];
+        } else {
+            $my_group_ids = $memberHandler->getGroupsByUser($currentuid);;
+        }
+
+        if ($grouppermHandler->checkRight('wgdiaries_ac', Constants::PERM_CALPAGE_VIEW, $my_group_ids, $mid)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * @public function getPermOutputsView
+     * returns right to view outputs page
+     * @return bool
+     */
+    public function getPermOutputsView()
+    {
+        global $xoopsUser, $xoopsModule;
+
+        if ($this->getPermGlobalView()) {
+            return true;
+        }
+        $currentuid = 0;
+        if (isset($xoopsUser) && \is_object($xoopsUser)) {
+            if ($xoopsUser->isAdmin($xoopsModule->mid())) {
+                return true;
+            }
+            $currentuid = $xoopsUser->uid();
+        }
+        $grouppermHandler = \xoops_getHandler('groupperm');
+        $mid = $xoopsModule->mid();
+        $memberHandler = \xoops_getHandler('member');
+        if (0 == $currentuid) {
+            $my_group_ids = [XOOPS_GROUP_ANONYMOUS];
+        } else {
+            $my_group_ids = $memberHandler->getGroupsByUser($currentuid);;
+        }
+
+        if ($grouppermHandler->checkRight('wgdiaries_ac', Constants::PERM_OUTPUTS_VIEW, $my_group_ids, $mid)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * @public function getPermStatisticsView
+     * returns right to view statistics page
+     * @return bool
+     */
+    public function getPermStatisticsView()
+    {
+        global $xoopsUser, $xoopsModule;
+
+        if ($this->getPermGlobalView()) {
+            return true;
+        }
+        $currentuid = 0;
+        if (isset($xoopsUser) && \is_object($xoopsUser)) {
+            if ($xoopsUser->isAdmin($xoopsModule->mid())) {
+                return true;
+            }
+            $currentuid = $xoopsUser->uid();
+        }
+        $grouppermHandler = \xoops_getHandler('groupperm');
+        $mid = $xoopsModule->mid();
+        $memberHandler = \xoops_getHandler('member');
+        if (0 == $currentuid) {
+            $my_group_ids = [XOOPS_GROUP_ANONYMOUS];
+        } else {
+            $my_group_ids = $memberHandler->getGroupsByUser($currentuid);;
+        }
+
+        if ($grouppermHandler->checkRight('wgdiaries_ac', Constants::PERM_STATISTICS_VIEW, $my_group_ids, $mid)) {
+            return true;
+        }
+
+        return false;
+    }
+
 }
