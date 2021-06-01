@@ -25,14 +25,20 @@ declare(strict_types=1);
 include \dirname(\dirname(__DIR__)) . '/mainfile.php';
 include __DIR__ . '/include/common.php';
 $moduleDirName = \basename(__DIR__);
-// Breadcrumbs
-$xoBreadcrumbs = [];
+
 // Get instance of module
 $helper = \XoopsModules\Wgdiaries\Helper::getInstance();
 $itemsHandler = $helper->getHandler('Items');
 $filesHandler = $helper->getHandler('Files');
 $permissionsHandler = $helper->getHandler('Permissions');
 $statisticsHandler = $helper->getHandler('Statistics');
+
+// Breadcrumbs
+$xoBreadcrumbs = [];
+if (isset($GLOBALS['xoopsModule']) && is_object($GLOBALS['xoopsModule'])) {
+    $xoBreadcrumbs[] = ['title' => $GLOBALS['xoopsModule']->getVar('name'), 'link' => \WGDIARIES_URL . '/'];
+}
+
 // 
 $myts = MyTextSanitizer::getInstance();
 // Default Css Style

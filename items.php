@@ -49,8 +49,6 @@ $GLOBALS['xoopsTpl']->assign('wgdiaries_upload_categoriesurl', WGDIARIES_UPLOAD_
 $GLOBALS['xoopsTpl']->assign('wgdiaries_upload_itemsurl', WGDIARIES_UPLOAD_ITEMS_URL);
 // Keywords
 $keywords = [];
-// Breadcrumbs
-$xoBreadcrumbs[] = ['title' => _MA_WGDIARIES_INDEX, 'link' => 'index.php'];
 
 $GLOBALS['xoopsTpl']->assign('showItem', $itemId > 0);
 
@@ -59,6 +57,9 @@ switch ($op) {
     case 'list':
     case 'listown':
     default:
+        // Breadcrumbs
+        $xoBreadcrumbs[] = ['title' => _MA_WGDIARIES_ITEMS_LISTMY];
+
         $itemsCalendar = (bool)$helper->getConfig('items_calendar');
         $GLOBALS['xoopsTpl']->assign('itemsCalendar', $itemsCalendar);
         if ($itemsCalendar) {
@@ -75,9 +76,6 @@ switch ($op) {
                 \_MA_WGDIARIES_CAL_MIN_FRIDAY,
                 \_MA_WGDIARIES_CAL_MIN_SATURDAY ]);
         }
-
-        // Breadcrumbs
-        $xoBreadcrumbs[] = ['title' => _MA_WGDIARIES_ITEMS_LIST];
 
         if ('show' == $op) {
             $GLOBALS['xoopsTpl']->assign('itemsTitle', \_MA_WGDIARIES_ITEM_DETAILS);
@@ -161,7 +159,7 @@ switch ($op) {
         break;
     case 'listgroup':
         // Breadcrumbs
-        $xoBreadcrumbs[] = ['title' => _MA_WGDIARIES_ITEMS_LIST];
+        $xoBreadcrumbs[] = ['title' => _MA_WGDIARIES_ITEMS_LISTGROUP];
 
         $uid = \is_object($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->uid() : 0;
         $crItems = new \CriteriaCompo();

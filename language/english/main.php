@@ -183,6 +183,8 @@ As you can see, you have created a page with a list of links at the top to navig
 // ---------------- Activate ----------------
 \define('_MA_WGDIARIES_ACTIVE', 'Activated (click to deactivate)');
 \define('_MA_WGDIARIES_NONACTIVE', 'Deactivated (click to activate)');
+// Outputs
+\define('_MA_WGDIARIES_OUTPUTS', 'Outputs');
 // General
 \define('_MA_WGDIARIES_SUBMIT', 'Submit');
 \define('_MA_WGDIARIES_PRINT_LIST', 'Print list');
