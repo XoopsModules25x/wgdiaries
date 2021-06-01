@@ -47,16 +47,23 @@ $uid = \is_object($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->uid() : 0;
 $start = 0;
 $limit = Request::getInt('limit', $helper->getConfig('indexpager'));
 
+if ('datefrom' === $helper->getConfig('index_sort')) {
+    $sortBy = 'item_datefrom';
+} else {
+    $sortBy = 'item_id';
+}
+$orderBy = 'DESC';
+
 // own items
-$items = $itemsHandler->getItems($uid, $start, $limit);
+$items = $itemsHandler->getItems($uid, $start, $limit, 0, 0, false, false, 0,  0, $sortBy, $orderBy);
 if (\is_array($items)) {
     $GLOBALS['xoopsTpl']->assign('itemsOwnCount', \count($items));
     $GLOBALS['xoopsTpl']->assign('itemsown', $items);
 }
 
 if ($permissionsHandler->getPermItemsGroupView()) {
-// items of my groups
-    $items = $itemsHandler->getItems($uid, $start, $limit, 0, 0, true, true);
+    // items of my groups
+    $items = $itemsHandler->getItems($uid, $start, $limit, 0, 0, true, true, 0,  0, $sortBy, $orderBy);
     if (\is_array($items)) {
         $GLOBALS['xoopsTpl']->assign('itemsGroupCount', \count($items));
         $GLOBALS['xoopsTpl']->assign('itemsgroup', $items);

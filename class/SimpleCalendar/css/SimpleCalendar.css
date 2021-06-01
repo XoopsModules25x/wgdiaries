@@ -1,38 +1,88 @@
 table.SimpleCalendar {
+  width:100%;
   font-family: Arial;
-  border-collapse: collapse; }
-  table.SimpleCalendar th {
-    background: #C9E9F0;
-    color: #0092B4;
-    font-size: 11px;
-    padding: 3px;
-    border: 1px solid #bbb;
-    border-top: none; }
-  table.SimpleCalendar tbody td {
-    vertical-align: top;
-    width: 50px;
-    height: 20px;
-    border: 1px solid #bbb;
-    background: #e6e6e6; }
-    table.SimpleCalendar tbody td time {
-      font-size: .7em;
-      display: block;
-      background: white;
-      padding: 2px;
-      text-align: right;
-      font-weight: bold; }
-    table.SimpleCalendar tbody td.SCsuffix, table.SimpleCalendar tbody td.SCprefix {
-      background: white; }
-    table.SimpleCalendar tbody td div.event {
-      color: #355;
-      font-size: .65em;
-      padding: 5px;
-      line-height: 1em;
-      border-bottom: 1px solid #bbb;
-      background: #858585;
-      color: white; }
-  table.SimpleCalendar tbody td.today {
-    background: #d2d2d2; }
-  .eventexists {
-    background-color:red;
-  }
+  border-collapse: collapse;
+}
+table.SimpleCalendar th {
+  background: #C9E9F0;
+  color: #0092B4;
+  font-size: 11px;
+  padding: 3px;
+  border: 1px solid #bbb;
+  border-top: none;
+}
+table.SimpleCalendar tbody td {
+  vertical-align: top;
+  height: 100px !important;
+  border: 1px solid #bbb;
+  background: #e6e6e6;
+}
+table.SimpleCalendar tbody td time {
+  font-size: .7em;
+  display: block;
+  background: white;
+  padding: 2px;
+  text-align: right;
+  font-weight: bold;
+}
+table.SimpleCalendar tbody td.SCsuffix, table.SimpleCalendar tbody td.SCprefix {
+  background: white;
+}
+table.SimpleCalendar tbody td div.event,
+table.SimpleCalendar tbody td div.addnew
+{
+  color: #355;
+  font-size: .65em;
+  padding: 5px;
+  line-height: 1em;
+  color: white;
+  height:30px;
+}
+table.SimpleCalendar tbody td div.event
+{
+  background: #eeeeee;
+  border-bottom: 1px solid #bbb;
+}
+table.SimpleCalendar tbody td.today {
+  background: #d2d2d2;
+}
+/*customs styles*/
+.eventexists {
+  background-color:red;
+}
+table.SimpleCalendar th.day0,
+table.SimpleCalendar th.day1,
+table.SimpleCalendar th.day2,
+table.SimpleCalendar th.day3,
+table.SimpleCalendar th.day4
+{
+  width:16%;
+}
+table.SimpleCalendar th.day5,
+table.SimpleCalendar th.day6
+{
+  width:10%;
+}
+.wgd-cal-navbar {
+  margin: 20px 0;
+}
+.wgd-cal-navbar-month {
+  margin: 20px;
+}
+.wgd-cal-navbar-link {
+  padding: 5px 10px;
+  border:1px solid #ccc;
+  border-radius:3px;
+}
+.wgd-cal-catlogo {
+  height: 25px;
+}
+.wgd-cal-eventtext {
+  margin:10px;
+}
+.wgd-cal-icon {
+  font-size:130%;
+}
+table.SimpleCalendar tbody td div.event a {
+  color:#000 !important;
+}

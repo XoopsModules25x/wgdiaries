@@ -53,7 +53,7 @@ include_once 'common.php';
 \define('_MI_WGDIARIES_SMNAME4', 'Items of my groups');
 \define('_MI_WGDIARIES_SMNAME5', 'Statistics');
 \define('_MI_WGDIARIES_SMNAME6', 'Outputs');
-
+\define('_MI_WGDIARIES_SMNAME7', 'Calendar');
 // Config
 \define('_MI_WGDIARIES_EDITOR_ADMIN', 'Editor admin');
 \define('_MI_WGDIARIES_EDITOR_ADMIN_DESC', 'Select the editor which should be used in admin area for text area fields');
@@ -70,10 +70,22 @@ include_once 'common.php';
 \define('_MI_WGDIARIES_MAX_FILEUPLOADS_DESC', 'Define the max number of uploading files per item');
 \define('_MI_WGDIARIES_MIMETYPES_FILE', 'Mime types file');
 \define('_MI_WGDIARIES_MIMETYPES_FILE_DESC', 'Define the allowed mime types for uploading files');
+\define('_MI_WGDIARIES_MAXSIZE_IMAGE', 'Max size image');
+\define('_MI_WGDIARIES_MAXSIZE_IMAGE_DESC', 'Define the max size for uploading images');
+\define('_MI_WGDIARIES_MIMETYPES_IMAGE', 'Mime types image');
+\define('_MI_WGDIARIES_MIMETYPES_IMAGE_DESC', 'Define the allowed mime types for uploading images');
+\define('_MI_WGDIARIES_MAXWIDTH_IMAGE', 'Max width image');
+\define('_MI_WGDIARIES_MAXWIDTH_IMAGE_DESC', 'Set the max width to which uploaded images should be scaled (in pixel)<br>0 means, that images keeps the original size. <br>If an image is smaller than maximum value then the image will be not enlarge, it will be save in original width.');
+\define('_MI_WGDIARIES_MAXHEIGHT_IMAGE', 'Max height image');
+\define('_MI_WGDIARIES_MAXHEIGHT_IMAGE_DESC', 'Set the max height to which uploaded images should be scaled (in pixel)<br>0 means, that images keeps the original size. <br>If an image is smaller than maximum value then the image will be not enlarge, it will be save in original height');
 \define('_MI_WGDIARIES_USE_GROUPS', 'Use groups');
 \define('_MI_WGDIARIES_USE_GROUPS_DESC', 'Use group system in order to group user items to specific groups/projects');
 \define('_MI_WGDIARIES_INDEXHEADER', 'Index header');
 \define('_MI_WGDIARIES_INDEXHEADER_DESC', 'Show this text as header on index page');
+\define('_MI_WGDIARIES_INDEXSORT', 'Index sorting');
+\define('_MI_WGDIARIES_INDEXSORT_DESC', 'Select how the items on index page be sorted');
+\define('_MI_WGDIARIES_INDEXSORT_ACT', 'Last activities');
+\define('_MI_WGDIARIES_INDEXSORT_DATEFROM', 'Item date from descending');
 \define('_MI_WGDIARIES_ITEMS_CALENDAR', 'Show calendar items');
 \define('_MI_WGDIARIES_ITEMS_CALENDAR_DESC', 'Show calendar for own items on items page');
 \define('_MI_WGDIARIES_TABLE_TYPE', 'Table Type');
@@ -88,4 +100,7 @@ include_once 'common.php';
 \define('_MI_WGDIARIES_MAINTAINEDBY_DESC', 'Allow url of support site or community');
 \define('_MI_WGDIARIES_BOOKMARKS', 'Social Bookmarks');
 \define('_MI_WGDIARIES_BOOKMARKS_DESC', 'Show Social Bookmarks in the single page');
+\define('_MI_WGDIARIES_SHOWCOPYRIGHT', 'Show copyright');
+\define('_MI_WGDIARIES_SHOWCOPYRIGHT_DESC', 'You can remove the copyright from the wgSimpleAcc, but a backlinks to www.wedega.com is expected, anywhere on your site');
+
 // ---------------- End ----------------

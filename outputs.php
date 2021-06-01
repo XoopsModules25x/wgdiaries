@@ -25,7 +25,10 @@ declare(strict_types=1);
 
 use Xmf\Request;
 use XoopsModules\Wgdiaries;
-use XoopsModules\Wgdiaries\Constants;
+use XoopsModules\Wgdiaries\{
+    Constants,
+    Filterhandler
+};
 
 require __DIR__ . '/header.php';
 $GLOBALS['xoopsOption']['template_main'] = 'wgdiaries_outputs.tpl';
@@ -88,7 +91,17 @@ $GLOBALS['xoopsTpl']->assign('wgdiaries_css_print_1', WGDIARIES_CSS_URL . '/styl
 
 $uid = \is_object($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->uid() : 0;
 
-$formFilter = $itemsHandler->getFormFilterItems($filterFrom, $filterTo, $start, $limit, $filterByOwner, $filterGroup, $filterCat, $filterSort);
+$filterHandler = new Filterhandler();
+$filterHandler->filterFrom = $filterFrom;
+$filterHandler->filterTo = $filterTo;
+$filterHandler->start = $start;
+$filterHandler->limit = $limit;
+$filterHandler->filterByOwner = $filterByOwner;
+$filterHandler->filterGroup = $filterGroup;
+$filterHandler->filterCat = $filterCat;
+$filterHandler->filterSort = $filterSort;
+
+$formFilter = $filterHandler->getFormFilterItems();
 $GLOBALS['xoopsTpl']->assign('formFilter', $formFilter->render());
 
 $filtered = false;

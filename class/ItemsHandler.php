@@ -174,10 +174,8 @@ class ItemsHandler extends \XoopsPersistableObjectHandler
         $crItems->setOrder($orderBy);
         $itemsCount = $itemsHandler->getCount($crItems);
         if ($itemsCount > 0) {
-            if ($start > 0) {
-                $crItems->setStart($start);
-            }
             if ($limit > 0) {
+                $crItems->setStart($start);
                 $crItems->setLimit($limit);
             }
             $itemsAll = $itemsHandler->getAll($crItems);
@@ -240,103 +238,4 @@ class ItemsHandler extends \XoopsPersistableObjectHandler
         return $itemsHandler->getCount($crItems);
     }
 
-    /**
-     * @public function to get form for filter items
-     * @param $filterFrom
-     * @param $filterTo
-     * @param $start
-     * @param $limit
-     * @param $filterByOwner
-     * @param $filterGroup
-     * @param $filterCat
-     * @param $filterSort
-     * @return FormInline
-     */
-    public static function getFormFilterItems($filterFrom, $filterTo, $start, $limit, $filterByOwner, $filterGroup, $filterCat, $filterSort)
-    {
-
-        $helper = Wgdiaries\Helper::getInstance();
-        $permissionsHandler = $helper->getHandler('Permissions');
-
-        $action = $_SERVER['REQUEST_URI'];
-
-        // Title
-        //$title = \_MA_WGSIMPLEACC_FILTERBY_YEAR;
-        // Get Theme Form
-        \xoops_load('XoopsFormLoader');
-        $form = new \XoopsModules\Wgdiaries\FormInline('', 'formFilter', $action, 'post', true);
-        $form->setExtra('enctype="multipart/form-data"');
-        $form->setExtra('class="wgsa-form-inline"');
-
-        // Filter period Tray
-        $selectFromToTray = new \XoopsFormElementTray(\_MA_WGDIARIES_FILTERBY_PERIOD . ': ', '&nbsp;');
-        // Filter Date From
-        $selectFromToTray->addElement(new \XoopsFormTextDateSelect(\_MA_WGDIARIES_FILTER_PERIODFROM, 'filterFrom', '', $filterFrom));
-        // Filter Date To
-        $selectFromToTray->addElement(new \XoopsFormTextDateSelect(\_MA_WGDIARIES_FILTER_PERIODTO, 'filterTo', '', $filterTo));
-        $form->addElement($selectFromToTray);
-
-        // Filter Groups
-        if ($permissionsHandler->getPermItemsGroupView()) {
-            //linebreak
-            $form->addElement(new \XoopsFormHidden('linebreak', ''));
-            $selectOwnerTray = new \XoopsFormElementTray(\_MA_WGDIARIES_FILTERBY_OWNER . ': ', '&nbsp;');
-            // Form Radio Type
-            $typeRadioSelect = new \XoopsFormRadio('', 'filterByOwner', $filterByOwner);
-            $typeRadioSelect->addOption(Constants::FILTERBY_OWN, \_MA_WGDIARIES_FILTERBY_OWN);
-            $typeRadioSelect->addOption(Constants::FILTERBY_GROUP, \_MA_WGDIARIES_FILTERBY_GROUP);
-            $selectOwnerTray->addElement($typeRadioSelect);
-            // Get groups
-            $memberHandler = \xoops_getHandler('member');
-            $xoopsGroups  = $memberHandler->getGroupList();
-
-            $filterGroupSelect = new \XoopsFormSelect('', 'filterGroup', $filterGroup);
-            $filterGroupSelect->addOption(Constants::FILTER_TYPEALL, \_MA_WGDIARIES_FILTER_TYPEALL);
-            foreach ($xoopsGroups as $key => $group) {
-                $filterGroupSelect->addOption($key, $group);
-            }
-
-             //if no Transactions available for current year
-            $selectOwnerTray->addElement($filterGroupSelect, true);
-            $form->addElement($selectOwnerTray);
-        } else {
-            $form->addElement(new \XoopsFormHidden('filterOwner', Constants::FILTERBY_OWN));
-        }
-
-        //linebreak
-        $form->addElement(new \XoopsFormHidden('linebreak', ''));
-        // Form Table categories
-        $categoriesHandler = $helper->getHandler('Categories');
-        $crCategories = new \CriteriaCompo();
-        $crCategories->add(new \Criteria('cat_online', 1));
-        $crCategories->setSort('cat_weight');
-        $crCategories->setOrder('ASC');
-        $itemCatidSelect = new \XoopsFormSelect(\_MA_WGDIARIES_ITEM_CATID, 'filterCat', $filterCat);
-        $itemCatidSelect->addOption(0, \_MA_WGDIARIES_FILTER_TYPEALL);
-        $itemCatidSelect->addOptionArray($categoriesHandler->getList($crCategories));
-        $form->addElement($itemCatidSelect);
-
-        $form->addElement(new \XoopsFormHidden('start', $start));
-        // Form Text limit
-        $form->addElement(new \XoopsFormText(\_MA_WGDIARIES_FILTER_LIMIT, 'limit', 50, 255, $limit));
-
-        //linebreak
-        $form->addElement(new \XoopsFormHidden('linebreak', ''));
-        $filterSortSelect = new \XoopsFormSelect(\_MA_WGDIARIES_SORT, 'filterSort', $filterSort);
-        $filterSortSelect->addOption('item_datefrom-DESC', \_MA_WGDIARIES_SORT_DATEFROM_DESC);
-        $filterSortSelect->addOption('item_datefrom-ASC', \_MA_WGDIARIES_SORT_DATEFROM_ASC);
-        $filterSortSelect->addOption('item_datecreated-DESC', \_MA_WGDIARIES_SORT_DATECREATED_DESC);
-        $filterSortSelect->addOption('item_datecreated-ASC', \_MA_WGDIARIES_SORT_DATECREATED_ASC);
-        $form->addElement($filterSortSelect);
-
-        //linebreak
-        $form->addElement(new \XoopsFormHidden('linebreak', ''));
-        $btnApply = new \XoopsFormButton('', 'submit', \_MA_WGDIARIES_FILTER_APPLY, 'submit');
-        $form->addElement($btnApply);
-        //$form->addElement(new \XoopsFormHidden('displayfilter', 1));
-        $form->addElement(new \XoopsFormHidden('start', 0));
-        $form->addElement(new \XoopsFormHidden('op', 'filter'));
-        return $form;
-
-    }
 }

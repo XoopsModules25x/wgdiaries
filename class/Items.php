@@ -83,9 +83,10 @@ class Items extends \XoopsObject
     /**
      * @public function getForm
      * @param bool $action
+     * @param int  $itemDate
      * @return \XoopsThemeForm
      */
-    public function getFormItems($action = false)
+    public function getFormItems($action = false, $itemDate = 0)
     {
         $helper = \XoopsModules\Wgdiaries\Helper::getInstance();
         if (!$action) {
@@ -139,11 +140,15 @@ class Items extends \XoopsObject
         $editorConfigs['height'] = '400px';
         $editorConfigs['editor'] = $editor;
         $form->addElement(new \XoopsFormEditor(\_MA_WGDIARIES_ITEM_REMARKS, 'item_remarks', $editorConfigs));
-        // Form Text Date Select itemDatefrom
-        $itemDatefrom = $this->isNew() ? \time() : $this->getVar('item_datefrom');
+        // Form Text Date Select itemDatefrom / itemDateto
+        if ($itemDate > 0) {
+            $itemDatefrom = $itemDate;
+            $itemDateto   = $itemDate;
+        } else {
+            $itemDatefrom = $this->isNew() ? \time() : $this->getVar('item_datefrom');
+            $itemDateto = $this->isNew() ? \time() : $this->getVar('item_dateto');
+        }
         $form->addElement(new \XoopsFormDateTime(\_MA_WGDIARIES_ITEM_DATEFROM, 'item_datefrom', '', $itemDatefrom), true);
-        // Form Text Date Select itemDateto
-        $itemDateto = $this->isNew() ? \time() : $this->getVar('item_dateto');
         $form->addElement(new \XoopsFormDateTime(\_MA_WGDIARIES_ITEM_DATETO, 'item_dateto', '', $itemDateto), true);
         // Form Table categories
         $categoriesHandler = $helper->getHandler('Categories');
@@ -152,6 +157,7 @@ class Items extends \XoopsObject
         $crCategories->setSort('cat_weight');
         $crCategories->setOrder('ASC');
         $itemCatidSelect = new \XoopsFormSelect(\_MA_WGDIARIES_ITEM_CATID, 'item_catid', $this->getVar('item_catid'));
+        $itemCatidSelect->addOption('0', ' ');
         $itemCatidSelect->addOptionArray($categoriesHandler->getList($crCategories));
         $form->addElement($itemCatidSelect);
         // Form Text itemTags

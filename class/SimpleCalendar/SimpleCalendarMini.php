@@ -9,7 +9,7 @@ namespace XoopsModules\Wgdiaries\SimpleCalendar;
  * @see http://donatstudios.com
  * @license http://opensource.org/licenses/mit-license.php
  */
-class SimpleCalendar {
+class SimpleCalendarMini {
 
     /**
      * Array of Week Day Names
@@ -39,12 +39,6 @@ class SimpleCalendar {
 
     private $dailyHtml = [];
     private $offset = 0;
-
-    /**
-     * @var bool
-     */
-    private $permSubmit;
-
 
     /**
      * @param \DateTimeInterface|int|string|null       $calendarDate
@@ -139,17 +133,6 @@ class SimpleCalendar {
 
         $this->weekDayNames = $weekDayNames ? array_values($weekDayNames) : null;
     }
-
-    /**
-     * @param bool $permSubmit
-     */
-    public function setPermSubmit( $permSubmit = false ) {
-
-        $this->permSubmit = $permSubmit;
-
-    }
-
-
 
     /**
      * Add a daily event to the calendar
@@ -253,8 +236,8 @@ class SimpleCalendar {
 <table cellpadding="0" cellspacing="0" class="{$this->classes['calendar']}"><thead><tr>
 TAG;
 
-        foreach( $daysOfWeek as $key => $dayName ) {
-            $out .= "<th class='day{$key}'>{$dayName}</th>";
+        foreach( $daysOfWeek as $dayName ) {
+            $out .= "<th>{$dayName}</th>";
         }
 
         $out .= <<<'TAG'
@@ -296,6 +279,7 @@ TAG
             }
 
             if( is_array($dailyHTML) ) {
+                //new line by goffy
                 $out .= sprintf('<time datetime="%s"><span class="badge badge-primary">%d</span></time>', $date->format('Y-m-d'), $i);
                 $out .= '<div class="' . $this->classes['events'] . '">';
                 foreach( $dailyHTML as $dHtml ) {
@@ -305,9 +289,7 @@ TAG
             } else {
                 $out .= sprintf('<time datetime="%s">%d</time>', $date->format('Y-m-d'), $i);
             }
-            if ($this->permSubmit) {
-                $out .= '<div class="addnew pull-right"><a href="items.php?op=new&itemDate=' . $date->getTimestamp() . '"><i class="fa fa-plus-square wgd-cal-icon pull-right" title="' . \_MA_WGDIARIES_CALENDAR_ADDITEM . '"></i></a></div>';
-            }
+
             $out .= '</td>';
 
             if( $count > 6 ) {
