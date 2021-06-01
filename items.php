@@ -34,7 +34,7 @@ $GLOBALS['xoopsOption']['template_main'] = 'wgdiaries_items.tpl';
 include_once XOOPS_ROOT_PATH . '/header.php';
 
 if (!$permissionsHandler->getPermItemsSubmit()) {
-    \redirect_header('index.php?op=list', 3, _NOPERM);
+    \redirect_header('index.php?op=list', 3, \_NOPERM);
 }
 
 $op      = Request::getCmd('op', 'list');
@@ -224,7 +224,7 @@ switch ($op) {
         }
         // Check permissions
         if (!$permissionsHandler->getPermGlobalSubmit()) {
-            \redirect_header('items.php?op=list', 3, _NOPERM);
+            \redirect_header('items.php?op=list', 3, \_NOPERM);
         }
         if ($itemId > 0) {
             $itemsObj = $itemsHandler->get($itemId);
@@ -348,7 +348,7 @@ switch ($op) {
         $xoBreadcrumbs[] = ['title' => _MA_WGDIARIES_ITEM_ADD];
         // Check permissions
         if (!$permissionsHandler->getPermGlobalSubmit()) {
-            \redirect_header('items.php?op=list', 3, _NOPERM);
+            \redirect_header('items.php?op=list', 3, \_NOPERM);
         }
         $GLOBALS['xoopsTpl']->assign('maxfileuploads', $helper->getConfig('max_fileuploads'));
         // Form Create
@@ -362,7 +362,7 @@ switch ($op) {
         $xoBreadcrumbs[] = ['title' => _MA_WGDIARIES_ITEM_EDIT];
         // Check permissions
         if (!$permissionsHandler->getPermItemsSubmit()) {
-            \redirect_header('items.php?op=list', 3, _NOPERM);
+            \redirect_header('items.php?op=list', 3, \_NOPERM);
         }
         // Check params
         if (0 == $itemId) {
@@ -379,7 +379,7 @@ switch ($op) {
         $xoBreadcrumbs[] = ['title' => _MA_WGDIARIES_ITEM_DELETE];
         // Check permissions
         if (!$permissionsHandler->getPermGlobalSubmit()) {
-            \redirect_header('items.php?op=list', 3, _NOPERM);
+            \redirect_header('items.php?op=list', 3, \_NOPERM);
         }
         // Check params
         if (0 == $itemId) {

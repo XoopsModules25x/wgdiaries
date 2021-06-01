@@ -32,7 +32,7 @@ $GLOBALS['xoopsOption']['template_main'] = 'wgdiaries_statistics.tpl';
 include_once XOOPS_ROOT_PATH . '/header.php';
 
 if (!$permissionsHandler->getPermStatisticsView()) {
-    \redirect_header('index.php?op=list', 3, _NOPERM);
+    \redirect_header('index.php?op=list', 3, \_NOPERM);
 }
 
 // Define Stylesheet

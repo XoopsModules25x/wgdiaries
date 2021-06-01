@@ -88,7 +88,7 @@ class Files extends \XoopsObject
         $isAdmin = $GLOBALS['xoopsUser']->isAdmin($GLOBALS['xoopsModule']->mid());
         // Permissions for uploader
         $grouppermHandler = \xoops_getHandler('groupperm');
-        $groups = \is_object($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->getGroups() : XOOPS_GROUP_ANONYMOUS;
+        $groups = \is_object($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->getGroups() : \XOOPS_GROUP_ANONYMOUS;
         $permissionUpload = $grouppermHandler->checkRight('upload_groups', 32, $groups, $GLOBALS['xoopsModule']->getVar('mid')) ? true : false;
         // Title
         $title = $this->isNew() ? \sprintf(\_MA_WGDIARIES_FILE_ADD) : \sprintf(\_MA_WGDIARIES_FILE_EDIT);
