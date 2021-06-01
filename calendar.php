@@ -104,7 +104,7 @@ $GLOBALS['xoTheme']->addStylesheet($style, null);
 // Keywords
 $keywords = [];
 // Breadcrumbs
-$xoBreadcrumbs[] = ['title' => _MA_WGDIARIES_INDEX];
+$xoBreadcrumbs[] = ['title' => _MA_WGDIARIES_CALENDAR_ITEMS];
 // Paths
 $GLOBALS['xoopsTpl']->assign('wgdiaries_url', WGDIARIES_URL);
 $GLOBALS['xoopsTpl']->assign('wgdiaries_icons_url_16', WGDIARIES_ICONS_URL . '/16/');

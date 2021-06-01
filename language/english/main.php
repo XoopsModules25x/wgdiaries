@@ -102,6 +102,7 @@ As you can see, you have created a page with a list of links at the top to navig
 \define('_MA_WGDIARIES_FILES_LIST', 'List of Files');
 \define('_MA_WGDIARIES_FILES_TITLE', 'Files title');
 \define('_MA_WGDIARIES_FILES_DESC', 'Files description');
+\define('_MA_WGDIARIES_FILES_NODATA', 'There are no files available for this item');
 // Caption of File
 \define('_MA_WGDIARIES_FILE_ID', 'Id');
 \define('_MA_WGDIARIES_FILE_ITEMID', 'Itemid');
@@ -183,6 +184,8 @@ As you can see, you have created a page with a list of links at the top to navig
 // ---------------- Activate ----------------
 \define('_MA_WGDIARIES_ACTIVE', 'Activated (click to deactivate)');
 \define('_MA_WGDIARIES_NONACTIVE', 'Deactivated (click to activate)');
+// Outputs
+\define('_MA_WGDIARIES_OUTPUTS', 'Outputs');
 // General
 \define('_MA_WGDIARIES_SUBMIT', 'Submit');
 \define('_MA_WGDIARIES_PRINT_LIST', 'Print list');

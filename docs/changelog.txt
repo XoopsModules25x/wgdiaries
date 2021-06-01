@@ -9,6 +9,8 @@
  - added sorting for list output (mjoel/goffy)
  - added calendar page (mjoel/goffy)
  - added sorting for index page (mjoel/goffy)
+ - fixed invalid breadcrumb items (goffy)
+ - fixed display after all files deleted (goffy)
 
 ==============================================================
 1.02 [2021/05/19]

@@ -51,8 +51,6 @@ $GLOBALS['xoopsTpl']->assign('wgdiaries_fileiconurl', WGDIARIES_ICONS_URL . '/fi
 
 // Keywords
 $keywords = [];
-// Breadcrumbs
-$xoBreadcrumbs[] = ['title' => _MA_WGDIARIES_INDEX, 'link' => 'index.php'];
 // Permissions
 $permEdit = $permissionsHandler->getPermGlobalSubmit();
 $GLOBALS['xoopsTpl']->assign('permEdit', $permEdit);
