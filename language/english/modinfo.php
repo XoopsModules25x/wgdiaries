@@ -23,7 +23,7 @@ declare(strict_types=1);
  * @author         wedega - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
  */
 
-include_once 'common.php';
+require_once 'common.php';
 
 // ---------------- Admin Main ----------------
 \define('_MI_WGDIARIES_NAME', 'wgDiaries');

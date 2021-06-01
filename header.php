@@ -42,7 +42,7 @@ if (isset($GLOBALS['xoopsModule']) && is_object($GLOBALS['xoopsModule'])) {
 // 
 $myts = MyTextSanitizer::getInstance();
 // Default Css Style
-$style = WGDIARIES_URL . '/assets/css/style.css';
+$style = \WGDIARIES_URL . '/assets/css/style.css';
 // Smarty Default
 $sysPathIcon16 = $GLOBALS['xoopsModule']->getInfo('sysicons16');
 $sysPathIcon32 = $GLOBALS['xoopsModule']->getInfo('sysicons32');

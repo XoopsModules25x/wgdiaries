@@ -30,7 +30,7 @@ use XoopsModules\Wgdiaries\Common;
 
 require __DIR__ . '/header.php';
 $GLOBALS['xoopsOption']['template_main'] = 'wgdiaries_files.tpl';
-include_once XOOPS_ROOT_PATH . '/header.php';
+require_once \XOOPS_ROOT_PATH . '/header.php';
 
 if (!$permissionsHandler->getPermItemsSubmit()) {
     \redirect_header('index.php?op=list', 3, \_NOPERM);
@@ -48,9 +48,9 @@ if (Request::hasVar('save_add')) {
 // Define Stylesheet
 $GLOBALS['xoTheme']->addStylesheet($style, null);
 // Paths
-$GLOBALS['xoopsTpl']->assign('xoops_icons32_url', XOOPS_ICONS32_URL);
-$GLOBALS['xoopsTpl']->assign('wgdiaries_url', WGDIARIES_URL);
-$GLOBALS['xoopsTpl']->assign('wgdiaries_uploadfileurl', WGDIARIES_UPLOAD_FILES_URL . '/');
+$GLOBALS['xoopsTpl']->assign('xoops_icons32_url', \XOOPS_ICONS32_URL);
+$GLOBALS['xoopsTpl']->assign('wgdiaries_url', \WGDIARIES_URL);
+$GLOBALS['xoopsTpl']->assign('wgdiaries_uploadfileurl', \WGDIARIES_UPLOAD_FILES_URL . '/');
 $GLOBALS['xoopsTpl']->assign('wgdiaries_fileiconurl', WGDIARIES_ICONS_URL . '/files/');
 
 // Keywords
@@ -66,7 +66,7 @@ switch ($op) {
     case 'list':
     default:
         // Breadcrumbs
-        $xoBreadcrumbs[] = ['title' => _MA_WGDIARIES_FILES_LIST];
+        $xoBreadcrumbs[] = ['title' => \_MA_WGDIARIES_FILES_LIST];
         $crFiles = new \CriteriaCompo();
         if ($fileId > 0) {
             $crFiles->add(new \Criteria('file_id', $fileId));
@@ -93,7 +93,7 @@ switch ($op) {
             unset($files);
             // Display Navigation
             if ($filesCount > $limit) {
-                include_once XOOPS_ROOT_PATH . '/class/pagenav.php';
+                require_once \XOOPS_ROOT_PATH . '/class/pagenav.php';
                 $pagenav = new \XoopsPageNav($filesCount, $limit, $start, 'start', 'op=list&limit=' . $limit);
                 $GLOBALS['xoopsTpl']->assign('pagenav', $pagenav->renderNav(4));
             }
@@ -121,14 +121,14 @@ switch ($op) {
         $filesObj->setVar('file_itemid', Request::getInt('file_itemid', 0));
         $filesObj->setVar('file_desc', Request::getString('file_desc', ''));
         // Set Var file_name
-        include_once XOOPS_ROOT_PATH . '/class/uploader.php';
+        require_once \XOOPS_ROOT_PATH . '/class/uploader.php';
         $uploaderErrors = '';
         $filename     = (string) $_FILES['file_name']['name'];
         if ( '' !== $filename) {
             //upload new file
             $fileMimetype = $_FILES['file_name']['type'];
             $imgNameDef = 'itemid_' . Request::getString('file_itemid');
-            $uploader = new \XoopsMediaUploader(WGDIARIES_UPLOAD_FILES_PATH . '/',
+            $uploader = new \XoopsMediaUploader(\WGDIARIES_UPLOAD_FILES_PATH . '/',
                 $helper->getConfig('mimetypes_file'),
                 $helper->getConfig('maxsize_file'), null, null);
             if ($uploader->fetchMedia($_POST['xoops_upload_file'][0])) {
@@ -160,9 +160,9 @@ switch ($op) {
                 \redirect_header('files.php?op=edit&amp;file_id=' . $newFileId, 5, $uploaderErrors);
             } else {
                 if ('save_add' == $op) {
-                    \redirect_header('files.php?op=new&amp;item_id=' . $itemId, 2, _MA_WGDIARIES_FORM_OK);
+                    \redirect_header('files.php?op=new&amp;item_id=' . $itemId, 2, \_MA_WGDIARIES_FORM_OK);
                 } else {
-                    \redirect_header('files.php?op=list&amp;item_id=' . $itemId, 2, _MA_WGDIARIES_FORM_OK);
+                    \redirect_header('files.php?op=list&amp;item_id=' . $itemId, 2, \_MA_WGDIARIES_FORM_OK);
                 }
             }
         }
@@ -173,7 +173,7 @@ switch ($op) {
         break;
     case 'new':
         // Breadcrumbs
-        $xoBreadcrumbs[] = ['title' => _MA_WGDIARIES_FILE_ADD];
+        $xoBreadcrumbs[] = ['title' => \_MA_WGDIARIES_FILE_ADD];
         // Check permissions
         if (!$permissionsHandler->getPermGlobalSubmit()) {
             \redirect_header('files.php?op=list', 3, \_NOPERM);
@@ -186,14 +186,14 @@ switch ($op) {
         break;
     case 'edit':
         // Breadcrumbs
-        $xoBreadcrumbs[] = ['title' => _MA_WGDIARIES_FILE_EDIT];
+        $xoBreadcrumbs[] = ['title' => \_MA_WGDIARIES_FILE_EDIT];
         // Check permissions
         if (!$permissionsHandler->getPermGlobalSubmit()) {
             \redirect_header('files.php?op=list', 3, \_NOPERM);
         }
         // Check params
         if (0 == $fileId) {
-            \redirect_header('files.php?op=list', 3, _MA_WGDIARIES_INVALID_PARAM);
+            \redirect_header('files.php?op=list', 3, \_MA_WGDIARIES_INVALID_PARAM);
         }
         // Get Form
         $filesObj = $filesHandler->get($fileId);
@@ -202,18 +202,18 @@ switch ($op) {
         break;
     case 'delete':
         // Breadcrumbs
-        $xoBreadcrumbs[] = ['title' => _MA_WGDIARIES_FILE_DELETE];
+        $xoBreadcrumbs[] = ['title' => \_MA_WGDIARIES_FILE_DELETE];
         // Check permissions
         if (!$permissionsHandler->getPermGlobalSubmit()) {
             \redirect_header('files.php?op=list', 3, \_NOPERM);
         }
         // Check params
         if (0 == $fileId) {
-            \redirect_header('files.php?op=list', 3, _MA_WGDIARIES_INVALID_PARAM);
+            \redirect_header('files.php?op=list', 3, \_MA_WGDIARIES_INVALID_PARAM);
         }
         $filesObj = $filesHandler->get($fileId);
         $fileItemid = $filesObj->getVar('file_itemid');
-        $fileName = WGDIARIES_UPLOAD_FILES_PATH . '/' . $filesObj->getVar('file_name');
+        $fileName = \WGDIARIES_UPLOAD_FILES_PATH . '/' . $filesObj->getVar('file_name');
         if (isset($_REQUEST['ok']) && 1 == $_REQUEST['ok']) {
             if (!$GLOBALS['xoopsSecurity']->check()) {
                 \redirect_header('files.php', 3, \implode(', ', $GLOBALS['xoopsSecurity']->getErrors()));
@@ -222,7 +222,7 @@ switch ($op) {
                 if (\file_exists($fileName)) {
                     \unlink($fileName);
                 }
-                \redirect_header('files.php?op=list&amp;item_id=' . $fileItemid, 3, _MA_WGDIARIES_FORM_DELETE_OK);
+                \redirect_header('files.php?op=list&amp;item_id=' . $fileItemid, 3, \_MA_WGDIARIES_FORM_DELETE_OK);
             } else {
                 $GLOBALS['xoopsTpl']->assign('error', $filesObj->getHtmlErrors());
             }
@@ -230,7 +230,7 @@ switch ($op) {
             $xoopsconfirm = new Common\XoopsConfirm(
                 ['ok' => 1, 'file_id' => $fileId, 'op' => 'delete'],
                 $_SERVER['REQUEST_URI'],
-                \sprintf(_MA_WGDIARIES_FORM_SURE_DELETE, $filesObj->getVar('file_name')));
+                \sprintf(\_MA_WGDIARIES_FORM_SURE_DELETE, $filesObj->getVar('file_name')));
             $form = $xoopsconfirm->getFormXoopsConfirm();
             $GLOBALS['xoopsTpl']->assign('form', $form->render());
         }
@@ -242,8 +242,8 @@ wgdiariesMetaKeywords($helper->getConfig('keywords') . ', ' . \implode(',', $key
 unset($keywords);
 
 // Description
-wgdiariesMetaDescription(_MA_WGDIARIES_FILES_DESC);
-$GLOBALS['xoopsTpl']->assign('xoops_mpageurl', WGDIARIES_URL.'/files.php');
-$GLOBALS['xoopsTpl']->assign('wgdiaries_upload_url', WGDIARIES_UPLOAD_URL);
+wgdiariesMetaDescription(\_MA_WGDIARIES_FILES_DESC);
+$GLOBALS['xoopsTpl']->assign('xoops_mpageurl', \WGDIARIES_URL.'/files.php');
+$GLOBALS['xoopsTpl']->assign('wgdiaries_upload_url', \WGDIARIES_UPLOAD_URL);
 
 require __DIR__ . '/footer.php';

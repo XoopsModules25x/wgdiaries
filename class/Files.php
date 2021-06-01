@@ -125,7 +125,7 @@ class Files extends \XoopsObject
             $fileUploadTray = new \XoopsFormElementTray(\_MA_WGDIARIES_FILE_UPLOAD, '<br>');
             $maxsize = $helper->getConfig('maxsize_file');
             $fileUploadTray->addElement(new \XoopsFormFile('', 'file_name', $maxsize));
-            $fileUploadTray->addElement(new \XoopsFormLabel(\_MA_WGDIARIES_FORM_UPLOAD_SIZE, ($maxsize / 1048576) . ' '  . _MA_WGDIARIES_FORM_UPLOAD_SIZE_MB));
+            $fileUploadTray->addElement(new \XoopsFormLabel(\_MA_WGDIARIES_FORM_UPLOAD_SIZE, ($maxsize / 1048576) . ' '  . \_MA_WGDIARIES_FORM_UPLOAD_SIZE_MB));
             $form->addElement($fileUploadTray);
         }
         $form->addElement(new \XoopsFormText(\_MA_WGDIARIES_FILE_MIMETYPE, 'file_mimetype', 50, 255, $this->getVar('file_mimetype')));

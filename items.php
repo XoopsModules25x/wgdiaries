@@ -31,7 +31,7 @@ use XoopsModules\Wgdiaries\SimpleCalendar;
 
 require __DIR__ . '/header.php';
 $GLOBALS['xoopsOption']['template_main'] = 'wgdiaries_items.tpl';
-include_once XOOPS_ROOT_PATH . '/header.php';
+require_once \XOOPS_ROOT_PATH . '/header.php';
 
 if (!$permissionsHandler->getPermItemsSubmit()) {
     \redirect_header('index.php?op=list', 3, \_NOPERM);
@@ -47,10 +47,10 @@ $orderBy = Request::getString('orderBy', 'DESC');
 // Define Stylesheet
 $GLOBALS['xoTheme']->addStylesheet($style, null);
 // Paths
-$GLOBALS['xoopsTpl']->assign('xoops_icons32_url', XOOPS_ICONS32_URL);
-$GLOBALS['xoopsTpl']->assign('wgdiaries_url', WGDIARIES_URL);
-$GLOBALS['xoopsTpl']->assign('wgdiaries_upload_categoriesurl', WGDIARIES_UPLOAD_CATEGORIES_URL);
-$GLOBALS['xoopsTpl']->assign('wgdiaries_upload_itemsurl', WGDIARIES_UPLOAD_ITEMS_URL);
+$GLOBALS['xoopsTpl']->assign('xoops_icons32_url', \XOOPS_ICONS32_URL);
+$GLOBALS['xoopsTpl']->assign('wgdiaries_url', \WGDIARIES_URL);
+$GLOBALS['xoopsTpl']->assign('wgdiaries_upload_categoriesurl', \WGDIARIES_UPLOAD_CATEGORIES_URL);
+$GLOBALS['xoopsTpl']->assign('wgdiaries_upload_itemsurl', \WGDIARIES_UPLOAD_ITEMS_URL);
 // Keywords
 $keywords = [];
 
@@ -63,14 +63,14 @@ switch ($op) {
     default:
         // Breadcrumbs
         if ('show' === $op) {
-            $xoBreadcrumbs[] = ['title' => _MA_WGDIARIES_ITEM_DETAILS];
+            $xoBreadcrumbs[] = ['title' => \_MA_WGDIARIES_ITEM_DETAILS];
         } else {
-            $xoBreadcrumbs[] = ['title' => _MA_WGDIARIES_ITEMS_LISTMY];
+            $xoBreadcrumbs[] = ['title' => \_MA_WGDIARIES_ITEMS_LISTMY];
         }
         $itemsCalendar = (bool)$helper->getConfig('items_calendar');
         $GLOBALS['xoopsTpl']->assign('itemsCalendar', $itemsCalendar);
         if ($itemsCalendar) {
-            $GLOBALS['xoTheme']->addStylesheet(WGDIARIES_URL . '/class/SimpleCalendar/css/SimpleCalendarMini.css', null);
+            $GLOBALS['xoTheme']->addStylesheet(\WGDIARIES_URL . '/class/SimpleCalendar/css/SimpleCalendarMini.css', null);
             $calendar = new SimpleCalendar\SimpleCalendarMini();
             $calendar->setDate(time());
             $calendar->setStartOfWeek(\_MA_WGDIARIES_CAL_MONDAY);
@@ -149,7 +149,7 @@ switch ($op) {
 
             // Display Navigation
             if ($itemsCount > $limit) {
-                include_once XOOPS_ROOT_PATH . '/class/pagenav.php';
+                require_once \XOOPS_ROOT_PATH . '/class/pagenav.php';
                 $pagenav = new \XoopsPageNav($itemsCount, $limit, $start, 'start', 'op=list&amp;limit=' . $limit . '&amp;sortBy=' . $sortBy . '&amp;orderBy=' . $orderBy);
                 $GLOBALS['xoopsTpl']->assign('pagenav', $pagenav->renderNav(4));
             }
@@ -166,7 +166,7 @@ switch ($op) {
         break;
     case 'listgroup':
         // Breadcrumbs
-        $xoBreadcrumbs[] = ['title' => _MA_WGDIARIES_ITEMS_LISTGROUP];
+        $xoBreadcrumbs[] = ['title' => \_MA_WGDIARIES_ITEMS_LISTGROUP];
 
         $uid = \is_object($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->uid() : 0;
         $crItems = new \CriteriaCompo();
@@ -201,7 +201,7 @@ switch ($op) {
             unset($items);
             // Display Navigation
             if ($itemsCount > $limit) {
-                include_once XOOPS_ROOT_PATH . '/class/pagenav.php';
+                require_once \XOOPS_ROOT_PATH . '/class/pagenav.php';
                 $pagenav = new \XoopsPageNav($itemsCount, $limit, $start, 'start', 'op=list&amp;limit=' . $limit . '&amp;sortBy=' . $sortBy . '&amp;orderBy=' . $orderBy);
                 $GLOBALS['xoopsTpl']->assign('pagenav', $pagenav->renderNav(4));
             }
@@ -247,11 +247,11 @@ switch ($op) {
         $itemsObj->setVar('item_catid', Request::getInt('item_catid', 0));
         $itemsObj->setVar('item_tags', Request::getString('item_tags', ''));
         // Set Var item_logo
-        include_once XOOPS_ROOT_PATH . '/class/uploader.php';
+        require_once \XOOPS_ROOT_PATH . '/class/uploader.php';
         $filename       = $_FILES['item_logo']['name'];
         $imgMimetype    = $_FILES['item_logo']['type'];
         $uploaderErrors = '';
-        $uploader = new \XoopsMediaUploader(WGDIARIES_UPLOAD_ITEMS_PATH . '/logos/',
+        $uploader = new \XoopsMediaUploader(\WGDIARIES_UPLOAD_ITEMS_PATH . '/logos/',
             $helper->getConfig('mimetypes_image'),
             $helper->getConfig('maxsize_image'), null, null);
         if ($uploader->fetchMedia($_POST['xoops_upload_file'][0])) {
@@ -268,8 +268,8 @@ switch ($op) {
                 if ($maxwidth > 0 && $maxheight > 0) {
                     // Resize image
                     $imgHandler                = new Wgdiaries\Common\Resizer();
-                    $imgHandler->sourceFile    = WGDIARIES_UPLOAD_ITEMS_PATH . '/logos/' . $savedFilename;
-                    $imgHandler->endFile       = WGDIARIES_UPLOAD_ITEMS_PATH . '/logos/' . $savedFilename;
+                    $imgHandler->sourceFile    = \WGDIARIES_UPLOAD_ITEMS_PATH . '/logos/' . $savedFilename;
+                    $imgHandler->endFile       = \WGDIARIES_UPLOAD_ITEMS_PATH . '/logos/' . $savedFilename;
                     $imgHandler->imageMimetype = $imgMimetype;
                     $imgHandler->maxWidth      = $maxwidth;
                     $imgHandler->maxHeight     = $maxheight;
@@ -291,14 +291,14 @@ switch ($op) {
         if ($itemsHandler->insert($itemsObj)) {
             $newItemId = $itemId > 0 ? $itemId : $itemsObj->getNewInsertedIdItems();
 
-            include_once XOOPS_ROOT_PATH . '/class/uploader.php';
+            require_once \XOOPS_ROOT_PATH . '/class/uploader.php';
             $uploaderFiles  = [];
             $uploaderErrors = [];
             for ($i = 0; $i <= $helper->getConfig('max_fileuploads'); $i++) {
                 //upload of single file
                 $filename     = $_FILES['item_file' . $i]['name'];
                 $fileMimetype = $_FILES['item_file' . $i]['type'];
-                $uploader = new \XoopsMediaUploader(WGDIARIES_UPLOAD_FILES_PATH . '/',
+                $uploader = new \XoopsMediaUploader(\WGDIARIES_UPLOAD_FILES_PATH . '/',
                     $helper->getConfig('mimetypes_file'),
                     $helper->getConfig('maxsize_file'), null, null);
                 if ($uploader->fetchMedia($_POST['xoops_upload_file'][$i + 1])) {
@@ -335,7 +335,7 @@ switch ($op) {
             }
             // redirect after insert
             if (0 == \count($uploaderErrors)) {
-                \redirect_header('items.php?op=show&amp;item_id=' . $newItemId, 2, _MA_WGDIARIES_FORM_OK);
+                \redirect_header('items.php?op=show&amp;item_id=' . $newItemId, 2, \_MA_WGDIARIES_FORM_OK);
             }
         }
         // Get Form Error
@@ -345,7 +345,7 @@ switch ($op) {
         break;
     case 'new':
         // Breadcrumbs
-        $xoBreadcrumbs[] = ['title' => _MA_WGDIARIES_ITEM_ADD];
+        $xoBreadcrumbs[] = ['title' => \_MA_WGDIARIES_ITEM_ADD];
         // Check permissions
         if (!$permissionsHandler->getPermGlobalSubmit()) {
             \redirect_header('items.php?op=list', 3, \_NOPERM);
@@ -359,14 +359,14 @@ switch ($op) {
         break;
     case 'edit':
         // Breadcrumbs
-        $xoBreadcrumbs[] = ['title' => _MA_WGDIARIES_ITEM_EDIT];
+        $xoBreadcrumbs[] = ['title' => \_MA_WGDIARIES_ITEM_EDIT];
         // Check permissions
         if (!$permissionsHandler->getPermItemsSubmit()) {
             \redirect_header('items.php?op=list', 3, \_NOPERM);
         }
         // Check params
         if (0 == $itemId) {
-            \redirect_header('items.php?op=list', 3, _MA_WGDIARIES_INVALID_PARAM);
+            \redirect_header('items.php?op=list', 3, \_MA_WGDIARIES_INVALID_PARAM);
         }
         $GLOBALS['xoopsTpl']->assign('maxfileuploads', $helper->getConfig('max_fileuploads'));
         // Get Form
@@ -376,14 +376,14 @@ switch ($op) {
         break;
     case 'delete':
         // Breadcrumbs
-        $xoBreadcrumbs[] = ['title' => _MA_WGDIARIES_ITEM_DELETE];
+        $xoBreadcrumbs[] = ['title' => \_MA_WGDIARIES_ITEM_DELETE];
         // Check permissions
         if (!$permissionsHandler->getPermGlobalSubmit()) {
             \redirect_header('items.php?op=list', 3, \_NOPERM);
         }
         // Check params
         if (0 == $itemId) {
-            \redirect_header('items.php?op=list', 3, _MA_WGDIARIES_INVALID_PARAM);
+            \redirect_header('items.php?op=list', 3, \_MA_WGDIARIES_INVALID_PARAM);
         }
         $itemsObj = $itemsHandler->get($itemId);
         $itemSubmitter = $itemsObj->getVar('item_submitter');
@@ -399,7 +399,7 @@ switch ($op) {
                     $filesAll = $filesHandler->getAll($crFiles);
                     // Get and delete all related files
                     foreach (\array_keys($filesAll) as $i) {
-                        $fileName = WGDIARIES_UPLOAD_FILES_PATH . '/' . $filesAll[$i]->getVar('file_name');
+                        $fileName = \WGDIARIES_UPLOAD_FILES_PATH . '/' . $filesAll[$i]->getVar('file_name');
                         if (\file_exists($fileName)) {
                             \unlink($fileName);
                         }
@@ -413,7 +413,7 @@ switch ($op) {
                 $critComments->add(new Criteria('com_itemid', $itemId));
                 $commentHandler->deleteAll($critComments);
 
-                \redirect_header('items.php', 3, _MA_WGDIARIES_FORM_DELETE_OK);
+                \redirect_header('items.php', 3, \_MA_WGDIARIES_FORM_DELETE_OK);
             } else {
                 $GLOBALS['xoopsTpl']->assign('error', $itemsObj->getHtmlErrors());
             }
@@ -421,7 +421,7 @@ switch ($op) {
             $xoopsconfirm = new Common\XoopsConfirm(
                 ['ok' => 1, 'item_id' => $itemId, 'op' => 'delete'],
                 $_SERVER['REQUEST_URI'],
-                \sprintf(_MA_WGDIARIES_FORM_SURE_DELETE, $itemsObj->getCaption()));
+                \sprintf(\_MA_WGDIARIES_FORM_SURE_DELETE, $itemsObj->getCaption()));
             $form = $xoopsconfirm->getFormXoopsConfirm();
             $GLOBALS['xoopsTpl']->assign('form', $form->render());
         }
@@ -433,11 +433,11 @@ wgdiariesMetaKeywords($helper->getConfig('keywords') . ', ' . \implode(',', $key
 unset($keywords);
 
 // Description
-wgdiariesMetaDescription(_MA_WGDIARIES_ITEMS_DESC);
-$GLOBALS['xoopsTpl']->assign('xoops_mpageurl', WGDIARIES_URL.'/items.php');
-$GLOBALS['xoopsTpl']->assign('wgdiaries_upload_url', WGDIARIES_UPLOAD_URL);
+wgdiariesMetaDescription(\_MA_WGDIARIES_ITEMS_DESC);
+$GLOBALS['xoopsTpl']->assign('xoops_mpageurl', \WGDIARIES_URL.'/items.php');
+$GLOBALS['xoopsTpl']->assign('wgdiaries_upload_url', \WGDIARIES_UPLOAD_URL);
 
 // View comments
-require_once XOOPS_ROOT_PATH . '/include/comment_view.php';
+require_once \XOOPS_ROOT_PATH . '/include/comment_view.php';
 
 require __DIR__ . '/footer.php';

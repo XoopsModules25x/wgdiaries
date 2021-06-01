@@ -33,7 +33,7 @@ use XoopsModules\Wgdiaries\ {
 
 require __DIR__ . '/header.php';
 $GLOBALS['xoopsOption']['template_main'] = 'wgdiaries_calendar.tpl';
-include_once XOOPS_ROOT_PATH . '/header.php';
+require_once \XOOPS_ROOT_PATH . '/header.php';
 
 if (!$permissionsHandler->getPermCalPageView()) {
     \redirect_header('index.php?op=list', 3, \_NOPERM);
@@ -98,13 +98,13 @@ $GLOBALS['xoTheme']->addStylesheet($style, null);
 // Keywords
 $keywords = [];
 // Breadcrumbs
-$xoBreadcrumbs[] = ['title' => _MA_WGDIARIES_CALENDAR_ITEMS];
+$xoBreadcrumbs[] = ['title' => \_MA_WGDIARIES_CALENDAR_ITEMS];
 // Paths
-$GLOBALS['xoopsTpl']->assign('wgdiaries_url', WGDIARIES_URL);
+$GLOBALS['xoopsTpl']->assign('wgdiaries_url', \WGDIARIES_URL);
 $GLOBALS['xoopsTpl']->assign('wgdiaries_icons_url_16', WGDIARIES_ICONS_URL . '/16/');
 
 
-$GLOBALS['xoTheme']->addStylesheet(WGDIARIES_URL . '/class/SimpleCalendar/css/SimpleCalendar.css', null);
+$GLOBALS['xoTheme']->addStylesheet(\WGDIARIES_URL . '/class/SimpleCalendar/css/SimpleCalendar.css', null);
 $calendar = new SimpleCalendar\SimpleCalendar();
 $calendar->setStartOfWeek(\_MA_WGDIARIES_CAL_MONDAY);
 $calendar->setWeekDayNames([
@@ -182,7 +182,7 @@ $GLOBALS['xoopsTpl']->assign('items_calendar', $calendar->render());
 wgdiariesMetaKeywords($helper->getConfig('keywords') . ', ' . \implode(',', $keywords));
 unset($keywords);
 // Description
-wgdiariesMetaDescription(_MA_WGDIARIES_INDEX_DESC);
-$GLOBALS['xoopsTpl']->assign('xoops_mpageurl', WGDIARIES_URL.'/index.php');
+wgdiariesMetaDescription(\_MA_WGDIARIES_INDEX_DESC);
+$GLOBALS['xoopsTpl']->assign('xoops_mpageurl', \WGDIARIES_URL.'/index.php');
 
 require __DIR__ . '/footer.php';

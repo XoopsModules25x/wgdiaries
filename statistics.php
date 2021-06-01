@@ -29,7 +29,7 @@ use XoopsModules\Wgdiaries\Constants;
 
 require __DIR__ . '/header.php';
 $GLOBALS['xoopsOption']['template_main'] = 'wgdiaries_statistics.tpl';
-include_once XOOPS_ROOT_PATH . '/header.php';
+require_once \XOOPS_ROOT_PATH . '/header.php';
 
 if (!$permissionsHandler->getPermStatisticsView()) {
     \redirect_header('index.php?op=list', 3, \_NOPERM);
@@ -39,7 +39,7 @@ if (!$permissionsHandler->getPermStatisticsView()) {
 $GLOBALS['xoTheme']->addStylesheet($style, null);
 
 // Breadcrumbs
-$xoBreadcrumbs[] = ['title' => _MA_WGDIARIES_STATISTICS];
+$xoBreadcrumbs[] = ['title' => \_MA_WGDIARIES_STATISTICS];
 
 $uid = \is_object($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->uid() : 0;
 
@@ -65,7 +65,7 @@ if ($uid > 0) {
     $items = $itemsHandler->getItems($uid, 0, 0, $yearStart, $yearEnd);
     if (\is_array($items)) {
         $itemsOwn['year']['count'] = \count($items);
-        $itemsOwn['year']['fromto'] = \sprintf(_MA_WGDIARIES_STATS_PERIOD_FROMTO, date('Y-m-d H:i:s', $yearStart), date('Y-m-d H:i:s', $yearEnd));
+        $itemsOwn['year']['fromto'] = \sprintf(\_MA_WGDIARIES_STATS_PERIOD_FROMTO, date('Y-m-d H:i:s', $yearStart), date('Y-m-d H:i:s', $yearEnd));
         $diff = 0;
         foreach ($items as $item) {
             $diff += ((int)$item['item_dateto'] - (int)$item['item_datefrom']);
@@ -73,7 +73,7 @@ if ($uid > 0) {
         $hoursTotal = round($diff / (60 * 60), 2);
         $daysTotal = (int)($hoursTotal / 24);
         if ($daysTotal > 0) {
-            $itemsOwnHours = \sprintf(_MA_WGDIARIES_STATS_DAYSHOURS, $hoursTotal, $daysTotal, $hoursTotal - ($daysTotal * 24));
+            $itemsOwnHours = \sprintf(\_MA_WGDIARIES_STATS_DAYSHOURS, $hoursTotal, $daysTotal, $hoursTotal - ($daysTotal * 24));
         } else {
             $itemsOwnHours = $hoursTotal;
         }
@@ -85,7 +85,7 @@ if ($uid > 0) {
     $items = $itemsHandler->getItems($uid, 0, 0, $monthStart, $monthEnd);
     if (\is_array($items)) {
         $itemsOwn['month']['count'] = \count($items);
-        $itemsOwn['month']['fromto'] = \sprintf(_MA_WGDIARIES_STATS_PERIOD_FROMTO, date('Y-m-d H:i:s', $monthStart), date('Y-m-d H:i:s', $monthEnd));
+        $itemsOwn['month']['fromto'] = \sprintf(\_MA_WGDIARIES_STATS_PERIOD_FROMTO, date('Y-m-d H:i:s', $monthStart), date('Y-m-d H:i:s', $monthEnd));
         $diff = 0;
         foreach ($items as $item) {
             $diff += ((int)$item['item_dateto'] - (int)$item['item_datefrom']);
@@ -93,7 +93,7 @@ if ($uid > 0) {
         $hoursTotal = round($diff / (60 * 60), 2);
         $daysTotal = (int)($hoursTotal / 24);
         if ($daysTotal > 0) {
-            $itemsOwnHours = \sprintf(_MA_WGDIARIES_STATS_DAYSHOURS, $hoursTotal, $daysTotal, $hoursTotal - ($daysTotal * 24));
+            $itemsOwnHours = \sprintf(\_MA_WGDIARIES_STATS_DAYSHOURS, $hoursTotal, $daysTotal, $hoursTotal - ($daysTotal * 24));
         } else {
             $itemsOwnHours = $hoursTotal;
         }
@@ -111,7 +111,7 @@ if ($permissionsHandler->getPermItemsGroupView()) {
     $items = $itemsHandler->getItems(0, 0, 0, $yearStart, $yearEnd, true);
     if (\is_array($items)) {
         $itemsGroup['year']['count'] = \count($items);
-        $fromto = \sprintf(_MA_WGDIARIES_STATS_PERIOD_FROMTO, date('Y-m-d H:i:s', $yearStart), date('Y-m-d H:i:s', $yearEnd));
+        $fromto = \sprintf(\_MA_WGDIARIES_STATS_PERIOD_FROMTO, date('Y-m-d H:i:s', $yearStart), date('Y-m-d H:i:s', $yearEnd));
         $itemsGroup['year']['fromto'] = $fromto;
         $diff = 0;
         $diffusers = [];
@@ -130,7 +130,7 @@ if ($permissionsHandler->getPermItemsGroupView()) {
         $hoursTotal = round($diff / (60 * 60), 2);
         $daysTotal = (int)($hoursTotal / 24);
         if ($daysTotal > 0) {
-            $itemsGroupHours = \sprintf(_MA_WGDIARIES_STATS_DAYSHOURS, $hoursTotal, $daysTotal, $hoursTotal - ($daysTotal * 24));
+            $itemsGroupHours = \sprintf(\_MA_WGDIARIES_STATS_DAYSHOURS, $hoursTotal, $daysTotal, $hoursTotal - ($daysTotal * 24));
         } else {
             $itemsGroupHours = $hoursTotal;
         }
@@ -149,7 +149,7 @@ if ($permissionsHandler->getPermItemsGroupView()) {
     $items = $itemsHandler->getItems(0, 0, 0, $monthStart, $monthEnd, true);
     if (\is_array($items)) {
         $itemsGroup['month']['count'] = \count($items);
-        $itemsGroup['month']['fromto'] = \sprintf(_MA_WGDIARIES_STATS_PERIOD_FROMTO, date('Y-m-d H:i:s', $monthStart), date('Y-m-d H:i:s', $monthEnd));
+        $itemsGroup['month']['fromto'] = \sprintf(\_MA_WGDIARIES_STATS_PERIOD_FROMTO, date('Y-m-d H:i:s', $monthStart), date('Y-m-d H:i:s', $monthEnd));
         $diff = 0;
         $diffusers = [];
         foreach ($items as $item) {
@@ -180,10 +180,10 @@ if ($permissionsHandler->getPermItemsGroupView()) {
 
 
 // Description
-wgdiariesMetaDescription(_MA_WGDIARIES_STATISTICS);
-$GLOBALS['xoopsTpl']->assign('xoops_mpageurl', WGDIARIES_URL.'/index.php');
-$GLOBALS['xoopsTpl']->assign('xoops_icons32_url', XOOPS_ICONS32_URL);
-$GLOBALS['xoopsTpl']->assign('wgdiaries_upload_url', WGDIARIES_UPLOAD_URL);
+wgdiariesMetaDescription(\_MA_WGDIARIES_STATISTICS);
+$GLOBALS['xoopsTpl']->assign('xoops_mpageurl', \WGDIARIES_URL.'/index.php');
+$GLOBALS['xoopsTpl']->assign('xoops_icons32_url', \XOOPS_ICONS32_URL);
+$GLOBALS['xoopsTpl']->assign('wgdiaries_upload_url', \WGDIARIES_UPLOAD_URL);
 require __DIR__ . '/footer.php';
 
 /**
@@ -200,7 +200,7 @@ function createDaysHoursMinutes($seconds) {
     $ret['days'] = $daysTotal;
     $dtF = new \DateTime('@0');
     $dtT = new \DateTime("@$seconds");
-    $formatText = \str_replace('%s', (string)$hoursTotal, _MA_WGDIARIES_STATS_DAYSHOURSMINUTES);
+    $formatText = \str_replace('%s', (string)$hoursTotal, \_MA_WGDIARIES_STATS_DAYSHOURSMINUTES);
     $ret['hoursdesc'] = $dtF->diff($dtT)->format($formatText);
 
     return $ret;

@@ -36,4 +36,4 @@ if ($helper->getConfig('show_copyright')) {
     $GLOBALS['xoopsTpl']->assign('copyright', $copyright);
 }
 //
-include_once XOOPS_ROOT_PATH . '/footer.php';
+require_once \XOOPS_ROOT_PATH . '/footer.php';

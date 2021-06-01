@@ -32,7 +32,7 @@ use XoopsModules\Wgdiaries\{
 
 require __DIR__ . '/header.php';
 $GLOBALS['xoopsOption']['template_main'] = 'wgdiaries_outputs.tpl';
-include_once XOOPS_ROOT_PATH . '/header.php';
+require_once \XOOPS_ROOT_PATH . '/header.php';
 
 if (!$permissionsHandler->getPermOutputsView()) {
     \redirect_header('index.php?op=list', 3, \_NOPERM);
@@ -82,12 +82,12 @@ $GLOBALS['xoTheme']->addStylesheet($style, null);
 // Keywords
 $keywords = [];
 // Breadcrumbs
-$xoBreadcrumbs[] = ['title' => _MA_WGDIARIES_OUTPUTS];
+$xoBreadcrumbs[] = ['title' => \_MA_WGDIARIES_OUTPUTS];
 // Paths
-$GLOBALS['xoopsTpl']->assign('xoops_icons32_url', XOOPS_ICONS32_URL);
-$GLOBALS['xoopsTpl']->assign('wgdiaries_url', WGDIARIES_URL);
-$GLOBALS['xoopsTpl']->assign('wgdiaries_upload_itemsurl', WGDIARIES_UPLOAD_ITEMS_URL);
-$GLOBALS['xoopsTpl']->assign('wgdiaries_upload_categoriesurl', WGDIARIES_UPLOAD_CATEGORIES_URL);
+$GLOBALS['xoopsTpl']->assign('xoops_icons32_url', \XOOPS_ICONS32_URL);
+$GLOBALS['xoopsTpl']->assign('wgdiaries_url', \WGDIARIES_URL);
+$GLOBALS['xoopsTpl']->assign('wgdiaries_upload_itemsurl', \WGDIARIES_UPLOAD_ITEMS_URL);
+$GLOBALS['xoopsTpl']->assign('wgdiaries_upload_categoriesurl', \WGDIARIES_UPLOAD_CATEGORIES_URL);
 $GLOBALS['xoopsTpl']->assign('wgdiaries_icons_url_16', WGDIARIES_ICONS_URL . '/16/');
 //add stylesheets for print output
 $GLOBALS['xoopsTpl']->assign('wgdiaries_css_print_1', WGDIARIES_CSS_URL . '/style.css');
@@ -156,7 +156,7 @@ $GLOBALS['xoopsTpl']->assign('useGroups', $helper->getConfig('use_groups'));
 wgdiariesMetaKeywords($helper->getConfig('keywords') . ', ' . \implode(',', $keywords));
 unset($keywords);
 // Description
-wgdiariesMetaDescription(_MA_WGDIARIES_INDEX_DESC);
-$GLOBALS['xoopsTpl']->assign('xoops_mpageurl', WGDIARIES_URL.'/index.php');
+wgdiariesMetaDescription(\_MA_WGDIARIES_INDEX_DESC);
+$GLOBALS['xoopsTpl']->assign('xoops_mpageurl', \WGDIARIES_URL.'/index.php');
 
 require __DIR__ . '/footer.php';

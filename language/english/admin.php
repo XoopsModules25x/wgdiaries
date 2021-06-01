@@ -23,8 +23,8 @@ declare(strict_types=1);
  * @author         wedega - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
  */
 
-include_once __DIR__ . '/common.php';
-include_once __DIR__ . '/main.php';
+require_once __DIR__ . '/common.php';
+require_once __DIR__ . '/main.php';
 
 // ---------------- Admin Index ----------------
 \define('_AM_WGDIARIES_STATISTICS', 'Statistics');
@@ -46,17 +46,6 @@ include_once __DIR__ . '/main.php';
 \define('_AM_WGDIARIES_LIST_FILES', 'List of Files');
 \define('_AM_WGDIARIES_LIST_CATEGORIES', 'List of Categories');
 // ---------------- Admin Classes ----------------
-/*
-// Groupuser add/edit
-\define('_AM_WGDIARIES_GROUPUSER_ADD', 'Add Groupuser');
-\define('_AM_WGDIARIES_GROUPUSER_EDIT', 'Edit Groupuser');
-// Elements of Groupuser
-\define('_AM_WGDIARIES_GROUPUSER_ID', 'Id');
-\define('_AM_WGDIARIES_GROUPUSER_GROUPID', 'Groups/Projects');
-\define('_AM_WGDIARIES_GROUPUSER_UID', 'User');
-\define('_AM_WGDIARIES_GROUPUSER_DATECREATED', 'Datecreated');
-\define('_AM_WGDIARIES_GROUPUSER_SUBMITTER', 'Submitter');
-*/
 // Category add/edit
 \define('_AM_WGDIARIES_CATEGORY_ADD', 'Add Category');
 \define('_AM_WGDIARIES_CATEGORY_EDIT', 'Edit Category');

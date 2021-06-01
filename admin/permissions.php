@@ -36,7 +36,7 @@ $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('perm
 $op = Request::getCmd('op', 'global');
 
 // Get Form
-include_once \XOOPS_ROOT_PATH . '/class/xoopsform/grouppermform.php';
+require_once \XOOPS_ROOT_PATH . '/class/xoopsform/grouppermform.php';
 \xoops_load('XoopsFormLoader');
 switch ($op) {
     case 'global':
