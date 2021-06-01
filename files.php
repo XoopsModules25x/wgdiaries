@@ -33,7 +33,7 @@ $GLOBALS['xoopsOption']['template_main'] = 'wgdiaries_files.tpl';
 include_once XOOPS_ROOT_PATH . '/header.php';
 
 if (!$permissionsHandler->getPermItemsSubmit()) {
-    \redirect_header('index.php?op=list', 3, _NOPERM);
+    \redirect_header('index.php?op=list', 3, \_NOPERM);
 }
 
 $op    = Request::getCmd('op', 'list');
@@ -111,7 +111,7 @@ switch ($op) {
         }
         // Check permissions
         if (!$permissionsHandler->getPermGlobalSubmit()) {
-            \redirect_header('files.php?op=list', 3, _NOPERM);
+            \redirect_header('files.php?op=list', 3, \_NOPERM);
         }
         if ($fileId > 0) {
             $filesObj = $filesHandler->get($fileId);
@@ -176,7 +176,7 @@ switch ($op) {
         $xoBreadcrumbs[] = ['title' => _MA_WGDIARIES_FILE_ADD];
         // Check permissions
         if (!$permissionsHandler->getPermGlobalSubmit()) {
-            \redirect_header('files.php?op=list', 3, _NOPERM);
+            \redirect_header('files.php?op=list', 3, \_NOPERM);
         }
         // Form Create
         $filesObj = $filesHandler->create();
@@ -189,7 +189,7 @@ switch ($op) {
         $xoBreadcrumbs[] = ['title' => _MA_WGDIARIES_FILE_EDIT];
         // Check permissions
         if (!$permissionsHandler->getPermGlobalSubmit()) {
-            \redirect_header('files.php?op=list', 3, _NOPERM);
+            \redirect_header('files.php?op=list', 3, \_NOPERM);
         }
         // Check params
         if (0 == $fileId) {
@@ -205,7 +205,7 @@ switch ($op) {
         $xoBreadcrumbs[] = ['title' => _MA_WGDIARIES_FILE_DELETE];
         // Check permissions
         if (!$permissionsHandler->getPermGlobalSubmit()) {
-            \redirect_header('files.php?op=list', 3, _NOPERM);
+            \redirect_header('files.php?op=list', 3, \_NOPERM);
         }
         // Check params
         if (0 == $fileId) {

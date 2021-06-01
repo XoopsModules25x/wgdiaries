@@ -36,7 +36,7 @@ $GLOBALS['xoopsOption']['template_main'] = 'wgdiaries_calendar.tpl';
 include_once XOOPS_ROOT_PATH . '/header.php';
 
 if (!$permissionsHandler->getPermCalPageView()) {
-    \redirect_header('index.php?op=list', 3, _NOPERM);
+    \redirect_header('index.php?op=list', 3, \_NOPERM);
 }
 
 //default params
