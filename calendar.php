@@ -35,6 +35,10 @@ require __DIR__ . '/header.php';
 $GLOBALS['xoopsOption']['template_main'] = 'wgdiaries_calendar.tpl';
 include_once XOOPS_ROOT_PATH . '/header.php';
 
+if (!$permissionsHandler->getPermCalPageView()) {
+    \redirect_header('index.php?op=list', 3, _NOPERM);
+}
+
 //default params
 $year     = (int) date('Y');
 $month    = (int) date('n');
@@ -78,16 +82,6 @@ $GLOBALS['xoopsTpl']->assign('filterFromNextY', $filterFromNextY);
 $GLOBALS['xoopsTpl']->assign('filterToNextY', $filterToNextY);
 $otherParams = "op=filter&amp;filterByOwner=$filterByOwner&amp;filterGroup=$filterGroup";
 $GLOBALS['xoopsTpl']->assign('otherParams', $otherParams);
-/*
-echo "<br><br><br>filterFromPrevM: " . date('c', $filterFromPrevM);
-echo "<br>filterToPrevM: " . date('c', $filterToPrevM);
-echo "<br>filterFromNextM: " . date('c', $filterFromNextM);
-echo "<br>filterToNextM: " . date('c', $filterToNextM);
-echo "<br><br>filterFromPrevY: " . date('c', $filterFromPrevY);
-echo "<br>filterToPrevY: " . date('c', $filterToPrevY);
-echo "<br>filterFromNextY: " . date('c', $filterFromNextY);
-echo "<br>filterToNextY: " . date('c', $filterToNextY);
-*/
 
 if (Constants::FILTERBY_OWN === $filterByOwner) {
     $op = 'filterOwn';
@@ -142,7 +136,6 @@ switch ($op) {
     case 'list':
     default:
         break;
-        echo 'list';
     case 'filterOwn':
         $GLOBALS['xoopsTpl']->assign('resultTitle', \_MA_WGDIARIES_FILTER_RESULT);
         if ($uid > 0) {

@@ -30,9 +30,9 @@
     </div>
 <{else}>
     <h4><{$smarty.const._MA_WGDIARIES_FILES_NODATA}></h4>
-    <div class="col-12 pull-right">
-        <a class='btn btn-success right' href='items.php?op=show&amp;item_id=<{$itemId}>' title='<{$smarty.const._MA_WGDIARIES_ITEM_GOBACK}>'><{$smarty.const._MA_WGDIARIES_ITEM_GOBACK}></a>
-        <a class='btn btn-primary right' href='files.php?op=new&amp;item_id=<{$itemId}>' title='<{$smarty.const._ADD}>'><{$smarty.const._ADD}></a>
+    <div class="col-12">
+        <a class='btn btn-success' href='items.php?op=show&amp;item_id=<{$itemId}>' title='<{$smarty.const._MA_WGDIARIES_ITEM_GOBACK}>'><{$smarty.const._MA_WGDIARIES_ITEM_GOBACK}></a>
+        <a class='btn btn-primary' href='files.php?op=new&amp;item_id=<{$itemId}>' title='<{$smarty.const._ADD}>'><{$smarty.const._ADD}></a>
     </div>
 <{/if}>
 <{if $form|default:''}>

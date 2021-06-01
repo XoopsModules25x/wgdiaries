@@ -34,6 +34,10 @@ require __DIR__ . '/header.php';
 $GLOBALS['xoopsOption']['template_main'] = 'wgdiaries_outputs.tpl';
 include_once XOOPS_ROOT_PATH . '/header.php';
 
+if (!$permissionsHandler->getPermOutputsView()) {
+    \redirect_header('index.php?op=list', 3, _NOPERM);
+}
+
 $year     = (int) date('Y');
 $month    = (int) date('n');
 $lastday  = (int) date('t', \strtotime($month . '/1/' . $year));

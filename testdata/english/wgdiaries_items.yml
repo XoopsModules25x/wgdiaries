@@ -258,3 +258,16 @@
     item_comments: '0'
     item_datecreated: '1622531427'
     item_submitter: '1'
+-
+    item_id: '24'
+    item_groupid: '1'
+    item_name: 'Test for del'
+    item_remarks: ''
+    item_datefrom: '1622560800'
+    item_dateto: '1622560800'
+    item_catid: '0'
+    item_tags: ''
+    item_logo: blank.gif
+    item_comments: '0'
+    item_datecreated: '1622560710'
+    item_submitter: '1'
