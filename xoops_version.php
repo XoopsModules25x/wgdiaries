@@ -85,6 +85,7 @@ $modversion['templates'] = [
     ['file' => 'wgdiaries_admin_permissions.tpl', 'description' => '', 'type' => 'admin'],
     ['file' => 'wgdiaries_admin_footer.tpl', 'description' => '', 'type' => 'admin'],
     // User templates
+    ['file' => 'wgdiaries_archive.tpl', 'description' => ''],
     ['file' => 'wgdiaries_breadcrumbs.tpl', 'description' => ''],
     ['file' => 'wgdiaries_calendar.tpl', 'description' => ''],
     ['file' => 'wgdiaries_files.tpl', 'description' => ''],
@@ -148,34 +149,31 @@ if ($currdirname == $moduleDirName) {
             'url'  => 'items.php?op=new',
         ];
     }
-    $modversion['sub'][] = [
-        'name' => \_MI_WGDIARIES_SMNAME7,
-        'url'  => 'calendar.php',
-    ];
-    $modversion['sub'][] = [
-        'name' => \_MI_WGDIARIES_SMNAME5,
-        'url'  => 'statistics.php',
-    ];
-    /*
-    if ($permissionsHandler->getPermGroupsView() > 0) {
-        // Sub list groups
+    if ($permissionsHandler->getPermCalPageView()) {
+        $modversion['sub'][] = [
+            'name' => \_MI_WGDIARIES_SMNAME7,
+            'url' => 'calendar.php',
+        ];
+    }
+    if ($permissionsHandler->getPermStatisticsView()) {
         $modversion['sub'][] = [
             'name' => \_MI_WGDIARIES_SMNAME5,
-            'url'  => 'groups.php?op=list',
+            'url' => 'statistics.php',
         ];
     }
-    if ($permissionsHandler->getPermGroupsEdit() > 0) {
-        // Sub Submit group
+    if ($permissionsHandler->getPermOutputsView()) {
         $modversion['sub'][] = [
             'name' => \_MI_WGDIARIES_SMNAME6,
-            'url'  => 'groups.php?op=new',
+            'url' => 'outputs.php',
         ];
     }
-    */
-    $modversion['sub'][] = [
-        'name' => \_MI_WGDIARIES_SMNAME6,
-        'url'  => 'outputs.php',
-    ];
+    if ($permissionsHandler->getPermItemsSubmit()) {
+        // Sub Submit
+        $modversion['sub'][] = [
+            'name' => \_MI_WGDIARIES_SMNAME8,
+            'url'  => 'archive.php',
+        ];
+    }
 }
 // ------------------- Config ------------------- //
 // Editor Admin
