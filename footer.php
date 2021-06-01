@@ -22,15 +22,18 @@ declare(strict_types=1);
  * @min_xoops      2.5.9
  * @author         wedega - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
  */
+
 if ($helper->getConfig('show_breadcrumbs') && \count($xoBreadcrumbs) > 0) {
     $GLOBALS['xoopsTpl']->assign('xoBreadcrumbs', $xoBreadcrumbs);
 }
 $GLOBALS['xoopsTpl']->assign('adv', $helper->getConfig('advertise'));
 // 
 $GLOBALS['xoopsTpl']->assign('bookmarks', $helper->getConfig('bookmarks'));
-$GLOBALS['xoopsTpl']->assign('fbcomments', $helper->getConfig('fbcomments'));
 // 
 $GLOBALS['xoopsTpl']->assign('admin', WGDIARIES_ADMIN);
-$GLOBALS['xoopsTpl']->assign('copyright', $copyright);
-// 
+//
+if ($helper->getConfig('show_copyright')) {
+    $GLOBALS['xoopsTpl']->assign('copyright', $copyright);
+}
+//
 include_once XOOPS_ROOT_PATH . '/footer.php';

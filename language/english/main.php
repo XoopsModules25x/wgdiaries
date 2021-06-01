@@ -126,7 +126,18 @@ As you can see, you have created a page with a list of links at the top to navig
 \define('_MA_WGDIARIES_STATS_DAYSHOURSMINUTES', '%s hours total (%a days, %h hours, %i minutes)');
 \define('_MA_WGDIARIES_STATS_HOURS', 'Hours');
 \define('_MA_WGDIARIES_STATS_USER', 'User');
+// Categorie
+\define('_MA_WGDIARIES_CATLOGO', 'Categorie Logo');
 // calendar
+\define('_MA_WGDIARIES_CALENDAR_ITEMS', 'Items Calendar');
+\define('_MA_WGDIARIES_CALENDAR_EDITITEM', 'Edit Item');
+\define('_MA_WGDIARIES_CALENDAR_ADDITEM', 'Add Item');
+//navbar
+\define('_MA_WGDIARIES_CAL_PREVMONTH', 'Previous Month');
+\define('_MA_WGDIARIES_CAL_NEXTMONTH', 'Next Month');
+\define('_MA_WGDIARIES_CAL_PREVYEAR', 'Previous Month');
+\define('_MA_WGDIARIES_CAL_NEXTYEAR', 'Next Month');
+//days
 \define('_MA_WGDIARIES_CAL_MIN_SUNDAY', 'Su');
 \define('_MA_WGDIARIES_CAL_MIN_MONDAY', 'Mo');
 \define('_MA_WGDIARIES_CAL_MIN_TUESDAY', 'Tu');
@@ -134,7 +145,6 @@ As you can see, you have created a page with a list of links at the top to navig
 \define('_MA_WGDIARIES_CAL_MIN_THURSDAY', 'Th');
 \define('_MA_WGDIARIES_CAL_MIN_FRIDAY', 'Fr');
 \define('_MA_WGDIARIES_CAL_MIN_SATURDAY', 'Sa');
-// Normal Text
 \define('_MA_WGDIARIES_CAL_SUNDAY', 'Sunday');
 \define('_MA_WGDIARIES_CAL_MONDAY', 'Monday');
 \define('_MA_WGDIARIES_CAL_TUESDAY', 'Tuesday');
@@ -178,10 +188,10 @@ As you can see, you have created a page with a list of links at the top to navig
 \define('_MA_WGDIARIES_PRINT_LIST', 'Print list');
 \define('_MA_WGDIARIES_PRINT_ITEM', 'Print item');
 \define('_MA_WGDIARIES_SORT', 'Sort result');
-\define('_MA_WGDIARIES_SORT_DATEFROM_ASC', 'Sort date from ascending');
-\define('_MA_WGDIARIES_SORT_DATEFROM_DESC', 'Sort date from descending');
-\define('_MA_WGDIARIES_SORT_DATECREATED_ASC', 'Sort date created ascending');
-\define('_MA_WGDIARIES_SORT_DATECREATED_DESC', 'Sort date created descending');
+\define('_MA_WGDIARIES_SORT_DATEFROM_ASC', 'Sort by date from ascending');
+\define('_MA_WGDIARIES_SORT_DATEFROM_DESC', 'Sort by date from descending');
+\define('_MA_WGDIARIES_SORT_DATECREATED_ASC', 'Sort by date created ascending');
+\define('_MA_WGDIARIES_SORT_DATECREATED_DESC', 'Sort by date created descending');
 
 // Admin link
 \define('_MA_WGDIARIES_ADMIN', 'Admin');

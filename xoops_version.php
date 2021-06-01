@@ -85,18 +85,19 @@ $modversion['templates'] = [
     ['file' => 'wgdiaries_admin_permissions.tpl', 'description' => '', 'type' => 'admin'],
     ['file' => 'wgdiaries_admin_footer.tpl', 'description' => '', 'type' => 'admin'],
     // User templates
+    ['file' => 'wgdiaries_breadcrumbs.tpl', 'description' => ''],
+    ['file' => 'wgdiaries_calendar.tpl', 'description' => ''],
+    ['file' => 'wgdiaries_files.tpl', 'description' => ''],
+    ['file' => 'wgdiaries_files_item.tpl', 'description' => ''],
+    ['file' => 'wgdiaries_footer.tpl', 'description' => ''],
     ['file' => 'wgdiaries_header.tpl', 'description' => ''],
     ['file' => 'wgdiaries_index.tpl', 'description' => ''],
     ['file' => 'wgdiaries_items.tpl', 'description' => ''],
     ['file' => 'wgdiaries_items_list.tpl', 'description' => ''],
     ['file' => 'wgdiaries_items_item.tpl', 'description' => ''],
     ['file' => 'wgdiaries_items_single.tpl', 'description' => ''],
-    ['file' => 'wgdiaries_files.tpl', 'description' => ''],
-    ['file' => 'wgdiaries_files_item.tpl', 'description' => ''],
-    ['file' => 'wgdiaries_breadcrumbs.tpl', 'description' => ''],
-    ['file' => 'wgdiaries_statistics.tpl', 'description' => ''],
     ['file' => 'wgdiaries_outputs.tpl', 'description' => ''],
-    ['file' => 'wgdiaries_footer.tpl', 'description' => ''],
+    ['file' => 'wgdiaries_statistics.tpl', 'description' => ''],
 ];
 // ------------------- Mysql ------------------- //
 $modversion['sqlfile']['mysql'] = 'sql/mysql.sql';
@@ -147,6 +148,10 @@ if ($currdirname == $moduleDirName) {
             'url'  => 'items.php?op=new',
         ];
     }
+    $modversion['sub'][] = [
+        'name' => \_MI_WGDIARIES_SMNAME7,
+        'url'  => 'calendar.php',
+    ];
     $modversion['sub'][] = [
         'name' => \_MI_WGDIARIES_SMNAME5,
         'url'  => 'statistics.php',
@@ -364,7 +369,7 @@ $modversion['config'][] = [
     'valuetype'   => 'int',
     'default'     => 1,
 ];
-// Show module description
+// Text for index header
 $modversion['config'][] = [
     'name'        => 'index_header',
     'title'       => '_MI_WGDIARIES_INDEXHEADER',
@@ -372,6 +377,16 @@ $modversion['config'][] = [
     'formtype'    => 'textarea',
     'valuetype'   => 'text',
     'default'     => \_MI_WGDIARIES_DESC,
+];
+// Sorting in index page
+$modversion['config'][] = [
+    'name'        => 'index_sort',
+    'title'       => '_MI_WGDIARIES_INDEXSORT',
+    'description' => '_MI_WGDIARIES_INDEXSORT_DESC',
+    'formtype'    => 'select',
+    'valuetype'   => 'int',
+    'default'     => 'activities',
+    'options'     => [\_MI_WGDIARIES_INDEXSORT_ACT => 'activities', \_MI_WGDIARIES_INDEXSORT_DATEFROM => 'datefrom'],
 ];
 // Table type
 $modversion['config'][] = [
@@ -419,6 +434,15 @@ $modversion['config'][] = [
     'formtype'    => 'yesno',
     'valuetype'   => 'int',
     'default'     => 0,
+];
+// Show copyright
+$modversion['config'][] = [
+    'name'        => 'show_copyright',
+    'title'       => '_MI_WGDIARIES_SHOWCOPYRIGHT',
+    'description' => '_MI_WGDIARIES_SHOWCOPYRIGHT_DESC',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 1,
 ];
 // Make Sample button visible?
 $modversion['config'][] = [

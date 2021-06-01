@@ -7,6 +7,8 @@
  - added single item output (mjoel/goffy)
  - added categories to filter (goffy)
  - added sorting for list output (mjoel/goffy)
+ - added calendar page (mjoel/goffy)
+ - added sorting for index page (mjoel/goffy)
 
 ==============================================================
 1.02 [2021/05/19]

@@ -1,7 +1,7 @@
 -
     item_id: '4'
     item_groupid: '1'
-    item_name: ''
+    item_name: 'My first item'
     item_remarks: 'Remarks user1 item 1 for group1'
     item_datefrom: '1620028800'
     item_dateto: '1620057600'
@@ -14,7 +14,7 @@
 -
     item_id: '5'
     item_groupid: '1'
-    item_name: ''
+    item_name: 'first item of me'
     item_remarks: 'Remarks user2 item 1 for group1'
     item_datefrom: '1621273800'
     item_dateto: '1621273800'
@@ -27,7 +27,7 @@
 -
     item_id: '6'
     item_groupid: '1'
-    item_name: ''
+    item_name: 'second item'
     item_remarks: 'Remarks user1 item 2 for group1'
     item_datefrom: '1620117000'
     item_dateto: '1620145800'
@@ -40,7 +40,7 @@
 -
     item_id: '7'
     item_groupid: '2'
-    item_name: ''
+    item_name: 'third item'
     item_remarks: 'Remarks user1 item 1 for group2'
     item_datefrom: '1620203400'
     item_dateto: '1620232200'
@@ -53,7 +53,7 @@
 -
     item_id: '8'
     item_groupid: '1'
-    item_name: ''
+    item_name: 'next item webmaster'
     item_remarks: 'Remarks user1 item 3 for group1'
     item_datefrom: '1620289800'
     item_dateto: '1620318600'
@@ -66,7 +66,7 @@
 -
     item_id: '9'
     item_groupid: '1'
-    item_name: ''
+    item_name: 'item 5'
     item_remarks: 'Remarks user1 item 4 for group1'
     item_datefrom: '1620370800'
     item_dateto: '1620405000'
@@ -79,7 +79,7 @@
 -
     item_id: '10'
     item_groupid: '1'
-    item_name: ''
+    item_name: 'item 6'
     item_remarks: 'Remarks user1 item 5 for group1'
     item_datefrom: '1620631800'
     item_dateto: '1620667800'
@@ -92,7 +92,7 @@
 -
     item_id: '11'
     item_groupid: '1'
-    item_name: ''
+    item_name: 'item 7'
     item_remarks: 'Remarks user1 item 6 for group1'
     item_datefrom: '1620721800'
     item_dateto: '1620750600'
@@ -105,7 +105,7 @@
 -
     item_id: '12'
     item_groupid: '1'
-    item_name: ''
+    item_name: 'item 8'
     item_remarks: 'Remarks user1 item 7 for group1'
     item_datefrom: '1620808200'
     item_dateto: '1620837000'
@@ -118,7 +118,7 @@
 -
     item_id: '13'
     item_groupid: '1'
-    item_name: ''
+    item_name: 'item 9'
     item_remarks: 'Remarks user1 item 8 for group1'
     item_datefrom: '1620894600'
     item_dateto: '1620923400'
@@ -131,7 +131,7 @@
 -
     item_id: '14'
     item_groupid: '1'
-    item_name: ''
+    item_name: 'item 10'
     item_remarks: 'Remarks user1 item 9 for group1'
     item_datefrom: '1620978000'
     item_dateto: '1621006200'
@@ -144,7 +144,7 @@
 -
     item_id: '15'
     item_groupid: '1'
-    item_name: ''
+    item_name: 'item 11'
     item_remarks: 'Remarks user1 item 10 for group1'
     item_datefrom: '1621067400'
     item_dateto: '1621096200'
@@ -157,7 +157,7 @@
 -
     item_id: '16'
     item_groupid: '1'
-    item_name: ''
+    item_name: 'item 12'
     item_remarks: 'Remarks user1 item 11 for group1'
     item_datefrom: '1621326600'
     item_dateto: '1621355400'
@@ -170,7 +170,7 @@
 -
     item_id: '17'
     item_groupid: '1'
-    item_name: ''
+    item_name: 'item 13'
     item_remarks: 'Remarks user1 item 12 for group1'
     item_datefrom: '1621413000'
     item_dateto: '1621441800'
@@ -200,11 +200,11 @@
     item_remarks: 'Remarks user1 item 14 for group1'
     item_datefrom: '1621504800'
     item_dateto: '1621517400'
-    item_catid: '1'
+    item_catid: '0'
     item_tags: ''
     item_logo: logo2_60ad0af5d53e5.png
     item_comments: '0'
-    item_datecreated: '1621607685'
+    item_datecreated: '1621591345'
     item_submitter: '1'
 -
     item_id: '20'
@@ -245,3 +245,16 @@
     item_comments: '0'
     item_datecreated: '1621606657'
     item_submitter: '2'
+-
+    item_id: '23'
+    item_groupid: '1'
+    item_name: 'Test june 1'
+    item_remarks: ''
+    item_datefrom: '1622531400'
+    item_dateto: '1622531400'
+    item_catid: '1'
+    item_tags: ''
+    item_logo: blank.gif
+    item_comments: '0'
+    item_datecreated: '1622531427'
+    item_submitter: '1'

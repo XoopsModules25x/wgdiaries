@@ -62,8 +62,8 @@ switch ($op) {
         $itemsCalendar = (bool)$helper->getConfig('items_calendar');
         $GLOBALS['xoopsTpl']->assign('itemsCalendar', $itemsCalendar);
         if ($itemsCalendar) {
-            $GLOBALS['xoTheme']->addStylesheet(WGDIARIES_URL . '/class/SimpleCalendar/css/SimpleCalendar.css', null);
-            $calendar = new SimpleCalendar\SimpleCalendar();
+            $GLOBALS['xoTheme']->addStylesheet(WGDIARIES_URL . '/class/SimpleCalendar/css/SimpleCalendarMini.css', null);
+            $calendar = new SimpleCalendar\SimpleCalendarMini();
             $calendar->setDate(time());
             $calendar->setStartOfWeek(\_MA_WGDIARIES_CAL_MONDAY);
             $calendar->setWeekDayNames([
@@ -348,14 +348,15 @@ switch ($op) {
         $GLOBALS['xoopsTpl']->assign('maxfileuploads', $helper->getConfig('max_fileuploads'));
         // Form Create
         $itemsObj = $itemsHandler->create();
-        $form = $itemsObj->getFormItems();
+        $itemDate  = Request::getInt('itemDate', 0);
+        $form = $itemsObj->getFormItems(false, $itemDate);
         $GLOBALS['xoopsTpl']->assign('form', $form->render());
         break;
     case 'edit':
         // Breadcrumbs
         $xoBreadcrumbs[] = ['title' => _MA_WGDIARIES_ITEM_EDIT];
         // Check permissions
-        if (!$permissionsHandler->getPermGlobalSubmit()) {
+        if (!$permissionsHandler->getPermItemsSubmit()) {
             \redirect_header('items.php?op=list', 3, _NOPERM);
         }
         // Check params
