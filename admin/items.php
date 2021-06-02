@@ -53,7 +53,7 @@ switch ($op) {
         $GLOBALS['xoopsTpl']->assign('items_count', $itemsCount);
         $GLOBALS['xoopsTpl']->assign('wgdiaries_url', \WGDIARIES_URL);
         $GLOBALS['xoopsTpl']->assign('wgdiaries_upload_url', \WGDIARIES_UPLOAD_URL);
-        $GLOBALS['xoopsTpl']->assign('wgdiaries_upload_itemsurl', \\WGDIARIES_UPLOAD_ITEMS_URL);
+        $GLOBALS['xoopsTpl']->assign('wgdiaries_upload_itemsurl', \WGDIARIES_UPLOAD_ITEMS_URL);
         // Table view items
         if ($itemsCount > 0) {
             foreach (\array_keys($itemsAll) as $i) {
