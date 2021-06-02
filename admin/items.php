@@ -96,12 +96,12 @@ switch ($op) {
         $itemsObj->setVar('item_name', Request::getString('item_name', ''));
         $itemsObj->setVar('item_remarks', Request::getText('item_remarks', ''));
         $itemDatefromArr = Request::getArray('item_datefrom');
-        $itemDatefromObj = \DateTime::createFromFormat(_SHORTDATESTRING, $itemDatefromArr['date']);
+        $itemDatefromObj = \DateTime::createFromFormat(\_SHORTDATESTRING, $itemDatefromArr['date']);
         $itemDatefromObj->setTime(0, 0, 0);
         $itemDatefrom = $itemDatefromObj->getTimestamp() + (int)$itemDatefromArr['time'];
         $itemsObj->setVar('item_datefrom', $itemDatefrom);
         $itemDatetoArr = Request::getArray('item_dateto');
-        $itemDatetoObj = \DateTime::createFromFormat(_SHORTDATESTRING, $itemDatetoArr['date']);
+        $itemDatetoObj = \DateTime::createFromFormat(\_SHORTDATESTRING, $itemDatetoArr['date']);
         $itemDatetoObj->setTime(0, 0, 0);
         $itemDateto = $itemDatetoObj->getTimestamp() + (int)$itemDatetoArr['time'];
         $itemsObj->setVar('item_dateto', $itemDateto);
@@ -116,7 +116,7 @@ switch ($op) {
             $helper->getConfig('mimetypes_image'),
             $helper->getConfig('maxsize_image'), null, null);
         if ($uploader->fetchMedia($_POST['xoops_upload_file'][0])) {
-            $name = \substr($filename, 0, (\strlen ($filename)) - (\strlen (\strrchr($filename,'.'))));
+            $name = \substr($filename, 0, (\strlen ($filename)) - (\strlen (\strr\chr($filename,'.'))));
             $imgName = \preg_replace("/[^a-zA-Z0-9]+/", "_", $name) . '_';
             $uploader->setPrefix($imgName);
             $uploader->fetchMedia($_POST['xoops_upload_file'][0]);
@@ -145,7 +145,7 @@ switch ($op) {
             $itemsObj->setVar('item_logo', Request::getString('item_logo'));
         }
         $itemsObj->setVar('item_comments', Request::getInt('item_comments', 0));
-        $itemDatecreatedObj = \DateTime::createFromFormat(_SHORTDATESTRING, Request::getString('item_datecreated'));
+        $itemDatecreatedObj = \DateTime::createFromFormat(\_SHORTDATESTRING, Request::getString('item_datecreated'));
         $itemsObj->setVar('item_datecreated', $itemDatecreatedObj->getTimestamp());
         $itemsObj->setVar('item_submitter', Request::getInt('item_submitter', 0));
         // Insert Data
@@ -162,7 +162,7 @@ switch ($op) {
                     $helper->getConfig('mimetypes_file'),
                     $helper->getConfig('maxsize_file'), null, null);
                 if ($uploader->fetchMedia($_POST['xoops_upload_file'][$i + 1])) {
-                    $name = \substr($filename, 0, (\strlen ($filename)) - (\strlen (\strrchr($filename,'.'))));
+                    $name = \substr($filename, 0, (\strlen ($filename)) - (\strlen (\strr\chr($filename,'.'))));
                     $imgName = \preg_replace("/[^a-zA-Z0-9]+/", "_", $name) . '_';
                     $uploader->setPrefix($imgName);
                     $uploader->fetchMedia($_POST['xoops_upload_file'][$i + 1]);
@@ -186,7 +186,7 @@ switch ($op) {
                 $filesObj->setVar('file_desc', Request::getString('file_desc', ''));
                 $filesObj->setVar('file_name', $file['name']);
                 $filesObj->setVar('file_mimetype', $file['type']);
-                $fileDatecreatedObj = \DateTime::createFromFormat(_SHORTDATESTRING, Request::getString('item_datecreated'));
+                $fileDatecreatedObj = \DateTime::createFromFormat(\_SHORTDATESTRING, Request::getString('item_datecreated'));
                 $filesObj->setVar('file_datecreated', $fileDatecreatedObj->getTimestamp());
                 $filesObj->setVar('file_submitter', Request::getInt('item_submitter', 0));
                 if (!$filesHandler->insert($filesObj)) {

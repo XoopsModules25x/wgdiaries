@@ -77,10 +77,10 @@ class SimpleCalendar {
         if( $date instanceof \DateTimeInterface ) {
             return $date;
         }
-        if( is_int($date) ) {
+        if( \is_int($date) ) {
             return (new \DateTimeImmutable())->setTimestamp($date);
         }
-        if( is_string($date) ) {
+        if( \is_string($date) ) {
             return new \DateTimeImmutable($date);
         }
 
@@ -133,11 +133,11 @@ class SimpleCalendar {
      * @param string[]|null $weekDayNames
      */
     public function setWeekDayNames( array $weekDayNames = null ) {
-        if( is_array($weekDayNames) && count($weekDayNames) !== 7 ) {
+        if( \is_array($weekDayNames) && \count($weekDayNames) !== 7 ) {
             throw new \InvalidArgumentException('week array must have exactly 7 values');
         }
 
-        $this->weekDayNames = $weekDayNames ? array_values($weekDayNames) : null;
+        $this->weekDayNames = $weekDayNames ? \array_values($weekDayNames) : null;
     }
 
     /**
@@ -201,12 +201,12 @@ class SimpleCalendar {
      * @param int|string $offset Day the week starts on. ex: "Monday" or 0-6 where 0 is Sunday
      */
     public function setStartOfWeek( $offset ) {
-        if( is_int($offset) ) {
+        if( \is_int($offset) ) {
             $this->offset = $offset % 7;
-        } elseif( $this->weekDayNames !== null && ($weekOffset = array_search($offset, $this->weekDayNames, true)) !== false ) {
+        } elseif( $this->weekDayNames !== null && ($weekOffset = \array_search($offset, $this->weekDayNames, true)) !== false ) {
             $this->offset = $weekOffset;
         } else {
-            $weekTime = strtotime($offset);
+            $weekTime = \strtotime($offset);
             if( $weekTime === 0 ) {
                 throw new \InvalidArgumentException('invalid offset');
             }
@@ -288,22 +288,22 @@ TAG
             $out .= '<td' . ($isToday ? ' class="' . $this->classes['today'] . '"' : '') . '>';
 
             // line removed by goffy
-            //$out .= sprintf('<time datetime="%s">%d</time>', $date->format('Y-m-d'), $i);
+            //$out .= \sprintf('<time datetime="%s">%d</time>', $date->format('Y-m-d'), $i);
 
             $dailyHTML = null;
             if( isset($this->dailyHtml[$now['year']][$now['mon']][$i]) ) {
                 $dailyHTML = $this->dailyHtml[$now['year']][$now['mon']][$i];
             }
 
-            if( is_array($dailyHTML) ) {
-                $out .= sprintf('<time datetime="%s"><span class="badge badge-primary">%d</span></time>', $date->format('Y-m-d'), $i);
+            if( \is_array($dailyHTML) ) {
+                $out .= \sprintf('<time datetime="%s"><span class="badge badge-primary">%d</span></time>', $date->format('Y-m-d'), $i);
                 $out .= '<div class="' . $this->classes['events'] . '">';
                 foreach( $dailyHTML as $dHtml ) {
-                    $out .= sprintf('<div class="%s">%s</div>', $this->classes['event'], $dHtml);
+                    $out .= \sprintf('<div class="%s">%s</div>', $this->classes['event'], $dHtml);
                 }
                 $out .= '</div>';
             } else {
-                $out .= sprintf('<time datetime="%s">%d</time>', $date->format('Y-m-d'), $i);
+                $out .= \sprintf('<time datetime="%s">%d</time>', $date->format('Y-m-d'), $i);
             }
             if ($this->permSubmit) {
                 $out .= '<div class="addnew pull-right"><a href="items.php?op=new&itemDate=' . $date->getTimestamp() . '"><i class="fa fa-plus-square wgd-cal-icon pull-right" title="' . \_MA_WGDIARIES_CALENDAR_ADDITEM . '"></i></a></div>';
@@ -330,7 +330,7 @@ TAG
      * @param int $steps
      */
     private function rotate( array &$data, $steps ) {
-        $count = count($data);
+        $count = \count($data);
         if( $steps < 0 ) {
             $steps = $count + $steps;
         }
@@ -350,7 +350,7 @@ TAG
             $today = (86400 * (date('N')));
             $wDays = [];
             for( $n = 0; $n < 7; $n++ ) {
-                $wDays[] = strftime('%a', time() - $today + ($n * 86400));
+                $wDays[] = strf\time('%a', \time() - $today + ($n * 86400));
             }
         }
 

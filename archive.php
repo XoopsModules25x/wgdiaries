@@ -56,7 +56,7 @@ switch ($op) {
         //create list of months
         $arrMonths = [];
         // own items
-        $items = $itemsHandler->getItems($uid, 0, 0, 1, time(), false, false, 0,  0, $sortBy, $orderBy);
+        $items = $itemsHandler->getItems($uid, 0, 0, 1, \time(), false, false, 0,  0, $sortBy, $orderBy);
         if (\is_array($items)) {
             foreach ($items as $item) {
                 $dayStart = mktime(0, 0, 0, (int) date('n', $item['item_datefrom']), 1, (int) date('Y', $item['item_datefrom']));
@@ -66,7 +66,7 @@ switch ($op) {
 
         if ($permissionsHandler->getPermItemsGroupView()) {
             // items of my groups
-            $items = $itemsHandler->getItems($uid, 0, 0, 1, time(), true, true, 0,  0, $sortBy, $orderBy);
+            $items = $itemsHandler->getItems($uid, 0, 0, 1, \time(), true, true, 0,  0, $sortBy, $orderBy);
             if (\is_array($items)) {
                 foreach ($items as $item) {
                     $dayStart = mktime(0, 0, 0, (int) date('n', $item['item_datefrom']), 1, (int) date('Y', $item['item_datefrom']));
@@ -92,7 +92,7 @@ switch ($op) {
         }
         $GLOBALS['xoopsTpl']->assign('itemsCount', \count($items));
         $GLOBALS['xoopsTpl']->assign('items', $items);
-        
+
         $GLOBALS['xoopsTpl']->assign('table_type', $helper->getConfig('table_type'));
         $GLOBALS['xoopsTpl']->assign('useGroups', $helper->getConfig('use_groups'));
         $GLOBALS['xoopsTpl']->assign('indexHeader', $helper->getConfig('index_header'));
