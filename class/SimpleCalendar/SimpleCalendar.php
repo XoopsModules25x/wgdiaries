@@ -64,6 +64,7 @@ class SimpleCalendar {
      *
      * @param \DateTimeInterface|int|string|null $date DateTimeInterface or Date string parsed by strtotime for the
      *     calendar date. If null set to current timestamp.
+     * @throws \Exception
      */
     public function setDate( $date = null ) {
         $this->now = $this->parseDate($date) ?: new \DateTimeImmutable();
@@ -72,6 +73,7 @@ class SimpleCalendar {
     /**
      * @param \DateTimeInterface|int|string|null $date
      * @return \DateTimeInterface|null
+     * @throws \Exception
      */
     private function parseDate( $date = null ) {
         if( $date instanceof \DateTimeInterface ) {
@@ -118,6 +120,7 @@ class SimpleCalendar {
      *
      * @param \DateTimeInterface|false|string|null $today `null` will default to today, `false` will disable the
      *     rendering of Today.
+     * @throws \Exception
      */
     public function setToday( $today = null ) {
         if( $today === false ) {
@@ -150,13 +153,13 @@ class SimpleCalendar {
     }
 
 
-
     /**
      * Add a daily event to the calendar
      *
-     * @param string                             $html The raw HTML to place on the calendar for this event
-     * @param \DateTimeInterface|int|string      $startDate Date string for when the event starts
+     * @param string $html The raw HTML to place on the calendar for this event
+     * @param \DateTimeInterface|int|string $startDate Date string for when the event starts
      * @param \DateTimeInterface|int|string|null $endDate Date string for when the event ends. Defaults to start date
+     * @throws \Exception
      */
     public function addDailyHtml( $html, $startDate, $endDate = null ) {
         static $htmlCount = 0;
@@ -235,6 +238,7 @@ class SimpleCalendar {
      * Returns the generated Calendar
      *
      * @return string
+     * @throws \Exception
      */
     public function render() {
         $now   = getdate($this->now->getTimestamp());
@@ -327,6 +331,7 @@ TAG
     }
 
     /**
+     * @param array $data
      * @param int $steps
      */
     private function rotate( array &$data, $steps ) {

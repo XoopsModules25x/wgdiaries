@@ -54,6 +54,7 @@ class TableChecker extends \XoopsObject
 
     /**
      * @param \XoopsModules\Wgdiaries\Common\TableChecker|null
+     * @param int $checktype
      */
     public function __construct($mydirname, $checktype = 0)
     {

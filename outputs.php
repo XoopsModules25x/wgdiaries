@@ -114,7 +114,6 @@ switch ($op) {
     case 'list':
     default:
         break;
-        echo 'list';
     case 'filterOwn':
         $GLOBALS['xoopsTpl']->assign('resultTitle', \_MA_WGDIARIES_FILTER_RESULT);
         if ($uid > 0) {
