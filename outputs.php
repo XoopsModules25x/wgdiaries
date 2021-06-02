@@ -117,7 +117,7 @@ switch ($op) {
     case 'filterOwn':
         $GLOBALS['xoopsTpl']->assign('resultTitle', \_MA_WGDIARIES_FILTER_RESULT);
         if ($uid > 0) {
-            $itemsTotal = $itemsHandler->getItemsCount($uid, $start, $limit, $filterFrom, $filterTo, false, false, 0, $filterCat);
+            $itemsTotal = $itemsHandler->getItemsCount($uid, $filterFrom, $filterTo, false, false, 0, $filterCat);
             $items = $itemsHandler->getItems($uid, $start, $limit, $filterFrom, $filterTo, false, false, 0, $filterCat, $sortBy, $orderBy);
         }
         $filtered = true;
@@ -126,10 +126,10 @@ switch ($op) {
         $GLOBALS['xoopsTpl']->assign('resultTitle', \_MA_WGDIARIES_FILTER_RESULT);
         if ($permissionsHandler->getPermItemsGroupView()) {
             if (Constants::FILTER_TYPEALL == $filterGroup) {
-                $itemsTotal = $itemsHandler->getItemsCount(0, $start, $limit, $filterFrom, $filterTo, true, false, 0, $filterCat);
+                $itemsTotal = $itemsHandler->getItemsCount(0, $filterFrom, $filterTo, true, false, 0, $filterCat);
                 $items = $itemsHandler->getItems(0, $start, $limit, $filterFrom, $filterTo, true, false, 0, $filterCat, $sortBy, $orderBy);
             } else {
-                $itemsTotal = $itemsHandler->getItemsCount(0, $start, $limit, $filterFrom, $filterTo, false, false, $filterGroup, $filterCat);
+                $itemsTotal = $itemsHandler->getItemsCount(0, $filterFrom, $filterTo, false, false, $filterGroup, $filterCat);
                 $items = $itemsHandler->getItems(0, $start, $limit, $filterFrom, $filterTo, false, false, $filterGroup, $filterCat, $sortBy, $orderBy);
             }
         }
