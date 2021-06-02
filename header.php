@@ -31,7 +31,6 @@ $helper = \XoopsModules\Wgdiaries\Helper::getInstance();
 $itemsHandler = $helper->getHandler('Items');
 $filesHandler = $helper->getHandler('Files');
 $permissionsHandler = $helper->getHandler('Permissions');
-$statisticsHandler = $helper->getHandler('Statistics');
 
 // Breadcrumbs
 $xoBreadcrumbs = [];

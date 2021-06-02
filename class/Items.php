@@ -224,7 +224,6 @@ class Items extends \XoopsObject
      */
     public function getValuesItems($keys = null, $format = null, $maxDepth = null)
     {
-        global $XoopsGroup;
         $helper  = \XoopsModules\Wgdiaries\Helper::getInstance();
         $filesHandler = $helper->getHandler('Files');
         $utility = new \XoopsModules\Wgdiaries\Utility();
