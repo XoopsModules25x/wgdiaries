@@ -338,7 +338,7 @@ TAG
             $today = (86400 * (date('N')));
             $wDays = [];
             for( $n = 0; $n < 7; $n++ ) {
-                $wDays[] = strf\time('%a', \time() - $today + ($n * 86400));
+                $wDays[] = \strftime('%a', \time() - $today + ($n * 86400));
             }
         }
 
