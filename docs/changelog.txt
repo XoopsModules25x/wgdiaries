@@ -13,6 +13,7 @@
  - fixed display after all files deleted (goffy)
  - added new permissons (goffy)
  - added archive page (mjoel/goffy)
+ - added pagenav to archive page (goffy)
 
 ==============================================================
 1.02 [2021/05/19]
