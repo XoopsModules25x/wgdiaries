@@ -6,7 +6,7 @@
 <{if $monthsCount|default:0 > 0}>
     <ul>
     <{foreach item=month from=$arrMonths}>
-        <li><a href="archive.php?op=listresult&amp;listdate=<{$month.timestamp}>" target="_blank"><{$month.string}></a></li>
+        <li><a href="archive.php?op=listresult&amp;listdate=<{$month.timestamp}>" target="_blank"><{$month.string}>&emsp;(<{$month.counter}>)</a></li>
     <{/foreach}>
     </ul>
 <{/if}>

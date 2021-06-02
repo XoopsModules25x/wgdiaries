@@ -31,12 +31,13 @@ require __DIR__ . '/header.php';
 $GLOBALS['xoopsOption']['template_main'] = 'wgdiaries_archive.tpl';
 require_once \XOOPS_ROOT_PATH . '/header.php';
 
-$op = Request::getCmd('op', 'list');
+$op    = Request::getCmd('op', 'list');
+$start = Request::getInt('start', 0);
+$limit = Request::getInt('limit', $helper->getConfig('userpager'));
 
 // Define Stylesheet
 $GLOBALS['xoTheme']->addStylesheet($style, null);
-// Keywords
-$keywords = [];
+
 // Breadcrumbs
 $xoBreadcrumbs[] = ['title' => \_MA_WGDIARIES_ARCHIVE];
 // Paths
@@ -45,8 +46,6 @@ $GLOBALS['xoopsTpl']->assign('wgdiaries_upload_categoriesurl', \WGDIARIES_UPLOAD
 
 $uid = \is_object($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->uid() : 0;
 
-$start = 0;
-$limit = Request::getInt('limit', $helper->getConfig('indexpager'));
 $sortBy = 'item_datefrom';
 $orderBy = 'DESC';
 
@@ -60,7 +59,12 @@ switch ($op) {
         if (\is_array($items)) {
             foreach ($items as $item) {
                 $dayStart = mktime(0, 0, 0, (int) date('n', $item['item_datefrom']), 1, (int) date('Y', $item['item_datefrom']));
-                $arrMonths[$dayStart] = ['timestamp' => $dayStart, 'string' => date('F Y', $dayStart)];
+                if (array_key_exists($dayStart, $arrMonths)) {
+                    $counter =  $arrMonths[$dayStart]['counter'] + 1;
+                } else {
+                    $counter = 1;
+                }
+                $arrMonths[$dayStart] = ['timestamp' => $dayStart, 'string' => date('F Y', $dayStart), 'counter' => $counter];
             }
         }
 
@@ -70,7 +74,12 @@ switch ($op) {
             if (\is_array($items)) {
                 foreach ($items as $item) {
                     $dayStart = mktime(0, 0, 0, (int) date('n', $item['item_datefrom']), 1, (int) date('Y', $item['item_datefrom']));
-                    $arrMonths[$dayStart] = ['timestamp' => $dayStart, 'string' => date('F Y', $dayStart)];
+                    if (array_key_exists($dayStart, $arrMonths)) {
+                        $counter =  $arrMonths[$dayStart]['counter'] + 1;
+                    } else {
+                        $counter = 1;
+                    }
+                    $arrMonths[$dayStart] = ['timestamp' => $dayStart, 'string' => date('F Y', $dayStart), 'counter' => $counter];
                 }
             }
         }
@@ -86,12 +95,21 @@ switch ($op) {
         $filterTo   = mktime(23, 59, 59, $month, $lastday, $year);
 
         if ($permissionsHandler->getPermItemsGroupView()) {
-            $items = $itemsHandler->getItems(0, 0, 0, $filterFrom, $filterTo, true, false, 0, 0, $sortBy, $orderBy);
+            $itemsTotal = $itemsHandler->getItemsCount(0, $filterFrom, $filterTo, true, false, 0, 0);
+            $items = $itemsHandler->getItems(0, $start, $limit, $filterFrom, $filterTo, true, false, 0, 0, $sortBy, $orderBy);
         } else {
-            $items = $itemsHandler->getItems($uid, 0, 0, $filterFrom, $filterTo, false, false, 0, 0, $sortBy, $orderBy);
+            $itemsTotal = $itemsHandler->getItemsCount($uid, $filterFrom, $filterTo, false, false, 0, 0);
+            $items = $itemsHandler->getItems($uid, $start, $limit, $filterFrom, $filterTo, false, false, 0, 0, $sortBy, $orderBy);
         }
         $GLOBALS['xoopsTpl']->assign('itemsCount', \count($items));
         $GLOBALS['xoopsTpl']->assign('items', $items);
+
+        // Display Navigation
+        if ($itemsTotal > $limit) {
+            require_once \XOOPS_ROOT_PATH . '/class/pagenav.php';
+            $pagenav = new \XoopsPageNav($itemsTotal, $limit, $start, 'start', 'op=listresult&amp;limit=' . $limit . '&amp;listdate=' . $listDate);
+            $GLOBALS['xoopsTpl']->assign('pagenav', $pagenav->renderNav(4));
+        }
 
         $GLOBALS['xoopsTpl']->assign('table_type', $helper->getConfig('table_type'));
         $GLOBALS['xoopsTpl']->assign('useGroups', $helper->getConfig('use_groups'));
