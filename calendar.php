@@ -91,7 +91,7 @@ if (Constants::FILTERBY_OWN === $filterByOwner) {
     $op = 'list';
 }
 
-list($sortBy, $orderBy) = explode('-', $filterSort);
+list($sortBy, $orderBy) = \explode('-', $filterSort);
 
 // Define Stylesheet
 $GLOBALS['xoTheme']->addStylesheet($style, null);
@@ -101,7 +101,7 @@ $keywords = [];
 $xoBreadcrumbs[] = ['title' => \_MA_WGDIARIES_CALENDAR_ITEMS];
 // Paths
 $GLOBALS['xoopsTpl']->assign('wgdiaries_url', \WGDIARIES_URL);
-$GLOBALS['xoopsTpl']->assign('wgdiaries_icons_url_16', WGDIARIES_ICONS_URL . '/16/');
+$GLOBALS['xoopsTpl']->assign('wgdiaries_icons_url_16', \WGDIARIES_ICONS_URL . '/16/');
 
 
 $GLOBALS['xoTheme']->addStylesheet(\WGDIARIES_URL . '/class/SimpleCalendar/css/SimpleCalendar.css', null);

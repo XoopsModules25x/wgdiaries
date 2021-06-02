@@ -76,7 +76,7 @@ if ('filter' === $op) {
         $op = 'list';
     }
 }
-list($sortBy, $orderBy) = explode('-', $filterSort);
+list($sortBy, $orderBy) = \explode('-', $filterSort);
 // Define Stylesheet
 $GLOBALS['xoTheme']->addStylesheet($style, null);
 // Keywords
@@ -88,9 +88,9 @@ $GLOBALS['xoopsTpl']->assign('xoops_icons32_url', \XOOPS_ICONS32_URL);
 $GLOBALS['xoopsTpl']->assign('wgdiaries_url', \WGDIARIES_URL);
 $GLOBALS['xoopsTpl']->assign('wgdiaries_upload_itemsurl', \WGDIARIES_UPLOAD_ITEMS_URL);
 $GLOBALS['xoopsTpl']->assign('wgdiaries_upload_categoriesurl', \WGDIARIES_UPLOAD_CATEGORIES_URL);
-$GLOBALS['xoopsTpl']->assign('wgdiaries_icons_url_16', WGDIARIES_ICONS_URL . '/16/');
+$GLOBALS['xoopsTpl']->assign('wgdiaries_icons_url_16', \WGDIARIES_ICONS_URL . '/16/');
 //add stylesheets for print output
-$GLOBALS['xoopsTpl']->assign('wgdiaries_css_print_1', WGDIARIES_CSS_URL . '/style.css');
+$GLOBALS['xoopsTpl']->assign('wgdiaries_css_print_1', \WGDIARIES_CSS_URL . '/style.css');
 
 
 $uid = \is_object($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->uid() : 0;

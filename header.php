@@ -35,7 +35,7 @@ $statisticsHandler = $helper->getHandler('Statistics');
 
 // Breadcrumbs
 $xoBreadcrumbs = [];
-if (isset($GLOBALS['xoopsModule']) && is_object($GLOBALS['xoopsModule'])) {
+if (isset($GLOBALS['xoopsModule']) && \is_object($GLOBALS['xoopsModule'])) {
     $xoBreadcrumbs[] = ['title' => $GLOBALS['xoopsModule']->getVar('name'), 'link' => \WGDIARIES_URL . '/'];
 }
 

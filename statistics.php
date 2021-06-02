@@ -70,7 +70,7 @@ if ($uid > 0) {
         foreach ($items as $item) {
             $diff += ((int)$item['item_dateto'] - (int)$item['item_datefrom']);
         }
-        $hoursTotal = round($diff / (60 * 60), 2);
+        $hoursTotal = \round($diff / (60 * 60), 2);
         $daysTotal = (int)($hoursTotal / 24);
         if ($daysTotal > 0) {
             $itemsOwnHours = \sprintf(\_MA_WGDIARIES_STATS_DAYSHOURS, $hoursTotal, $daysTotal, $hoursTotal - ($daysTotal * 24));
@@ -90,7 +90,7 @@ if ($uid > 0) {
         foreach ($items as $item) {
             $diff += ((int)$item['item_dateto'] - (int)$item['item_datefrom']);
         }
-        $hoursTotal = round($diff / (60 * 60), 2);
+        $hoursTotal = \round($diff / (60 * 60), 2);
         $daysTotal = (int)($hoursTotal / 24);
         if ($daysTotal > 0) {
             $itemsOwnHours = \sprintf(\_MA_WGDIARIES_STATS_DAYSHOURS, $hoursTotal, $daysTotal, $hoursTotal - ($daysTotal * 24));
@@ -127,7 +127,7 @@ if ($permissionsHandler->getPermItemsGroupView()) {
                 $diffusers[$key]['diff'] = ((int)$item['item_dateto'] - (int)$item['item_datefrom']);
             }
         }
-        $hoursTotal = round($diff / (60 * 60), 2);
+        $hoursTotal = \round($diff / (60 * 60), 2);
         $daysTotal = (int)($hoursTotal / 24);
         if ($daysTotal > 0) {
             $itemsGroupHours = \sprintf(\_MA_WGDIARIES_STATS_DAYSHOURS, $hoursTotal, $daysTotal, $hoursTotal - ($daysTotal * 24));
@@ -194,7 +194,7 @@ require __DIR__ . '/footer.php';
 function createDaysHoursMinutes($seconds) {
 
     $ret = [];
-    $hoursTotal = round($seconds / (60 * 60), 2);
+    $hoursTotal = \round($seconds / (60 * 60), 2);
     $ret['hours'] = $hoursTotal;
     $daysTotal = (int)($hoursTotal / 24);
     $ret['days'] = $daysTotal;

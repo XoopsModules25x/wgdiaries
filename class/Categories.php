@@ -28,7 +28,7 @@ namespace XoopsModules\Wgdiaries;
 
 use XoopsModules\Wgdiaries;
 
-\defined('XOOPS_ROOT_PATH') || die('Restricted access');
+\defined('\XOOPS_ROOT_PATH') || die('Restricted access');
 
 /**
  * Class Object Categories
@@ -121,7 +121,7 @@ class Categories extends \XoopsObject
         // Form Text catWeight
         $form->addElement(new \XoopsFormText(\_AM_WGDIARIES_CATEGORY_WEIGHT, 'cat_weight', 50, 255, $this->getVar('cat_weight')));
         // Form Text Date Select catDatecreated
-        $catDatecreated = $this->isNew() ? time() : $this->getVar('cat_datecreated');
+        $catDatecreated = $this->isNew() ? \time() : $this->getVar('cat_datecreated');
         $form->addElement(new \XoopsFormTextDateSelect(\_AM_WGDIARIES_CATEGORY_DATECREATED, 'cat_datecreated', '', $catDatecreated));
         // Form Select User catSubmitter
         $catSubmitter = $this->isNew() ? $GLOBALS['xoopsUser']->uid() : $this->getVar('cat_submitter');

@@ -105,7 +105,7 @@ class Items extends \XoopsObject
         if ($helper->getConfig('use_groups')) {
             $itemGroup = $this->isNew() ? 0 : $this->getVar('item_groupid');
             $groupOptions = [];
-            $member_handler   = xoops_getHandler('member');
+            $member_handler   = \xoops_getHandler('member');
             $userGroups = $member_handler->getGroupList();
             foreach ($userGroups as $group_id => $group_name) {
                 $groupOptions[$group_id] = $group_name;

@@ -28,7 +28,7 @@ namespace XoopsModules\Wgdiaries;
 
 use XoopsModules\Wgdiaries;
 
-\defined('XOOPS_ROOT_PATH') || die('Restricted access');
+\defined('\XOOPS_ROOT_PATH') || die('Restricted access');
 
 /**
  * Class Object Files
@@ -130,7 +130,7 @@ class Files extends \XoopsObject
         }
         $form->addElement(new \XoopsFormText(\_MA_WGDIARIES_FILE_MIMETYPE, 'file_mimetype', 50, 255, $this->getVar('file_mimetype')));
         // Form Text Date Select fileDatecreated
-        $fileDatecreated = $this->isNew() ? time() : $this->getVar('file_datecreated');
+        $fileDatecreated = $this->isNew() ? \time() : $this->getVar('file_datecreated');
         // Form Select User fileSubmitter
         $fileSubmitter = $this->isNew() ? $GLOBALS['xoopsUser']->uid() : $this->getVar('file_submitter');
         if ($isAdmin) {
@@ -184,7 +184,7 @@ class Files extends \XoopsObject
 
     private function is_image($mimetype)
     {
-        $ret = in_array($mimetype, ['image/gif', 'image/jpeg', 'image/pjpeg', 'image/x-png', 'image/png', 'image/bmp']);
+        $ret = \in_array($mimetype, ['image/gif', 'image/jpeg', 'image/pjpeg', 'image/x-png', 'image/png', 'image/bmp']);
 
         return $ret;
     }
@@ -192,7 +192,7 @@ class Files extends \XoopsObject
     private function get_icon($fileName)
     {
         $path = WGDIARIES_ICONS_PATH . '/files/';
-        $path_parts = pathinfo($path . $fileName);
+        $path_parts = \pathinfo($path . $fileName);
         $extension = $path_parts['extension'];
         $icon = $extension . '.png';
         if (\file_exists($path . $icon)) {
