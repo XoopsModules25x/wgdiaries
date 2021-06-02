@@ -232,8 +232,6 @@ class ItemsHandler extends \XoopsPersistableObjectHandler
             $crItems->add(new \Criteria('item_datefrom', $from, '>='));
             $crItems->add(new \Criteria('item_dateto', $to, '<='));
         }
-        $crItems->setSort('item_id');
-        $crItems->setOrder('DESC');
 
         return $itemsHandler->getCount($crItems);
     }
