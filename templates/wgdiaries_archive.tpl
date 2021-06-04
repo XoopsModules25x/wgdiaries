@@ -1,13 +1,18 @@
 <{include file='db:wgdiaries_header.tpl' }>
 
 
-<h3><{$smarty.const._MA_WGDIARIES_ARCHIVE}></h3>
+<h3><{$smarty.const._MA_WGDIARIES_ARCHIVE_TITLE}></h3>
 
 <{if $monthsCount|default:0 > 0}>
     <ul>
-    <{foreach item=month from=$arrMonths}>
-        <li><a href="archive.php?op=listresult&amp;listdate=<{$month.timestamp}>" target="_blank"><{$month.string}>&emsp;(<{$month.counter}>)</a></li>
-    <{/foreach}>
+        <{foreach name=year item=year key=key from=$arrYearMonth}>
+            <li><{$key}> (<{$year.counterYear}>)</li>
+            <ul>
+                <{foreach item=month from=$year.months}>
+                <li><a href="archive.php?op=listresult&amp;listdate=<{$month.timestamp}>" target="_blank"><{$month.string}>&emsp;(<{$month.counter}>)</a></li>
+                <{/foreach}>
+            </ul>
+        <{/foreach}>
     </ul>
 <{/if}>
 
