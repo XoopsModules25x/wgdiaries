@@ -188,6 +188,7 @@ As you can see, you have created a page with a list of links at the top to navig
 \define('_MA_WGDIARIES_OUTPUTS', 'Outputs');
 // Archive
 \define('_MA_WGDIARIES_ARCHIVE', 'Archive');
+\define('_MA_WGDIARIES_ARCHIVE_TITLE', 'Archive of wgDiary');
 // General
 \define('_MA_WGDIARIES_SUBMIT', 'Submit');
 \define('_MA_WGDIARIES_PRINT_LIST', 'Print list');

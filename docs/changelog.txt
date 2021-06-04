@@ -15,6 +15,7 @@
  - added archive page (mjoel/goffy)
  - added pagenav to archive page (goffy)
  - fixed invalid logo url (mjoel/goffy)
+ - group archive by year (mjoel/goffy)
 
 ==============================================================
 1.02 [2021/05/19]

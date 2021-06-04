@@ -42,7 +42,6 @@ $GLOBALS['xoTheme']->addStylesheet($style, null);
 $xoBreadcrumbs[] = ['title' => \_MA_WGDIARIES_ARCHIVE];
 // Paths
 $GLOBALS['xoopsTpl']->assign('wgdiaries_url', \WGDIARIES_URL);
-$GLOBALS['xoopsTpl']->assign('wgdiaries_upload_itemsurl', \WGDIARIES_UPLOAD_ITEMS_URL);
 $GLOBALS['xoopsTpl']->assign('wgdiaries_upload_categoriesurl', \WGDIARIES_UPLOAD_CATEGORIES_URL);
 
 $uid = \is_object($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->uid() : 0;
@@ -55,6 +54,7 @@ switch ($op) {
     default:
         //create list of months
         $arrMonths = [];
+        $arrCounterYears = [];
         // own items
         $items = $itemsHandler->getItems($uid, 0, 0, 1, \time(), false, false, 0,  0, $sortBy, $orderBy);
         if (\is_array($items)) {
@@ -65,7 +65,15 @@ switch ($op) {
                 } else {
                     $counter = 1;
                 }
-                $arrMonths[$dayStart] = ['timestamp' => $dayStart, 'string' => date('F Y', $dayStart), 'counter' => $counter];
+                $year = date('Y', $dayStart);
+                $arrMonths[$dayStart] = ['timestamp' => $dayStart, 'year' => $year, 'string' => date('F Y', $dayStart), 'counter' => $counter];
+                //count by year
+                if (array_key_exists($year, $arrCounterYears)) {
+                    $counterYear =  $arrCounterYears[$year]['counter'] + 1;
+                } else {
+                    $counterYear = 1;
+                }
+                $arrCounterYears[$year]['counter'] = $counterYear;
             }
         }
 
@@ -80,12 +88,31 @@ switch ($op) {
                     } else {
                         $counter = 1;
                     }
-                    $arrMonths[$dayStart] = ['timestamp' => $dayStart, 'string' => date('F Y', $dayStart), 'counter' => $counter];
+                    $year = date('Y', $dayStart);
+                    $arrMonths[$dayStart] = ['timestamp' => $dayStart, 'year' => $year, 'string' => date('F Y', $dayStart), 'counter' => $counter];
+                    if (array_key_exists($year, $arrCounterYears)) {
+                        $counterYear =  $arrCounterYears[$year]['counter'] + 1;
+                    } else {
+                        $counterYear = 1;
+                    }
+                    $arrCounterYears[$year]['counter'] = $counterYear;
                 }
             }
         }
-        $GLOBALS['xoopsTpl']->assign('monthsCount', \count($arrMonths));
-        $GLOBALS['xoopsTpl']->assign('arrMonths', $arrMonths);
+        $monthsCount = \count($arrMonths);
+        $arrYearMonth = [];
+        if ($monthsCount > 0) {
+            //group data by year
+            $arrYearMonth = [];
+            foreach ($arrMonths as $arrMonth) {
+                $year = $arrMonth['year'];
+                $arrYearMonth[$year]['counterYear'] = $arrCounterYears[$year]['counter'];
+                $arrYearMonth[$year]['months'][] = $arrMonth;
+            }
+        }
+
+        $GLOBALS['xoopsTpl']->assign('monthsCount', $monthsCount);
+        $GLOBALS['xoopsTpl']->assign('arrYearMonth', $arrYearMonth);
         break;
     case 'listresult':
         $listDate   = Request::getInt('listdate', 0);
