@@ -42,6 +42,7 @@ $GLOBALS['xoTheme']->addStylesheet($style, null);
 $xoBreadcrumbs[] = ['title' => \_MA_WGDIARIES_ARCHIVE];
 // Paths
 $GLOBALS['xoopsTpl']->assign('wgdiaries_url', \WGDIARIES_URL);
+$GLOBALS['xoopsTpl']->assign('wgdiaries_upload_itemsurl', \WGDIARIES_UPLOAD_ITEMS_URL);
 $GLOBALS['xoopsTpl']->assign('wgdiaries_upload_categoriesurl', \WGDIARIES_UPLOAD_CATEGORIES_URL);
 
 $uid = \is_object($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->uid() : 0;
