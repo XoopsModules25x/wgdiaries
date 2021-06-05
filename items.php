@@ -239,7 +239,7 @@ switch ($op) {
             \redirect_header('items.php', 3, \implode(',', $GLOBALS['xoopsSecurity']->getErrors()));
         }
         // Check permissions
-        if (!$permissionsHandler->getPermItemSubmit()) {
+        if (!$permissionsHandler->getPermItemsSubmit()) {
             \redirect_header('items.php?op=list', 3, \_NOPERM);
         }
         if ($itemId > 0) {
@@ -363,7 +363,7 @@ switch ($op) {
         // Breadcrumbs
         $xoBreadcrumbs[] = ['title' => \_MA_WGDIARIES_ITEM_ADD];
         // Check permissions
-        if (!$permissionsHandler->getPermItemSubmit()) {
+        if (!$permissionsHandler->getPermItemsSubmit()) {
             \redirect_header('items.php?op=list', 3, \_NOPERM);
         }
         $GLOBALS['xoopsTpl']->assign('maxfileuploads', $helper->getConfig('max_fileuploads'));
