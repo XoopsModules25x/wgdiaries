@@ -34,7 +34,11 @@
                             </ul>
                         </td>
                     <{/if}>
-                    <td><a class="btn btn-primary" href="items.php?op=listuser&amp;userId=<{$user.uid}>" target="_blank"><{$smarty.const._MA_WGDIARIES_ITEMS_LIST}></a></td>
+                    <td>
+                        <{if $user.itemsCount|default:0 > 0}>
+                            <a class="btn btn-primary" href="items.php?op=listuser&amp;userId=<{$user.uid}>" target="_blank"><{$smarty.const._MA_WGDIARIES_ITEMS_LIST}></a>
+                        <{/if}>
+                    </td>
                 </tr>
             <{/foreach}>
         </tbody>
