@@ -34,7 +34,6 @@ As you can see, you have created a page with a list of links at the top to navig
 \define('_MA_WGDIARIES_NO_PDF_LIBRARY', 'Libraries TCPDF not there yet, upload them in root/Frameworks');
 \define('_MA_WGDIARIES_NO', 'No');
 \define('_MA_WGDIARIES_DETAILS', 'Show details');
-\define('_MA_WGDIARIES_BROKEN', 'Notify broken');
 // ---------------- Contents ----------------
 // General/forms
 \define('_MA_WGDIARIES_FORM_OK', 'Successfully saved');
@@ -53,7 +52,6 @@ As you can see, you have created a page with a list of links at the top to navig
 \define('_MA_WGDIARIES_FORM_DELETE', 'Clear');
 \define('_MA_WGDIARIES_INVALID_PARAM', 'Invalid parameter');
 \define('_MA_WGDIARIES_FORM_ERROR', 'Error when processing data');
-\define('_MA_WGDIARIES_FORM_ERROR_DELETE_GU', 'Error when deleting data of group users');
 // Index
 \define('_MA_WGDIARIES_INDEX_ITEMS_OWN', 'My last items');
 \define('_MA_WGDIARIES_INDEX_ITEMS_GROUP', 'Last items of my groups');
@@ -71,7 +69,6 @@ As you can see, you have created a page with a list of links at the top to navig
 \define('_MA_WGDIARIES_ITEMS_LISTMY', 'List of my items');
 \define('_MA_WGDIARIES_ITEMS_LISTGROUP', 'List of items of my group');
 \define('_MA_WGDIARIES_ITEMS_LISTUSER', 'List of Items of %s');
-\define('_MA_WGDIARIES_ITEMS_TITLE', 'Items title');
 \define('_MA_WGDIARIES_ITEMS_DESC', 'Items description');
 \define('_MA_WGDIARIES_ITEM_CAPTION', 'Item No. %s (%s, from %s to %s)');
 \define('_MA_WGDIARIES_ITEM_CAPTION_SINGLE', '%s - Item No. %s - %s)');
@@ -102,7 +99,6 @@ As you can see, you have created a page with a list of links at the top to navig
 \define('_MA_WGDIARIES_FILE_OPEN', 'Open File');
 \define('_MA_WGDIARIES_FILES', 'Files');
 \define('_MA_WGDIARIES_FILES_LIST', 'List of Files');
-\define('_MA_WGDIARIES_FILES_TITLE', 'Files title');
 \define('_MA_WGDIARIES_FILES_DESC', 'Files description');
 \define('_MA_WGDIARIES_FILES_NODATA', 'There are no files available for this item');
 // Caption of File
@@ -180,9 +176,6 @@ As you can see, you have created a page with a list of links at the top to navig
 \define('_MA_WGDIARIES_FILTER_TYPEALL', 'All');
 \define('_MA_WGDIARIES_FILTER_LIMIT', 'Number of lines');
 \define('_MA_WGDIARIES_FILTER_LIMIT_EXCEED', 'The number of lines in the result list are less then available items for choosen filter');
-// ---------------- Online ----------------
-\define('_MA_WGDIARIES_ONLINE', 'Online');
-\define('_MA_WGDIARIES_OFFLINE', 'Offline');
 // ---------------- Activate ----------------
 \define('_MA_WGDIARIES_ACTIVE', 'Activated (click to deactivate)');
 \define('_MA_WGDIARIES_NONACTIVE', 'Deactivated (click to activate)');

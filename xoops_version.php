@@ -366,6 +366,23 @@ $modversion['config'][] = [
     'valuetype'   => 'int',
     'default'     => 1,
 ];
+// First day of week in calendar
+$modversion['config'][] = [
+    'name'        => 'calendar_firstday',
+    'title'       => '_MI_WGDIARIES_CALENDAR_FIRSTDAY',
+    'description' => '_MI_WGDIARIES_CALENDAR_FIRSTDAY_DESC',
+    'formtype'    => 'select',
+    'valuetype'   => 'int',
+    'default'     => 1,
+    'options'     => [\_MI_WGDIARIES_CAL_SUNDAY => 0,
+                        \_MI_WGDIARIES_CAL_MONDAY => 1,
+                        \_MI_WGDIARIES_CAL_TUESDAY => 2,
+                        \_MI_WGDIARIES_CAL_WEDNESDAY => 3,
+                        \_MI_WGDIARIES_CAL_THURSDAY => 4,
+                        \_MI_WGDIARIES_CAL_FRIDAY => 5,
+                        \_MI_WGDIARIES_CAL_SATURDAY => 6
+                     ],
+];
 // Use group system
 $modversion['config'][] = [
     'name'        => 'use_groups',
@@ -390,7 +407,7 @@ $modversion['config'][] = [
     'title'       => '_MI_WGDIARIES_INDEXSORT',
     'description' => '_MI_WGDIARIES_INDEXSORT_DESC',
     'formtype'    => 'select',
-    'valuetype'   => 'int',
+    'valuetype'   => 'string',
     'default'     => 'activities',
     'options'     => [\_MI_WGDIARIES_INDEXSORT_ACT => 'activities', \_MI_WGDIARIES_INDEXSORT_DATEFROM => 'datefrom'],
 ];
@@ -416,7 +433,7 @@ $modversion['config'][] = [
 $modversion['config'][] = [
     'name'        => 'table_type',
     'title'       => '_MI_WGDIARIES_TABLE_TYPE',
-    'description' => '_MI_WGDIARIES_DIVIDEBY_DESC',
+    'description' => '_MI_WGDIARIES_TABLE_TYPE_DESC',
     'formtype'    => 'select',
     'valuetype'   => 'int',
     'default'     => 'bordered',

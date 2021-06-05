@@ -103,10 +103,9 @@ $xoBreadcrumbs[] = ['title' => \_MA_WGDIARIES_CALENDAR_ITEMS];
 $GLOBALS['xoopsTpl']->assign('wgdiaries_url', \WGDIARIES_URL);
 $GLOBALS['xoopsTpl']->assign('wgdiaries_icons_url_16', \WGDIARIES_ICONS_URL . '/16/');
 
-
 $GLOBALS['xoTheme']->addStylesheet(\WGDIARIES_URL . '/class/SimpleCalendar/css/SimpleCalendar.css', null);
 $calendar = new SimpleCalendar\SimpleCalendar();
-$calendar->setStartOfWeek(\_MA_WGDIARIES_CAL_MONDAY);
+$calendar->setStartOfWeek($helper->getConfig('calendar_firstday'));
 $calendar->setWeekDayNames([
     \_MA_WGDIARIES_CAL_MIN_SUNDAY,
     \_MA_WGDIARIES_CAL_MIN_MONDAY,
