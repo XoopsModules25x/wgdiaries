@@ -108,5 +108,13 @@ require_once __DIR__ . '/common.php';
 \define('_MI_WGDIARIES_BOOKMARKS_DESC', 'Show Social Bookmarks in the single page');
 \define('_MI_WGDIARIES_SHOWCOPYRIGHT', 'Show copyright');
 \define('_MI_WGDIARIES_SHOWCOPYRIGHT_DESC', 'You can remove the copyright from the wgSimpleAcc, but a backlinks to www.wedega.com is expected, anywhere on your site');
-
+\define('_MI_WGDIARIES_CALENDAR_FIRSTDAY', 'First day in calendar');
+\define('_MI_WGDIARIES_CALENDAR_FIRSTDAY_DESC', 'Decide which day in monthly calendar should be the first one');
+\define('_MI_WGDIARIES_CAL_SUNDAY', 'Sunday');
+\define('_MI_WGDIARIES_CAL_MONDAY', 'Monday');
+\define('_MI_WGDIARIES_CAL_TUESDAY', 'Tuesday');
+\define('_MI_WGDIARIES_CAL_WEDNESDAY', 'Wednesday');
+\define('_MI_WGDIARIES_CAL_THURSDAY', 'Thursday');
+\define('_MI_WGDIARIES_CAL_FRIDAY', 'Friday');
+\define('_MI_WGDIARIES_CAL_SATURDAY', 'Saturday');
 // ---------------- End ----------------

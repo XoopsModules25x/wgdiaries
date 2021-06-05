@@ -79,7 +79,7 @@ switch ($op) {
             $GLOBALS['xoTheme']->addStylesheet(\WGDIARIES_URL . '/class/SimpleCalendar/css/SimpleCalendarMini.css', null);
             $calendar = new SimpleCalendar\SimpleCalendarMini();
             $calendar->setDate(\time());
-            $calendar->setStartOfWeek(\_MA_WGDIARIES_CAL_MONDAY);
+            $calendar->setStartOfWeek($helper->getConfig('calendar_firstday'));
             $calendar->setWeekDayNames([
                 \_MA_WGDIARIES_CAL_MIN_SUNDAY,
                 \_MA_WGDIARIES_CAL_MIN_MONDAY,
