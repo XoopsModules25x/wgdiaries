@@ -147,7 +147,7 @@ class ItemsHandler extends \XoopsPersistableObjectHandler
         $itemsHandler = $helper->getHandler('Items');
 
         $crItems = new \CriteriaCompo();
-        if ($uid <> 0) {
+        if (0 <> $uid) {
             if ($excludeuid) {
                 $crItems->add(new \Criteria('item_submitter', $uid, '<>'));
             } else {
@@ -209,7 +209,7 @@ class ItemsHandler extends \XoopsPersistableObjectHandler
         $itemsHandler = $helper->getHandler('Items');
 
         $crItems = new \CriteriaCompo();
-        if ($uid <> 0) {
+        if (0 <> $uid) {
             if ($excludeuid) {
                 $crItems->add(new \Criteria('item_submitter', $uid, '<>'));
             } else {
