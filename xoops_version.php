@@ -394,6 +394,24 @@ $modversion['config'][] = [
     'default'     => 'activities',
     'options'     => [\_MI_WGDIARIES_INDEXSORT_ACT => 'activities', \_MI_WGDIARIES_INDEXSORT_DATEFROM => 'datefrom'],
 ];
+// Use avatar on user items page
+$modversion['config'][] = [
+    'name'        => 'useritems_avatar',
+    'title'       => '_MI_WGDIARIES_USERITEMS_AVATAR',
+    'description' => '_MI_WGDIARIES_USERITEMS_AVATAR_DESC',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 1,
+];
+// show users without items on user items page
+$modversion['config'][] = [
+    'name'        => 'useritems_empty',
+    'title'       => '_MI_WGDIARIES_USERITEMS_EMPTY',
+    'description' => '_MI_WGDIARIES_USERITEMS_EMPTY_DESC',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 1,
+];
 // Table type
 $modversion['config'][] = [
     'name'        => 'table_type',

@@ -57,12 +57,12 @@ foreach ($xoopsGroups as $groupid) {
             $crItems = new CriteriaCompo();
             $crItems->add(new \Criteria('item_submitter', $user));
             $itemsCount = $itemsHandler->getCount($crItems);
-            if ($itemsCount > 0) {
+            if ($itemsCount > 0 || $helper->getConfig('useritems_empty')) {
                 $userObj = new \XoopsUser($user);
                 $avatar = '';
-                //if ('avatars/blank.gif' != $userObj->user_avatar()) {
+                if ($helper->getConfig('useritems_avatar')) {
                     $avatar = $userObj->user_avatar();
-                //}
+                }
                 $userGroups = $memberHandler->getGroupsByUser($user);
                 $groups = [];
                 foreach ($userGroups as $userGroup) {
