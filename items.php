@@ -33,7 +33,7 @@ require __DIR__ . '/header.php';
 $GLOBALS['xoopsOption']['template_main'] = 'wgdiaries_items.tpl';
 require_once \XOOPS_ROOT_PATH . '/header.php';
 
-if (!$permissionsHandler->getPermItemsSubmit()) {
+if (!$permissionsHandler->getPermItemsSubmit() && !$permissionsHandler->getPermUserItemsView()) {
     \redirect_header('index.php?op=list', 3, \_NOPERM);
 }
 
@@ -41,6 +41,7 @@ $op      = Request::getCmd('op', 'list');
 $start   = Request::getInt('start', 0);
 $limit   = Request::getInt('limit', $helper->getConfig('userpager'));
 $itemId  = Request::getInt('item_id', 0);
+$userId  = Request::getInt('userId', 0);
 $sortBy  = Request::getString('sortBy', 'item_datefrom');
 $orderBy = Request::getString('orderBy', 'DESC');
 
@@ -59,6 +60,7 @@ $GLOBALS['xoopsTpl']->assign('showItem', $itemId > 0);
 switch ($op) {
     case 'show':
     case 'list':
+    case 'listuser':
     case 'listown':
     default:
         // Breadcrumbs
@@ -67,29 +69,40 @@ switch ($op) {
         } else {
             $xoBreadcrumbs[] = ['title' => \_MA_WGDIARIES_ITEMS_LISTMY];
         }
-        $itemsCalendar = (bool)$helper->getConfig('items_calendar');
-        $GLOBALS['xoopsTpl']->assign('itemsCalendar', $itemsCalendar);
-        if ($itemsCalendar) {
-            $GLOBALS['xoTheme']->addStylesheet(\WGDIARIES_URL . '/class/SimpleCalendar/css/SimpleCalendarMini.css', null);
-            $calendar = new SimpleCalendar\SimpleCalendarMini();
-            $calendar->setDate(\time());
-            $calendar->setStartOfWeek(\_MA_WGDIARIES_CAL_MONDAY);
-            $calendar->setWeekDayNames([
-                \_MA_WGDIARIES_CAL_MIN_SUNDAY,
-                \_MA_WGDIARIES_CAL_MIN_MONDAY,
-                \_MA_WGDIARIES_CAL_MIN_TUESDAY,
-                \_MA_WGDIARIES_CAL_MIN_WEDNESDAY,
-                \_MA_WGDIARIES_CAL_MIN_THURSDAY,
-                \_MA_WGDIARIES_CAL_MIN_FRIDAY,
-                \_MA_WGDIARIES_CAL_MIN_SATURDAY ]);
+        $itemsCalendar = false;
+        if ('listuser' !== $op) {
+            $itemsCalendar = (bool)$helper->getConfig('items_calendar');
         }
-
-        if ('show' == $op) {
-            $GLOBALS['xoopsTpl']->assign('itemsTitle', \_MA_WGDIARIES_ITEM_DETAILS);
-            //add stylesheets for print output
-            $GLOBALS['xoopsTpl']->assign('wgdiaries_css_print_1', \WGDIARIES_CSS_URL . '/style.css');
-        } else {
-            $GLOBALS['xoopsTpl']->assign('itemsTitle', \_MA_WGDIARIES_ITEMS_LISTMY);
+        if ($itemsCalendar) {
+            $GLOBALS['xoopsTpl']->assign('itemsCalendar', $itemsCalendar);
+            if ($itemsCalendar) {
+                $GLOBALS['xoTheme']->addStylesheet(\WGDIARIES_URL . '/class/SimpleCalendar/css/SimpleCalendarMini.css', null);
+                $calendar = new SimpleCalendar\SimpleCalendarMini();
+                $calendar->setDate(\time());
+                $calendar->setStartOfWeek(\_MA_WGDIARIES_CAL_MONDAY);
+                $calendar->setWeekDayNames([
+                    \_MA_WGDIARIES_CAL_MIN_SUNDAY,
+                    \_MA_WGDIARIES_CAL_MIN_MONDAY,
+                    \_MA_WGDIARIES_CAL_MIN_TUESDAY,
+                    \_MA_WGDIARIES_CAL_MIN_WEDNESDAY,
+                    \_MA_WGDIARIES_CAL_MIN_THURSDAY,
+                    \_MA_WGDIARIES_CAL_MIN_FRIDAY,
+                    \_MA_WGDIARIES_CAL_MIN_SATURDAY]);
+            }
+        }
+        switch ($op) {
+            case 'list':
+            default:
+                $GLOBALS['xoopsTpl']->assign('itemsTitle', \_MA_WGDIARIES_ITEMS_LISTMY);
+                break;
+            case 'show':
+                $GLOBALS['xoopsTpl']->assign('itemsTitle', \_MA_WGDIARIES_ITEM_DETAILS);
+                //add stylesheets for print output
+                $GLOBALS['xoopsTpl']->assign('wgdiaries_css_print_1', \WGDIARIES_CSS_URL . '/style.css');
+                break;
+            case 'listuser':
+                $GLOBALS['xoopsTpl']->assign('itemsTitle', sprintf(\_MA_WGDIARIES_ITEMS_LISTUSER, \XoopsUser::getUnameFromId($userId, true)));
+                break;
         }
         $uid = \is_object($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->uid() : 0;
         $crItems = new \CriteriaCompo();
@@ -98,7 +111,11 @@ switch ($op) {
         }
         $crItems->setSort($sortBy);
         $crItems->setOrder($orderBy);
-        $crItems->add(new \Criteria('item_submitter', $uid));
+        if ($userId > 0) {
+            $crItems->add(new \Criteria('item_submitter', $userId));
+        } else {
+            $crItems->add(new \Criteria('item_submitter', $uid));
+        }
         $itemsCount = $itemsHandler->getCount($crItems);
         $GLOBALS['xoopsTpl']->assign('itemsCount', $itemsCount);
         if ($itemsCount > 0) {

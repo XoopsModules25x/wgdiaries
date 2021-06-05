@@ -2,7 +2,10 @@
 
 <{if $itemsCount|default:0 > 0}>
     <div id="divToPrint">
-        <link href="<{$wgdiaries_css_print_1}>" rel="stylesheet">
+        <{if $wgdiaries_css_print_1|default:''}>
+            <link href="<{$wgdiaries_css_print_1}>" rel="stylesheet">
+        <{/if}>
+
         <h3><{$itemsTitle}></h3>
         <{if $items_calendar|default:'' && $showItem|default:false == false}>
             <div class="row printNone"><div class="col-12"><{$items_calendar}></div></div>
