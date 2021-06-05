@@ -38,19 +38,19 @@
         <div class="row row-cols-lg-3 row-cols-md-2 row-cols-1 justify-content-center">
             <{foreach item=news from=$news}>
                 <div class="col mb-3">
-                    <div class="card h-100 xmnews-border" <{if $news.color != false}>style="border-color : <{$news.color}>;"<{/if}>>
-                        <div class="card-header" <{if $news.color != false}>style="background-color : <{$news.color}>;"<{/if}>>
+                    <div class="card h-100 xmnews-border" <{if $news.color !== false}>style="border-color : <{$news.color}>;"<{/if}>>
+                        <div class="card-header" <{if $news.color !== false}>style="background-color : <{$news.color}>;"<{/if}>>
                             <div class="d-flex justify-content-center text-center">
                                 <h5 class="mb-0 text-white"><{$news.title}></h5>
                             </div>
                         </div>
 
                         <{if $news.logo != ''}>
-                            <{if $CAT|default:false == true}>
+                            <{if $CAT|default:false === true}>
                                 <a href="index.php?news_cid=<{$category_id}>">
                             <{/if}>
                             <img class="img-fluid" src="<{$news.logo}>" alt="<{$news.title}>">
-                            <{if $CAT|default:false == true}>
+                            <{if $CAT|default:false === true}>
                                 </a>
                             <{/if}>
                         <{/if}>
@@ -60,7 +60,7 @@
                             <div class="text-right mt-1 ">
                                 <button type="button" class="btn btn-primary btn-sm text-right" onclick=window.location.href="article.php?news_id=<{$news.id}>"><span class="fa fa-book" aria-hidden="true"></span> <{$smarty.const._MA_XMNEWS_NEWS_MORE}></button>
                             </div>
-                            <{if $xmdoc_viewdocs|default:false == true}>
+                            <{if $xmdoc_viewdocs|default:false === true}>
                                 <div class="col-12 pl-4 pr-4 pb-4"> 
                                     <div class="card">
                                         <div class="card-header">
@@ -103,7 +103,7 @@
                                 <{/if}>                                        
                             </div>
                             <{if $news.dorating == 1}>
-                                <{if $xmsocial == true}>
+                                <{if $xmsocial === true}>
                                     <div class="row">
                                         <div class="col">
                                             <span class="fa fa-star" aria-hidden="true"></span> <{$smarty.const._MA_XMNEWS_NEWS_RATING}> <{$news.rating}>    

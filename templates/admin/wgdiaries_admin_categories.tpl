@@ -21,7 +21,7 @@
             <tr class='<{cycle values='odd, even'}>'>
                 <td class='center'><{$category.id}></td>
                 <td class='center'><{$category.name}></td>
-                <td class='center'><img src="<{$wgdiaries_upload_url|default:false}>/categories/<{$category.logo}>" alt="categories" style="max-width:100px" /></td>
+                <td class='center'><img src="<{$wgdiaries_upload_url|default:false}>/categories/<{$category.logo}>" alt="categories" style="max-width:100px"></td>
                 <td class='center'>
                     <{if $category.cat_online|default:0 == 1}>
                     <a href="categories.php?op=change_yn&amp;field=cat_online&amp;value=0&amp;cat_id=<{$category.id}>&amp;start=<{$start}>&amp;limit=<{$limit}>" title="<{$smarty.const._MA_WGDIARIES_ACTIVE}>">
@@ -36,8 +36,8 @@
                 <td class='center'><{$category.datecreated}></td>
                 <td class='center'><{$category.submitter}></td>
                 <td class="center  width5">
-                    <a href="categories.php?op=edit&amp;cat_id=<{$category.id}>" title="<{$smarty.const._EDIT}>"><img src="<{xoModuleIcons16 edit.png}>" alt="<{$smarty.const._EDIT}> categories" /></a>
-                    <a href="categories.php?op=delete&amp;cat_id=<{$category.id}>" title="<{$smarty.const._DELETE}>"><img src="<{xoModuleIcons16 delete.png}>" alt="<{$smarty.const._DELETE}> categories" /></a>
+                    <a href="categories.php?op=edit&amp;cat_id=<{$category.id}>" title="<{$smarty.const._EDIT}>"><img src="<{xoModuleIcons16 edit.png}>" alt="<{$smarty.const._EDIT}> categories"></a>
+                    <a href="categories.php?op=delete&amp;cat_id=<{$category.id}>" title="<{$smarty.const._DELETE}>"><img src="<{xoModuleIcons16 delete.png}>" alt="<{$smarty.const._DELETE}> categories"></a>
                 </td>
             </tr>
             <{/foreach}>

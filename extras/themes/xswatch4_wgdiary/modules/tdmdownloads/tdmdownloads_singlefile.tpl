@@ -7,7 +7,7 @@
     <h1 class="tdm-title"><{$title}> <{if !empty($version)}><label class="label label-success"><{$version}></label><{/if}></h1>
 
     <div class="tdm-download-data row">
-        <{if $show_screenshot == true}>
+        <{if $show_screenshot === true}>
             <{if $logourl != ""}>
                 <div class="tdm-screenshot-single col-xs-8 col-sm-8 col-md-8">
                     <img src="<{$logourl}>" alt="<{$title}>">
@@ -38,7 +38,7 @@
                 </li}>
                     <{/if}>
 
-                    <{if $sup_aff == true}>
+                    <{if $sup_aff === true}>
                     <{foreach item=champ from=$champ_sup}>
                 <li><{$champ.data}></li>
                 <{/foreach}>

@@ -68,7 +68,7 @@ class FormInline extends XoopsSimpleForm
         $ret = "<form name='" . $this->getName() . "' id='" . $this->getName() . "' action='" . $this->getAction() . "' method='" . $this->getMethod() . "'" . $this->getExtra() . ">\n";
         foreach ($this->getElements() as $ele) {
             if (!$ele->isHidden()) {
-                $ret .= '<strong>' . $ele->getCaption() . '</strong>&nbsp;' . $ele->render() . "&nbsp;";
+                $ret .= '<strong>' . $ele->getCaption() . '</strong>&nbsp;' . $ele->render() . '&nbsp;';
             } else {
                 $ret .= $ele->render();
             }

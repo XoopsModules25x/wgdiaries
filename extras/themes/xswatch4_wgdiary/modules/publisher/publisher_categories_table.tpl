@@ -8,7 +8,7 @@
         <{if $category.categoryurl|default:false}></a><{/if}>
         <{/if}>
         <div class="media-body">
-            <h5 class="mt-0 mb-1"><{if $selected_category|default:false == $category.categoryid}><{$category.name}><{else}><{$category.categorylink}><{/if}></h5>
+            <h5 class="mt-0 mb-1"><{if $selected_category|default:false === $category.categoryid}><{$category.name}><{else}><{$category.categorylink}><{/if}></h5>
             <{$category.description}>
         <{if $category.subcats|default:false}>
         <br>

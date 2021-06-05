@@ -7,7 +7,7 @@
         <{/if}>
 
         <h3><{$itemsTitle}></h3>
-        <{if $items_calendar|default:'' && $showItem|default:false == false}>
+        <{if $items_calendar|default:'' && $showItem|default:false === false}>
             <div class="row printNone"><div class="col-12"><{$items_calendar}></div></div>
         <{/if}>
 
@@ -15,7 +15,7 @@
             <div class='col-12'>
                 <table class='table table-<{$table_type|default:false}>'>
                     <thead>
-                        <{if $showItem|default:false == false}>
+                        <{if $showItem|default:false === false}>
                             <tr class='head'>
                                 <{if $useGroups|default:false}>
                                     <th><{$smarty.const._MA_WGDIARIES_ITEM_GROUPID}></th>

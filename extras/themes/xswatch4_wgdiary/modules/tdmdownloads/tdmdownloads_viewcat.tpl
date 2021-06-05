@@ -91,7 +91,7 @@
         </div><!-- .downloads-info -->
 
         <div class="row order-by">
-            <{if $navigation == true}>
+            <{if $navigation === true}>
                 <div class="col-md-12"><h3 class="tdm-title"><{$smarty.const._MD_TDMDOWNLOADS_CAT_SORTBY}></h3></div>
                 <div class="col-xs-3 col-sm-3 col-md-3">
                     <{$smarty.const._MD_TDMDOWNLOADS_CAT_TITLE}>

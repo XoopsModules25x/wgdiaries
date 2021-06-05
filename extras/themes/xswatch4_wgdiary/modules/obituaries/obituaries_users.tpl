@@ -6,7 +6,7 @@
         </ol>
     </nav>
     <p align="center">
-        <a href="<{$xoops_url}>/modules/obituaries/index.php"><img src="<{$xoops_url}>/modules/obituaries/assets/images/logoModule.png" alt="<{$module.name}>" class="img-thumbnail"/></a>
+        <a href="<{$xoops_url}>/modules/obituaries/index.php"><img src="<{$xoops_url}>/modules/obituaries/assets/images/logoModule.png" alt="<{$module.name}>" class="img-thumbnail"></a>
     </p>
 <div class="row">
         <{foreach item=obituaries_user from=$obituaries_users}>

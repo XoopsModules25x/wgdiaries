@@ -21,7 +21,7 @@
 
 use Xmf\Request;
 
-include __DIR__ . '/header.php';
+require __DIR__ . '/header.php';
 
 $adminObject = \Xmf\Module\Admin::getInstance();
 

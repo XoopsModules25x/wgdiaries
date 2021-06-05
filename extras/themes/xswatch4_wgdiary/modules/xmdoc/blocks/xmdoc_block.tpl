@@ -2,8 +2,8 @@
     <{if $block.document|default:'' != ''}>
     <{foreach item=blockdocument from=$block.document}>
     <div class="col-sm-12 col-md-6 col-lg-4 p-2">
-        <div class="card xmdoc-border" <{if $blockdocument.color != false}>style="border-color : <{$blockdocument.color}>;"<{/if}>>
-            <div class="card-header text-center text-truncate d-none d-sm-block" <{if $blockdocument.color != false}>style="background-color : <{$blockdocument.color}>;"<{/if}>>
+        <div class="card xmdoc-border" <{if $blockdocument.color !== false}>style="border-color : <{$blockdocument.color}>;"<{/if}>>
+            <div class="card-header text-center text-truncate d-none d-sm-block" <{if $blockdocument.color !== false}>style="background-color : <{$blockdocument.color}>;"<{/if}>>
                 <div class="d-flex justify-content-center text-center">
                     <a class="text-decoration-none" title="<{$blockdocument.name}>" href="<{$xoops_url}>/modules/xmdoc/download.php?cat_id=<{$blockdocument.categoryid}>&amp;doc_id=<{$blockdocument.id}>" target="_blank">
                         <h5 class="mb-0 text-white"><{$blockdocument.name}></h5>
@@ -27,9 +27,9 @@
                         <{/if}>
                     </div>
                     <div class="col-12 pt-2 text-left">    
-                        <hr />
+                        <hr>
                         <{$blockdocument.description_short}>
-                        <hr />
+                        <hr>
                     </div>
 
                     <div class="col-6 col-md-11 col-xl-9 btn-group" role="group">
@@ -103,7 +103,7 @@
                             <div class="col-md-9 align-self-center">
                                     <{if $blockdocument.description_end}>
                                         <{$blockdocument.description_short}>
-                                        <hr />
+                                        <hr>
                                         <{$blockdocument.description_end}>
                                     <{else}>
                                         <{$blockdocument.description}>
@@ -116,13 +116,13 @@
                         <span class="fa fa-download fa-lg" aria-hidden="true"></span> <{$smarty.const._MA_XMDOC_DOWNLOAD}>
                     </a>
                 </div>
-                <{if ($blockdocument.perm_edit == true) || ($blockdocument.perm_del == true)}>
+                <{if ($blockdocument.perm_edit === true) || ($blockdocument.perm_del === true)}>
                     <div class="modal-footer d-flex justify-content-center">
                         <div class="btn-group text-center" role="group">
-                            <{if $blockdocument.perm_edit == true}>
+                            <{if $blockdocument.perm_edit === true}>
                                 <button type="button" class="btn btn-secondary" onclick=window.location.href="<{$xoops_url}>/modules/xmdoc/action.php?op=edit&amp;document_id=<{$blockdocument.id}>"><span class="fa fa-edit" aria-hidden="true"></span> <{$smarty.const._MA_XMDOC_EDIT}></button>
                             <{/if}>
-                            <{if $blockdocument.perm_del == true}>
+                            <{if $blockdocument.perm_del === true}>
                                 <button type="button" class="btn btn-secondary" onclick=window.location.href="<{$xoops_url}>/modules/xmdoc/action.php?op=del&amp;document_id=<{$blockdocument.id}>"><span class="fa fa-trash" aria-hidden="true"></span> <{$smarty.const._MA_XMDOC_DEL}></button>
                             <{/if}>
                         </div>

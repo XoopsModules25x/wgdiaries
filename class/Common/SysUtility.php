@@ -34,10 +34,17 @@ use XoopsModules\Wgdiaries\Helper;
  */
 class SysUtility
 {
-    use VersionChecks; //checkVerXoops, checkVerPhp Traits
-    use ServerStats; // getServerStats Trait
-    use FilesManagement; // Files Management Trait
+    use VersionChecks;
 
+    //checkVerXoops, checkVerPhp Traits
+
+    use ServerStats;
+
+    // getServerStats Trait
+
+    use FilesManagement;
+
+    // Files Management Trait
 
     /**
      * Access the only instance of this class
@@ -204,7 +211,7 @@ class SysUtility
      *
      * @return bool
      */
-    function fieldExists($fieldname, $table)
+    public function fieldExists($fieldname, $table)
     {
         global $xoopsDB;
         $result = $xoopsDB->queryF("SHOW COLUMNS FROM   $table LIKE '$fieldname'");

@@ -50,7 +50,7 @@
       method="<{$form_post.method}>" <{$form_post.extra}> >
       <div class="form-group row">
         <{foreach item=element from=$form_post.elements}>
-        <{if $element.hidden != true}>
+        <{if $element.hidden !== true}>
             <label class="col-xs-12 col-sm-2 col-form-label text-sm-right">
                 <{$element.caption}>
                 <{if $element.required}><span class="caption-required">*</span><{/if}>
@@ -65,7 +65,7 @@
         <{/foreach}>
         </div>
     <{foreach item=element from=$form_post.elements}>
-    <{if $element.hidden == true}>
+    <{if $element.hidden === true}>
         <{$element.body}>
     <{/if}>
     <{/foreach}>

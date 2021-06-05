@@ -117,7 +117,7 @@ switch ($op) {
             $helper->getConfig('maxsize_image'), null, null);
         if ($uploader->fetchMedia($_POST['xoops_upload_file'][0])) {
             $name = \substr($filename, 0, (\strlen ($filename)) - (\strlen (\strrchr($filename,'.'))));
-            $imgName = \preg_replace("/[^a-zA-Z0-9]+/", "_", $name) . '_';
+            $imgName = \preg_replace('/[^a-zA-Z0-9]+/', '_', $name) . '_';
             $uploader->setPrefix($imgName);
             $uploader->fetchMedia($_POST['xoops_upload_file'][0]);
             if (!$uploader->upload()) {
@@ -163,7 +163,7 @@ switch ($op) {
                     $helper->getConfig('maxsize_file'), null, null);
                 if ($uploader->fetchMedia($_POST['xoops_upload_file'][$i + 1])) {
                     $name = \substr($filename, 0, (\strlen ($filename)) - (\strlen (\strrchr($filename,'.'))));
-                    $imgName = \preg_replace("/[^a-zA-Z0-9]+/", "_", $name) . '_';
+                    $imgName = \preg_replace('/[^a-zA-Z0-9]+/', '_', $name) . '_';
                     $uploader->setPrefix($imgName);
                     $uploader->fetchMedia($_POST['xoops_upload_file'][$i + 1]);
                     if (!$uploader->upload()) {

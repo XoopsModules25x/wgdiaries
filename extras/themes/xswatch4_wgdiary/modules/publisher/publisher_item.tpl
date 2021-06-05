@@ -32,7 +32,7 @@
                     <{assign var=active value=' active'}>
                     <{if $item.image_path}>
                     <div class="carousel-item<{$active}>">
-                        <img class="d-block w-100" src="<{$item.image_path}>" alt="<{$item.image_name}>"/>
+                        <img class="d-block w-100" src="<{$item.image_path}>" alt="<{$item.image_name}>">
                         <div class="carousel-caption d-none d-md-block">
                             <p class="slidetext-trans center"><{$item.image_name}><p>
                         </div>
@@ -41,7 +41,7 @@
                     <{/if}>
                     <{foreach item=image from=$item.images name=foo}>
                     <div class="carousel-item<{$active}>">
-                        <img class="d-block w-100" src="<{$image.path}>" alt="<{$image.name}>"/>
+                        <img class="d-block w-100" src="<{$image.path}>" alt="<{$image.name}>">
                         <div class="carousel-caption d-none d-md-block">
                             <p class="slidetext-trans center"><{$image.name}><p>
                         </div>
@@ -59,7 +59,7 @@
                 </div>
             </div>
             <{elseif $item.image_path}>
-                <img class="img-fluid mh-100" src="<{$item.image_path}>" alt="<{$item.image_name}>"/>
+                <img class="img-fluid mh-100" src="<{$item.image_path}>" alt="<{$item.image_name}>">
             <{/if}>
         </figure>
     <{/if}>
@@ -120,14 +120,14 @@
                     <{if $file.mod}>
                         <a href="<{$publisher_url}>/file.php?op=mod&fileid=<{$file.fileid}>">
                             <img src="<{$publisher_url}>/assets/images/links/edit.gif" title="<{$smarty.const._CO_PUBLISHER_EDITFILE}>"
-                                 alt="<{$smarty.const._CO_PUBLISHER_EDITFILE}>"/></a>
+                                 alt="<{$smarty.const._CO_PUBLISHER_EDITFILE}>"></a>
                         <a href="<{$publisher_url}>/file.php?op=del&fileid=<{$file.fileid}>">
                             <img src="<{$publisher_url}>/assets/images/links/delete.png" title="<{$smarty.const._CO_PUBLISHER_DELETEFILE}>"
-                                 alt="<{$smarty.const._CO_PUBLISHER_DELETEFILE}>"/></a>
+                                 alt="<{$smarty.const._CO_PUBLISHER_DELETEFILE}>"></a>
                     <{/if}>
                     <a href="<{$publisher_url}>/visit.php?fileid=<{$file.fileid}>" target="_blank">
                         <img src="<{$publisher_url}>/assets/images/links/file.gif" title="<{$lang_download_file}>"
-                             alt="<{$smarty.const._MD_PUBLISHER_DOWNLOAD_FILE}>"/>&nbsp;<strong><{$file.name}></strong>
+                             alt="<{$smarty.const._MD_PUBLISHER_DOWNLOAD_FILE}>">&nbsp;<strong><{$file.name}></strong>
                     </a>
 
                     <div style="font-size:12px;"><{$file.description}></div>
@@ -160,7 +160,7 @@
             <div class="pull-left">
                 <a href="<{$previous_item_url}>">
                     <img style="vertical-align: middle;" src="<{$publisher_images_url}>/links/previous.gif" title="<{$smarty.const._MD_PUBLISHER_PREVIOUS_ITEM}>"
-                         alt="<{$smarty.const._MD_PUBLISHER_PREVIOUS_ITEM}>"/>
+                         alt="<{$smarty.const._MD_PUBLISHER_PREVIOUS_ITEM}>">
                 </a>
                 <{$previous_item_link}>
             </div>
@@ -170,7 +170,7 @@
                 <{$next_item_link}>
                 <a href="<{$next_item_url}>">
                     <img style="vertical-align: middle;" src="<{$publisher_images_url}>/links/next.gif" title="<{$smarty.const._MD_PUBLISHER_NEXT_ITEM}>"
-                         alt="<{$smarty.const._MD_PUBLISHER_NEXT_ITEM}>"/>
+                         alt="<{$smarty.const._MD_PUBLISHER_NEXT_ITEM}>">
                 </a>
             </div>
         <{/if}>

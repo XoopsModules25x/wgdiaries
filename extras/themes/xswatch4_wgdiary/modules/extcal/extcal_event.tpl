@@ -40,7 +40,7 @@
             </div>
         </div>
         <{elseif $smarty.const._EXTCAL_SHOW_NO_PICTURE}>
-            <img src="<{$xoops_url}>/modules/extcal/assets/images/no_picture.png" height="180"/>
+            <img src="<{$xoops_url}>/modules/extcal/assets/images/no_picture.png" height="180">
         <{/if}>
     </div>
 </div>
@@ -98,7 +98,7 @@
     <{/if*}>
     <{if $location.logo.value}>
     <a href="<{$xoops_url}>/uploads/extcal/location/<{$location.logo.value}>">
-        <img src="<{$xoops_url}>/uploads/extcal/location/<{$location.logo.value}>" height="150px"/>
+        <img src="<{$xoops_url}>/uploads/extcal/location/<{$location.logo.value}>" height="150px">
     </a>
     <br>
     <{/if}>
@@ -153,10 +153,10 @@
     <{/foreach}>
     <{if $eventmember.member.show_button}>
     <form method="post" action="event_member.php">
-        <input type="hidden" name="mode" value="<{$eventmember.member.joinevent_mode}>"/>
-        <input type="hidden" name="event" value="<{$event.event_id}>"/>
+        <input type="hidden" name="mode" value="<{$eventmember.member.joinevent_mode}>">
+        <input type="hidden" name="event" value="<{$event.event_id}>">
         <{$token}>
-        <input class="btn btn-sm btn-primary" type="submit" value="<{$eventmember.member.button_text}>"<{$eventmember.member.button_disabled}> />
+        <input class="btn btn-sm btn-primary" type="submit" value="<{$eventmember.member.button_text}>"<{$eventmember.member.button_disabled}>>
     </form>
     <{/if}>
 </div>
@@ -170,10 +170,10 @@
     <{/foreach}>
     <{if $eventmember.notmember.show_button}>
     <form method="post" action="event_notmember.php">
-        <input type="hidden" name="mode" value="<{$eventmember.notmember.joinevent_mode}>"/>
-        <input type="hidden" name="event" value="<{$event.event_id}>"/>
+        <input type="hidden" name="mode" value="<{$eventmember.notmember.joinevent_mode}>">
+        <input type="hidden" name="event" value="<{$event.event_id}>">
         <{$token}>
-        <input class="btn btn-sm btn-primary" type="submit" value="<{$eventmember.notmember.button_text}>"<{$eventmember.notmember.button_disabled}> />
+        <input class="btn btn-sm btn-primary" type="submit" value="<{$eventmember.notmember.button_text}>"<{$eventmember.notmember.button_disabled}>>
     </form>
     <{/if}>
 </div>

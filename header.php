@@ -22,8 +22,8 @@ declare(strict_types=1);
  * @min_xoops      2.5.9
  * @author         wedega - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
  */
-include \dirname(\dirname(__DIR__)) . '/mainfile.php';
-include __DIR__ . '/include/common.php';
+include dirname(__DIR__, 2) . '/mainfile.php';
+require __DIR__ . '/include/common.php';
 $moduleDirName = \basename(__DIR__);
 
 // Get instance of module

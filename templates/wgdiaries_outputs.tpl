@@ -17,7 +17,7 @@
             <div class='table-responsive'>
                 <table class='table table-<{$table_type|default:false}>'>
                     <thead>
-                    <{if $showItem|default:false == false}>
+                    <{if $showItem|default:false === false}>
                         <tr class='head'>
                             <{if $useGroups|default:false}>
                             <th><{$smarty.const._MA_WGDIARIES_ITEM_GROUPID}></th>
@@ -49,7 +49,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-12 center"><input class="btn btn-primary" type="button" value="<{$smarty.const._MA_WGDIARIES_PRINT_LIST}>" onclick="PrintDiv();" /></div>
+        <div class="col-12 center"><input class="btn btn-primary" type="button" value="<{$smarty.const._MA_WGDIARIES_PRINT_LIST}>" onclick="PrintDiv();"></div>
     </div>
 <{/if}>
 

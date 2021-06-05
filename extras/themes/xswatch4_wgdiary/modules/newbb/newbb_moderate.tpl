@@ -47,7 +47,7 @@
 
 
 <br>
-<hr class="align_left" width="100%" size="1"/>
+<hr class="align_left" width="100%" size="1">
 <{$suspend_form.rendered|replace:'<select name="forum">':'<select class="form-control" id="forum" name="forum">'}>
 <div class="clear"></div>
 <br>

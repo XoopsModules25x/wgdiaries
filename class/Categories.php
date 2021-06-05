@@ -107,7 +107,7 @@ class Categories extends \XoopsObject
         }
         $imageSelect->setExtra("onchange='showImgSelected(\"imglabel_cat_logo\", \"cat_logo\", \"" . $imageDirectory . '", "", "' . \XOOPS_URL . "\")'");
         $imageTray->addElement($imageSelect, false);
-        $imageTray->addElement(new \XoopsFormLabel('', "<br><img src='" . \XOOPS_URL . '/' . $imageDirectory . '/' . $catLogo . "' id='imglabel_cat_logo' alt='' style='max-width:100px' />"));
+        $imageTray->addElement(new \XoopsFormLabel('', "<br><img src='" . \XOOPS_URL . '/' . $imageDirectory . '/' . $catLogo . "' id='imglabel_cat_logo' alt='' style='max-width:100px'>"));
         // Form Image catLogo: Upload new image
         $maxsize = $helper->getConfig('maxsize_image');
         $imageTray->addElement(new \XoopsFormFile('<br>' . \_MA_WGDIARIES_FORM_UPLOAD_NEW, 'cat_logo', $maxsize));

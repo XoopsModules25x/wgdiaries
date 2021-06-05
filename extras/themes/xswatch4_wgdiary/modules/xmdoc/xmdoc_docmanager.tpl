@@ -44,9 +44,9 @@
                 </div>
                 <div class="card-footer">
                     <form class="text-center" name="selreset" id="selreset" action="docmanager.php" method="post">
-                        <input type="hidden" name="selectreset" value="true" />
-                        <input type='submit' class='formButton' name='subselect'  id='subselect' value='<{$smarty.const._MA_XMDOC_FORMDOC_RESETSELECTED}>' title='<{$smarty.const._MA_XMDOC_FORMDOC_RESETSELECTED}>'  />
-                        <input value="<{$smarty.const._MA_XMDOC_FORMDOC_VALIDATE}>" type="button" onclick="window.close();"/>
+                        <input type="hidden" name="selectreset" value="true">
+                        <input type='submit' class='formButton' name='subselect'  id='subselect' value='<{$smarty.const._MA_XMDOC_FORMDOC_RESETSELECTED}>' title='<{$smarty.const._MA_XMDOC_FORMDOC_RESETSELECTED}>' >
+                        <input value="<{$smarty.const._MA_XMDOC_FORMDOC_VALIDATE}>" type="button" onclick="window.close();">
                     </form>
                 </div>
             <{else}>
@@ -100,7 +100,7 @@
                                             <td class="align-middle text-center">
 
 <!--
-                                                <input type="checkbox" name="selDocs[]" id="selDocs<{$document.id}>"  title="Selectio documents" value="<{$document.id}>"  />
+                                                <input type="checkbox" name="selDocs[]" id="selDocs<{$document.id}>"  title="Selectio documents" value="<{$document.id}>" >
 -->                                                
                                                 
                                                 
@@ -114,7 +114,7 @@
                                                 </fieldset>
                                             </td>
                                             <td class="align-middle text-center">
-                                                <{$document.name}><br /><{$document.logo}>
+                                                <{$document.name}><br><{$document.logo}>
                                             </td>
                                             <td class="align-middle text-left d-none d-sm-table-cell">
                                                 <{$document.description|truncateHtml:60:'...'}>
@@ -128,7 +128,7 @@
                                     <{/foreach}>
                                     </tbody>
                                 </table>
-                            <input type='submit' class='formButton' name='select'  id='select' value='<{$smarty.const._MA_XMDOC_FORMDOC_SELECT}>' title='<{$smarty.const._MA_XMDOC_FORMDOC_SELECT}>'  />
+                            <input type='submit' class='formButton' name='select'  id='select' value='<{$smarty.const._MA_XMDOC_FORMDOC_SELECT}>' title='<{$smarty.const._MA_XMDOC_FORMDOC_SELECT}>' >
                             </form>
                         </div>
                     <{/if}>
@@ -142,7 +142,7 @@
         <{/if}>
     </div><!-- .xmdoc -->
     <div id="footer" class="text-center">
-        <input value="<{$smarty.const._CLOSE}>" type="button" onclick="window.close();"/>
+        <input value="<{$smarty.const._CLOSE}>" type="button" onclick="window.close();">
     </div>
 </body>
 </html>

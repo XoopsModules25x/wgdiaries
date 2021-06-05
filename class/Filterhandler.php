@@ -38,22 +38,18 @@ class Filterhandler
      * @var int
      */
     public $filterFrom = 0;
-
     /**
      * @var int
      */
     public $filterTo = 0;
-
     /**
      * @var int
      */
     public $start = 0;
-
     /**
      * @var int
      */
     public $limit = 0;
-
     /**
      * @var int
      */
@@ -66,42 +62,35 @@ class Filterhandler
      * @var mixed
      */
     public $filterCat = 0;
-
     /**
      * @var string
      */
     public $filterSort = '';
-
     /**
      * @var bool
      */
     public $showSort = true;
-
     /**
      * @var bool
      */
     public $showLimit = true;
-
     /**
      * @var bool
      */
     public $showPeriod = true;
 
-
     /**
      * Constructor
      */
-    public function __construct() {}
+    public function __construct() { }
 
     /**
      * @public function to get form for filter items
-
      * @return FormInline
      */
-    function getFormFilterItems()
+    public function getFormFilterItems()
     {
-
-        $helper = Wgdiaries\Helper::getInstance();
+        $helper             = Wgdiaries\Helper::getInstance();
         $permissionsHandler = $helper->getHandler('Permissions');
 
         $action = $_SERVER['REQUEST_URI'];
@@ -136,7 +125,7 @@ class Filterhandler
             $selectOwnerTray->addElement($typeRadioSelect);
             // Get groups
             $memberHandler = \xoops_getHandler('member');
-            $xoopsGroups  = $memberHandler->getGroupList();
+            $xoopsGroups   = $memberHandler->getGroupList();
 
             $filterGroupSelect = new \XoopsFormSelect('', 'filterGroup', $this->filterGroup);
             $filterGroupSelect->addOption(Constants::FILTER_TYPEALL, \_MA_WGDIARIES_FILTER_TYPEALL);
@@ -144,7 +133,7 @@ class Filterhandler
                 $filterGroupSelect->addOption($key, $group);
             }
 
-             //if no Transactions available for current year
+            //if no Transactions available for current year
             $selectOwnerTray->addElement($filterGroupSelect, true);
             $form->addElement($selectOwnerTray);
         } else {
@@ -155,7 +144,7 @@ class Filterhandler
         $form->addElement(new \XoopsFormHidden('linebreak', ''));
         // Form Table categories
         $categoriesHandler = $helper->getHandler('Categories');
-        $crCategories = new \CriteriaCompo();
+        $crCategories      = new \CriteriaCompo();
         $crCategories->add(new \Criteria('cat_online', 1));
         $crCategories->setSort('cat_weight');
         $crCategories->setOrder('ASC');
@@ -190,8 +179,7 @@ class Filterhandler
         $btnApply = new \XoopsFormButton('', 'submit', \_MA_WGDIARIES_FILTER_APPLY, 'submit');
         $form->addElement($btnApply);
         $form->addElement(new \XoopsFormHidden('op', 'filter'));
-        
-        return $form;
 
+        return $form;
     }
 }

@@ -41,7 +41,7 @@
         </div>
         <div class="w-100"></div>
         <div class="col-12 col-md-12 alignright">
-            <{if $xoops_iscommentadmin == true}>
+            <{if $xoops_iscommentadmin === true}>
                 <a href="<{$editcomment_link}>&amp;com_id=<{$comment.id}>" title="<{$lang_edit}>" class="btn btn-secondary btn-sm">
                     <span class="fa fa-edit"></span>
                 </a>
@@ -51,14 +51,14 @@
                 <a href="<{$deletecomment_link}>&amp;com_id=<{$comment.id}>" title="<{$lang_delete}>" class="btn btn-secondary btn-sm">
                     <span class="fa fa-trash"></span>
                 </a>
-            <{elseif $xoops_isuser == true && $xoops_userid == $comment.poster.id}>
+            <{elseif $xoops_isuser === true && $xoops_userid == $comment.poster.id}>
                 <a href="<{$editcomment_link}>&amp;com_id=<{$comment.id}>" title="<{$lang_edit}>" class="btn btn-secondary btn-sm">
                     <span class="fa fa-edit"></span>
                 </a>
                 <a href="<{$replycomment_link}>&amp;com_id=<{$comment.id}>" title="<{$lang_reply}>" class="btn btn-secondary btn-sm">
                     <span class="fa fa-comment"></span>
                 </a>
-            <{elseif $xoops_isuser == true || $anon_canpost == true}>
+            <{elseif $xoops_isuser === true || $anon_canpost === true}>
                 <a href="<{$replycomment_link}>&amp;com_id=<{$comment.id}>" class="btn btn-secondary btn-sm">
                     <span class="fa fa-comment"></span>
                 </a>

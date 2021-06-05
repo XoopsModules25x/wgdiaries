@@ -105,8 +105,8 @@ class Items extends \XoopsObject
         if ($helper->getConfig('use_groups')) {
             $itemGroup = $this->isNew() ? 0 : $this->getVar('item_groupid');
             $groupOptions = [];
-            $member_handler   = \xoops_getHandler('member');
-            $userGroups = $member_handler->getGroupList();
+            $memberHandler   = \xoops_getHandler('member');
+            $userGroups = $memberHandler->getGroupList();
             foreach ($userGroups as $group_id => $group_name) {
                 $groupOptions[$group_id] = $group_name;
             }
@@ -175,7 +175,7 @@ class Items extends \XoopsObject
         }
         $imageSelect->setExtra("onchange='showImgSelected(\"imglabel_item_logo\", \"item_logo\", \"" . $imageDirectory . '", "", "' . \XOOPS_URL . "\")'");
         $imageTray->addElement($imageSelect, false);
-        $imageTray->addElement(new \XoopsFormLabel('', "<br><img src='" . \XOOPS_URL . '/' . $imageDirectory . '/' . $itemLogo . "' id='imglabel_item_logo' alt='' style='max-width:100px' />"));
+        $imageTray->addElement(new \XoopsFormLabel('', "<br><img src='" . \XOOPS_URL . '/' . $imageDirectory . '/' . $itemLogo . "' id='imglabel_item_logo' alt='' style='max-width:100px'>"));
         // Form Image itemLogo: Upload new image
         $maxsize = $helper->getConfig('maxsize_image');
         $imageTray->addElement(new \XoopsFormFile('<br>' . \_MA_WGDIARIES_FORM_UPLOAD_NEW, 'item_logo', $maxsize));

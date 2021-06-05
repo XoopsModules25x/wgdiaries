@@ -27,10 +27,10 @@ use XoopsModules\Wgdiaries\Common\TableChecker;
 // Define main template
 $templateMain = 'wgdiaries_admin_index.tpl';
 
-include __DIR__ . '/header.php';
+require __DIR__ . '/header.php';
 
 $tablechecker = new \XoopsModules\Wgdiaries\Common\TableChecker('wgdiaries');
 $result = $tablechecker->processSQL();
 var_dump($result);
 
-include __DIR__ . '/footer.php';
+require __DIR__ . '/footer.php';

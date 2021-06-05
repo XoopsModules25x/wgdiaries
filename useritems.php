@@ -66,7 +66,7 @@ foreach ($xoopsGroups as $groupid) {
                 $userGroups = $memberHandler->getGroupsByUser($user);
                 $groups = [];
                 foreach ($userGroups as $userGroup) {
-                    $groupObj = $memberHandler->getGroup($userGroup);;
+                    $groupObj = $memberHandler->getGroup($userGroup);
                     $groups[$userGroup]['name'] = $groupObj->getVar('name');
                 }
                 $userlist[$user] = [

@@ -59,7 +59,7 @@ class ItemsHandler extends \XoopsPersistableObjectHandler
      *
      * @param int $i field id
      * @param null fields
-     * @return mixed reference to the {@link Get} object
+     * @return \XoopsObject|null reference to the {@link Get} object
      */
     public function get($i = null, $fields = null)
     {
@@ -139,7 +139,7 @@ class ItemsHandler extends \XoopsPersistableObjectHandler
      * @param int    $catid       : filter by given cat id
      * @param string $sortBy
      * @param string $orderBy
-     * @return bool|array
+     * @return array
      */
     public function getItems($uid = 0, $start = 0, $limit = 0, $from = 0, $to = 0, $mygroups = false, $excludeuid = false, $groupid = 0, $catid = 0, $sortBy = 'item_id', $orderBy = 'DESC')
     {
@@ -158,7 +158,7 @@ class ItemsHandler extends \XoopsPersistableObjectHandler
             $memberHandler = \xoops_getHandler('member');
             $xoopsGroups = $memberHandler->getGroupList();
             $myGroups = \array_keys($xoopsGroups);
-            $crItems->add(new \Criteria('item_groupid', "(" . \implode(',', $myGroups) . ")", 'IN'));
+            $crItems->add(new \Criteria('item_groupid', '(' . \implode(',', $myGroups) . ')', 'IN'));
         }
         if ($groupid >  0) {
             $crItems->add(new \Criteria('item_groupid', $groupid));
@@ -220,7 +220,7 @@ class ItemsHandler extends \XoopsPersistableObjectHandler
             $memberHandler = \xoops_getHandler('member');
             $xoopsGroups = $memberHandler->getGroupList();
             $myGroups = \array_keys($xoopsGroups);
-            $crItems->add(new \Criteria('item_groupid', "(" . \implode(',', $myGroups) . ")", 'IN'));
+            $crItems->add(new \Criteria('item_groupid', '(' . \implode(',', $myGroups) . ')', 'IN'));
         }
         if ($groupid >  0) {
             $crItems->add(new \Criteria('item_groupid', $groupid));

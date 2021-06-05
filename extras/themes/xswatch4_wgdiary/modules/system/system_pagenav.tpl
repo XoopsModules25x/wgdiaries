@@ -37,8 +37,8 @@
             <select class="form-control form-control-sm" name="pagenavselect" id="pagenavselect" onchange="location=this.options[this.options.selectedIndex].value;">
                 <{$pageNavigation.select}>
             </select>
-            <{if ($pageNavigation.button == true)}>
-                <input type="submit" class="btn btn-primary btn-sm" value="<{$smarty.const._GO}>" />
+            <{if ($pageNavigation.button === true)}>
+                <input type="submit" class="btn btn-primary btn-sm" value="<{$smarty.const._GO}>">
             <{/if}>
         </div>
     </form>
@@ -54,14 +54,14 @@
                             <a href="<{$itemNavigation.url}>"><u>&lt;</u></a>
                         </td>
                         <td>
-                            <img src="<{$xoops_url}>/images/blank.gif" width="6" alt="" />
+                            <img src="<{$xoops_url}>/images/blank.gif" width="6" alt="">
                         </td>
                     <{/if}>
                     <{if ($itemNavigation.option == 'firstempty')}>
                         <td class="pagno">
                         </td>
                         <td>
-                            <img src="<{$xoops_url}>/images/blank.gif" width="6" alt="" />
+                            <img src="<{$xoops_url}>/images/blank.gif" width="6" alt="">
                         </td>
                     <{/if}>
                     <{if ($itemNavigation.option == 'selected')}>
@@ -79,7 +79,7 @@
                     <{/if}>    
                     <{if ($itemNavigation.option == 'last')}>
                         <td>
-                            <img src="<{$xoops_url}>/images/blank.gif" width="6" alt="" />
+                            <img src="<{$xoops_url}>/images/blank.gif" width="6" alt="">
                         </td>
                         <td class="pagneutral">
                             <a href="<{$itemNavigation.url}>"><u>&gt;</u></a>
@@ -87,7 +87,7 @@
                     <{/if}>
                     <{if ($itemNavigation.option == 'lastempty')}>
                         <td>
-                            <img src="<{$xoops_url}>/images/blank.gif" width="6" alt="" />
+                            <img src="<{$xoops_url}>/images/blank.gif" width="6" alt="">
                         </td>
                         <td class="pagno">                    
                         </td>
