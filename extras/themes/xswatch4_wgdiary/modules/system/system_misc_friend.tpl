@@ -14,5 +14,5 @@
     <div class="mx-2"><{$recommendus.rendered|default:''}></div>
 <{/if}>
 <{if $closeButton|default:true}>
-    <div class="text-center mx-3 mb-3"><input class="btn btn-primary btn-block" value="<{$lang_close}>" type="button" onclick="window.close();" /></div>
+    <div class="text-center mx-3 mb-3"><input class="btn btn-primary btn-block" value="<{$lang_close}>" type="button" onclick="window.close();"></div>
 <{/if}>

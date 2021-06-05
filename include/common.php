@@ -48,6 +48,6 @@ if (!\defined('\XOOPS_ICONS32_URL')) {
 \define('WGDIARIES_ADMIN', \WGDIARIES_URL . '/admin/index.php');
 $localLogo = WGDIARIES_IMAGE_URL . '/wedega_logo.png';
 // Module Information
-$copyright = "<a href='https://xoops.wedega.com' title='XOOPS Project' target='_blank'><img src='" . $localLogo . "' alt='XOOPS Project' /></a>";
+$copyright = "<a href='https://xoops.wedega.com' title='XOOPS Project' target='_blank'><img src='" . $localLogo . "' alt='XOOPS Project'></a>";
 require_once \XOOPS_ROOT_PATH . '/class/xoopsrequest.php';
 require_once WGDIARIES_PATH . '/include/functions.php';

@@ -6,12 +6,12 @@
         </div>
         <{include file="db:system_comment.tpl" comment=$comments[i]}>
 
-        <{if $show_threadnav == true}>
+        <{if $show_threadnav === true}>
             <a href="<{$comment_url}>" title="<{$lang_top}>"><{$lang_top}></a>
             <a href="<{$comment_url}>&amp;com_id=<{$comments[i].pid}>&amp;com_rootid=<{$comments[i].rootid}>#newscomment<{$comments[i].pid}>"><{$lang_parent}></a>
         <{/if}>
 
-        <{if $comments[i].show_replies == true}>
+        <{if $comments[i].show_replies === true}>
             <!-- start comment tree -->
             <div class="row">
                 <div class="col-md-4">

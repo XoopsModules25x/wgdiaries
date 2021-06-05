@@ -45,11 +45,11 @@
             <td class="<{if $cell.isEmpty}>even<{else}>odd<{/if}>"
                 style="width:14%; height:80px; vertical-align:top;<{if $cell.isSelected}> background-color:#B6CDE4;<{/if}>">
                 <{if $cell.isEmpty}>&nbsp;<{else}><a
-                href="<{$xoops_url}>/modules/extcal/view_day.php?year=<{$year}>&amp;month=<{$month}>&amp;day=<{$cell.number}>"><{$cell.number}></a><{/if}><br/>
+                href="<{$xoops_url}>/modules/extcal/view_day.php?year=<{$year}>&amp;month=<{$month}>&amp;day=<{$cell.number}>"><{$cell.number}></a><{/if}><br>
                 <{foreach item=event from=$cell.events}>
                     <{if $event}>
                         <div style="font-size:0.8em; margin-top:5px;"><img
-                                    src="assets/images/icons/event-<{$event.status}>.gif"/> <a
+                                    src="assets/images/icons/event-<{$event.status}>.gif"> <a
                                     href="<{$xoops_url}>/modules/extcal/event.php?event=<{$event.event_id}>"
                                     class="extcalTips"
                                     title="<{$event.event_title}> :: <{$lang.start}> <{$event.formated_event_start}> <{$lang.end}> <{$event.formated_event_end}>"><{$event.event_title}></a>
@@ -80,5 +80,5 @@
 
 <div style="text-align:right;"><a
             href="<{$xoops_url}>/modules/extcal/rss.php?cat=<{$selectedCat}>"><img
-                src="assets/images/icons/rss.gif" alt="RSS Feed"/></a></div>
+                src="assets/images/icons/rss.gif" alt="RSS Feed"></a></div>
 <{include file='db:system_notification_select.tpl'}>

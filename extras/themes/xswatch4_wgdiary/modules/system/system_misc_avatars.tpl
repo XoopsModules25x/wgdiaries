@@ -8,7 +8,7 @@
 <h4 class="text-center"><{$lang_avavatars}></h4>
 
 <{if $closeButton|default:true}>
-    <div class="text-center m-3"><input class="btn btn-primary btn-block" value="<{$lang_close}>" type="button" onclick="window.close();" /></div>
+    <div class="text-center m-3"><input class="btn btn-primary btn-block" value="<{$lang_close}>" type="button" onclick="window.close();"></div>
 <{/if}>
 
 <{counter name=avatarid start=-1 print=false}>
@@ -32,5 +32,5 @@
 </div>
 
 <{if $closeButton|default:true}>
-    <div class="text-center mx-3 mb-3"><input class="btn btn-primary btn-block" value="<{$lang_close}>" type="button" onclick="window.close();" /></div>
+    <div class="text-center mx-3 mb-3"><input class="btn btn-primary btn-block" value="<{$lang_close}>" type="button" onclick="window.close();"></div>
 <{/if}>

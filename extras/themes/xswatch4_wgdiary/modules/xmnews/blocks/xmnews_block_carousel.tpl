@@ -6,7 +6,7 @@
     </ol>
     <div class="carousel-inner">
         <{foreach item=blocknews from=$block.news}>
-            <div class="carousel-item <{if $blocknews.active == true}>active<{/if}>">
+            <div class="carousel-item <{if $blocknews.active === true}>active<{/if}>">
                 <{if $blocknews.logo != ''}>
                     <img src="<{$blocknews.logo}>" class="img-fluid block mx-auto rounded" alt="<{$blocknews.title}>" style="height:360px">
                 <{else}>

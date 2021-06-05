@@ -18,8 +18,8 @@
 
     <div class="row mb-2">
         <div class="col-md-12">
-            <div class="card xmdoc-border" <{if $category_color != false}>style="border-color : <{$category_color}>;"<{/if}>>
-                <div class="card-header" <{if $category_color != false}>style="background-color : <{$category_color}>;"<{/if}>>
+            <div class="card xmdoc-border" <{if $category_color !== false}>style="border-color : <{$category_color}>;"<{/if}>>
+                <div class="card-header" <{if $category_color !== false}>style="background-color : <{$category_color}>;"<{/if}>>
                     <div class="d-flex justify-content-between">
                         <h3 class="mb-0 text-white"><{$name}></h3>
                         
@@ -75,7 +75,7 @@
                         <div class="col-md-9 align-self-center">
                                 <{if $description_end}>
                                     <{$description_short}>
-                                    <hr />
+                                    <hr>
                                     <{$description_end}>
                                 <{else}>
                                     <{$description}>
@@ -84,7 +84,7 @@
                     </div>    
                 </div>    
 
-                <div class="card-footer d-flex justify-content-center" <{if $category_color != false}>style="background-color : <{$category_color}>;"<{/if}>>
+                <div class="card-footer d-flex justify-content-center" <{if $category_color !== false}>style="background-color : <{$category_color}>;"<{/if}>>
                     <a class="btn btn-primary btn-lg" title="<{$name}>" href="<{$xoops_url}>/modules/xmdoc/download.php?cat_id=<{$category_id}>&amp;doc_id=<{$doc_id}>" target="_blank">
                         <span class="fa fa-download fa-2x" aria-hidden="true"></span> <{$smarty.const._MA_XMDOC_DOWNLOAD}>
                     </a>
@@ -94,16 +94,16 @@
         </div>
     </div>
         
-    <hr />
+    <hr>
 
-    <{if ($perm_edit == true) || ($perm_del == true)}> 
+    <{if ($perm_edit === true) || ($perm_del === true)}> 
     <div class="col-12 pl-4 pr-4 pb-2">
                 <div class="text-center pt-2">
                     <div class="btn-group text-center role="group">
-                        <{if $perm_edit == true}>
+                        <{if $perm_edit === true}>
                             <a class="btn btn-secondary" href="action.php?op=edit&amp;document_id=<{$doc_id}>"><span class="fa fa-edit" aria-hidden="true"></span> Modifier</a>
                         <{/if}>
-                        <{if $perm_del == true}>
+                        <{if $perm_del === true}>
                             <a class="btn btn-secondary" href="action.php?op=del&amp;document_id=<{$doc_id}>"><span class="fa fa-trash" aria-hidden="true"></span> Effacer</a>
                         <{/if}>
                     </div>

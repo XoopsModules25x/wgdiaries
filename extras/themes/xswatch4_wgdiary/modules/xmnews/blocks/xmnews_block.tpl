@@ -3,8 +3,8 @@
     <{foreach item=blocknews from=$block.news}>
         <{if $block.full == 0}>
             <div class="col-xs-12 col-sm-6 col-lg-3 mb-3 px-1 px-sm-2 mx-3 mx-sm-0">
-                <div class="card xmnews-border" <{if $blocknews.color != false}>style="border-color : <{$blocknews.color}>;"<{/if}>>
-                    <div class="card-header text-center text-truncate d-none d-sm-block" <{if $blocknews.color != false}>style="background-color : <{$blocknews.color}>;"<{/if}>>
+                <div class="card xmnews-border" <{if $blocknews.color !== false}>style="border-color : <{$blocknews.color}>;"<{/if}>>
+                    <div class="card-header text-center text-truncate d-none d-sm-block" <{if $blocknews.color !== false}>style="background-color : <{$blocknews.color}>;"<{/if}>>
                         <a class="text-decoration-none text-white" title="<{$category.name|default:''}>" href="<{$xoops_url}>/modules/xmnews/article.php?news_id=<{$blocknews.id}>">
                             <{$blocknews.title}>
                         </a>
@@ -26,13 +26,13 @@
                             <div class="col-12 pt-2 text-left text-muted xmnews-data">
                                 <{if $blocknews.type == "date" || $blocknews.type == "random"}>
                                     <div class="d-block d-lg-none d-xl-block"><span class="fa fa-calendar" aria-hidden="true"></span> <{$smarty.const._MA_XMNEWS_BLOCKS_DATE}>: <{$blocknews.date}></div>
-                                    <div class="d-none d-lg-block d-xl-none"><br /><span class="fa fa-calendar" aria-hidden="true"></span> <{$smarty.const._MA_XMNEWS_BLOCKS_DATE}>: <{$blocknews.date|truncate:10:''}></div>
+                                    <div class="d-none d-lg-block d-xl-none"><br><span class="fa fa-calendar" aria-hidden="true"></span> <{$smarty.const._MA_XMNEWS_BLOCKS_DATE}>: <{$blocknews.date|truncate:10:''}></div>
                                 <{/if}>
                                 <{if $blocknews.type == "hits"}>
                                     <span class="fa fa-eye" aria-hidden="true"></span> <{$smarty.const._MA_XMNEWS_NEWS_READING}>: <{$blocknews.hits}>
                                 <{/if}>
                                 <{if $blocknews.type == "rating"}>
-                                <{if $block.xmsocial == true}>
+                                <{if $block.xmsocial === true}>
                                 <span class="fa fa-star" aria-hidden="true"></span> <{$smarty.const._MA_XMNEWS_NEWS_RATING}>: <{$blocknews.rating}>
                                 <{/if}>
                                 <{/if}>
@@ -55,8 +55,8 @@
             </div>
         <{else}>
             <div class="col-md-12">
-                <div class="card xmnews-border" <{if $blocknews.color != false}>style="border-color : <{$blocknews.color}>;"<{/if}>>
-                    <div class="card-header" <{if $blocknews.color != false}>style="background-color : <{$blocknews.color}>;"<{/if}>>
+                <div class="card xmnews-border" <{if $blocknews.color !== false}>style="border-color : <{$blocknews.color}>;"<{/if}>>
+                    <div class="card-header" <{if $blocknews.color !== false}>style="background-color : <{$blocknews.color}>;"<{/if}>>
                         <div class="d-flex justify-content-between">
                             <h3 class="mb-0 text-white"><{$blocknews.title}></h3>
                             <{if $blocknews.dohits == 1}>
@@ -99,7 +99,7 @@
                                 <{/if}>
                             <{/if}>
                             <{if $blocknews.dorating == 1}>
-                                <{if $block.xmsocial == true}>
+                                <{if $block.xmsocial === true}>
                                     <figure class="text-muted m-1 pr-2 text-center border-right border-secondary">
                                         <span class="fa fa-star" aria-hidden="true"></span> <{$smarty.const._MA_XMNEWS_NEWS_RATING}>
                                         <figcaption class="figure-caption text-center"><{$blocknews.rating}></figcaption>

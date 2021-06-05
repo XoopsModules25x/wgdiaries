@@ -9,7 +9,7 @@
 <h4 class="text-center"><{$lang_whoisonline}></h4>
 
 <{if $closeButton|default:true}>
-    <div class="text-center m-3"><input class="btn btn-primary btn-block" value="<{$lang_close}>" type="button" onclick="window.close();" /></div>
+    <div class="text-center m-3"><input class="btn btn-primary btn-block" value="<{$lang_close}>" type="button" onclick="window.close();"></div>
 <{/if}>
 
 <{foreach item=online from=$onlineUserInfo}>
@@ -19,7 +19,7 @@
                 <h6><{$online.uname}></h6>
             <{else}>
                 <{if $online.avatar != "avatars/blank.gif" }>
-                    <img src="<{$upload_url}><{$online.avatar}>" alt="<{$lang_avatar}>" class="img-fluid rounded mt-2"/><br /> 
+                    <img src="<{$upload_url}><{$online.avatar}>" alt="<{$lang_avatar}>" class="img-fluid rounded mt-2"><br> 
                     <a href="javascript:window.opener.location='<{$xoops_url}>/userinfo.php?uid=<{$online.uid}>';window.close();">
                         <{if $online.name==''}><{$online.uname}><{else}><{$online.name}><{/if}>
                     </a>
@@ -45,5 +45,5 @@
 <{/foreach}>
 
 <{if $closeButton|default:true}>
-    <div class="text-center m-3"><input class="btn btn-primary btn-block" value="<{$lang_close}>" type="button" onclick="window.close();" /></div>
+    <div class="text-center m-3"><input class="btn btn-primary btn-block" value="<{$lang_close}>" type="button" onclick="window.close();"></div>
 <{/if}>

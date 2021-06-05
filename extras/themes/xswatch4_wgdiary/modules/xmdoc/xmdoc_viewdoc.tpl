@@ -1,4 +1,4 @@
-<{if $xmdoc_viewdocs == true}>
+<{if $xmdoc_viewdocs === true}>
 <div class="row">
     <{foreach item=viewdocument from=$document}>
     <div class="col-12 col-md-6 col-lg-4 p-2">
@@ -23,9 +23,9 @@
                         <{/if}>
                     </div>
                     <div class="col-12 text-left">    
-                        <hr />
+                        <hr>
                         <{$viewdocument.description_short}>
-                        <hr />
+                        <hr>
                     </div>
                     <div class="col-10 col-md-11 col-xl-10 btn-group" role="group">
                         <{if $use_modal == 1}>
@@ -98,7 +98,7 @@
                             <div class="col-md-9 align-self-center">
                                     <{if $viewdocument.description_end}>
                                         <{$viewdocument.description_short}>
-                                        <hr />
+                                        <hr>
                                         <{$viewdocument.description_end}>
                                     <{else}>
                                         <{$viewdocument.description}>
@@ -111,13 +111,13 @@
                         <span class="fa fa-download fa-lg" aria-hidden="true"></span> <{$smarty.const._MA_XMDOC_DOWNLOAD}>
                     </a>
                 </div>
-                <{if ($viewdocument.perm_edit == true) || ($viewdocument.perm_del == true)}>
+                <{if ($viewdocument.perm_edit === true) || ($viewdocument.perm_del === true)}>
                     <div class="modal-footer d-flex justify-content-center">
                         <div class="btn-group text-center" role="group">
-                            <{if $viewdocument.perm_edit == true}>
+                            <{if $viewdocument.perm_edit === true}>
                                 <button type="button" class="btn btn-secondary" onclick=window.location.href="<{$xoops_url}>/modules/xmdoc/action.php?op=edit&amp;document_id=<{$viewdocument.id}>"><span class="fa fa-edit" aria-hidden="true"></span> <{$smarty.const._MA_XMDOC_EDIT}></button>
                             <{/if}>
-                            <{if $viewdocument.perm_del == true}>
+                            <{if $viewdocument.perm_del === true}>
                                 <button type="button" class="btn btn-secondary" onclick=window.location.href="<{$xoops_url}>/modules/xmdoc/action.php?op=del&amp;document_id=<{$viewdocument.id}>"><span class="fa fa-trash" aria-hidden="true"></span> <{$smarty.const._MA_XMDOC_DEL}></button>
                             <{/if}>
                         </div>

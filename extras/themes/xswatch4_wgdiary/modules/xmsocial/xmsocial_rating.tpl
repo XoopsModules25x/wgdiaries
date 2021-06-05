@@ -1,4 +1,4 @@
-<{if $down_xmsocial.perm == true}>
+<{if $down_xmsocial.perm === true}>
 <small>
     <div id="unit_long<{$down_xmsocial.itemid}>">
         <div id="unit_ul<{$down_xmsocial.itemid}>" class="xmsocial_unit-rating">

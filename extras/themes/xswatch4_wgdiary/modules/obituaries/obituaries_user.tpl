@@ -18,7 +18,7 @@
             </div>
         <{else}>
             <div>
-                <img src="<{$xoops_url}>/modules/obituaries/assets/images/nophoto.jpg" alt="<{$obituaries_user.obituaries_href_title}>" width="130"/>
+                <img src="<{$xoops_url}>/modules/obituaries/assets/images/nophoto.jpg" alt="<{$obituaries_user.obituaries_href_title}>" width="130">
             </div>
         <{/if}>
         </div>

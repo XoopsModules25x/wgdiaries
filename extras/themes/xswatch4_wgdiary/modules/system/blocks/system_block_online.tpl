@@ -8,7 +8,7 @@
    <{else}>
       <span class="fa fa-user fa-fw text-secondary"></span> <{$block.online_guests}>  <{$smarty.const.THEME_OL_GUEST}>
    <{/if}>
-   <br />
+   <br>
    <{if $block.online_members > 1}>
       <span class="fa fa-users fa-fw text-info"></span> <{$block.online_members}> <{$smarty.const.THEME_OL_MEMBERS}>
    <{else}>

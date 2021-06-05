@@ -12,13 +12,13 @@
             <div class="card-body text-center">
                 <div class="row" >
                     <div class="col-12" style="height: 150px;">
-                        <{if $block.show_logo == True}>
+                        <{if $block.show_logo === true}>
                         <a title="<{$category.title}>" href="<{$xoops_url}>/modules/xmnews/article.php?news_id=<{$category.id}>">
                             <img class="rounded img-fluid mh-100" src="<{$category.logo}>" alt="<{$category.title}>">
                         </a>
                         <{/if}>
                     </div>
-                    <{if $block.show_description == True}>
+                    <{if $block.show_description === true}>
                     <div class="col-12 pt-2 text-left">    
                         <{$category.description|truncateHtml:20:'...'}>
                     </div>
@@ -43,13 +43,13 @@
                 <div class="card-body text-center">
                     <div class="row" >
                         <div class="col-12" style="height: 150px;">
-                            <{if $block.show_logo == True}>
+                            <{if $block.show_logo === true}>
                             <a title="<{$category.title}>" href="<{$xoops_url}>/modules/xmcontact/index.php?op=form&cat_id=<{$category.id}>">
                                 <img class="rounded img-fluid mh-100" src="<{$category.logo}>" alt="<{$category.title}>">
                             </a>
                             <{/if}>
                         </div>
-                        <{if $block.show_description == True}>
+                        <{if $block.show_description === true}>
                         <div class="col-12 pt-2 text-left">    
                             <{$category.description|truncateHtml:20:'...'}>
                         </div>
@@ -73,13 +73,13 @@
                 <div class="card-body text-center">
                     <div class="row" >
                         <div class="col-12" style="height: 150px;">
-                            <{if $block.show_logo == True}>
+                            <{if $block.show_logo === true}>
                             <a title="<{$category.title}>" href="<{$xoops_url}>/modules/xmcontact/index.php?op=form&cat_id=<{$category.id}>">
                                 <img class="rounded img-fluid mh-100" src="<{$category.logo}>" alt="<{$category.title}>">
                             </a>
                             <{/if}>
                         </div>
-                        <{if $block.show_description == True}>
+                        <{if $block.show_description === true}>
                         <div class="col-12 pt-2 text-left">    
                             <{$category.description|truncateHtml:20:'...'}>
                         </div>

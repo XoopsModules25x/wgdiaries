@@ -23,7 +23,7 @@ declare(strict_types=1);
  * @author         wedega - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
  */
 include dirname(__DIR__, 2) . '/mainfile.php';
-include __DIR__ . '/include/common.php';
+require __DIR__ . '/include/common.php';
 $moduleDirName = \basename(__DIR__);
 
 // Get instance of module

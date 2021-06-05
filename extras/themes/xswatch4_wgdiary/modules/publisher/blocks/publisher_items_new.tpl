@@ -4,7 +4,7 @@
         <{if $newitems.image|default:''}>
             <td style="padding: 5px 0;" width="120px">
                 <img style="padding: 1px; margin: 2px; border: 1px solid #c3c3c3;" width="110" src="<{$newitems.image}>" title="<{$newitems.image_name}>"
-                     alt="<{$newitems.image_name}>"/>
+                     alt="<{$newitems.image_name}>">
             </td>
         <{/if}>
         <td>

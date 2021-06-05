@@ -16,7 +16,7 @@
     <div class="row">
         <div class="col-sm-12">
             <{$index_header}>
-            <hr />
+            <hr>
         </div>
     </div>
 <{/if}>
@@ -30,8 +30,8 @@
                 bg-secondary
             <{/if}>">
             <a title="<{$categories.name}>" href="<{$xoops_url}>/modules/xmdoc/index.php?doc_cid=<{$categories.id}>">
-                <div class="card xmdoc-border" <{if $categories.color != false}>style="border-color : <{$categories.color}>;"<{/if}>>
-                    <div class="card-header text-center" <{if $categories.color != false}>style="background-color : <{$categories.color}>;"<{/if}>>                        
+                <div class="card xmdoc-border" <{if $categories.color !== false}>style="border-color : <{$categories.color}>;"<{/if}>>
+                    <div class="card-header text-center" <{if $categories.color !== false}>style="background-color : <{$categories.color}>;"<{/if}>>                        
                         <h6 class="mb-0 text-white"><{$categories.name}></h6>
                     </div>
                     <div class="card-body h-md-550 text-center">
@@ -61,7 +61,7 @@
     <{/if}>
 </div>
 <{if $cat}>
-<hr />
+<hr>
     <div class="row mb-2">
         <div class="col-3 col-md-4 col-lg-3 text-center">
             <img class="rounded img-fluid" src="<{$category_logo}>" alt="<{$category_name}>">
@@ -73,12 +73,12 @@
     </div>
 <{/if}>
 <{if $document_count|default:0 != 0}>
-    <hr />
+    <hr>
     <div class="row">
         <{foreach item=document from=$documents}>
             <div class="col-sm-12 col-md-6 col-lg-4 p-2">
-                <div class="card xmdoc-border" <{if $document.color != false}>style="border-color : <{$document.color}>;"<{/if}>>
-                    <div class="card-header text-center text-truncate d-none d-sm-block" <{if $document.color != false}>style="background-color : <{$document.color}>;"<{/if}>>
+                <div class="card xmdoc-border" <{if $document.color !== false}>style="border-color : <{$document.color}>;"<{/if}>>
+                    <div class="card-header text-center text-truncate d-none d-sm-block" <{if $document.color !== false}>style="background-color : <{$document.color}>;"<{/if}>>
                         <div class="d-flex justify-content-center text-center">
                             <a class="text-decoration-none" title="<{$document.name}>" href="<{$xoops_url}>/modules/xmdoc/download.php?cat_id=<{$document.categoryid}>&amp;doc_id=<{$document.id}>" target="_blank">
                                 <h5 class="mb-0 text-white"><{$document.name}></h5>
@@ -102,9 +102,9 @@
                                 <{/if}>
                             </div>
                             <div class="col-12 text-left">    
-                                <hr />
+                                <hr>
                                 <{$document.description_short}>
-                                <hr />
+                                <hr>
                             </div>
                             <div class="col-6 col-md-11 col-xl-9 btn-group" role="group">
                                 <{if $use_modal == 1}>
@@ -177,7 +177,7 @@
                                     <div class="col-md-9 align-self-center">
                                             <{if $document.description_end}>
                                                 <{$document.description_short}>
-                                                <hr />
+                                                <hr>
                                                 <{$document.description_end}>
                                             <{else}>
                                                 <{$document.description}>
@@ -190,13 +190,13 @@
                                 <span class="fa fa-download fa-lg" aria-hidden="true"></span> <{$smarty.const._MA_XMDOC_DOWNLOAD}>
                             </a>
                         </div>
-                        <{if ($document.perm_edit == true) || ($document.perm_del == true)}>
+                        <{if ($document.perm_edit === true) || ($document.perm_del === true)}>
                             <div class="modal-footer d-flex justify-content-center">
                                 <div class="btn-group text-center" role="group">
-                                    <{if $document.perm_edit == true}>
+                                    <{if $document.perm_edit === true}>
                                         <button type="button" class="btn btn-secondary" onclick=window.location.href="<{$xoops_url}>/modules/xmdoc/action.php?op=edit&amp;document_id=<{$document.id}>"><span class="fa fa-edit" aria-hidden="true"></span> <{$smarty.const._MA_XMDOC_EDIT}></button>
                                     <{/if}>
-                                    <{if $document.perm_del == true}>
+                                    <{if $document.perm_del === true}>
                                         <button type="button" class="btn btn-secondary" onclick=window.location.href="<{$xoops_url}>/modules/xmdoc/action.php?op=del&amp;document_id=<{$document.id}>"><span class="fa fa-trash" aria-hidden="true"></span> <{$smarty.const._MA_XMDOC_DEL}></button>
                                     <{/if}>
                                 </div>
@@ -224,7 +224,7 @@
 <{if $index_footer|default:'' != ''}>
     <div class="row pb-2">
         <div class="col-sm-12">
-            <hr />
+            <hr>
             <{$index_footer}>
         </div>
     </div>

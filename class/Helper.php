@@ -95,4 +95,4 @@ class Helper extends \Xmf\Module\Helper
         return $mid;
     }
 }
-//require __DIR__ . '/../../mainfile.php';
+//require  dirname(__DIR__, 2) . '/mainfile.php';

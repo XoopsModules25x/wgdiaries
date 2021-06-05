@@ -9,7 +9,7 @@
 <h4 class="text-center"><{$lang_smiles}></h4>
 
 <{if $closeButton|default:true}>
-    <div class="text-center m-3"><input class="btn btn-primary btn-block" value="<{$lang_close}>" type="button" onclick="window.close();" /></div>
+    <div class="text-center m-3"><input class="btn btn-primary btn-block" value="<{$lang_close}>" type="button" onclick="window.close();"></div>
 <{/if}>
 
 <table class="table table-hover table-sm">
@@ -26,7 +26,7 @@
                 <td class="text-center"><{$smile.code}></td>
                 <td class="text-center"><{$smile.emotion}></td>
                 <td class="text-center">
-                    <img onmouseover="style.cursor='hand'" onclick="doSmilie(' <{$smile.code}> ');" src="<{$upload_url}><{$smile.smile_url}>" alt="<{$smile.emotion}>" title="<{$smile.emotion}>" />
+                    <img onmouseover="style.cursor='hand'" onclick="doSmilie(' <{$smile.code}> ');" src="<{$upload_url}><{$smile.smile_url}>" alt="<{$smile.emotion}>" title="<{$smile.emotion}>">
                 </td>
             </tr>
         <{/foreach}>
@@ -36,5 +36,5 @@
 <p class="text-center mx-2"><{$lang_clicksmile}></p>
 
 <{if $closeButton|default:true}>
-    <div class="text-center m-3"><input class="btn btn-primary btn-block" value="<{$lang_close}>" type="button" onclick="window.close();" /></div>
+    <div class="text-center m-3"><input class="btn btn-primary btn-block" value="<{$lang_close}>" type="button" onclick="window.close();"></div>
 <{/if}>

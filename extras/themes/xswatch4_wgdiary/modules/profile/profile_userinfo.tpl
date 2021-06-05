@@ -15,14 +15,14 @@
     </div><!-- .col-md-6 .aligncenter -->
 
     <div class="col-xs-6 col-md-6">
-        <{if !$user_ownpage && $xoops_isuser == true}>
+        <{if !$user_ownpage && $xoops_isuser === true}>
             <form name="usernav" action="user.php" method="post">
                 <input class="btn btn-primary btn-xs btn-block" type="button" value="<{$smarty.const._PROFILE_MA_SENDPM}>"
                        onclick="openWithSelfMain('<{$xoops_url}>/pmlite.php?send2=1&amp;to_userid=<{$user_uid}>', 'pmlite', 565, 500);">
             </form>
         <{/if}>
 
-        <{if $user_ownpage == true}>
+        <{if $user_ownpage === true}>
             <form name="usernav" action="user.php" method="post">
                 <input class="btn btn-primary btn-xs btn-block" type="button" value="<{$lang_editprofile}>"
                        onclick="location='<{$xoops_url}>/modules/<{$xoops_dirname}>/edituser.php'">
@@ -32,7 +32,7 @@
                     <input class="btn btn-primary btn-xs btn-block" type="button" value="<{$smarty.const._PROFILE_MA_CHANGEMAIL}>"
                            onclick="location='<{$xoops_url}>/modules/<{$xoops_dirname}>/changemail.php'">
                 <{/if}>
-                <{if $user_candelete == true}>
+                <{if $user_candelete === true}>
                     <input class="btn btn-primary btn-xs btn-block" type="button" value="<{$lang_deleteaccount}>" onclick="location='user.php?op=delete'">
                 <{/if}>
                 <input class="btn btn-primary btn-xs btn-block" type="button" value="<{$lang_avatar}>" onclick="location='edituser.php?op=avatarform'">
@@ -40,7 +40,7 @@
                 <input class="btn btn-primary btn-xs btn-block" type="button" value="<{$lang_logout}>"
                        onclick="location='<{$xoops_url}>/modules/<{$xoops_dirname}>/user.php?op=logout'">
             </form>
-        <{elseif $xoops_isadmin != false}>
+        <{elseif $xoops_isadmin !== false}>
             <form method="post" action="<{$xoops_url}>/modules/<{$xoops_dirname}>/admin/deactivate.php">
                 <input class="btn btn-warning btn-xs btn-block" type="button" value="<{$lang_editprofile}>"
                        onclick="location='<{$xoops_url}>/modules/<{$xoops_dirname}>/admin/user.php?op=edit&amp;id=<{$user_uid}>'">

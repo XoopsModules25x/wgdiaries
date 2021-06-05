@@ -24,8 +24,8 @@
     <div class="row mb-2">
         <div class="col-md-12">
 <!--        <div class="no-gutters rounded overflow-hidden flex-md-row mb-0 shadow-sm h-md-250 position-relative">-->
-                <div class="card" <{if $category_color != false}>style="border-color : <{$category_color}>;"<{/if}>>
-                    <div class="card-header category_color" <{if $category_color != false}>style="background-color : <{$category_color}>;"<{/if}>>
+                <div class="card" <{if $category_color !== false}>style="border-color : <{$category_color}>;"<{/if}>>
+                    <div class="card-header category_color" <{if $category_color !== false}>style="background-color : <{$category_color}>;"<{/if}>>
                         <div class="d-flex justify-content-between">
                             <h3 class="mb-0 text-white"><{$title}></h3>
                             <{if $dohits == 1}>
@@ -77,7 +77,7 @@
                     <{/if}>
                     <div class="d-block d-md-none pt-2 px-4">
                         <{if $logo != ''}>
-                            <{if $CAT == true}><a href="index.php?news_cid=<{$category_id}>"><{/if}><img class="card-img-top rounded img-fluid" src="<{$logo}>" alt="<{$title}>"><{if $CAT == true}></a><{/if}>
+                            <{if $CAT === true}><a href="index.php?news_cid=<{$category_id}>"><{/if}><img class="card-img-top rounded img-fluid" src="<{$logo}>" alt="<{$title}>"><{if $CAT === true}></a><{/if}>
                         <{/if}>
                     </div>
                     <div class="card-body">
@@ -85,11 +85,11 @@
                             <div class="row">
                                 <div class="col">
                                     <{if $logo != ''}>
-                                    <{if $CAT == true}>
+                                    <{if $CAT === true}>
                                     <a href="index.php?news_cid=<{$category_id}>">
                                     <{/if}>
                                     <img class="col-3 rounded float-right d-none d-md-block" src="<{$logo}>" alt="<{$title}>">
-                                    <{if $CAT == true}>
+                                    <{if $CAT === true}>
                                     </a>
                                     <{/if}>
                                     <{/if}>
@@ -100,11 +100,11 @@
                             </div>
                         </p>
                         <div class="w-100"></div>
-                        <{if $social == true}>
+                        <{if $social === true}>
                             <{include file="db:xmsocial_social.tpl"}>
                             <br>
                         <{/if}>
-                        <{if $xmdoc_viewdocs|default:false == true}>
+                        <{if $xmdoc_viewdocs|default:false === true}>
                         <div class="col-12 pl-4 pr-4 pb-4">
                             <div class="card">
                                 <div class="card-header">
@@ -123,17 +123,17 @@
         </div>                
     </div>        
                 
-    <{if ($perm_edit == true) || ($perm_clone == true) || ($perm_del == true)}> 
+    <{if ($perm_edit === true) || ($perm_clone === true) || ($perm_del === true)}> 
     <div class="col-12 pl-4 pr-4 pb-2">
                 <div class="text-center pt-2">
                     <div class="btn-group text-center" role="group">
-                        <{if $perm_edit == true}>
+                        <{if $perm_edit === true}>
                             <a class="btn btn-secondary" href="action.php?op=edit&amp;news_id=<{$news_id}>"><span class="fa fa-edit" aria-hidden="true"></span> <{$smarty.const._MA_XMNEWS_EDIT}></a>
                         <{/if}>
-                        <{if $perm_clone == true}>
+                        <{if $perm_clone === true}>
                             <a class="btn btn-secondary" href="action.php?op=clone&amp;news_id=<{$news_id}>"><span class="fa fa-clone" aria-hidden="true"></span> <{$smarty.const._MA_XMNEWS_CLONE}></a>
                         <{/if}>
-                        <{if $perm_del == true}>
+                        <{if $perm_del === true}>
                             <a class="btn btn-secondary" href="action.php?op=del&amp;news_id=<{$news_id}>"><span class="fa fa-trash" aria-hidden="true"></span> <{$smarty.const._MA_XMNEWS_DEL}></a>
                         <{/if}>
                     </div>
