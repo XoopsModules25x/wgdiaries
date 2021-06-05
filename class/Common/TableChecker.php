@@ -46,10 +46,9 @@ class TableChecker extends \XoopsObject
      * @var mixed
      */
     private $checktype = null;
-
-    const CHECKTYPE_REPORT        = 0; //report only
-    const CHECKTYPE_UPDATE        = 1; //update only
-    const CHECKTYPE_UPDATE_REPORT = 2; //update and report
+    public const CHECKTYPE_REPORT = 0; //report only
+    public const CHECKTYPE_UPDATE = 1; //update only
+    public const CHECKTYPE_UPDATE_REPORT = 2; //update and report
 
 
     /**

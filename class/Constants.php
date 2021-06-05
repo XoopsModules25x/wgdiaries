@@ -32,9 +32,9 @@ namespace XoopsModules\Wgdiaries;
 interface Constants
 {
     // Constants for tables
-    const TABLE_ITEMS = 0;
-    const TABLE_FILES = 1;
-    const TABLE_CATEGORIES = 2;
+    public const TABLE_ITEMS = 0;
+    public const TABLE_FILES = 1;
+    public const TABLE_CATEGORIES = 2;
 
     // Constants for permissions
     public const PERM_GLOBAL_NONE          = 0;
