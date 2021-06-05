@@ -67,7 +67,7 @@ class PermissionsHandler extends \XoopsPersistableObjectHandler
         if (0 == $currentuid) {
             $my_group_ids = [\XOOPS_GROUP_ANONYMOUS];
         } else {
-            $my_group_ids = $memberHandler->getGroupsByUser($currentuid);;
+            $my_group_ids = $memberHandler->getGroupsByUser($currentuid);
         }
         if ($grouppermHandler->checkRight('wgdiaries_ac', Constants::PERM_GLOBAL_SUBMIT, $my_group_ids, $mid)) {
             return true;
@@ -99,7 +99,7 @@ class PermissionsHandler extends \XoopsPersistableObjectHandler
         if (0 == $currentuid) {
             $my_group_ids = [\XOOPS_GROUP_ANONYMOUS];
         } else {
-            $my_group_ids = $memberHandler->getGroupsByUser($currentuid);;
+            $my_group_ids = $memberHandler->getGroupsByUser($currentuid);
         }
         if ($grouppermHandler->checkRight('wgdiaries_ac', Constants::PERM_GLOBAL_EDIT, $my_group_ids, $mid)) {
             return true;
@@ -136,7 +136,7 @@ class PermissionsHandler extends \XoopsPersistableObjectHandler
         if (0 == $currentuid) {
             $my_group_ids = [\XOOPS_GROUP_ANONYMOUS];
         } else {
-            $my_group_ids = $memberHandler->getGroupsByUser($currentuid);;
+            $my_group_ids = $memberHandler->getGroupsByUser($currentuid);
         }
         
         if ($grouppermHandler->checkRight('wgdiaries_ac', Constants::PERM_GLOBAL_VIEW, $my_group_ids, $mid)) {
@@ -171,7 +171,7 @@ class PermissionsHandler extends \XoopsPersistableObjectHandler
         if (0 == $currentuid) {
             $my_group_ids = [\XOOPS_GROUP_ANONYMOUS];
         } else {
-            $my_group_ids = $memberHandler->getGroupsByUser($currentuid);;
+            $my_group_ids = $memberHandler->getGroupsByUser($currentuid);
         }
 
         if ($grouppermHandler->checkRight('wgdiaries_ac', Constants::PERM_ITEMS_SUBMIT, $my_group_ids, $mid)) {
@@ -206,7 +206,7 @@ class PermissionsHandler extends \XoopsPersistableObjectHandler
         if (0 == $currentuid) {
             $my_group_ids = [\XOOPS_GROUP_ANONYMOUS];
         } else {
-            $my_group_ids = $memberHandler->getGroupsByUser($currentuid);;
+            $my_group_ids = $memberHandler->getGroupsByUser($currentuid);
         }
 
         if ($grouppermHandler->checkRight('wgdiaries_ac', Constants::PERM_ITEMS_GROUP_EDIT, $my_group_ids, $mid)) {
@@ -241,7 +241,7 @@ class PermissionsHandler extends \XoopsPersistableObjectHandler
         if (0 == $currentuid) {
             $my_group_ids = [\XOOPS_GROUP_ANONYMOUS];
         } else {
-            $my_group_ids = $memberHandler->getGroupsByUser($currentuid);;
+            $my_group_ids = $memberHandler->getGroupsByUser($currentuid);
         }
 
         if ($grouppermHandler->checkRight('wgdiaries_ac', Constants::PERM_ITEMS_GROUP_VIEW, $my_group_ids, $mid)) {
@@ -338,7 +338,7 @@ class PermissionsHandler extends \XoopsPersistableObjectHandler
         if (0 == $currentuid) {
             $my_group_ids = [\XOOPS_GROUP_ANONYMOUS];
         } else {
-            $my_group_ids = $memberHandler->getGroupsByUser($currentuid);;
+            $my_group_ids = $memberHandler->getGroupsByUser($currentuid);
         }
         if ($this->getPermItemsEdit($itemSubmitter) && $grouppermHandler->checkRight('wgdiaries_ac', Constants::PERM_ITEMS_COMEDIT, $my_group_ids, $mid)) {
             return true;
@@ -372,7 +372,7 @@ class PermissionsHandler extends \XoopsPersistableObjectHandler
         if (0 == $currentuid) {
             $my_group_ids = [\XOOPS_GROUP_ANONYMOUS];
         } else {
-            $my_group_ids = $memberHandler->getGroupsByUser($currentuid);;
+            $my_group_ids = $memberHandler->getGroupsByUser($currentuid);
         }
 
         if ($grouppermHandler->checkRight('wgdiaries_ac', Constants::PERM_CALPAGE_VIEW, $my_group_ids, $mid)) {
@@ -407,7 +407,7 @@ class PermissionsHandler extends \XoopsPersistableObjectHandler
         if (0 == $currentuid) {
             $my_group_ids = [\XOOPS_GROUP_ANONYMOUS];
         } else {
-            $my_group_ids = $memberHandler->getGroupsByUser($currentuid);;
+            $my_group_ids = $memberHandler->getGroupsByUser($currentuid);
         }
 
         if ($grouppermHandler->checkRight('wgdiaries_ac', Constants::PERM_OUTPUTS_VIEW, $my_group_ids, $mid)) {
@@ -442,7 +442,7 @@ class PermissionsHandler extends \XoopsPersistableObjectHandler
         if (0 == $currentuid) {
             $my_group_ids = [\XOOPS_GROUP_ANONYMOUS];
         } else {
-            $my_group_ids = $memberHandler->getGroupsByUser($currentuid);;
+            $my_group_ids = $memberHandler->getGroupsByUser($currentuid);
         }
 
         if ($grouppermHandler->checkRight('wgdiaries_ac', Constants::PERM_STATISTICS_VIEW, $my_group_ids, $mid)) {
@@ -481,7 +481,7 @@ class PermissionsHandler extends \XoopsPersistableObjectHandler
         if (0 == $currentuid) {
             $my_group_ids = [\XOOPS_GROUP_ANONYMOUS];
         } else {
-            $my_group_ids = $memberHandler->getGroupsByUser($currentuid);;
+            $my_group_ids = $memberHandler->getGroupsByUser($currentuid);
         }
 
         if ($grouppermHandler->checkRight('wgdiaries_ac', Constants::PERM_USERITEMS_VIEW, $my_group_ids, $mid)) {
