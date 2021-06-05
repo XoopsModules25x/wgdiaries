@@ -33,14 +33,16 @@ require __DIR__ . '/header.php';
 $templateMain = 'wgdiaries_admin_index.tpl';
 
 // Count elements
-$countItems = $itemsHandler->getCount();
-$countFiles = $filesHandler->getCount();
+$countItems      = $itemsHandler->getCount();
+$countFiles      = $filesHandler->getCount();
+$countCategories = $categoriesHandler->getCount();
 
 // InfoBox Statistics
 $adminObject->addInfoBox(\_AM_WGDIARIES_STATISTICS);
 // Info elements
 $adminObject->addInfoBoxLine(\sprintf( '<label>' . \_AM_WGDIARIES_THEREARE_ITEMS . '</label>', $countItems));
 $adminObject->addInfoBoxLine(\sprintf( '<label>' . \_AM_WGDIARIES_THEREARE_FILES . '</label>', $countFiles));
+$adminObject->addInfoBoxLine(\sprintf( '<label>' . \_AM_WGDIARIES_THEREARE_CATEGORIES . '</label>', $countCategories));
 
 // Upload Folders
 $configurator = new Common\Configurator();
