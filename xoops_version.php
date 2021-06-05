@@ -175,7 +175,7 @@ if ($currdirname == $moduleDirName) {
             'url'  => 'archive.php',
         ];
     }
-    if ($permissionsHandler->getPermUserItemsGroupView()) {
+    if ($permissionsHandler->getPermUserItemsView()) {
         // Sub Submit
         $modversion['sub'][] = [
             'name' => \_MI_WGDIARIES_SMNAME9,

@@ -1,6 +1,6 @@
 <{include file='db:wgdiaries_header.tpl' }>
 
-<h3><{$useritemsTitle}></h3>
+<h3><{$smarty.const._MA_WGDIARIES_USERLIST_GROUP}></h3>
 
 <{if $userlist|default:''}>
 

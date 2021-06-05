@@ -317,76 +317,6 @@ class PermissionsHandler extends \XoopsPersistableObjectHandler
     }
 
     /**
-     * @public function getPermGroupsEdit
-     * returns right to edit groups and users
-     * @return bool
-     */
-    public function getPermGroupsEdit()
-    {
-        global $xoopsUser, $xoopsModule;
-
-        if ($this->getPermGlobalView()) {
-            return true;
-        }
-        $currentuid = 0;
-        if (isset($xoopsUser) && \is_object($xoopsUser)) {
-            if ($xoopsUser->isAdmin($xoopsModule->mid())) {
-                return true;
-            }
-            $currentuid = $xoopsUser->uid();
-        }
-        $grouppermHandler = \xoops_getHandler('groupperm');
-        $mid = $xoopsModule->mid();
-        $memberHandler = \xoops_getHandler('member');
-        if (0 == $currentuid) {
-            $my_group_ids = [\XOOPS_GROUP_ANONYMOUS];
-        } else {
-            $my_group_ids = $memberHandler->getGroupsByUser($currentuid);;
-        }
-
-        if ($grouppermHandler->checkRight('wgdiaries_ac', Constants::PERM_GROUPS_EDIT, $my_group_ids, $mid)) {
-            return true;
-        }
-
-        return false;
-    }
-
-    /**
-     * @public function getPermGroupsView
-     * returns right to view groups and users
-     * @return bool
-     */
-    public function getPermGroupsView()
-    {
-        global $xoopsUser, $xoopsModule;
-
-        if ($this->getPermGroupsEdit()) {
-            return true;
-        }
-        $currentuid = 0;
-        if (isset($xoopsUser) && \is_object($xoopsUser)) {
-            if ($xoopsUser->isAdmin($xoopsModule->mid())) {
-                return true;
-            }
-            $currentuid = $xoopsUser->uid();
-        }
-        $grouppermHandler = \xoops_getHandler('groupperm');
-        $mid = $xoopsModule->mid();
-        $memberHandler = \xoops_getHandler('member');
-        if (0 == $currentuid) {
-            $my_group_ids = [\XOOPS_GROUP_ANONYMOUS];
-        } else {
-            $my_group_ids = $memberHandler->getGroupsByUser($currentuid);;
-        }
-
-        if ($grouppermHandler->checkRight('wgdiaries_ac', Constants::PERM_GROUPS_VIEW, $my_group_ids, $mid)) {
-            return true;
-        }
-
-        return false;
-    }
-
-    /**
      * @public function getPermItemsComEdit
      * returns right for edit/view comments for item
      * @param $itemSubmitter
@@ -523,17 +453,21 @@ class PermissionsHandler extends \XoopsPersistableObjectHandler
     }
 
     /**
-     * @public function getPermUserItemsAllView
-     * returns right to view all items of all users
+     * @public function getPermUserItemsView
+     * returns right to view all user items page of my groups
      * @return bool
      */
-    public function getPermUserItemsAllView()
+    public function getPermUserItemsView()
     {
         global $xoopsUser, $xoopsModule;
 
         if ($this->getPermGlobalView()) {
             return true;
         }
+        if ($this->getPermItemsGroupView()) {
+            return true;
+        }
+
         $currentuid = 0;
         if (isset($xoopsUser) && \is_object($xoopsUser)) {
             if ($xoopsUser->isAdmin($xoopsModule->mid())) {
@@ -550,45 +484,7 @@ class PermissionsHandler extends \XoopsPersistableObjectHandler
             $my_group_ids = $memberHandler->getGroupsByUser($currentuid);;
         }
 
-        if ($grouppermHandler->checkRight('wgdiaries_ac', Constants::PERM_USERITEMS_ALL_VIEW, $my_group_ids, $mid)) {
-            return true;
-        }
-
-        return false;
-    }
-
-    /**
-     * @public function getPermUserItemsGroupView
-     * returns right to view all items of my groups
-     * @return bool
-     */
-    public function getPermUserItemsGroupView()
-    {
-        global $xoopsUser, $xoopsModule;
-
-        if ($this->getPermGlobalView()) {
-            return true;
-        }
-        if ($this->getPermUserItemsAllView()) {
-            return true;
-        }
-        $currentuid = 0;
-        if (isset($xoopsUser) && \is_object($xoopsUser)) {
-            if ($xoopsUser->isAdmin($xoopsModule->mid())) {
-                return true;
-            }
-            $currentuid = $xoopsUser->uid();
-        }
-        $grouppermHandler = \xoops_getHandler('groupperm');
-        $mid = $xoopsModule->mid();
-        $memberHandler = \xoops_getHandler('member');
-        if (0 == $currentuid) {
-            $my_group_ids = [\XOOPS_GROUP_ANONYMOUS];
-        } else {
-            $my_group_ids = $memberHandler->getGroupsByUser($currentuid);;
-        }
-
-        if ($grouppermHandler->checkRight('wgdiaries_ac', Constants::PERM_USERITEMS_GROUP_VIEW, $my_group_ids, $mid)) {
+        if ($grouppermHandler->checkRight('wgdiaries_ac', Constants::PERM_USERITEMS_VIEW, $my_group_ids, $mid)) {
             return true;
         }
 

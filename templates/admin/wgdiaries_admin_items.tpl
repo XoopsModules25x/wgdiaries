@@ -36,7 +36,7 @@
                 <td class='center'><{$item.category}></td>
                 <td class='center'><{$item.tags}></td>
                 <td class='center'>
-                    <img class="wgd-items-logo" src="<{$wgdiaries_upload_itemsurl}>/logos/<{$item.logo}>" alt="<{$item.logo}>" title="<{$item.logo}>">
+                    <img class="wgd-items-logo" style="max-height:30px" src="<{$wgdiaries_upload_itemsurl}>/logos/<{$item.logo}>" alt="<{$item.logo}>" title="<{$item.logo}>">
                 </td>
                 <td class='center'><{$item.datecreated}></td>
                 <td class='center'><{$item.submitter}></td>

@@ -65,6 +65,7 @@ As you can see, you have created a page with a list of links at the top to navig
 \define('_MA_WGDIARIES_ITEM_DELETE', 'Delete Items');
 \define('_MA_WGDIARIES_ITEM_DETAILS', 'Details of Item');
 \define('_MA_WGDIARIES_ITEM_GOBACK', 'Go back to item');
+\define('_MA_WGDIARIES_ITEM_GOBACK_LIST', 'Go back to item list');
 \define('_MA_WGDIARIES_ITEMS', 'Items');
 \define('_MA_WGDIARIES_ITEMS_LIST', 'List of Items');
 \define('_MA_WGDIARIES_ITEMS_LISTMY', 'List of my items');
@@ -191,8 +192,7 @@ As you can see, you have created a page with a list of links at the top to navig
 \define('_MA_WGDIARIES_ARCHIVE', 'Archive');
 \define('_MA_WGDIARIES_ARCHIVE_TITLE', 'Archive of wgDiary');
 // User list
-\define('_MA_WGDIARIES_USERLIST_ALL', 'List of all users with items');
-\define('_MA_WGDIARIES_USERLIST_GROUP', 'List of all users of my groups with items');
+\define('_MA_WGDIARIES_USERLIST_GROUP', 'List of all users with items of my groups');
 \define('_MA_WGDIARIES_USERLIST_GROUPS', 'Groups');
 \define('_MA_WGDIARIES_USERLIST_NB_ITEMS', 'Number of items');
 // General

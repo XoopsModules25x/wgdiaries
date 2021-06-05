@@ -52,6 +52,7 @@ $GLOBALS['xoopsTpl']->assign('xoops_icons32_url', \XOOPS_ICONS32_URL);
 $GLOBALS['xoopsTpl']->assign('wgdiaries_url', \WGDIARIES_URL);
 $GLOBALS['xoopsTpl']->assign('wgdiaries_upload_categoriesurl', \WGDIARIES_UPLOAD_CATEGORIES_URL);
 $GLOBALS['xoopsTpl']->assign('wgdiaries_upload_itemsurl', \WGDIARIES_UPLOAD_ITEMS_URL);
+$GLOBALS['xoopsTpl']->assign('redir', 'list');
 // Keywords
 $keywords = [];
 
@@ -73,22 +74,20 @@ switch ($op) {
         if ('listuser' !== $op) {
             $itemsCalendar = (bool)$helper->getConfig('items_calendar');
         }
+        $GLOBALS['xoopsTpl']->assign('itemsCalendar', $itemsCalendar);
         if ($itemsCalendar) {
-            $GLOBALS['xoopsTpl']->assign('itemsCalendar', $itemsCalendar);
-            if ($itemsCalendar) {
-                $GLOBALS['xoTheme']->addStylesheet(\WGDIARIES_URL . '/class/SimpleCalendar/css/SimpleCalendarMini.css', null);
-                $calendar = new SimpleCalendar\SimpleCalendarMini();
-                $calendar->setDate(\time());
-                $calendar->setStartOfWeek(\_MA_WGDIARIES_CAL_MONDAY);
-                $calendar->setWeekDayNames([
-                    \_MA_WGDIARIES_CAL_MIN_SUNDAY,
-                    \_MA_WGDIARIES_CAL_MIN_MONDAY,
-                    \_MA_WGDIARIES_CAL_MIN_TUESDAY,
-                    \_MA_WGDIARIES_CAL_MIN_WEDNESDAY,
-                    \_MA_WGDIARIES_CAL_MIN_THURSDAY,
-                    \_MA_WGDIARIES_CAL_MIN_FRIDAY,
-                    \_MA_WGDIARIES_CAL_MIN_SATURDAY]);
-            }
+            $GLOBALS['xoTheme']->addStylesheet(\WGDIARIES_URL . '/class/SimpleCalendar/css/SimpleCalendarMini.css', null);
+            $calendar = new SimpleCalendar\SimpleCalendarMini();
+            $calendar->setDate(\time());
+            $calendar->setStartOfWeek(\_MA_WGDIARIES_CAL_MONDAY);
+            $calendar->setWeekDayNames([
+                \_MA_WGDIARIES_CAL_MIN_SUNDAY,
+                \_MA_WGDIARIES_CAL_MIN_MONDAY,
+                \_MA_WGDIARIES_CAL_MIN_TUESDAY,
+                \_MA_WGDIARIES_CAL_MIN_WEDNESDAY,
+                \_MA_WGDIARIES_CAL_MIN_THURSDAY,
+                \_MA_WGDIARIES_CAL_MIN_FRIDAY,
+                \_MA_WGDIARIES_CAL_MIN_SATURDAY]);
         }
         switch ($op) {
             case 'list':
@@ -104,7 +103,7 @@ switch ($op) {
                 $GLOBALS['xoopsTpl']->assign('itemsTitle', sprintf(\_MA_WGDIARIES_ITEMS_LISTUSER, \XoopsUser::getUnameFromId($userId, true)));
                 break;
         }
-        $uid = \is_object($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->uid() : 0;
+        $uid = \is_object($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->uid() : -1;
         $crItems = new \CriteriaCompo();
         if ($itemId > 0) {
             $crItems->add(new \Criteria('item_id', $itemId));
@@ -185,7 +184,7 @@ switch ($op) {
         // Breadcrumbs
         $xoBreadcrumbs[] = ['title' => \_MA_WGDIARIES_ITEMS_LISTGROUP];
 
-        $uid = \is_object($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->uid() : 0;
+        $uid = \is_object($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->uid() : -1;
         $crItems = new \CriteriaCompo();
         $crItems->add(new \Criteria('item_submitter', $uid, '<>'));
         $memberHandler = \xoops_getHandler('member');
@@ -240,7 +239,7 @@ switch ($op) {
             \redirect_header('items.php', 3, \implode(',', $GLOBALS['xoopsSecurity']->getErrors()));
         }
         // Check permissions
-        if (!$permissionsHandler->getPermGlobalSubmit()) {
+        if (!$permissionsHandler->getPermItemSubmit()) {
             \redirect_header('items.php?op=list', 3, \_NOPERM);
         }
         if ($itemId > 0) {
@@ -364,7 +363,7 @@ switch ($op) {
         // Breadcrumbs
         $xoBreadcrumbs[] = ['title' => \_MA_WGDIARIES_ITEM_ADD];
         // Check permissions
-        if (!$permissionsHandler->getPermGlobalSubmit()) {
+        if (!$permissionsHandler->getPermItemSubmit()) {
             \redirect_header('items.php?op=list', 3, \_NOPERM);
         }
         $GLOBALS['xoopsTpl']->assign('maxfileuploads', $helper->getConfig('max_fileuploads'));
@@ -377,10 +376,6 @@ switch ($op) {
     case 'edit':
         // Breadcrumbs
         $xoBreadcrumbs[] = ['title' => \_MA_WGDIARIES_ITEM_EDIT];
-        // Check permissions
-        if (!$permissionsHandler->getPermItemsSubmit()) {
-            \redirect_header('items.php?op=list', 3, \_NOPERM);
-        }
         // Check params
         if (0 == $itemId) {
             \redirect_header('items.php?op=list', 3, \_MA_WGDIARIES_INVALID_PARAM);
@@ -388,22 +383,27 @@ switch ($op) {
         $GLOBALS['xoopsTpl']->assign('maxfileuploads', $helper->getConfig('max_fileuploads'));
         // Get Form
         $itemsObj = $itemsHandler->get($itemId);
+        $itemSubmitter = $itemsObj->getVar('item_submitter');
+        // Check permissions
+        if (!$permissionsHandler->getPermItemsEdit($itemSubmitter)) {
+            \redirect_header('items.php?op=list', 3, \_NOPERM);
+        }
         $form = $itemsObj->getFormItems();
         $GLOBALS['xoopsTpl']->assign('form', $form->render());
         break;
     case 'delete':
         // Breadcrumbs
         $xoBreadcrumbs[] = ['title' => \_MA_WGDIARIES_ITEM_DELETE];
-        // Check permissions
-        if (!$permissionsHandler->getPermGlobalSubmit()) {
-            \redirect_header('items.php?op=list', 3, \_NOPERM);
-        }
         // Check params
         if (0 == $itemId) {
             \redirect_header('items.php?op=list', 3, \_MA_WGDIARIES_INVALID_PARAM);
         }
         $itemsObj = $itemsHandler->get($itemId);
         $itemSubmitter = $itemsObj->getVar('item_submitter');
+        // Check permissions
+        if (!$permissionsHandler->getPermItemsEdit($itemSubmitter)) {
+            \redirect_header('items.php?op=list', 3, \_NOPERM);
+        }
         if (isset($_REQUEST['ok']) && 1 == $_REQUEST['ok']) {
             if (!$GLOBALS['xoopsSecurity']->check()) {
                 \redirect_header('items.php', 3, \implode(', ', $GLOBALS['xoopsSecurity']->getErrors()));

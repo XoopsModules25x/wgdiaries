@@ -41,6 +41,7 @@ $start = Request::getInt('start', 0);
 $limit = Request::getInt('limit', $helper->getConfig('userpager'));
 $fileId = Request::getInt('file_id', 0);
 $itemId = Request::getInt('item_id', 0);
+$redir  = Request::getString('redir', '');
 if (Request::hasVar('save_add')) {
     $op ='save_add';
 }
@@ -55,9 +56,11 @@ $GLOBALS['xoopsTpl']->assign('wgdiaries_fileiconurl', \WGDIARIES_ICONS_URL . '/f
 
 // Keywords
 $keywords = [];
-// Permissions
-$permEdit = $permissionsHandler->getPermGlobalSubmit();
+// Permissions: user must have perm to edit item
+$itemsObj = $itemsHandler->get($itemId);
+$permEdit = $permissionsHandler->getPermItemsEdit($itemsObj->getVar('item_submitter'));
 $GLOBALS['xoopsTpl']->assign('permEdit', $permEdit);
+unset($itemsObj);
 $GLOBALS['xoopsTpl']->assign('showItem', $fileId > 0);
 $GLOBALS['xoopsTpl']->assign('itemId', $itemId);
 
@@ -67,6 +70,7 @@ switch ($op) {
     default:
         // Breadcrumbs
         $xoBreadcrumbs[] = ['title' => \_MA_WGDIARIES_FILES_LIST];
+        $GLOBALS['xoopsTpl']->assign('showList', true);
         $crFiles = new \CriteriaCompo();
         if ($fileId > 0) {
             $crFiles->add(new \Criteria('file_id', $fileId));
@@ -110,7 +114,7 @@ switch ($op) {
             \redirect_header('files.php', 3, \implode(',', $GLOBALS['xoopsSecurity']->getErrors()));
         }
         // Check permissions
-        if (!$permissionsHandler->getPermGlobalSubmit()) {
+        if (!$permEdit) {
             \redirect_header('files.php?op=list', 3, \_NOPERM);
         }
         if ($fileId > 0) {
@@ -175,7 +179,7 @@ switch ($op) {
         // Breadcrumbs
         $xoBreadcrumbs[] = ['title' => \_MA_WGDIARIES_FILE_ADD];
         // Check permissions
-        if (!$permissionsHandler->getPermGlobalSubmit()) {
+        if (!$permEdit) {
             \redirect_header('files.php?op=list', 3, \_NOPERM);
         }
         // Form Create
@@ -188,7 +192,7 @@ switch ($op) {
         // Breadcrumbs
         $xoBreadcrumbs[] = ['title' => \_MA_WGDIARIES_FILE_EDIT];
         // Check permissions
-        if (!$permissionsHandler->getPermGlobalSubmit()) {
+        if (!$permEdit) {
             \redirect_header('files.php?op=list', 3, \_NOPERM);
         }
         // Check params
@@ -204,7 +208,7 @@ switch ($op) {
         // Breadcrumbs
         $xoBreadcrumbs[] = ['title' => \_MA_WGDIARIES_FILE_DELETE];
         // Check permissions
-        if (!$permissionsHandler->getPermGlobalSubmit()) {
+        if (!$permEdit) {
             \redirect_header('files.php?op=list', 3, \_NOPERM);
         }
         // Check params
