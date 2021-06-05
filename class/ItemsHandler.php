@@ -158,7 +158,7 @@ class ItemsHandler extends \XoopsPersistableObjectHandler
             $memberHandler = \xoops_getHandler('member');
             $xoopsGroups = $memberHandler->getGroupList();
             $myGroups = \array_keys($xoopsGroups);
-            $crItems->add(new \Criteria('item_groupid', "(" . \implode(',', $myGroups) . ")", 'IN'));
+            $crItems->add(new \Criteria('item_groupid', '(' . \implode(',', $myGroups) . ')', 'IN'));
         }
         if ($groupid >  0) {
             $crItems->add(new \Criteria('item_groupid', $groupid));
@@ -220,7 +220,7 @@ class ItemsHandler extends \XoopsPersistableObjectHandler
             $memberHandler = \xoops_getHandler('member');
             $xoopsGroups = $memberHandler->getGroupList();
             $myGroups = \array_keys($xoopsGroups);
-            $crItems->add(new \Criteria('item_groupid', "(" . \implode(',', $myGroups) . ")", 'IN'));
+            $crItems->add(new \Criteria('item_groupid', '(' . \implode(',', $myGroups) . ')', 'IN'));
         }
         if ($groupid >  0) {
             $crItems->add(new \Criteria('item_groupid', $groupid));
