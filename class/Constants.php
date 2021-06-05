@@ -37,21 +37,20 @@ interface Constants
     const TABLE_CATEGORIES = 2;
 
     // Constants for permissions
-    public const PERM_GLOBAL_NONE      = 0;
-    public const PERM_GLOBAL_SUBMIT    = 1;
-    public const PERM_GLOBAL_EDIT      = 2;
-    public const PERM_GLOBAL_VIEW      = 3;
-    public const PERM_ITEMS_SUBMIT     = 4;
-    public const PERM_ITEMS_GROUP_EDIT = 5;
-    public const PERM_ITEMS_GROUP_VIEW = 6;
-    public const PERM_ITEMS_OWN_EDIT   = 7;
-    public const PERM_ITEMS_OWN_VIEW   = 8;
-    public const PERM_GROUPS_EDIT      = 9;
-    public const PERM_GROUPS_VIEW      = 10;
-    public const PERM_ITEMS_COMEDIT    = 11;
-    public const PERM_CALPAGE_VIEW     = 12;
-    public const PERM_OUTPUTS_VIEW     = 13;
-    public const PERM_STATISTICS_VIEW  = 14;
+    public const PERM_GLOBAL_NONE          = 0;
+    public const PERM_GLOBAL_SUBMIT        = 1;
+    public const PERM_GLOBAL_EDIT          = 2;
+    public const PERM_GLOBAL_VIEW          = 3;
+    public const PERM_ITEMS_SUBMIT         = 4;
+    public const PERM_ITEMS_GROUP_EDIT     = 5;
+    public const PERM_ITEMS_GROUP_VIEW     = 6;
+    public const PERM_ITEMS_OWN_EDIT       = 7;
+    public const PERM_ITEMS_OWN_VIEW       = 8;
+    public const PERM_ITEMS_COMEDIT        = 11;
+    public const PERM_CALPAGE_VIEW         = 12;
+    public const PERM_OUTPUTS_VIEW         = 13;
+    public const PERM_STATISTICS_VIEW      = 14;
+    public const PERM_USERITEMS_VIEW       = 15;
 
     //Constants Filter
     public const FILTERBY_OWN   = 1;

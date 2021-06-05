@@ -21,7 +21,11 @@
             <tfoot>
                 <tr>
                     <td colspan="6" class="center">
-                        <a class='btn btn-success right' href='items.php?op=show&amp;item_id=<{$itemId}>' title='<{$smarty.const._MA_WGDIARIES_ITEM_GOBACK}>'><{$smarty.const._MA_WGDIARIES_ITEM_GOBACK}></a>
+                        <{if $redit|default:'details' == 'details'}>
+                            <a class='btn btn-success right' href='items.php?op=show&amp;item_id=<{$itemId}>' title='<{$smarty.const._MA_WGDIARIES_ITEM_GOBACK}>'><{$smarty.const._MA_WGDIARIES_ITEM_GOBACK}></a>
+                        <{else}>
+                            <a class='btn btn-success right' href='items.php?op=list#itemId=<{$itemId}>' title='<{$smarty.const._MA_WGDIARIES_ITEM_GOBACK_LIST}>'><{$smarty.const._MA_WGDIARIES_ITEM_GOBACK_LIST}></a>
+                        <{/if}>
                         <a class='btn btn-primary right' href='files.php?op=new&amp;item_id=<{$itemId}>' title='<{$smarty.const._ADD}>'><{$smarty.const._ADD}></a>
                     </td>
                 </tr>
@@ -29,11 +33,13 @@
         </table>
     </div>
 <{else}>
-    <h4><{$smarty.const._MA_WGDIARIES_FILES_NODATA}></h4>
-    <div class="col-12">
-        <a class='btn btn-success' href='items.php?op=show&amp;item_id=<{$itemId}>' title='<{$smarty.const._MA_WGDIARIES_ITEM_GOBACK}>'><{$smarty.const._MA_WGDIARIES_ITEM_GOBACK}></a>
-        <a class='btn btn-primary' href='files.php?op=new&amp;item_id=<{$itemId}>' title='<{$smarty.const._ADD}>'><{$smarty.const._ADD}></a>
-    </div>
+    <{if $showList|default:false}>
+        <h4><{$smarty.const._MA_WGDIARIES_FILES_NODATA}></h4>
+        <div class="col-12">
+            <a class='btn btn-success' href='items.php?op=show&amp;item_id=<{$itemId}>' title='<{$smarty.const._MA_WGDIARIES_ITEM_GOBACK}>'><{$smarty.const._MA_WGDIARIES_ITEM_GOBACK}></a>
+            <a class='btn btn-primary' href='files.php?op=new&amp;item_id=<{$itemId}>' title='<{$smarty.const._ADD}>'><{$smarty.const._ADD}></a>
+        </div>
+    <{/if}>
 <{/if}>
 <{if $form|default:''}>
     <{$form|default:false}>

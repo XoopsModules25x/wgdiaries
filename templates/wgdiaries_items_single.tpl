@@ -53,8 +53,8 @@
                     <li>...</li>
                 <{/if}>
             </ul>
-            <a class='btn btn-success right printNone' href='files.php?op=list&amp;item_id=<{$item.item_id}>' title='<{$smarty.const._MA_WGDIARIES_FILES_LIST}>'><{$smarty.const._MA_WGDIARIES_FILES_LIST}></a>
-            <a class='btn btn-primary right printNone' href='files.php?op=new&amp;item_id=<{$item.item_id}>' title='<{$smarty.const._MA_WGDIARIES_FILE_ADD}>'><{$smarty.const._MA_WGDIARIES_FILE_ADD}></a>
+            <a class='btn btn-success right printNone' href='files.php?op=list&amp;redir=details&amp;item_id=<{$item.item_id}>' title='<{$smarty.const._MA_WGDIARIES_FILES_LIST}>'><{$smarty.const._MA_WGDIARIES_FILES_LIST}></a>
+            <a class='btn btn-primary right printNone' href='files.php?op=new&amp;redir=details&amp;item_id=<{$item.item_id}>' title='<{$smarty.const._MA_WGDIARIES_FILE_ADD}>'><{$smarty.const._MA_WGDIARIES_FILE_ADD}></a>
         <{/if}>
     </td>
 </tr>

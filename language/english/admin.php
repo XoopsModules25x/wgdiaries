@@ -71,11 +71,10 @@ require_once __DIR__ . '/main.php';
 \define('_AM_WGDIARIES_PERMISSIONS_ITEMS_OWN_EDIT', 'Permissions to edit own items');
 \define('_AM_WGDIARIES_PERMISSIONS_ITEMS_OWN_VIEW', 'Permissions to view own items');
 \define('_AM_WGDIARIES_PERMISSIONS_ITEMS_COMEDIT', 'Permissions to view and edit comments for items');
-\define('_AM_WGDIARIES_PERMISSIONS_GROUPS_EDIT', 'Permissions to edit groups and users');
-\define('_AM_WGDIARIES_PERMISSIONS_GROUPS_VIEW', 'Permissions to view groups and users');
 \define('_AM_WGDIARIES_PERMISSIONS_CALPAGE_VIEW', 'Permissions to view calendar page');
 \define('_AM_WGDIARIES_PERMISSIONS_OUTPUTS_VIEW', 'Permissions to view outputs page');
 \define('_AM_WGDIARIES_PERMISSIONS_STATISTICS_VIEW', 'Permissions to view statistics page');
+\define('_AM_WGDIARIES_PERMISSIONS_USERITEMS_VIEW', 'Permissions to view user items page');
 \define('_AM_WGDIARIES_NO_PERMISSIONS_SET', 'No permission set');
 //clone
 \define('_AM_WGDIARIES_CLONE', 'Clone');

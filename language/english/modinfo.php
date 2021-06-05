@@ -55,6 +55,7 @@ require_once 'common.php';
 \define('_MI_WGDIARIES_SMNAME6', 'Outputs');
 \define('_MI_WGDIARIES_SMNAME7', 'Calendar');
 \define('_MI_WGDIARIES_SMNAME8', 'Archive');
+\define('_MI_WGDIARIES_SMNAME9', 'Items by users');
 // Config
 \define('_MI_WGDIARIES_EDITOR_ADMIN', 'Editor admin');
 \define('_MI_WGDIARIES_EDITOR_ADMIN_DESC', 'Select the editor which should be used in admin area for text area fields');

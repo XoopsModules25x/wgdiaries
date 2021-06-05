@@ -99,6 +99,7 @@ $modversion['templates'] = [
     ['file' => 'wgdiaries_items_single.tpl', 'description' => ''],
     ['file' => 'wgdiaries_outputs.tpl', 'description' => ''],
     ['file' => 'wgdiaries_statistics.tpl', 'description' => ''],
+    ['file' => 'wgdiaries_useritems.tpl', 'description' => ''],
 ];
 // ------------------- Mysql ------------------- //
 $modversion['sqlfile']['mysql'] = 'sql/mysql.sql';
@@ -172,6 +173,13 @@ if ($currdirname == $moduleDirName) {
         $modversion['sub'][] = [
             'name' => \_MI_WGDIARIES_SMNAME8,
             'url'  => 'archive.php',
+        ];
+    }
+    if ($permissionsHandler->getPermUserItemsView()) {
+        // Sub Submit
+        $modversion['sub'][] = [
+            'name' => \_MI_WGDIARIES_SMNAME9,
+            'url'  => 'useritems.php',
         ];
     }
 }
