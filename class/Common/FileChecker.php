@@ -25,8 +25,8 @@ use XoopsModules\Wgdiaries;
 
 //\defined('\XOOPS_ROOT_PATH') || die('XOOPS root path not defined');
 
-require_once \dirname(\dirname(\dirname(\dirname(__DIR__)))) . '/mainfile.php';
-$moduleDirName      = \basename(\dirname(\dirname(__DIR__)));
+require_once dirname(__DIR__, 4) . '/mainfile.php';
+$moduleDirName      = \basename(dirname(__DIR__, 2));
 $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
 \xoops_loadLanguage('filechecker', $moduleDirName);
 
@@ -52,7 +52,7 @@ class FileChecker
         if (null === $redirectFile) {
             $redirectFile = $_SERVER['SCRIPT_NAME'];
         }
-        $moduleDirName      = \basename(\dirname(\dirname(__DIR__)));
+        $moduleDirName      = \basename(dirname(__DIR__, 2));
         $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
         if (null === $original_file_path) {
             if (self::fileExists($file_path)) {
