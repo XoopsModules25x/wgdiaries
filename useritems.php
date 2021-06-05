@@ -60,9 +60,9 @@ foreach ($xoopsGroups as $groupid) {
             if ($itemsCount > 0) {
                 $userObj = new \XoopsUser($user);
                 $avatar = '';
-                if ('avatars/blank.gif' != $userObj->user_avatar()) {
+                //if ('avatars/blank.gif' != $userObj->user_avatar()) {
                     $avatar = $userObj->user_avatar();
-                }
+                //}
                 $userGroups = $memberHandler->getGroupsByUser($user);
                 $groups = [];
                 foreach ($userGroups as $userGroup) {
