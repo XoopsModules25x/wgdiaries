@@ -42,6 +42,7 @@
                 <td class='center'><{$item.submitter}></td>
                 <td class="center  width5">
                     <a href="items.php?op=edit&amp;item_id=<{$item.id}>" title="<{$smarty.const._EDIT}>"><img src="<{xoModuleIcons16 edit.png}>" alt="<{$smarty.const._EDIT}> items"></a>
+                    <a href="items.php?op=clone&amp;item_id_source=<{$item.id}>" title="<{$smarty.const._CLONE}>"><img src="<{xoModuleIcons16 editcopy.png}>" alt="<{$smarty.const._CLONE}> items"></a>
                     <a href="items.php?op=delete&amp;item_id=<{$item.id}>" title="<{$smarty.const._DELETE}>"><img src="<{xoModuleIcons16 delete.png}>" alt="<{$smarty.const._DELETE}> items"></a>
                 </td>
             </tr>

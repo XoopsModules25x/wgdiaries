@@ -21,6 +21,7 @@
  - fixed invalid logo url (mjoel/goffy)
  - group archive by year (mjoel/goffy)
  - added list items by user (mjoel/goffy)
+ - added clone items (mjoel/goffy)
 
 ==============================================================
 1.02 [2021/05/19]
