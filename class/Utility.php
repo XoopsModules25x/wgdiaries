@@ -252,4 +252,25 @@ var hasSelected = false; var selectBox = myform.item[A][amount];for (i = 0; i < 
     {
         return \ucfirst(\mb_strtolower(\trim($str)));
     }
+
+    /**
+     * @param $val
+     * @return float|int
+     */
+    public static function returnBytes($val)
+    {
+        switch (\mb_substr($val, -1)) {
+            case 'K':
+            case 'k':
+                return (int)$val * 1024;
+            case 'M':
+            case 'm':
+                return (int)$val * 1048576;
+            case 'G':
+            case 'g':
+                return (int)$val * 1073741824;
+            default:
+                return $val;
+        }
+    }
 }

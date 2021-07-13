@@ -81,6 +81,19 @@ switch ($op) {
         $form = $itemsObj->getFormItems();
         $GLOBALS['xoopsTpl']->assign('form', $form->render());
         break;
+    case 'clone':
+        $templateMain = 'wgdiaries_admin_items.tpl';
+        $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('items.php'));
+        $adminObject->addItemButton(\_AM_WGDIARIES_LIST_ITEMS, 'items.php', 'list');
+        $adminObject->addItemButton(\_AM_WGDIARIES_ADD_ITEM, 'items.php?op=new', 'add');
+        $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->displayButton('left'));
+        // Form Create
+        $itemIdsource = Request::getInt('item_id_source');
+        $itemsObjSource = $itemsHandler->get($itemIdsource);
+        $itemsObj = $itemsObjSource->xoopsClone();
+        $form = $itemsObj->getFormItems();
+        $GLOBALS['xoopsTpl']->assign('form', $form->render());
+        break;
     case 'save':
         // Security Check
         if (!$GLOBALS['xoopsSecurity']->check()) {

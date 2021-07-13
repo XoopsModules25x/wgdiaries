@@ -19,8 +19,8 @@
 
 <{if $itemsCount|default:0 > 0}>
     <div id="divToPrint">
-        <link href="<{$wgdiaries_css_print_1}>" rel="stylesheet">
-        <h3><{$itemsTitle}></h3>
+        <link href="<{$wgdiaries_css_print_1|default:''}>" rel="stylesheet">
+        <h3><{$itemsTitle|default:''}></h3>
         <div class="row">
             <div class='col-12'>
                 <table class='table table-<{$table_type|default:false}>'>

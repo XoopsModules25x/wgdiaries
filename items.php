@@ -373,6 +373,21 @@ switch ($op) {
         $form = $itemsObj->getFormItems(false, $itemDate);
         $GLOBALS['xoopsTpl']->assign('form', $form->render());
         break;
+    case 'clone':
+        // Breadcrumbs
+        $xoBreadcrumbs[] = ['title' => \_MA_WGDIARIES_ITEM_ADD];
+        // Check permissions
+        if (!$permissionsHandler->getPermItemsSubmit()) {
+            \redirect_header('items.php?op=list', 3, \_NOPERM);
+        }
+        $GLOBALS['xoopsTpl']->assign('maxfileuploads', $helper->getConfig('max_fileuploads'));
+        // Form Create
+        $itemIdsource = Request::getInt('item_id_source');
+        $itemsObjSource = $itemsHandler->get($itemIdsource);
+        $itemsObj = $itemsObjSource->xoopsClone();
+        $form = $itemsObj->getFormItems();
+        $GLOBALS['xoopsTpl']->assign('form', $form->render());
+        break;
     case 'edit':
         // Breadcrumbs
         $xoBreadcrumbs[] = ['title' => \_MA_WGDIARIES_ITEM_EDIT];
