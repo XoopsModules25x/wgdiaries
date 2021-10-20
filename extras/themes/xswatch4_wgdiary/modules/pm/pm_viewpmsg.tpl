@@ -91,7 +91,7 @@
                             </td>
 
                             <td class='text-center'>
-                                <{if $message.postername != ""}>
+                                <{if $message.postername|default:'' != ''}>
                                     <{assign var="tempPosteruid" value=$message.posteruid}>
                                     <{xoUserInfo uid=$message.posteruid}>
                                     <a href='<{$xoops_url}>/userinfo.php?uid=<{$message.posteruid}>' alt="<{$message.postername}>" title='<{$message.postername}>'>

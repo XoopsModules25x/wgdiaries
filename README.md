@@ -1,5 +1,3 @@
-![alt XOOPS CMS](https://xoops.org/images/logoXoops4GithubRepository.png)
-
 ![alt XOOPS CMS](https://xoops.org/images/logoXoopsPhp8.png)
 
 ## wgDiaries module for  [XOOPS CMS 2.5.11+](https://xoops.org)

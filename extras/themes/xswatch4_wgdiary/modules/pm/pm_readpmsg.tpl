@@ -58,7 +58,7 @@
                     <{/if}>
                 </div>
                 <div class="col-md-8">
-                    <h5><{if $message.msg_image != ""}><img src='<{$xoops_url}>/images/subject/<{$message.msg_image}>' alt=''><{/if}>
+                    <h5><{if $message.msg_image|default:'' != ''}><img src='<{$xoops_url}>/images/subject/<{$message.msg_image}>' alt=''><{/if}>
                         <{$message.subject}>
                     </h5>
                     <div class="text-muted text-left"><small><i class="fa fa-calendar-o"></i>&nbsp;<{$smarty.const._PM_SENTC}>&nbsp;<{$message.msg_time}></small></div>

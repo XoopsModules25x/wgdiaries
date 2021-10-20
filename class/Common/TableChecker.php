@@ -89,7 +89,7 @@ class TableChecker extends \XoopsObject
                     if ($this->result = $GLOBALS['xoopsDB']->queryF($sql)) {
                         $this->result[] = 'Table created:' . $table;
                     } else {
-                        xoops_error($GLOBALS['xoopsDB']->error() . '<br>' . $sql);
+                        \xoops_error($GLOBALS['xoopsDB']->error() . '<br>' . $sql);
                         $this->result[] = 'Error creating table:' . $table;
                     }
                 } else {
@@ -126,7 +126,7 @@ class TableChecker extends \XoopsObject
             $countTable = 0;
             foreach ($pieces as $piece) {
                 $singleSql = $sqlutil->prefixQuery($piece, $GLOBALS['xoopsDB']->prefix());
-                $lines = preg_split('/\r\n|\n|\r/', $piece);
+                $lines = \preg_split('/\r\n|\n|\r/', $piece);
                 //var_dump($lines);
                 $needle1 = 'create table';
                 if ($needle1 == \mb_strtolower($singleSql[1])) {
@@ -235,7 +235,7 @@ class TableChecker extends \XoopsObject
                     if ($result = $GLOBALS['xoopsDB']->queryF($sql)) {
                         $this->result[] = 'Field added:' . $fieldname;
                     } else {
-                        xoops_error($GLOBALS['xoopsDB']->error() . '<br>' . $sql);
+                        \xoops_error($GLOBALS['xoopsDB']->error() . '<br>' . $sql);
                         $this->result[] = "Error when adding '$fieldname' to table '$table'.";
                     }
                 } else {

@@ -57,7 +57,7 @@
             </label>
             <div class="col-xs-12 col-sm-10">
                 <{$element.body}>
-                <{if $element.description != ''}>
+                <{if $element.description|default:'' != ''}>
                     <p class="form-text text-muted"><{$element.description}></p>
                  <{/if}>
             </div>

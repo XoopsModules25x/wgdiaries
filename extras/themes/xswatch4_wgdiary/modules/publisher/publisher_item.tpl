@@ -126,7 +126,7 @@
                                  alt="<{$smarty.const._CO_PUBLISHER_DELETEFILE}>"></a>
                     <{/if}>
                     <a href="<{$publisher_url}>/visit.php?fileid=<{$file.fileid}>" target="_blank">
-                        <img src="<{$publisher_url}>/assets/images/links/file.gif" title="<{$lang_download_file}>"
+                        <img src="<{$publisher_url}>/assets/images/links/file.gif" title="<{$lang_download_file|default:''}>"
                              alt="<{$smarty.const._MD_PUBLISHER_DOWNLOAD_FILE}>">&nbsp;<strong><{$file.name}></strong>
                     </a>
 
@@ -144,7 +144,7 @@
 <!-- End Attached Files -->
 
 <!-- Items by same Author -->
-<{if $perm_author_items && $item.uid != 0}>
+<{if $perm_author_items && $item.uid|default:0 != 0}>
     <div class="pub_article_extras">
         <a class="btn btn-primary btn-lg btn-block" href="<{$publisher_url}>/author_items.php?uid=<{$item.uid}>">
             <{$smarty.const._MD_PUBLISHER_ITEMS_SAME_AUTHOR}>
