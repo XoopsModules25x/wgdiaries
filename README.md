@@ -1,7 +1,5 @@
 ![alt XOOPS CMS](https://xoops.org/images/logoXoopsPhp8.png)
 
-![alt XOOPS CMS](https://xoops.org/images/logoXoopsPhp8.png)
-
 ## wgDiaries module for  [XOOPS CMS 2.5.11+](https://xoops.org)
 [![Software License](https://img.shields.io/badge/license-GPL-brightgreen.svg?style=flat)](LICENSE)
 [![Latest Pre-Release](https://img.shields.io/github/tag/XoopsModules25x/wgdiaries.svg?style=flat)](https://github.com/XoopsModules25x/wgdiaries/tags/)
