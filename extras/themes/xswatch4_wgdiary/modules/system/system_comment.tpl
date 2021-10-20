@@ -13,7 +13,7 @@
         <{/if}>
         <div class="w-100"></div>
         <div class="col-3 col-md-2 xoops-comment-author aligncenter">
-            <{if $comment.poster.id != 0}>
+            <{if $comment.poster.id|default:0 != 0}>
                 <{if $comment.poster.avatar != 'blank.gif'}>
                 <img src="<{$xoops_upload_url}>/<{$comment.poster.avatar}>" class="img-fluid img-rounded img-thumbnail">
                 <{else}>

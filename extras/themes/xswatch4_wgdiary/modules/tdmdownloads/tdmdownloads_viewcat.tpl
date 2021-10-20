@@ -11,7 +11,7 @@
     </div>
 
     <div class="row">
-    <{if $category.image|default:'' != ""}>
+    <{if $category.image|default:'' != ''}>
         <div class="col-6">
         <a title="<{$category.title}>" href="<{$xoops_url}>/modules/tdmdownloads/viewcat.php?cid=<{$category.id}>">
             <img class="img-fluid" src="<{$category.image}>" alt="<{$category.title}>">
@@ -40,7 +40,7 @@
             <{if $bl_affichage==1}>
                 <div class="col-md-12"><h2><{$smarty.const._MD_TDMDOWNLOADS_INDEX_BLNAME}>:</h1></div>
                 <div class="col-sm-4 col-md-4">
-                <{if $bl_date != ""}>
+                <{if $bl_date|default:'' != ''}>
                     <h3 class="tdm-title"><span class="fa fa-calendar"></span> <{$smarty.const._MD_TDMDOWNLOADS_INDEX_BLDATE}></h3>
                     <ul class="list-unstyled">
                         <{foreach item=bl_date from=$bl_date}>
@@ -53,7 +53,7 @@
                     </ul>
                     </div>
                 <{/if}>
-                <{if $bl_pop != ""}>
+                <{if $bl_pop|default:'' != ''}>
                     <div class="col-sm-4 col-md-4">
                         <h3 class="tdm-title"><span class="fa fa-star"></span> <{$smarty.const._MD_TDMDOWNLOADS_INDEX_BLPOP}></h3>
                         <ul class="list-unstyled">
@@ -67,7 +67,7 @@
                         </ul>
                     </div>
                 <{/if}>
-                <{if $bl_rating != ""}>
+                <{if $bl_rating|default:'' != ''}>
                     <div class="col-sm-4 col-md-4">
                         <h3 class="tdm-title"><span class="fa fa-thumbs-o-up"></span> <{$smarty.const._MD_TDMDOWNLOADS_INDEX_BLRATING}></h3>
                         <ul class="list-unstyled">
@@ -143,12 +143,12 @@
             <{/if}>
         </div><!-- .tdm-order-by -->
 
-        <{if $file != ""}>
+        <{if $file|default:'' != ''}>
             <h3 class="tdm-title"><{$smarty.const._MD_TDMDOWNLOADS_CAT_LIST}>:</h3>
             <div class="row">
             <{section name=i loop=$file}><{include file="db:tdmdownloads_download.tpl" down=$file[i]}><{/section}>
             </div>
-            <{if $pagenav != ''}>
+            <{if $pagenav|default:'' != ''}>
                 <div class="generic-pagination col text-right mt-2">
                 <{$pagenav|replace:'form':'div'|replace:'id="xo-pagenav"':''}>
                 </div>

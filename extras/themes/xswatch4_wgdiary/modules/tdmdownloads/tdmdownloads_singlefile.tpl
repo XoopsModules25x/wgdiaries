@@ -8,7 +8,7 @@
 
     <div class="tdm-download-data row">
         <{if $show_screenshot === true}>
-            <{if $logourl != ""}>
+            <{if $logourl|default:'' != ''}>
                 <div class="tdm-screenshot-single col-xs-8 col-sm-8 col-md-8">
                     <img src="<{$logourl}>" alt="<{$title}>">
                 </div>
@@ -33,7 +33,7 @@
                 <li><{$smarty.const._MD_TDMDOWNLOADS_SINGLEFILE_RATING}>: <{$rating}> <{$votes}>
                 </li}>
 
-                    <{if $commentsnav != ""}>
+                    <{if $commentsnav|default:'' != ''}>
                 <li><{$nb_comments}>
                 </li}>
                     <{/if}>
@@ -45,12 +45,12 @@
                 <{/if}>
 
 
-                <{if $perm_vote != ""}>
+                <{if $perm_vote|default:'' != ''}>
                     <li><a class="btn btn-xs btn-primary" href="<{$xoops_url}>/modules/tdmdownloads/ratefile.php?lid=<{$lid}>"
                            title="<{$smarty.const._MD_TDMDOWNLOADS_SINGLEFILE_RATHFILE}>"><{$smarty.const._MD_TDMDOWNLOADS_SINGLEFILE_RATHFILE}></a></li>
                 <{/if}>
 
-                <{if $perm_modif != ""}>
+                <{if $perm_modif|default:'' != ''}>
                     <li><a class="btn btn-xs btn-primary" href="<{$xoops_url}>/modules/tdmdownloads/modfile.php?lid=<{$lid}>"
                            title="<{$smarty.const._MD_TDMDOWNLOADS_SINGLEFILE_MODIFY}>"><{$smarty.const._MD_TDMDOWNLOADS_SINGLEFILE_MODIFY}></a></li>
                 <{/if}>
@@ -61,7 +61,7 @@
 
                 <!--<li><{$tellafriend_texte}></li>-->
 
-                <{if $perm_download != ""}>
+                <{if $perm_download|default:'' != ''}>
                     <li><a class="btn btn-md btn-success" href="visit.php?cid=<{$cid}>&amp;lid=<{$lid}>" target="_blank" title="Download"><{$smarty.const._MD_TDMDOWNLOADS_INDEX_DLNOW}></a>
                     </li>
                 <{else}>
@@ -100,11 +100,11 @@
 <{$commentsnav}>
 <div class="row d-flex justify-content-center"><{$lang_notice}></div>
 
-<{if $comment_mode == "flat"}>
-    <{include file="db:system_comments_flat.tpl"}>
-<{elseif $comment_mode == "thread"}>
-    <{include file="db:system_comments_thread.tpl"}>
-<{elseif $comment_mode == "nest"}>
+    <{if $comment_mode|default:'' == "flat"}>
+        <{include file="db:system_comments_flat.tpl"}>
+    <{elseif $comment_mode|default:'' == "thread"}>
+        <{include file="db:system_comments_thread.tpl"}>
+    <{elseif $comment_mode|default:'' == "nest"}>
     <{include file="db:system_comments_nest.tpl"}>
 <{/if}>
 

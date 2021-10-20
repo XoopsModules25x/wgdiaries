@@ -72,11 +72,11 @@ class XoopsConfirm
             $this->action = \Xmf\Request::getString('REQUEST_URI', '', 'SERVER');
         }
         if ('' === $this->title) {
-            $this->title = CO_WGDIARIES_DELETE_CONFIRM;
+            $this->title = \CO_WGDIARIES_DELETE_CONFIRM;
         }
         if ('' === $this->label) {
 
-            $this->label = CO_WGDIARIES_DELETE_LABEL;
+            $this->label = \CO_WGDIARIES_DELETE_LABEL;
         }
 
         \xoops_load('XoopsFormLoader');

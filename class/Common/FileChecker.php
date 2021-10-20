@@ -25,8 +25,8 @@ use XoopsModules\Wgdiaries;
 
 //\defined('\XOOPS_ROOT_PATH') || die('XOOPS root path not defined');
 
-require_once dirname(__DIR__, 4) . '/mainfile.php';
-$moduleDirName      = \basename(dirname(__DIR__, 2));
+require_once \dirname(__DIR__, 4) . '/mainfile.php';
+$moduleDirName      = \basename(\dirname(__DIR__, 2));
 $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
 \xoops_loadLanguage('filechecker', $moduleDirName);
 
@@ -44,7 +44,7 @@ class FileChecker
      */
     public static function getFileStatus($file_path, $original_file_path = null, $redirectFile)
     {
-        $pathIcon16 = \Xmf\Module\Admin::iconUrl('', 16);
+        $pathIcon16 = \Xmf\Module\Admin::iconUrl('', '16');
 
         if (empty($file_path)) {
             return false;
@@ -52,7 +52,7 @@ class FileChecker
         if (null === $redirectFile) {
             $redirectFile = $_SERVER['SCRIPT_NAME'];
         }
-        $moduleDirName      = \basename(dirname(__DIR__, 2));
+        $moduleDirName      = \basename(\dirname(__DIR__, 2));
         $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
         if (null === $original_file_path) {
             if (self::fileExists($file_path)) {
@@ -107,14 +107,14 @@ class FileChecker
         if (!self::fileExists($file1_path) || !self::fileExists($file2_path)) {
             return false;
         }
-        if (filetype($file1_path) !== filetype($file2_path)) {
+        if (\filetype($file1_path) !== \filetype($file2_path)) {
             return false;
         }
-        if (filesize($file1_path) !== filesize($file2_path)) {
+        if (\filesize($file1_path) !== \filesize($file2_path)) {
             return false;
         }
-        $crc1 = \mb_strtoupper(dechex(crc32(file_get_contents($file1_path))));
-        $crc2 = \mb_strtoupper(dechex(crc32(file_get_contents($file2_path))));
+        $crc1 = \mb_strtoupper(\dechex(\crc32(file_get_contents($file1_path))));
+        $crc2 = \mb_strtoupper(\dechex(\crc32(file_get_contents($file2_path))));
 
         return !($crc1 !== $crc2);
     }
@@ -126,7 +126,7 @@ class FileChecker
      */
     public static function fileExists($file_path)
     {
-        return is_file($file_path);
+        return \is_file($file_path);
     }
 
     /**
@@ -139,7 +139,7 @@ class FileChecker
     {
         $target = \str_replace('..', '', $target);
 
-        return @chmod($target, (int)$mode);
+        return @\chmod($target, (int)$mode);
     }
 }
 

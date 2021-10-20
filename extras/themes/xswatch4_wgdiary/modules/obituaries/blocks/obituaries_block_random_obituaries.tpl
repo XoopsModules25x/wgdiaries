@@ -2,7 +2,7 @@
     <div class="row">
         <{foreach item=user from=$block.obituaries_random_users}>
         <div class="card col-8 col-sm-6 col-md-4 col-xl-3">
-            <{if $block.obituaries_display_picture == 1 && $user.obituaries_picture_url != ''}>
+            <{if $block.obituaries_display_picture == 1 && $user.obituaries_picture_url|default:'' != ''}>
             <img class="card-img-top" title="<{$user.obituaries_href_title}>"
                 src="<{$user.obituaries_picture_url}>" alt="<{$user.obituaries_href_title}>"
                  width="<{$block.obituaries_picture_width}>">

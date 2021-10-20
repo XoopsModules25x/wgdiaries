@@ -6,7 +6,7 @@
         <{includeq file="$b_template"}>
     <{/foreach}>
 <{else}>
-    <{if $block.warning != ''}>
+    <{if $block.warning|default:'' != ''}>
     <div class="row">
         <div class="col-sm-12 alert alert-warning">
             <{$block.warning}>
@@ -23,7 +23,7 @@
             </p>
         </div>
     </div>
-    <{if $block.error != ''}>
+    <{if $block.error|default:'' != ''}>
     <div class="row">
         <div class="col-sm-12 alert alert-danger">
             <{$block.error}>

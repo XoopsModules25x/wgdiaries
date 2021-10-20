@@ -27,7 +27,7 @@
                             <div class="row align-items-center text-right">
                                 <div class="col">
                                     <span class="badge badge-secondary fa-lg text-primary ml-1"><span class="fa fa-download" aria-hidden="true"></span><small> <{$counter}></small></span>
-                                    <{if $size != ''}>
+                                    <{if $size|default:'' != ''}>
                                         <span class="badge badge-secondary fa-lg text-primary ml-1 mt-1 mt-lg-0"><span class="fa fa-archive" aria-hidden="true"></span><small> <{$size}></small></span>
                                     <{/if}>    
                                 </div>    
