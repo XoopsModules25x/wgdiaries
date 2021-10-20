@@ -23,11 +23,16 @@ declare(strict_types=1);
  * @author         wedega - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
  */
 
-use XoopsModules\Wgdiaries\Utility;
-// 
+use XoopsModules\Wgdiaries\{
+    Helper,
+    Utility
+};
+
+require __DIR__ . '/preloads/autoloader.php';
+
 $moduleDirName      = \basename(__DIR__);
 $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
-// ------------------- Informations ------------------- //
+// ------------------- Information ------------------- /
 $modversion = [
     'name'                => \_MI_WGDIARIES_NAME,
     'version'             => 1.03,
@@ -125,7 +130,7 @@ $currdirname  = isset($GLOBALS['xoopsModule']) && \is_object($GLOBALS['xoopsModu
 if ($currdirname == $moduleDirName) {
     require_once \XOOPS_ROOT_PATH . '/modules/' . $moduleDirName . '/include/common.php';
     /** @var \XoopsModules\Wgdiaries\Helper $helper */
-    $helper = \XoopsModules\Wgdiaries\Helper::getInstance();
+    $helper = Helper::getInstance();
     $permissionsHandler = $helper->getHandler('Permissions');
 
     $modversion['sub'][] = [
