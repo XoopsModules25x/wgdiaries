@@ -132,7 +132,7 @@ class Utility
             }
         }
         // add the defined ending to the text
-        if (\strlen($truncate) > 0) {
+        if ('' != $truncate) {
             $truncate .= $ending;
         }
         if ($considerHtml) {
