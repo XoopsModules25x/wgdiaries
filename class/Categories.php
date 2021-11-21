@@ -103,7 +103,7 @@ class Categories extends \XoopsObject
         $imageSelect = new \XoopsFormSelect(\sprintf(\_AM_WGDIARIES_CATEGORY_LOGO_UPLOADS, ".{$imageDirectory}/"), 'cat_logo', $catLogo, 5);
         $imageArray = \XoopsLists::getImgListAsArray( \XOOPS_ROOT_PATH . $imageDirectory );
         foreach ($imageArray as $image1) {
-            $imageSelect->addOption((string)($image1), $image1);
+            $imageSelect->addOption($image1, $image1);
         }
         $imageSelect->setExtra("onchange='showImgSelected(\"imglabel_cat_logo\", \"cat_logo\", \"" . $imageDirectory . '", "", "' . \XOOPS_URL . "\")'");
         $imageTray->addElement($imageSelect, false);
