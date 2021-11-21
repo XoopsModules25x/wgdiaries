@@ -30,7 +30,6 @@ use XoopsModules\Wgdiaries\Common;
 function xoops_module_pre_install_wgdiaries(\XoopsModule $module)
 {
     require \dirname(__DIR__) . '/preloads/autoloader.php';
-    /** @var Wgdiaries\Utility $utility */
     $utility = new Wgdiaries\Utility();
 
     //check for minimum XOOPS version
