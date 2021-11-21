@@ -24,7 +24,6 @@ declare(strict_types=1);
  */
 
 use Xmf\Request;
-use XoopsModules\Wgdiaries;
 use XoopsModules\Wgdiaries\ {
     Constants,
     SimpleCalendar,
