@@ -171,7 +171,7 @@ class Items extends \XoopsObject
         $imageSelect = new \XoopsFormSelect(\sprintf(\_MA_WGDIARIES_ITEM_LOGO_UPLOADS, ".{$imageDirectory}/"), 'item_logo', $itemLogo, 5);
         $imageArray = \XoopsLists::getImgListAsArray( \XOOPS_ROOT_PATH . $imageDirectory );
         foreach ($imageArray as $image1) {
-            $imageSelect->addOption((string)($image1), $image1);
+            $imageSelect->addOption($image1, $image1);
         }
         $imageSelect->setExtra("onchange='showImgSelected(\"imglabel_item_logo\", \"item_logo\", \"" . $imageDirectory . '", "", "' . \XOOPS_URL . "\")'");
         $imageTray->addElement($imageSelect, false);

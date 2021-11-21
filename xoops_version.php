@@ -129,7 +129,6 @@ $modversion['comments']['callback'] = [
 $currdirname  = isset($GLOBALS['xoopsModule']) && \is_object($GLOBALS['xoopsModule']) ? $GLOBALS['xoopsModule']->getVar('dirname') : 'system';
 if ($currdirname == $moduleDirName) {
     require_once \XOOPS_ROOT_PATH . '/modules/' . $moduleDirName . '/include/common.php';
-    /** @var \XoopsModules\Wgdiaries\Helper $helper */
     $helper = Helper::getInstance();
     $permissionsHandler = $helper->getHandler('Permissions');
 

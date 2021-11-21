@@ -34,10 +34,8 @@ function xoops_module_uninstall_wgdiaries(\XoopsModule $module)
 
     $moduleDirName      = \basename(\dirname(__DIR__));
     $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
-    /** @var Wgdiaries\Helper $helper */
     $helper = Wgdiaries\Helper::getInstance();
 
-    /** @var Wgdiaries\Utility $utility */
     $utility = new Wgdiaries\Utility();
 
     $success = true;
