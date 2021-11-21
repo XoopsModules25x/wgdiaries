@@ -76,7 +76,7 @@ if ('filter' === $op) {
         $op = 'list';
     }
 }
-list($sortBy, $orderBy) = \explode('-', $filterSort);
+[$sortBy, $orderBy] = \explode('-', $filterSort);
 // Define Stylesheet
 $GLOBALS['xoTheme']->addStylesheet($style, null);
 // Keywords
