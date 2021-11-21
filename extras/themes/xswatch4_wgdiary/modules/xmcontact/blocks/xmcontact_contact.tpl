@@ -1,4 +1,4 @@
-<{if $block.category_count != 0}>
+<{if $block.category_count|default:0 != 0}>
 <div class="row">
 <{foreach item=category from=$block.category}>
     <{if $block.display == "V"}>        

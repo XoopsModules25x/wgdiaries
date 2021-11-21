@@ -28,9 +28,9 @@
                     </td>
                     <td><{$notification.event_title}></td>
                     <td><{$notification.category_title}></td>
-                    <td class="d-none d-sm-table-cell"><{if $item.id != 0}><{$item.id}><{/if}></td>
-                    <td><{if $item.id != 0}><{if $item.url != ''}><a href="<{$item.url}>" title="<{$item.name}>"><{/if}><{$item.name}><{if
-                        $item.url != ''}></a><{/if}><{/if}>
+                    <td class="d-none d-sm-table-cell"><{if $item.id|default:0 != 0}><{$item.id}><{/if}></td>
+                    <td><{if $item.id|default:0 != 0}><{if $item.url|default:'' != ''}><a href="<{$item.url}>" title="<{$item.name}>"><{/if}><{$item.name}><{if
+                        $item.url|default:'' != ''}></a><{/if}><{/if}>
                     </td>
                 </tr>
                 <{/foreach}>

@@ -1,6 +1,6 @@
 <div class="card col-8 col-sm-6 col-md-4 col-xl-3 mb-2">
     <{if $show_screenshot === true}>
-        <{if $down.logourl != ''}>
+        <{if $down.logourl|default:'' != ''}>
         <img class="card-img-top img-fluid" src="<{$down.logourl}>" alt="<{$down.title}>">
         <{else}>
         <img class="card-img-top img-fluid" src="<{$xoops_imageurl}>images/tdm-no-image.jpg" alt="<{$title}>">

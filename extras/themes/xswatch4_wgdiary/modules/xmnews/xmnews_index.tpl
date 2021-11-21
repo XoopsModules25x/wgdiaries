@@ -23,7 +23,7 @@
         </form>
     <{if $cat|default:false}>
         <div class="row mb-2">
-            <{if $category_logo != ''}>
+            <{if $category_logo|default:'' != ''}>
             <div class="col-3 col-md-4 col-lg-3 text-center">
                 <img class="rounded img-fluid" src="<{$category_logo}>" alt="<{$category_name}>">
             </div>
@@ -34,7 +34,7 @@
             </div>
         </div>
     <{/if}>
-    <{if $news_count != 0}>
+    <{if $news_count|default:0 != 0}>
         <div class="row row-cols-lg-3 row-cols-md-2 row-cols-1 justify-content-center">
             <{foreach item=news from=$news}>
                 <div class="col mb-3">
@@ -45,7 +45,7 @@
                             </div>
                         </div>
 
-                        <{if $news.logo != ''}>
+                        <{if $news.logo|default:'' != ''}>
                             <{if $CAT|default:false === true}>
                                 <a href="index.php?news_cid=<{$category_id}>">
                             <{/if}>

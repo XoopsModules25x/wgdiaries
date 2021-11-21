@@ -30,17 +30,17 @@
         <div class="mt-2 alert alert-success"><b><{$smarty.const._AM_OBITUARIES_DESCRIPTION}></b> :</div>
         <div class="mb-3 ml-2"><{$obituaries_user.obituaries_description}></div>
 
-        <{if $obituaries_user.obituaries_survivors != ""}>
+        <{if $obituaries_user.obituaries_survivors|default:'' != ''}>
         <div class="alert alert-info"><b><{$smarty.const._AM_OBITUARIES_SURVIVORS}></b> :</div>
         <div class="mb-3 ml-2"><{$obituaries_user.obituaries_survivors}></div>
         <{/if}>
 
-        <{if $obituaries_user.obituaries_service != ""}>
+        <{if $obituaries_user.obituaries_service|default:'' != ''}>
         <div class="alert alert-warning"><b><{$smarty.const._AM_OBITUARIES_SERVICE}></b> :</div>
         <div class="mb-3 ml-2"><{$obituaries_user.obituaries_service}></div>
         <{/if}>
 
-        <{if $obituaries_user.obituaries_memorial != ""}>
+        <{if $obituaries_user.obituaries_memorial|default:'' != ''}>
             <div class="alert alert-danger"><b><{$smarty.const._AM_OBITUARIES_MEMORIAL}></b> :</div>
             <div class="mb-3 ml-2"><{$obituaries_user.obituaries_memorial}></div>
         <{/if}>
@@ -66,15 +66,11 @@
 
 <div style="margin:3px; padding: 3px;">
 
-    <{if $comment_mode == "flat"}>
-
+    <{if $comment_mode|default:'' == "flat"}>
         <{include file="db:system_comments_flat.tpl"}>
-
-    <{elseif $comment_mode == "thread"}>
-
+    <{elseif $comment_mode|default:'' == "thread"}>
         <{include file="db:system_comments_thread.tpl"}>
-
-    <{elseif $comment_mode == "nest"}>
+    <{elseif $comment_mode|default:'' == "nest"}>
 
         <{include file="db:system_comments_nest.tpl"}>
 

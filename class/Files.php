@@ -191,7 +191,7 @@ class Files extends \XoopsObject
 
     private function get_icon($fileName)
     {
-        $path = WGDIARIES_ICONS_PATH . '/files/';
+        $path = \WGDIARIES_ICONS_PATH . '/files/';
         $path_parts = \pathinfo($path . $fileName);
         $extension = $path_parts['extension'];
         $icon = $extension . '.png';

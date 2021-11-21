@@ -24,7 +24,6 @@ declare(strict_types=1);
  */
 
 use Xmf\Request;
-use XoopsModules\Wgdiaries;
 use XoopsModules\Wgdiaries\ {
     Constants,
     SimpleCalendar,
@@ -91,7 +90,7 @@ if (Constants::FILTERBY_OWN === $filterByOwner) {
     $op = 'list';
 }
 
-list($sortBy, $orderBy) = \explode('-', $filterSort);
+[$sortBy, $orderBy] = \explode('-', $filterSort);
 
 // Define Stylesheet
 $GLOBALS['xoTheme']->addStylesheet($style, null);

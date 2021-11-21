@@ -11,7 +11,7 @@
                 </label>
                 <{$element.body}>
             <{/if}>
-            <{if $element.description|default:"" != ""}>
+            <{if $element.description|default:""|default:'' != ''}>
                 <small id="passwordHelpBlock" class="form-text text-muted">
                     <{$element.description}>
                 </small>

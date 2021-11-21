@@ -23,14 +23,19 @@ declare(strict_types=1);
  * @author         wedega - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
  */
 
-use XoopsModules\Wgdiaries\Utility;
-// 
+use XoopsModules\Wgdiaries\{
+    Helper,
+    Utility
+};
+
+require __DIR__ . '/preloads/autoloader.php';
+
 $moduleDirName      = \basename(__DIR__);
 $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
-// ------------------- Informations ------------------- //
+// ------------------- Information ------------------- /
 $modversion = [
     'name'                => \_MI_WGDIARIES_NAME,
-    'version'             => '1.3.1',
+    'version'             => '1.3.2',
     'description'         => \_MI_WGDIARIES_DESC,
     'author'              => 'wedega',
     'author_mail'         => 'webmaster@wedega.com',
@@ -42,7 +47,7 @@ $modversion = [
     'help'                => 'page=help',
     'release_info'        => 'release_info',
     'release_file'        => \XOOPS_URL . '/modules/wgdiaries/docs/release_info file',
-    'release_date'        => '2021/11/20',
+    'release_date'        => '2021/11/21',
     'manual'              => 'link to manual file',
     'manual_file'         => \XOOPS_URL . '/modules/wgdiaries/docs/install.txt',
     'min_php'             => '7.3',
@@ -62,8 +67,8 @@ $modversion = [
     'support_name'        => 'Support Forum',
     'module_website_url'  => 'www.xoops.org',
     'module_website_name' => 'XOOPS Project',
-    'release'             => '11/20/2021',
-    'module_status'       => 'Final',
+    'release'             => '11/21/2021',
+    'module_status'       => 'RC1',
     'system_menu'         => 1,
     'hasAdmin'            => 1,
     'hasMain'             => 1,
@@ -124,8 +129,7 @@ $modversion['comments']['callback'] = [
 $currdirname  = isset($GLOBALS['xoopsModule']) && \is_object($GLOBALS['xoopsModule']) ? $GLOBALS['xoopsModule']->getVar('dirname') : 'system';
 if ($currdirname == $moduleDirName) {
     require_once \XOOPS_ROOT_PATH . '/modules/' . $moduleDirName . '/include/common.php';
-    /** @var \XoopsModules\Wgdiaries\Helper $helper */
-    $helper = \XoopsModules\Wgdiaries\Helper::getInstance();
+    $helper = Helper::getInstance();
     $permissionsHandler = $helper->getHandler('Permissions');
 
     $modversion['sub'][] = [

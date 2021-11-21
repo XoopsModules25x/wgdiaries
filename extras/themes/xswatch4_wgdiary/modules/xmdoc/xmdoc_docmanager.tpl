@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" media="screen" href="<{xoAppUrl modules/system/css/imagemanager.css}>">
     <link rel="stylesheet" type="text/css" media="screen" href="<{xoAppUrl modules/system/css/admin.css}>">
     <link rel="stylesheet" type="text/css" media="screen" href="<{xoAppUrl media/font-awesome/css/font-awesome.min.css}>">
-    <{if $bootstrap_css != ''}>
+    <{if $bootstrap_css|default:'' != ''}>
     <link rel="stylesheet" type="text/css" media="screen" href="<{$bootstrap_css}>">
     <{/if}>
 </head>
@@ -77,7 +77,7 @@
                             <{$error_message}>
                         </div>
                     <{/if}>
-                    <{if $document|default:'' != ""}>
+                    <{if $document|default:'' != ''}>
                         <div class="">
                             <form name="formsel" id="formsel" action="docmanager.php" method="post">
                                 

@@ -4,7 +4,7 @@
     <{/if}>
     <{includeq file="$content_template"}>
 <{else}>
-    <{if $content_warning != ''}>
+    <{if $content_warning|default:'' != ''}>
         <div class="row">
             <div class="col-12 alert alert-warning">
                 <{$content_warning}>
@@ -21,7 +21,7 @@
             </p>
         </div>
     </div>
-    <{if $content_error != ''}>
+    <{if $content_error|default:'' != ''}>
         <div class="row">
             <div class="col-12 alert alert-danger">
                 <{$content_error}>
@@ -61,11 +61,11 @@
         <{$lang_notice}>
     </div>
     <div style="margin:3px; padding: 3px;">
-        <{if $comment_mode == "flat"}>
+    <{if $comment_mode|default:'' == "flat"}>
         <{include file="db:system_comments_flat.tpl"}>
-        <{elseif $comment_mode == "thread"}>
+    <{elseif $comment_mode|default:'' == "thread"}>
         <{include file="db:system_comments_thread.tpl"}>
-        <{elseif $comment_mode == "nest"}>
+    <{elseif $comment_mode|default:'' == "nest"}>
         <{include file="db:system_comments_nest.tpl"}>
         <{/if}>
     </div>
