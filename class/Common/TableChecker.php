@@ -12,7 +12,7 @@ namespace XoopsModules\Wgdiaries\Common;
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
-use \XoopsModules\Wgdiaries\Common;
+use XoopsModules\Wgdiaries\Common;
 
 /**
  * Class to compare current DB table structure with sql/mysql.sql
