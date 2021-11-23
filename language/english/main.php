@@ -29,9 +29,7 @@ require_once __DIR__ . '/admin.php';
 \define('_MA_WGDIARIES_INDEX', 'Overview wgDiaries');
 \define('_MA_WGDIARIES_TITLE', 'wgDiaries');
 \define('_MA_WGDIARIES_DESC', 'Simple module for a diary for work from home');
-\define('_MA_WGDIARIES_INDEX_DESC', "Welcome to the homepage of your new module wgDiaries!<br>
-As you can see, you have created a page with a list of links at the top to navigate between the pages of your module. This description is only visible on the homepage of this module, the other pages you will see the content you created when you built this module with the module ModuleBuilder, and after creating new content in admin of this module. In order to expand this module with other resources, just add the code you need to extend the functionality of the same. The files are grouped by type, from the header to the footer to see how divided the source code.<br><br>If you see this message, it is because you have not created content for this module. Once you have created any type of content, you will not see this message.<br><br>If you liked the module ModuleBuilder and thanks to the long process for giving the opportunity to the new module to be created in a moment, consider making a donation to keep the module ModuleBuilder and make a donation using this button <a href='http://www.txmodxoops.org/modules/xdonations/index.php' title='Donation To Txmod Xoops'><img src='https://www.paypal.com/en_US/i/btn/btn_donate_LG.gif' alt='Button Donations'></a><br>Thanks!<br><br>Use the link below to go to the admin and create content.");
-\define('_MA_WGDIARIES_NO_PDF_LIBRARY', 'Libraries TCPDF not there yet, upload them in root/Frameworks');
+\define('_MA_WGDIARIES_INDEX_DESC', 'Welcome to the homepage of your new module wgDiaries!<br>This description is only visible on the homepage of this module.');
 \define('_MA_WGDIARIES_NO', 'No');
 \define('_MA_WGDIARIES_DETAILS', 'Show details');
 // ---------------- Contents ----------------
@@ -58,9 +56,9 @@ As you can see, you have created a page with a list of links at the top to navig
 \define('_MA_WGDIARIES_INDEX_ITEMS_GROUPOTHER', 'Last items of other users of my groups');
 // Item
 \define('_MA_WGDIARIES_ITEM', 'Item');
-\define('_MA_WGDIARIES_ITEM_ADD', 'Add Items');
-\define('_MA_WGDIARIES_ITEM_EDIT', 'Edit Items');
-\define('_MA_WGDIARIES_ITEM_DELETE', 'Delete Items');
+\define('_MA_WGDIARIES_ITEM_ADD', 'Add Item');
+\define('_MA_WGDIARIES_ITEM_EDIT', 'Edit Item');
+\define('_MA_WGDIARIES_ITEM_DELETE', 'Delete Item');
 \define('_MA_WGDIARIES_ITEM_DETAILS', 'Details of Item');
 \define('_MA_WGDIARIES_ITEM_GOBACK', 'Go back to item');
 \define('_MA_WGDIARIES_ITEM_GOBACK_LIST', 'Go back to item list');
@@ -77,11 +75,11 @@ As you can see, you have created a page with a list of links at the top to navig
 \define('_MA_WGDIARIES_ITEM_GROUPID', 'Group');
 \define('_MA_WGDIARIES_ITEM_NAME', 'Name');
 \define('_MA_WGDIARIES_ITEM_REMARKS', 'Remarks');
-\define('_MA_WGDIARIES_ITEM_DATEFROM', 'Datefrom');
-\define('_MA_WGDIARIES_ITEM_DATETO', 'Dateto');
+\define('_MA_WGDIARIES_ITEM_DATEFROM', 'Date from');
+\define('_MA_WGDIARIES_ITEM_DATETO', 'Date to');
 \define('_MA_WGDIARIES_ITEM_CATID', 'Category');
 \define('_MA_WGDIARIES_ITEM_TAGS', 'Tags');
-\define('_MA_WGDIARIES_ITEM_DATECREATED', 'Datecreated');
+\define('_MA_WGDIARIES_ITEM_DATECREATED', 'Date created');
 \define('_MA_WGDIARIES_ITEM_SUBMITTER', 'Submitter');
 \define('_MA_WGDIARIES_ITEM_NBFILES', 'Files');
 \define('_MA_WGDIARIES_ITEM_COMMENTS', 'Comments');
@@ -107,7 +105,7 @@ As you can see, you have created a page with a list of links at the top to navig
 \define('_MA_WGDIARIES_FILE_DESC', 'Desc');
 \define('_MA_WGDIARIES_FILE_NAME', 'Name');
 \define('_MA_WGDIARIES_FILE_MIMETYPE', 'Mimetype');
-\define('_MA_WGDIARIES_FILE_DATECREATED', 'Datecreated');
+\define('_MA_WGDIARIES_FILE_DATECREATED', 'Date created');
 \define('_MA_WGDIARIES_FILE_SUBMITTER', 'Submitter');
 \define('_MA_WGDIARIES_FILE_UPLOAD', 'Upload new file');
 // Statistics
@@ -134,8 +132,8 @@ As you can see, you have created a page with a list of links at the top to navig
 //navbar
 \define('_MA_WGDIARIES_CAL_PREVMONTH', 'Previous Month');
 \define('_MA_WGDIARIES_CAL_NEXTMONTH', 'Next Month');
-\define('_MA_WGDIARIES_CAL_PREVYEAR', 'Previous Month');
-\define('_MA_WGDIARIES_CAL_NEXTYEAR', 'Next Month');
+\define('_MA_WGDIARIES_CAL_PREVYEAR', 'Previous Year');
+\define('_MA_WGDIARIES_CAL_NEXTYEAR', 'Next Year');
 //days
 \define('_MA_WGDIARIES_CAL_MIN_SUNDAY', 'Su');
 \define('_MA_WGDIARIES_CAL_MIN_MONDAY', 'Mo');
