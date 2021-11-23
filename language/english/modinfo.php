@@ -33,7 +33,6 @@ require_once __DIR__ . '/common.php';
 \define('_MI_WGDIARIES_ADMENU2', 'Items');
 \define('_MI_WGDIARIES_ADMENU3', 'Files');
 \define('_MI_WGDIARIES_ADMENU4', 'Categories');
-//\define('_MI_WGDIARIES_ADMENU5', 'Groupusers');
 \define('_MI_WGDIARIES_ADMENU6', 'Permissions');
 \define('_MI_WGDIARIES_ADMENU7', 'Feedback');
 \define('_MI_WGDIARIES_ADMENU8', 'Clone');
@@ -49,7 +48,7 @@ require_once __DIR__ . '/common.php';
 // Submenu
 \define('_MI_WGDIARIES_SMNAME1', 'Index page');
 \define('_MI_WGDIARIES_SMNAME2', 'My Items');
-\define('_MI_WGDIARIES_SMNAME3', 'Submit Items');
+\define('_MI_WGDIARIES_SMNAME3', 'Submit Item');
 \define('_MI_WGDIARIES_SMNAME4', 'Items of my groups');
 \define('_MI_WGDIARIES_SMNAME5', 'Statistics');
 \define('_MI_WGDIARIES_SMNAME6', 'Outputs');
