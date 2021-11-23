@@ -39,11 +39,11 @@ if (!$permissionsHandler->getPermCalPageView()) {
 }
 
 //default params
-$year     = (int) date('Y');
-$month    = (int) date('n');
-$lastday  = (int) date('t', \strtotime($month . '/1/' . $year));
-$dayStart = mktime(0, 0, 0, $month, 1, $year);
-$dayEnd   = mktime(23, 59, 59, $month, $lastday, $year);
+$year     = (int)\date('Y');
+$month    = (int)\date('n');
+$lastday  = (int)\date('t', \strtotime($month . '/1/' . $year));
+$dayStart = \mktime(0, 0, 0, $month, 1, $year);
+$dayEnd   = \mktime(23, 59, 59, $month, $lastday, $year);
 
 //request
 $op            = Request::getCmd('op', 'list');
@@ -58,19 +58,33 @@ if (0 == $filterFrom) {
     $filterTo   = $dayEnd;
 }
 
-$filterFromPrevM = mktime(0, 0, 0, (int)date('n', $filterFrom - 1), 1, (int)date('Y', $filterFrom - 1));
+$filterFromPrevM = \mktime(0, 0, 0, (int)\date('n', $filterFrom - 1), 1, (int)\date('Y', $filterFrom - 1));
 $filterToPrevM = $filterFrom - 1;
 $filterFromNextM = $filterTo + 1;
-$filterToNextM =  mktime(23, 59, 59, (int)date('n', $filterFromNextM), (int)date('t', $filterFromNextM), (int)date('Y', $filterFromNextM));
+$filterToNextM =  \mktime(23, 59, 59, (int)\date('n', $filterFromNextM), (int)\date('t', $filterFromNextM), (int)\date('Y', $filterFromNextM));
 
-$filterFromPrevY = mktime(0, 0, 0, (int)date('n', $filterFrom), 1, (int)date('Y', $filterFrom) - 1);
-$filterToPrevY = mktime(23, 59, 59, (int)date('n', $filterTo), (int)date('t', $filterTo), (int)date('Y', $filterTo) - 1);
-$filterFromNextY = mktime(0, 0, 0, (int)date('n', $filterFrom), 1, (int)date('Y', $filterFrom) + 1);
-$filterToNextY =  mktime(23, 59, 59, (int)date('n', $filterTo), (int)date('t', $filterTo), (int)date('Y', $filterTo) + 1);
+$filterFromPrevY = \mktime(0, 0, 0, (int)\date('n', $filterFrom), 1, (int)\date('Y', $filterFrom) - 1);
+$filterToPrevY = \mktime(23, 59, 59, (int)\date('n', $filterTo), (int)\date('t', $filterTo), (int)\date('Y', $filterTo) - 1);
+$filterFromNextY = \mktime(0, 0, 0, (int)\date('n', $filterFrom), 1, (int)\date('Y', $filterFrom) + 1);
+$filterToNextY =  \mktime(23, 59, 59, (int)\date('n', $filterTo), (int)\date('t', $filterTo), (int)\date('Y', $filterTo) + 1);
 
 /*calendar nav bar*/
-$GLOBALS['xoopsTpl']->assign('monthNav', date('F', $filterFrom));
-$GLOBALS['xoopsTpl']->assign('yearNav', date('Y', $filterFrom));
+$arrMonth = [
+    1 => \_MA_WGDIARIES_CAL_JANUARY,
+    2 => \_MA_WGDIARIES_CAL_FEBRUARY,
+    3 => \_MA_WGDIARIES_CAL_MARCH,
+    4 => \_MA_WGDIARIES_CAL_APRIL,
+    5 => \_MA_WGDIARIES_CAL_MAY,
+    6 => \_MA_WGDIARIES_CAL_JUNE,
+    7 => \_MA_WGDIARIES_CAL_JULY,
+    8 => \_MA_WGDIARIES_CAL_AUGUST,
+    9 => \_MA_WGDIARIES_CAL_SEPTEMBER,
+    10 => \_MA_WGDIARIES_CAL_OCTOBER,
+    11 => \_MA_WGDIARIES_CAL_NOVEMBER,
+    12 => \_MA_WGDIARIES_CAL_DECEMBER
+];
+$GLOBALS['xoopsTpl']->assign('monthNav', $arrMonth[\date('n', $filterFrom)]);
+$GLOBALS['xoopsTpl']->assign('yearNav', \date('Y', $filterFrom));
 $GLOBALS['xoopsTpl']->assign('filterFromPrevM', $filterFromPrevM);
 $GLOBALS['xoopsTpl']->assign('filterToPrevM', $filterToPrevM);
 $GLOBALS['xoopsTpl']->assign('filterFromNextM', $filterFromNextM);
