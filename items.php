@@ -100,7 +100,7 @@ switch ($op) {
                 $GLOBALS['xoopsTpl']->assign('wgdiaries_css_print_1', \WGDIARIES_CSS_URL . '/style.css');
                 break;
             case 'listuser':
-                $GLOBALS['xoopsTpl']->assign('itemsTitle', sprintf(\_MA_WGDIARIES_ITEMS_LISTUSER, \XoopsUser::getUnameFromId($userId, true)));
+                $GLOBALS['xoopsTpl']->assign('itemsTitle', \sprintf(\_MA_WGDIARIES_ITEMS_LISTUSER, \XoopsUser::getUnameFromId($userId, true)));
                 break;
         }
         $uid = \is_object($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->uid() : -1;
@@ -441,8 +441,8 @@ switch ($op) {
                 }
                 // delete comments
                 $commentHandler = \xoops_getHandler('comment');
-                $critComments   = new CriteriaCompo(new Criteria('com_modid', $helper::getMid()));
-                $critComments->add(new Criteria('com_itemid', $itemId));
+                $critComments   = new \CriteriaCompo(new \Criteria('com_modid', $helper::getMid()));
+                $critComments->add(new \Criteria('com_itemid', $itemId));
                 $commentHandler->deleteAll($critComments);
 
                 \redirect_header('items.php', 3, \_MA_WGDIARIES_FORM_DELETE_OK);

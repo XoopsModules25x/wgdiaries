@@ -120,7 +120,7 @@ class TableChecker extends \XoopsObject
             require_once \XOOPS_ROOT_PATH . '/class/database/sqlutility.php';
             $sqlutil = new \SqlUtility();
             $pieces = [];
-            $sql_query = \trim(file_get_contents($sql_file_path));
+            $sql_query = \trim(\file_get_contents($sql_file_path));
             $sqlutil::splitMySqlFile($pieces, $sql_query);
 
             $countTable = 0;

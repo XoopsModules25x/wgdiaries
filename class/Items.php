@@ -29,7 +29,7 @@ namespace XoopsModules\Wgdiaries;
 use XoopsModules\Wgdiaries;
 use XoopsGroup;
 
-\defined('\XOOPS_ROOT_PATH') || die('Restricted access');
+\defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
 /**
  * Class Object Items

@@ -30,7 +30,7 @@ $GLOBALS['xoopsTpl']->assign('adv', $helper->getConfig('advertise'));
 // 
 $GLOBALS['xoopsTpl']->assign('bookmarks', $helper->getConfig('bookmarks'));
 // 
-$GLOBALS['xoopsTpl']->assign('admin', WGDIARIES_ADMIN);
+$GLOBALS['xoopsTpl']->assign('admin', \WGDIARIES_ADMIN);
 //
 if ($helper->getConfig('show_copyright')) {
     $GLOBALS['xoopsTpl']->assign('copyright', $copyright);

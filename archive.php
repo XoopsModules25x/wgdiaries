@@ -60,8 +60,8 @@ switch ($op) {
         $items = $itemsHandler->getItems($uid, 0, 0, 1, \time(), false, false, 0,  0, $sortBy, $orderBy);
         if (\is_array($items)) {
             foreach ($items as $item) {
-                $dayStart = mktime(0, 0, 0, (int) date('n', $item['item_datefrom']), 1, (int) date('Y', $item['item_datefrom']));
-                if (array_key_exists($dayStart, $arrMonths)) {
+                $dayStart = \mktime(0, 0, 0, (int) date('n', $item['item_datefrom']), 1, (int) date('Y', $item['item_datefrom']));
+                if (\array_key_exists($dayStart, $arrMonths)) {
                     $counter =  $arrMonths[$dayStart]['counter'] + 1;
                 } else {
                     $counter = 1;
@@ -69,7 +69,7 @@ switch ($op) {
                 $year = date('Y', $dayStart);
                 $arrMonths[$dayStart] = ['timestamp' => $dayStart, 'year' => $year, 'string' => date('F Y', $dayStart), 'counter' => $counter];
                 //count by year
-                if (array_key_exists($year, $arrCounterYears)) {
+                if (\array_key_exists($year, $arrCounterYears)) {
                     $counterYear =  $arrCounterYears[$year]['counter'] + 1;
                 } else {
                     $counterYear = 1;
@@ -83,15 +83,15 @@ switch ($op) {
             $items = $itemsHandler->getItems($uid, 0, 0, 1, \time(), true, true, 0,  0, $sortBy, $orderBy);
             if (\is_array($items)) {
                 foreach ($items as $item) {
-                    $dayStart = mktime(0, 0, 0, (int) date('n', $item['item_datefrom']), 1, (int) date('Y', $item['item_datefrom']));
-                    if (array_key_exists($dayStart, $arrMonths)) {
+                    $dayStart = \mktime(0, 0, 0, (int) date('n', $item['item_datefrom']), 1, (int) date('Y', $item['item_datefrom']));
+                    if (\array_key_exists($dayStart, $arrMonths)) {
                         $counter =  $arrMonths[$dayStart]['counter'] + 1;
                     } else {
                         $counter = 1;
                     }
                     $year = date('Y', $dayStart);
                     $arrMonths[$dayStart] = ['timestamp' => $dayStart, 'year' => $year, 'string' => date('F Y', $dayStart), 'counter' => $counter];
-                    if (array_key_exists($year, $arrCounterYears)) {
+                    if (\array_key_exists($year, $arrCounterYears)) {
                         $counterYear =  $arrCounterYears[$year]['counter'] + 1;
                     } else {
                         $counterYear = 1;
@@ -120,8 +120,8 @@ switch ($op) {
         $year       = (int) date('Y', $listDate);
         $month      = (int) date('n', $listDate);
         $lastday    = (int) date('t', \strtotime($month . '/1/' . $year));
-        $filterFrom = mktime(0, 0, 0, $month, 1, $year);
-        $filterTo   = mktime(23, 59, 59, $month, $lastday, $year);
+        $filterFrom = \mktime(0, 0, 0, $month, 1, $year);
+        $filterTo   = \mktime(23, 59, 59, $month, $lastday, $year);
 
         if ($permissionsHandler->getPermItemsGroupView()) {
             $itemsTotal = $itemsHandler->getItemsCount(0, $filterFrom, $filterTo, true, false, 0, 0);
