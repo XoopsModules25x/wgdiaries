@@ -250,7 +250,7 @@ class SimpleCalendar {
         $daysOfWeek = $this->weekdays();
         $this->rotate($daysOfWeek, $this->offset);
 
-        $weekDayIndex = date('N', mktime(0, 0, 1, $now['mon'], 1, $now['year'])) - $this->offset;
+        $weekDayIndex = date('N', \mktime(0, 0, 1, $now['mon'], 1, $now['year'])) - $this->offset;
         $daysInMonth  = cal_days_in_month(CAL_GREGORIAN, $now['mon'], $now['year']);
 
         $out = <<<TAG
@@ -272,7 +272,7 @@ TAG;
         if( $weekDayIndex === 7 ) {
             $weekDayIndex = 0;
         } else {
-            $out .= str_repeat(<<<TAG
+            $out .= \str_repeat(<<<TAG
 <td class="{$this->classes['leading_day']}">&nbsp;</td>
 TAG
                 , $weekDayIndex);
@@ -322,7 +322,7 @@ TAG
         }
 
         if( $count !== 1 ) {
-            $out .= str_repeat('<td class="' . $this->classes['trailing_day'] . '">&nbsp;</td>', 8 - $count) . '</tr>';
+            $out .= \str_repeat('<td class="' . $this->classes['trailing_day'] . '">&nbsp;</td>', 8 - $count) . '</tr>';
         }
 
         $out .= "\n</tbody></table>\n";
@@ -341,7 +341,7 @@ TAG
         }
         $steps %= $count;
         for( $i = 0; $i < $steps; $i++ ) {
-            $data[] = array_shift($data);
+            $data[] = \array_shift($data);
         }
     }
 

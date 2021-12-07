@@ -41,8 +41,8 @@ if (!$permissionsHandler->getPermOutputsView()) {
 $year     = (int) date('Y');
 $month    = (int) date('n');
 $lastday  = (int) date('t', \strtotime($month . '/1/' . $year));
-$dayStart = mktime(0, 0, 0, $month, 1, $year);
-$dayEnd   = mktime(23, 59, 59, $month, $lastday, $year);
+$dayStart = \mktime(0, 0, 0, $month, 1, $year);
+$dayEnd   = \mktime(23, 59, 59, $month, $lastday, $year);
 
 $op            = Request::getCmd('op', 'list');
 $start         = Request::getInt('start', 0);

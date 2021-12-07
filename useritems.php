@@ -54,7 +54,7 @@ foreach ($xoopsGroups as $groupid) {
     $users = $memberHandler->getUsersByGroup($groupid);
     foreach ($users as $user) {
         if ($permissionsHandler->getPermItemsGroupView() || $uid == $user) {
-            $crItems = new CriteriaCompo();
+            $crItems = new \CriteriaCompo();
             $crItems->add(new \Criteria('item_submitter', $user));
             $itemsCount = $itemsHandler->getCount($crItems);
             if ($itemsCount > 0 || $helper->getConfig('useritems_empty')) {

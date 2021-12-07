@@ -1,0 +1,99 @@
+wgdiaries_items:
+    options: 'ENGINE=InnoDB'
+    columns: 
+        -
+            name: item_id
+            attributes: ' INT(8) UNSIGNED NOT NULL AUTO_INCREMENT '
+        -
+            name: item_groupid
+            attributes: ' INT(10) NOT NULL DEFAULT ''0'' '
+        -
+            name: item_name
+            attributes: ' VARCHAR(255) NOT NULL DEFAULT '''''''' '
+        -
+            name: item_remarks
+            attributes: ' TEXT NOT NULL '
+        -
+            name: item_datefrom
+            attributes: ' INT(11) NOT NULL DEFAULT ''0'' '
+        -
+            name: item_dateto
+            attributes: ' INT(11) NOT NULL DEFAULT ''0'' '
+        -
+            name: item_catid
+            attributes: ' INT(10) NOT NULL DEFAULT ''0'' '
+        -
+            name: item_tags
+            attributes: ' VARCHAR(255) NOT NULL DEFAULT '''''''' '
+        -
+            name: item_logo
+            attributes: ' VARCHAR(255) NOT NULL DEFAULT '''''''' '
+        -
+            name: item_comments
+            attributes: ' INT(10) NOT NULL DEFAULT ''0'' '
+        -
+            name: item_datecreated
+            attributes: ' INT(11) NOT NULL DEFAULT ''0'' '
+        -
+            name: item_submitter
+            attributes: ' INT(10) NOT NULL DEFAULT ''0'' '
+    keys:
+        PRIMARY:
+            columns: item_id
+            unique: true
+wgdiaries_files:
+    options: 'ENGINE=InnoDB'
+    columns: 
+        -
+            name: file_id
+            attributes: ' INT(8) UNSIGNED NOT NULL AUTO_INCREMENT '
+        -
+            name: file_itemid
+            attributes: ' INT(10) NOT NULL DEFAULT ''0'' '
+        -
+            name: file_name
+            attributes: ' VARCHAR(255) NOT NULL DEFAULT '''''''' '
+        -
+            name: file_desc
+            attributes: ' VARCHAR(255) NOT NULL DEFAULT '''''''' '
+        -
+            name: file_mimetype
+            attributes: ' VARCHAR(255) NOT NULL DEFAULT '''''''' '
+        -
+            name: file_datecreated
+            attributes: ' INT(11) NOT NULL DEFAULT ''0'' '
+        -
+            name: file_submitter
+            attributes: ' INT(10) NOT NULL DEFAULT ''0'' '
+    keys:
+        PRIMARY:
+            columns: file_id
+            unique: true
+wgdiaries_categories:
+    options: 'ENGINE=InnoDB'
+    columns: 
+        -
+            name: cat_id
+            attributes: ' INT(8) UNSIGNED NOT NULL AUTO_INCREMENT '
+        -
+            name: cat_name
+            attributes: ' VARCHAR(255) NOT NULL DEFAULT '''''''' '
+        -
+            name: cat_logo
+            attributes: ' VARCHAR(255) NOT NULL DEFAULT '''''''' '
+        -
+            name: cat_online
+            attributes: ' INT(1) NOT NULL DEFAULT ''1'' '
+        -
+            name: cat_weight
+            attributes: ' INT(10) NOT NULL DEFAULT ''0'' '
+        -
+            name: cat_datecreated
+            attributes: ' INT(11) NOT NULL DEFAULT ''0'' '
+        -
+            name: cat_submitter
+            attributes: ' INT(10) NOT NULL DEFAULT ''0'' '
+    keys:
+        PRIMARY:
+            columns: cat_id
+            unique: true

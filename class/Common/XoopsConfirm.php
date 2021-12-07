@@ -25,7 +25,7 @@ namespace XoopsModules\Wgdiaries\Common;
 
 use XoopsModules\Wgdiaries;
 
-\defined('\XOOPS_ROOT_PATH') || die('Restricted access');
+\defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
 /**
  * Class Object XoopsConfirm

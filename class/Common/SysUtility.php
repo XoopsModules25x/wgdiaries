@@ -79,12 +79,12 @@ class SysUtility
     {
         if ($considerHtml) {
             // if the plain text is shorter than the maximum length, return the whole text
-            if (mb_strlen(\preg_replace('/<.*?' . '>/', '', $text)) <= $length) {
+            if (\mb_strlen(\preg_replace('/<.*?' . '>/', '', $text)) <= $length) {
                 return $text;
             }
             // splits all html-tags to scanable lines
             \preg_match_all('/(<.+?' . '>)?([^<>]*)/s', $text, $lines, \PREG_SET_ORDER);
-            $total_length = mb_strlen($ending);
+            $total_length = \mb_strlen($ending);
             $open_tags    = [];
             $truncate     = '';
             foreach ($lines as $line_matchings) {
@@ -109,7 +109,7 @@ class SysUtility
                     $truncate .= $line_matchings[1];
                 }
                 // calculate the length of the plain text part of the line; handle entities as one character
-                $content_length = mb_strlen(\preg_replace('/&[0-9a-z]{2,8};|&#\d{1,7};|[0-9a-f]{1,6};/i', ' ', $line_matchings[2]));
+                $content_length = \mb_strlen(\preg_replace('/&[0-9a-z]{2,8};|&#\d{1,7};|[0-9a-f]{1,6};/i', ' ', $line_matchings[2]));
                 if ($total_length + $content_length > $length) {
                     // the number of characters which are left
                     $left            = $length - $total_length;
@@ -120,7 +120,7 @@ class SysUtility
                         foreach ($entities[0] as $entity) {
                             if ($left >= $entity[1] + 1 - $entities_length) {
                                 $left--;
-                                $entities_length += mb_strlen($entity[0]);
+                                $entities_length += \mb_strlen($entity[0]);
                             } else {
                                 // no more characters left
                                 break;
@@ -140,10 +140,10 @@ class SysUtility
                 }
             }
         } else {
-            if (mb_strlen($text) <= $length) {
+            if (\mb_strlen($text) <= $length) {
                 return $text;
             }
-            $truncate = mb_substr($text, 0, $length - mb_strlen($ending));
+            $truncate = mb_substr($text, 0, $length - \mb_strlen($ending));
         }
         // if the words shouldn't be cut in the middle...
         if (!$exact) {
@@ -190,7 +190,7 @@ class SysUtility
 
         $isAdmin = $helper->isUserAdmin();
 
-        if (\class_exists('XoopsFormEditor')) {
+        if (\class_exists('\XoopsFormEditor')) {
             if ($isAdmin) {
                 $descEditor = new \XoopsFormEditor(\ucfirst($options['name']), $helper->getConfig('editorAdmin'), $options, $nohtml = false, $onfailure = 'textarea');
             } else {

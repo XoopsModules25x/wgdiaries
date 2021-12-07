@@ -22,7 +22,7 @@ namespace XoopsModules\Wgdiaries;
 
 use XoopsSimpleForm;
 
-\defined('\XOOPS_ROOT_PATH') || exit('Restricted access');
+\defined('XOOPS_ROOT_PATH') || exit('Restricted access');
 
 /**
  * base class
@@ -32,7 +32,7 @@ use XoopsSimpleForm;
 /**
  * Form that will output as a simple HTML form with minimum formatting
  */
-class FormInline extends XoopsSimpleForm
+class FormInline extends \XoopsSimpleForm
 {
     /**
      * create HTML to output the form with minimal formatting
