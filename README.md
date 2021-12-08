@@ -10,7 +10,7 @@
 Most of the templates on user side are fully responsive, but for proper displaying you must use a Bootstrap theme. 
                                                                                                                        
 #### Demo: 
-* not available till now
+Demo (in German) is available on: https://xoops.wedega.com
 
 #### Tutorial: 
 Tutorial will coming soon at: [![Tutorial Available](https://xoops.org/images/tutorial-available-blue.svg)](https://xoops.gitbook.io/wgdiaries-tutorial/) Tutorial: see [GitBook](https://xoops.gitbook.io/wgdiaries-tutorial/).
