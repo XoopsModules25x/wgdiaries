@@ -110,12 +110,12 @@ require_once __DIR__ . '/admin.php';
 \define('_MA_WGDIARIES_FILE_UPLOAD', 'Upload new file');
 // Statistics
 \define('_MA_WGDIARIES_STATISTICS', 'Statistics');
-\define('_MA_WGDIARIES_STATISTICS_MY_YEAR', 'Statistics of my items of current year');
-\define('_MA_WGDIARIES_STATISTICS_MY_MONTH', 'Statistics of my items of current month');
-\define('_MA_WGDIARIES_STATISTICS_GROUP_YEAR', 'Statistics of my groups of current year');
-\define('_MA_WGDIARIES_STATISTICS_GROUP_MONTH', 'Statistics of my groups of current month');
-\define('_MA_WGDIARIES_STATISTICS_USER_YEAR', 'Statistics per user of my groups of current year');
-\define('_MA_WGDIARIES_STATISTICS_USER_MONTH', 'Statistics per user of my groups of current month');
+\define('_MA_WGDIARIES_STATISTICS_MY_YEAR', 'Statistics of my items of selected year');
+\define('_MA_WGDIARIES_STATISTICS_MY_MONTH', 'Statistics of my items of selected month');
+\define('_MA_WGDIARIES_STATISTICS_GROUP_YEAR', 'Statistics of my groups of selected year');
+\define('_MA_WGDIARIES_STATISTICS_GROUP_MONTH', 'Statistics of my groups of selected month');
+\define('_MA_WGDIARIES_STATISTICS_USER_YEAR', 'Statistics per user of my groups of selected year');
+\define('_MA_WGDIARIES_STATISTICS_USER_MONTH', 'Statistics per user of my groups of selected month');
 \define('_MA_WGDIARIES_STATS_PERIOD', 'Period');
 \define('_MA_WGDIARIES_STATS_PERIOD_FROMTO', 'From %s to %s');
 \define('_MA_WGDIARIES_STATS_ITEMS_NB', 'Number of items');
@@ -123,6 +123,8 @@ require_once __DIR__ . '/admin.php';
 \define('_MA_WGDIARIES_STATS_DAYSHOURSMINUTES', '%s hours total (%a days, %h hours, %i minutes)');
 \define('_MA_WGDIARIES_STATS_HOURS', 'Hours');
 \define('_MA_WGDIARIES_STATS_USER', 'User');
+\define('_MA_WGDIARIES_STATS_SELECT_YEAR', 'Statistic for year: ');
+\define('_MA_WGDIARIES_STATS_SELECT_MONTH', 'Statistic for month: ');
 // Categorie
 \define('_MA_WGDIARIES_CATLOGO', 'Categorie Logo');
 // calendar

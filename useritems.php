@@ -46,7 +46,7 @@ $GLOBALS['xoopsTpl']->assign('useGroups', $helper->getConfig('use_groups'));
 $xoBreadcrumbs[] = ['title' => \_MA_WGDIARIES_ITEMS_LISTGROUP];
 
 $userlist = [];
-$uid = \is_object($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->uid() : -1;
+$uid = \is_object($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->uid() : 0;
 $memberHandler = \xoops_getHandler('member');
 $xoopsGroups = $memberHandler->getGroupsByUser($uid);
 
