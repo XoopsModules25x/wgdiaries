@@ -40,6 +40,11 @@ function xoops_module_update_wgdiaries($module, $prev_version = null)
 {
     $moduleDirName = $module->dirname();
 
+    //check upload directory
+    require_once __DIR__ . '/install.php';
+    $ret = xoops_module_install_wgdiaries($module);
+
+    // update DB corresponding to sql/mysql.sql
     $configurator = new Configurator();
     $migrate = new Migrate($configurator);
 
@@ -57,15 +62,14 @@ function xoops_module_update_wgdiaries($module, $prev_version = null)
 
     // create a schema file based on sql/mysql.sql
     $migratehelper = new MigrateHelper($fileSql, $fileYaml);
-    $migratehelper->createSchemaFromSqlfile();
+    if (!$migratehelper->createSchemaFromSqlfile()) {
+        \xoops_error('Error: creation schema file failed!');
+        return false;
+    };
 
     // run standard procedure for db migration
     $migrate->getTargetDefinitions();
     $migrate->synchronizeSchema();
-
-    //check upload directory
-    require_once __DIR__ . '/install.php';
-    $ret = xoops_module_install_wgdiaries($module);
 
     $errors = $module->getErrors();
     if (!empty($errors)) {
