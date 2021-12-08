@@ -78,6 +78,14 @@ class Filterhandler
      * @var bool
      */
     public $showPeriod = true;
+    /**
+     * @var int
+     */
+    public $filterYear = 0;
+    /**
+     * @var int
+     */
+    public $filterMonth = 0;
 
     /**
      * Constructor
@@ -178,6 +186,59 @@ class Filterhandler
         $form->addElement(new \XoopsFormHidden('linebreak', ''));
         $btnApply = new \XoopsFormButton('', 'submit', \_MA_WGDIARIES_FILTER_APPLY, 'submit');
         $form->addElement($btnApply);
+        $form->addElement(new \XoopsFormHidden('op', 'filter'));
+
+        return $form;
+    }
+
+    /**
+     * @public function to get form for filter items
+     * @return FormInline
+     */
+    public function getFormFilterStatistics()
+    {
+        $helper             = Wgdiaries\Helper::getInstance();
+        $permissionsHandler = $helper->getHandler('Permissions');
+
+        $action = $_SERVER['REQUEST_URI'];
+
+        // Title
+        //$title = \_MA_WGSIMPLEACC_FILTERBY_YEAR;
+        // Get Theme Form
+        \xoops_load('XoopsFormLoader');
+        $form = new \XoopsModules\Wgdiaries\FormInline('', 'formFilter', $action, 'post', true);
+        $form->setExtra('enctype="multipart/form-data"');
+        $form->setExtra('class="wgd-form-inline"');
+
+        // Filter Tray
+        $selectFilterTray = new \XoopsFormElementTray('', '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;');
+        // Filter year
+        $currentYear = (int) date('Y');
+        $firstYear = 2019;
+        $formSelectYear = new \XoopsFormSelect(\_MA_WGDIARIES_STATS_SELECT_YEAR, 'year', $this->filterYear);
+        for ($i = $firstYear; $i <= $currentYear; $i++) {
+            $formSelectYear->addOption($i, $i);
+        }
+        $formSelectYear->setExtra("onchange='submit()'");
+        $selectFilterTray->addElement($formSelectYear);
+        // Filter month
+        $formSelectMonth = new \XoopsFormSelect(\_MA_WGDIARIES_STATS_SELECT_MONTH, 'month', $this->filterMonth);
+        $formSelectMonth->addOption(1, \_MA_WGDIARIES_CAL_JANUARY);
+        $formSelectMonth->addOption(2, \_MA_WGDIARIES_CAL_FEBRUARY);
+        $formSelectMonth->addOption(3, \_MA_WGDIARIES_CAL_MARCH);
+        $formSelectMonth->addOption(4, \_MA_WGDIARIES_CAL_APRIL);
+        $formSelectMonth->addOption(5, \_MA_WGDIARIES_CAL_MAY);
+        $formSelectMonth->addOption(6, \_MA_WGDIARIES_CAL_JUNE);
+        $formSelectMonth->addOption(7, \_MA_WGDIARIES_CAL_JULY);
+        $formSelectMonth->addOption(8, \_MA_WGDIARIES_CAL_AUGUST);
+        $formSelectMonth->addOption(9, \_MA_WGDIARIES_CAL_SEPTEMBER);
+        $formSelectMonth->addOption(10, \_MA_WGDIARIES_CAL_OCTOBER);
+        $formSelectMonth->addOption(11, \_MA_WGDIARIES_CAL_NOVEMBER);
+        $formSelectMonth->addOption(12, \_MA_WGDIARIES_CAL_DECEMBER);
+        $formSelectMonth->setExtra("onchange='submit();return true;'");
+        $selectFilterTray->addElement($formSelectMonth);
+        $form->addElement($selectFilterTray);
+        //linebreak
         $form->addElement(new \XoopsFormHidden('op', 'filter'));
 
         return $form;

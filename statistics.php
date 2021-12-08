@@ -24,8 +24,7 @@ declare(strict_types=1);
  */
 
 use Xmf\Request;
-use XoopsModules\Wgdiaries;
-use XoopsModules\Wgdiaries\Constants;
+use XoopsModules\Wgdiaries\Filterhandler;
 
 require __DIR__ . '/header.php';
 $GLOBALS['xoopsOption']['template_main'] = 'wgdiaries_statistics.tpl';
@@ -45,11 +44,18 @@ $uid = \is_object($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->uid() : 0;
 
 $year       = Request::getInt('year', (int) date('Y'));
 $month      = Request::getInt('month', (int) date('n'));
-$lastday    = (int) date('t');
 $yearStart  = \mktime(0, 0, 0, 1, 1, $year);
 $yearEnd    = \mktime(23, 59, 59, 12, 31, $year) ;
 $monthStart = \mktime(0, 0, 0, $month, 1, $year);
+$lastday    = (int) date('t', $monthStart);
 $monthEnd   = \mktime(23, 59, 59, $month, $lastday, $year);
+
+$filterHandler = new Filterhandler();
+$filterHandler->filterMonth = $month;
+$filterHandler->filterYear = $year;
+
+$formFilter = $filterHandler->getFormFilterStatistics();
+$GLOBALS['xoopsTpl']->assign('formFilter', $formFilter->render());
 
 /*
 echo '<br>yearStart:'. date('Y-m-d H:i:s', $yearStart);

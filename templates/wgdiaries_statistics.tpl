@@ -2,6 +2,8 @@
 
 <h2><{$smarty.const._MA_WGDIARIES_STATISTICS}></h2>
 
+<{if $formFilter|default:''}><{$formFilter}><{/if}>
+
 <!-- own items -->
 <h3 class="wgd-statistics-header"><{$smarty.const._MA_WGDIARIES_STATISTICS_MY_YEAR}></h3>
 <{if $itemsOwn.year|default:0 > 0}>
@@ -17,7 +19,10 @@
         <div class="wgd-statistics-title col-2"><{$smarty.const._MA_WGDIARIES_STATS_HOURS}>:</div>
         <div class="col-10"><{$itemsOwn.year.hours}></div>
     </div>
+<{else}>
+    <p class="wgd-statistics-nodata"><{$smarty.const._MA_WGDIARIES_FILTER_NODATA}></p>
 <{/if}>
+
 
 <h3 class="wgd-statistics-header"><{$smarty.const._MA_WGDIARIES_STATISTICS_MY_MONTH}></h3>
 <{if $itemsOwn.month|default:0 > 0}>
@@ -33,6 +38,8 @@
         <div class="wgd-statistics-title col-2"><{$smarty.const._MA_WGDIARIES_STATS_HOURS}>:</div>
         <div class="col-10"><{$itemsOwn.month.hours}></div>
     </div>
+<{else}>
+    <p class="wgd-statistics-nodata"><{$smarty.const._MA_WGDIARIES_FILTER_NODATA}></p>
 <{/if}>
 
 <!-- group items -->
@@ -50,6 +57,8 @@
         <div class="wgd-statistics-title col-2"><{$smarty.const._MA_WGDIARIES_STATS_HOURS}>:</div>
         <div class="col-10"><{$itemsGroup.year.hours}></div>
     </div>
+<{else}>
+    <p class="wgd-statistics-nodata"><{$smarty.const._MA_WGDIARIES_FILTER_NODATA}></p>
 <{/if}>
 
 <h3 class="wgd-statistics-header"><{$smarty.const._MA_WGDIARIES_STATISTICS_GROUP_MONTH}></h3>
@@ -66,6 +75,8 @@
         <div class="wgd-statistics-title col-2"><{$smarty.const._MA_WGDIARIES_STATS_HOURS}>:</div>
         <div class="col-10"><{$itemsGroup.month.hours}></div>
     </div>
+<{else}>
+    <p class="wgd-statistics-nodata"><{$smarty.const._MA_WGDIARIES_FILTER_NODATA}></p>
 <{/if}>
 
 <!-- items per user and year -->
@@ -88,6 +99,8 @@
             <div class="col-10"><{$user.hoursdesc}></div>
         </div>
     <{/foreach}>
+<{else}>
+    <p class="wgd-statistics-nodata"><{$smarty.const._MA_WGDIARIES_FILTER_NODATA}></p>
 <{/if}>
 <!-- items per user and year -->
 <h3 class="wgd-statistics-header"><{$smarty.const._MA_WGDIARIES_STATISTICS_USER_MONTH}></h3>
@@ -109,5 +122,7 @@
         <div class="col-10"><{$user.hoursdesc}></div>
     </div>
     <{/foreach}>
+<{else}>
+    <p class="wgd-statistics-nodata"><{$smarty.const._MA_WGDIARIES_FILTER_NODATA}></p>
 <{/if}>
 <{include file='db:wgdiaries_footer.tpl' }>
