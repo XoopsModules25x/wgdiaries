@@ -54,7 +54,22 @@ switch ($op) {
     case 'list':
     default:
         //create list of months
+        $arrMonth = [
+            1 => \_MA_WGDIARIES_CAL_JANUARY,
+            2 => \_MA_WGDIARIES_CAL_FEBRUARY,
+            3 => \_MA_WGDIARIES_CAL_MARCH,
+            4 => \_MA_WGDIARIES_CAL_APRIL,
+            5 => \_MA_WGDIARIES_CAL_MAY,
+            6 => \_MA_WGDIARIES_CAL_JUNE,
+            7 => \_MA_WGDIARIES_CAL_JULY,
+            8 => \_MA_WGDIARIES_CAL_AUGUST,
+            9 => \_MA_WGDIARIES_CAL_SEPTEMBER,
+            10 => \_MA_WGDIARIES_CAL_OCTOBER,
+            11 => \_MA_WGDIARIES_CAL_NOVEMBER,
+            12 => \_MA_WGDIARIES_CAL_DECEMBER
+        ];
         $arrMonths = [];
+
         $arrCounterYears = [];
         // own items
         $items = $itemsHandler->getItems($uid, 0, 0, 1, \time(), false, false, 0,  0, $sortBy, $orderBy);
@@ -67,7 +82,14 @@ switch ($op) {
                     $counter = 1;
                 }
                 $year = date('Y', $dayStart);
-                $arrMonths[$dayStart] = ['timestamp' => $dayStart, 'year' => $year, 'string' => date('F Y', $dayStart), 'counter' => $counter];
+                $arrMonths[$dayStart] = [
+                    'timestamp' => $dayStart,
+                    'year' => $year,
+                    'string' => $arrMonth[\date('n', $dayStart)] . ' ' . $year,
+                    'counter' => $counter
+                ];
+
+                //$arrMonths[$dayStart] = ['timestamp' => $dayStart, 'year' => $year, 'string' => date('F Y', $dayStart), 'counter' => $counter];
                 //count by year
                 if (\array_key_exists($year, $arrCounterYears)) {
                     $counterYear =  $arrCounterYears[$year]['counter'] + 1;
@@ -90,7 +112,12 @@ switch ($op) {
                         $counter = 1;
                     }
                     $year = date('Y', $dayStart);
-                    $arrMonths[$dayStart] = ['timestamp' => $dayStart, 'year' => $year, 'string' => date('F Y', $dayStart), 'counter' => $counter];
+                    $arrMonths[$dayStart] = [
+                        'timestamp' => $dayStart,
+                        'year' => $year,
+                        'string' => $arrMonth[\date('n', $dayStart)] . ' ' . $year,
+                        'counter' => $counter
+                    ];
                     if (\array_key_exists($year, $arrCounterYears)) {
                         $counterYear =  $arrCounterYears[$year]['counter'] + 1;
                     } else {
