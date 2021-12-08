@@ -164,7 +164,7 @@ class MigrateHelper
      * @param  string $line
      * @return string|bool
      */
-    private function getTableName (string $line): bool|string
+    private function getTableName (string $line)
     {
 
         $arrLine = \explode( '`', $line);
@@ -182,7 +182,7 @@ class MigrateHelper
      * @param string $line
      * @return array|bool
      */
-    private function getColumns (string $line): bool|array
+    private function getColumns (string $line)
     {
 
         $columns = [];
@@ -231,7 +231,7 @@ class MigrateHelper
      * @param string $line
      * @return array|bool
      */
-    private function getKey (string $line): bool|array
+    private function getKey (string $line)
     {
 
         $key = [];
