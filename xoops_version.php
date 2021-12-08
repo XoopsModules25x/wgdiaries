@@ -23,10 +23,7 @@ declare(strict_types=1);
  * @author         wedega - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
  */
 
-use XoopsModules\Wgdiaries\{
-    Helper,
-    Utility
-};
+use XoopsModules\Wgdiaries\Helper;
 
 require __DIR__ . '/preloads/autoloader.php';
 
@@ -50,7 +47,7 @@ $modversion = [
     'release_date'        => '2021/12/07',
     'manual'              => 'link to manual file',
     'manual_file'         => \XOOPS_URL . '/modules/wgdiaries/docs/install.txt',
-    'min_php'             => '7.3',
+    'min_php'             => '7.4',
     'min_xoops'           => '2.5.11 Beta1',
     'min_admin'           => '1.2',
     'min_db'              => ['mysql' => '5.6', 'mysqli' => '5.6'],

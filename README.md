@@ -12,6 +12,11 @@ Most of the templates on user side are fully responsive, but for proper displayi
 #### Demo: 
 Demo (in German) is available on: https://xoops.wedega.com
 
+#### Test:
+The module is tested with 
+* PHP 7.4 and PHP 8.0
+* XOOPS 2.5.11 Beta2
+
 #### Tutorial: 
 Tutorial will coming soon at: [![Tutorial Available](https://xoops.org/images/tutorial-available-blue.svg)](https://xoops.gitbook.io/wgdiaries-tutorial/) Tutorial: see [GitBook](https://xoops.gitbook.io/wgdiaries-tutorial/).
 To contribute to the Tutorial, [fork it on GitHub](https://github.com/XoopsDocs/wgdiaries-tutorial)
