@@ -27,7 +27,10 @@ namespace XoopsModules\Wgdiaries;
  */
 
 use XoopsModules\Wgdiaries;
-use XoopsModules\Wgdiaries\Constants;
+use XoopsModules\Wgdiaries\ {
+    Helper,
+    FormInline
+};
 
 /**
  * Class Object
@@ -98,7 +101,7 @@ class Filterhandler
      */
     public function getFormFilterItems()
     {
-        $helper             = Wgdiaries\Helper::getInstance();
+        $helper             = Helper::getInstance();
         $permissionsHandler = $helper->getHandler('Permissions');
 
         $action = $_SERVER['REQUEST_URI'];
@@ -107,7 +110,7 @@ class Filterhandler
         //$title = \_MA_WGSIMPLEACC_FILTERBY_YEAR;
         // Get Theme Form
         \xoops_load('XoopsFormLoader');
-        $form = new \XoopsModules\Wgdiaries\FormInline('', 'formFilter', $action, 'post', true);
+        $form = new FormInline('', 'formFilter', $action, 'post', true);
         $form->setExtra('enctype="multipart/form-data"');
         $form->setExtra('class="wgd-form-inline"');
 
@@ -197,8 +200,6 @@ class Filterhandler
      */
     public function getFormFilterStatistics()
     {
-        $helper             = Wgdiaries\Helper::getInstance();
-        $permissionsHandler = $helper->getHandler('Permissions');
 
         $action = $_SERVER['REQUEST_URI'];
 
@@ -206,7 +207,7 @@ class Filterhandler
         //$title = \_MA_WGSIMPLEACC_FILTERBY_YEAR;
         // Get Theme Form
         \xoops_load('XoopsFormLoader');
-        $form = new \XoopsModules\Wgdiaries\FormInline('', 'formFilter', $action, 'post', true);
+        $form = new FormInline('', 'formFilter', $action, 'post', true);
         $form->setExtra('enctype="multipart/form-data"');
         $form->setExtra('class="wgd-form-inline"');
 
