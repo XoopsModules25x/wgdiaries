@@ -231,7 +231,6 @@ switch ($op) {
         $templateMain = 'wgdiaries_admin_items.tpl';
         $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('items.php'));
         $itemsObj = $itemsHandler->get($itemId);
-        $itemSubmitter = $itemsObj->getVar('item_submitter');
         if (isset($_REQUEST['ok']) && 1 == $_REQUEST['ok']) {
             if (!$GLOBALS['xoopsSecurity']->check()) {
                 \redirect_header('items.php', 3, \implode(', ', $GLOBALS['xoopsSecurity']->getErrors()));
@@ -242,11 +241,11 @@ switch ($op) {
                 $GLOBALS['xoopsTpl']->assign('error', $itemsObj->getHtmlErrors());
             }
         } else {
-            $xoopsconfirm = new Common\XoopsConfirm(
+            $customConfirm = new Common\Confirm(
                 ['ok' => 1, 'item_id' => $itemId, 'op' => 'delete'],
                 $_SERVER['REQUEST_URI'],
-                \sprintf(\_MA_WGDIARIES_FORM_SURE_DELETE, $itemsObj->getVar('item_submitter')));
-            $form = $xoopsconfirm->getFormXoopsConfirm();
+                \sprintf(\_MA_WGDIARIES_FORM_SURE_DELETE, $itemsObj->getVar('item_name')));
+            $form = $customConfirm->getFormConfirm();
             $GLOBALS['xoopsTpl']->assign('form', $form->render());
         }
         break;
