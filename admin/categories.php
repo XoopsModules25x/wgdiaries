@@ -171,11 +171,11 @@ switch ($op) {
                 $GLOBALS['xoopsTpl']->assign('error', $categoriesObj->getHtmlErrors());
             }
         } else {
-            $xoopsconfirm = new Common\XoopsConfirm(
+            $customConfirm = new Common\Confirm(
                 ['ok' => 1, 'cat_id' => $catId, 'op' => 'delete'],
                 $_SERVER['REQUEST_URI'],
                 \sprintf(\_MA_WGDIARIES_FORM_SURE_DELETE, $categoriesObj->getVar('cat_name')));
-            $form = $xoopsconfirm->getFormXoopsConfirm();
+            $form = $customConfirm->getFormConfirm();
             $GLOBALS['xoopsTpl']->assign('form', $form->render());
         }
         break;
