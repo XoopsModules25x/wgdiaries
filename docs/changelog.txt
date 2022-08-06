@@ -8,6 +8,7 @@
  - fixed problems with month names in other langs (goffy)
  - replaced Common/XoopsConfirm by Common/Confirm (mamba/goffy)
  - uninstall with bak-file creation (mamba/goffy)
+ - adapted update due to new semantic versioning (goffy)
 
 ==============================================================
 1.3.2 Final [2021/11/23]
