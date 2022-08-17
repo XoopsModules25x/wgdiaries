@@ -9,6 +9,7 @@
  - replaced Common/XoopsConfirm by Common/Confirm (mamba/goffy)
  - uninstall with bak-file creation (mamba/goffy)
  - adapted update due to new semantic versioning (goffy)
+ - fixed bug in MigrateHelper (goffy)
 
 ==============================================================
 1.3.2 Final [2021/11/23]
