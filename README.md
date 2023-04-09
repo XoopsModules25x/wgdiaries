@@ -1,6 +1,6 @@
 ![alt XOOPS CMS](https://xoops.org/images/logoXoopsPhp8.png)
 
-## wgDiaries module for  [XOOPS CMS 2.5.11+](https://xoops.org)
+## wgDiaries module for  [XOOPS CMS 2.5.11 RC1 +](https://xoops.org)
 [![Software License](https://img.shields.io/badge/license-GPL-brightgreen.svg?style=flat)](LICENSE)
 [![Latest Pre-Release](https://img.shields.io/github/tag/XoopsModules25x/wgdiaries.svg?style=flat)](https://github.com/XoopsModules25x/wgdiaries/tags/)
 [![Latest Version](https://img.shields.io/github/release/XoopsModules25x/wgdiaries.svg?style=flat)](https://github.com/XoopsModules25x/wgdiaries/releases/)
@@ -14,8 +14,8 @@ Demo (in German) is available on: https://xoops.wedega.com
 
 #### Test:
 The module is tested with 
-* PHP 7.4 and PHP 8.0
-* XOOPS 2.5.11 Beta2
+* PHP 8.1
+* XOOPS 2.5.11 RC1
 
 #### Tutorial: 
 Tutorial will coming soon at: [![Tutorial Available](https://xoops.org/images/tutorial-available-blue.svg)](https://xoops.gitbook.io/wgdiaries-tutorial/) Tutorial: see [GitBook](https://xoops.gitbook.io/wgdiaries-tutorial/).
