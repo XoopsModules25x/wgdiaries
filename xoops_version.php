@@ -18,8 +18,6 @@ declare(strict_types=1);
  * @copyright      2020 XOOPS Project (https://xooops.org)
  * @license        GPL 2.0 or later
  * @package        wgdiaries
- * @since          1.0
- * @min_xoops      2.5.9
  * @author         wedega - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
  */
 
@@ -32,7 +30,7 @@ $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
 // ------------------- Information ------------------- /
 $modversion = [
     'name'                => \_MI_WGDIARIES_NAME,
-    'version'             => '1.3.3',
+    'version'             => '1.3.4',
     'description'         => \_MI_WGDIARIES_DESC,
     'author'              => 'wedega',
     'author_mail'         => 'webmaster@wedega.com',
@@ -44,11 +42,11 @@ $modversion = [
     'help'                => 'page=help',
     'release_info'        => 'release_info',
     'release_file'        => \XOOPS_URL . '/modules/wgdiaries/docs/release_info file',
-    'release_date'        => '2023/02/28', // format: yyyy/mm/dd
+    'release_date'        => '2023/04/09', // format: yyyy/mm/dd
     'manual'              => 'link to manual file',
     'manual_file'         => \XOOPS_URL . '/modules/wgdiaries/docs/install.txt',
-    'min_php'             => '7.4',
-    'min_xoops'           => '2.5.11 Beta1',
+    'min_php'             => '8.0',
+    'min_xoops'           => '2.5.11 RC1',
     'min_admin'           => '1.2',
     'min_db'              => ['mysql' => '5.6', 'mysqli' => '5.6'],
     'image'               => 'assets/images/logoModule.png',
@@ -64,8 +62,8 @@ $modversion = [
     'support_name'        => 'Support Forum',
     'module_website_url'  => 'www.xoops.org',
     'module_website_name' => 'XOOPS Project',
-    'release'             => '28/02/2023',
-    'module_status'       => 'Stable',
+    'release'             => '09/04/2023',
+    'module_status'       => 'RC1',
     'system_menu'         => 1,
     'hasAdmin'            => 1,
     'hasMain'             => 1,

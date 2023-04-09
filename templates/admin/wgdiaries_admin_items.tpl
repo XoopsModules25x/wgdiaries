@@ -29,21 +29,23 @@
                 <{if $useGroups|default:false}>
                     <td class='center'><{$item.groupname}></td>
                 <{/if}>
-                <td class='center'><{$item.name}></td>
-                <td class='center'><{$item.remarks_short}></td>
-                <td class='center'><{$item.datefrom}></td>
-                <td class='center'><{$item.dateto}></td>
-                <td class='center'><{$item.category}></td>
-                <td class='center'><{$item.tags}></td>
+                <td class='center'><{$item.name|default:''}></td>
+                <td class='center'><{$item.remarks_short|default:''}></td>
+                <td class='center'><{$item.datefrom|default:''}></td>
+                <td class='center'><{$item.dateto|default:''}></td>
+                <td class='center'><{$item.category|default:''}></td>
+                <td class='center'><{$item.tags|default:''}></td>
                 <td class='center'>
-                    <img class="wgd-items-logo" style="max-height:30px" src="<{$wgdiaries_upload_itemsurl}>/logos/<{$item.logo}>" alt="<{$item.logo}>" title="<{$item.logo}>">
+                    <{if $item.logo|default:false}>
+                        <img class="wgd-items-logo" style="max-height:30px" src="<{$wgdiaries_upload_itemsurl}>/logos/<{$item.logo}>" alt="<{$item.logo}>" title="<{$item.logo}>">
+                    <{/if}>
                 </td>
-                <td class='center'><{$item.datecreated}></td>
-                <td class='center'><{$item.submitter}></td>
+                <td class='center'><{$item.datecreated|default:''}></td>
+                <td class='center'><{$item.submitter|default:''}></td>
                 <td class="center  width5">
-                    <a href="items.php?op=edit&amp;item_id=<{$item.id}>" title="<{$smarty.const._EDIT}>"><img src="<{xoModuleIcons16 edit.png}>" alt="<{$smarty.const._EDIT}> items"></a>
-                    <a href="items.php?op=clone&amp;item_id_source=<{$item.id}>" title="<{$smarty.const._CLONE}>"><img src="<{xoModuleIcons16 editcopy.png}>" alt="<{$smarty.const._CLONE}> items"></a>
-                    <a href="items.php?op=delete&amp;item_id=<{$item.id}>" title="<{$smarty.const._DELETE}>"><img src="<{xoModuleIcons16 delete.png}>" alt="<{$smarty.const._DELETE}> items"></a>
+                    <a href="items.php?op=edit&amp;item_id=<{$item.id}>" title="<{$smarty.const._EDIT}>"><img src="<{xoModuleIcons16 'edit.png'}>" alt="<{$smarty.const._EDIT}> items"></a>
+                    <a href="items.php?op=clone&amp;item_id_source=<{$item.id}>" title="<{$smarty.const._CLONE}>"><img src="<{xoModuleIcons16 'editcopy.png'}>" alt="<{$smarty.const._CLONE}> items"></a>
+                    <a href="items.php?op=delete&amp;item_id=<{$item.id}>" title="<{$smarty.const._DELETE}>"><img src="<{xoModuleIcons16 'delete.png'}>" alt="<{$smarty.const._DELETE}> items"></a>
                 </td>
             </tr>
             <{/foreach}>

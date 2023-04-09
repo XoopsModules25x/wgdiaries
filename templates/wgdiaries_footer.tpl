@@ -21,4 +21,4 @@
 <{/if}>
 <{include file='db:system_notification_select.tpl' }>
 
-<div class='pull-left'><{$copyright}></div>
+<div class='pull-left'><{$copyright|default:''}></div>
