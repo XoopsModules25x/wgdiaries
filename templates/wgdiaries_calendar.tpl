@@ -1,11 +1,10 @@
 <{include file='db:wgdiaries_header.tpl' }>
 
-
 <h3><{$smarty.const._MA_WGDIARIES_CALENDAR_ITEMS}></h3>
 
-<{if $formFilter|default:''}><{$formFilter}><{/if}>
+<{if isset($formFilter)}><{$formFilter}><{/if}>
 
-<{if $items_calendar|default:''}>
+<{if isset($items_calendar)}>
     <div class="row wgd-cal-navbar">
         <div class="col-12 center">
             <a class="wgd-cal-navbar-link" href="calendar.php?filterFrom=<{$filterFromPrevY}>&amp;filterTo=<{$filterToPrevY}>&amp;<{$otherParams}>"><i class="fa fa-angle-double-left" title="<{$smarty.const._MA_WGDIARIES_CAL_PREVYEAR}>"></i></a>
@@ -18,14 +17,12 @@
     <div class="row">
         <div class="col-12"><{$items_calendar}></div>
     </div>
-
 <{/if}>
 
-
-<{if $form|default:''}>
+<{if isset($form)}>
     <{$form|default:false}>
 <{/if}>
-<{if $error|default:''}>
+<{if isset($error)}>
     <{$error|default:false}>
 <{/if}>
 

@@ -1,7 +1,7 @@
 <{include file='db:wgdiaries_header.tpl' }>
 
 <h2 class='center'><{$smarty.const._MA_WGDIARIES_TITLE}></h2>
-<{if $indexHeader|default:''}>
+<{if isset($indexHeader)}>
     <h3><{$indexHeader}></h3>
 <{/if}>
 
@@ -21,7 +21,7 @@
     <tfoot>
         <tr class='center'>
             <td class='bold pad5'>
-                <{if $adv|default:''}><{$adv|default:false}><{/if}>
+                <{if isset($adv)}><{$adv|default:''}><{/if}>
             </td>
         </tr>
     </tfoot>
@@ -29,12 +29,12 @@
 <!-- End index list -->
 
 <h3><{$smarty.const._MA_WGDIARIES_INDEX_ITEMS_OWN}></h3>
-<{if $itemsOwnCount|default:0 > 0}>
+<{if isset($itemsOwnCount) && $itemsOwnCount > 0}>
     <!-- Start show new items in index -->
     <table class='table table-<{$table_type}>'>
         <thead>
         <tr class='head'>
-            <{if $useGroups|default:false}>
+            <{if isset($useGroups) && $useGroups}>
                 <th><{$smarty.const._MA_WGDIARIES_ITEM_GROUPID}></th>
             <{/if}>
             <th><{$smarty.const._MA_WGDIARIES_ITEM_LOGO}></th>
@@ -58,13 +58,13 @@
 <{/if}>
 
 <h3><{$smarty.const._MA_WGDIARIES_INDEX_ITEMS_GROUPOTHER}></h3>
-<{if $itemsGroupCount|default:0 > 0}>
+<{if isset($itemsGroupCount) && $itemsGroupCount > 0}>
 <!-- Start show new items in index -->
     <table class='table table-<{$table_type}>'>
         <thead>
         <tr class='head'>
-            <{if $useGroups|default:false}>
-            <th><{$smarty.const._MA_WGDIARIES_ITEM_GROUPID}></th>
+            <{if isset($useGroups) && $useGroups}>
+                <th><{$smarty.const._MA_WGDIARIES_ITEM_GROUPID}></th>
             <{/if}>
             <th><{$smarty.const._MA_WGDIARIES_ITEM_SUBMITTER}></th>
             <th><{$smarty.const._MA_WGDIARIES_ITEM_LOGO}></th>

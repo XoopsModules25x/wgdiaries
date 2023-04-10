@@ -2,11 +2,11 @@
 
 <h2><{$smarty.const._MA_WGDIARIES_STATISTICS}></h2>
 
-<{if $formFilter|default:''}><{$formFilter}><{/if}>
+<{if isset($formFilter)}><{$formFilter}><{/if}>
 
 <!-- own items -->
 <h3 class="wgd-statistics-header"><{$smarty.const._MA_WGDIARIES_STATISTICS_MY_YEAR}></h3>
-<{if $itemsOwn.year|default:0 > 0}>
+<{if isset($itemsOwn.year) && $itemsOwn.year > 0}>
     <div class="row wgd-statistics-row">
         <div class="wgd-statistics-title col-2"><{$smarty.const._MA_WGDIARIES_STATS_PERIOD}>:</div>
         <div class="col-9"><{$itemsOwn.year.fromto}></div>
@@ -25,7 +25,7 @@
 
 
 <h3 class="wgd-statistics-header"><{$smarty.const._MA_WGDIARIES_STATISTICS_MY_MONTH}></h3>
-<{if $itemsOwn.month|default:0 > 0}>
+<{if isset($itemsOwn.month) && $itemsOwn.month > 0}>
     <div class="row wgd-statistics-row">
         <div class="wgd-statistics-title col-2"><{$smarty.const._MA_WGDIARIES_STATS_PERIOD}>:</div>
         <div class="col-9"><{$itemsOwn.month.fromto}></div>
@@ -44,7 +44,7 @@
 
 <!-- group items -->
 <h3 class="wgd-statistics-header"><{$smarty.const._MA_WGDIARIES_STATISTICS_GROUP_YEAR}></h3>
-<{if $itemsGroup.year|default:0 > 0}>
+<{if isset($itemsGroup.year) && $itemsGroup.year > 0}>
     <div class="row wgd-statistics-row">
         <div class="wgd-statistics-title col-2"><{$smarty.const._MA_WGDIARIES_STATS_PERIOD}>:</div>
         <div class="col-9"><{$itemsGroup.year.fromto}></div>
@@ -62,7 +62,7 @@
 <{/if}>
 
 <h3 class="wgd-statistics-header"><{$smarty.const._MA_WGDIARIES_STATISTICS_GROUP_MONTH}></h3>
-<{if $itemsGroup.month|default:0 > 0}>
+<{if isset($itemsGroup.month) && $itemsGroup.month > 0}>
     <div class="row wgd-statistics-row">
         <div class="wgd-statistics-title col-2"><{$smarty.const._MA_WGDIARIES_STATS_PERIOD}>:</div>
         <div class="col-9"><{$itemsGroup.month.fromto}></div>
@@ -81,7 +81,7 @@
 
 <!-- items per user and year -->
 <h3 class="wgd-statistics-header"><{$smarty.const._MA_WGDIARIES_STATISTICS_USER_YEAR}></h3>
-<{if $itemsGroup.year.users|default:0 > 0}>
+<{if isset($itemsGroup.year.users) && $itemsGroup.year.users > 0}>
     <div class="row">
         <div class="wgd-statistics-title col-2"><{$smarty.const._MA_WGDIARIES_STATS_PERIOD}>:</div>
         <div class="col-9"><{$itemsGroup.year.fromto}></div>
@@ -104,23 +104,23 @@
 <{/if}>
 <!-- items per user and year -->
 <h3 class="wgd-statistics-header"><{$smarty.const._MA_WGDIARIES_STATISTICS_USER_MONTH}></h3>
-<{if $itemsGroup.month.users|default:0 > 0}>
+<{if isset($itemsGroup.month.users) && $itemsGroup.month.users > 0}>
     <div class="row">
         <div class="wgd-statistics-title col-2"><{$smarty.const._MA_WGDIARIES_STATS_PERIOD}>:</div>
         <div class="col-9"><{$itemsGroup.month.fromto}></div>
     </div>
     <{foreach item=user from=$itemsGroup.month.users name=user}>
-    <div class="row wgd-statistics-row">
-        <div class="wgd-statistics-title col-12"><h4><{$user.name}></h4></div>
-    </div>
-    <div class="row">
-        <div class="wgd-statistics-title col-2"><{$smarty.const._MA_WGDIARIES_STATS_ITEMS_NB}>:</div>
-        <div class="col-10"><{$user.count}></div>
-    </div>
-    <div class="row">
-        <div class="wgd-statistics-title col-2"><{$smarty.const._MA_WGDIARIES_STATS_HOURS}>:</div>
-        <div class="col-10"><{$user.hoursdesc}></div>
-    </div>
+        <div class="row wgd-statistics-row">
+            <div class="wgd-statistics-title col-12"><h4><{$user.name}></h4></div>
+        </div>
+        <div class="row">
+            <div class="wgd-statistics-title col-2"><{$smarty.const._MA_WGDIARIES_STATS_ITEMS_NB}>:</div>
+            <div class="col-10"><{$user.count}></div>
+        </div>
+        <div class="row">
+            <div class="wgd-statistics-title col-2"><{$smarty.const._MA_WGDIARIES_STATS_HOURS}>:</div>
+            <div class="col-10"><{$user.hoursdesc}></div>
+        </div>
     <{/foreach}>
 <{else}>
     <p class="wgd-statistics-nodata"><{$smarty.const._MA_WGDIARIES_FILTER_NODATA}></p>

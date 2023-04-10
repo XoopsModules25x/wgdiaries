@@ -1,13 +1,13 @@
 <{include file='db:wgdiaries_header.tpl' }>
 
-<{if $itemsCount|default:0 > 0}>
+<{if isset($itemsCount) && $itemsCount > 0}>
     <div id="divToPrint">
-        <{if $wgdiaries_css_print_1|default:''}>
+        <{if isset($wgdiaries_css_print_1) && $wgdiaries_css_print_1}>
             <link href="<{$wgdiaries_css_print_1}>" rel="stylesheet">
         <{/if}>
 
         <h3><{$itemsTitle}></h3>
-        <{if $items_calendar|default:'' && $showItem|default:false === false}>
+        <{if isset($items_calendar) && isset($showItem) && !$showItem}>
             <div class="row printNone"><div class="col-12"><{$items_calendar}></div></div>
         <{/if}>
 
@@ -15,12 +15,12 @@
             <div class='col-12'>
                 <table class='table table-<{$table_type|default:false}>'>
                     <thead>
-                        <{if $showItem|default:false === false}>
+                        <{if isset($showItem) && !$showItem}>
                             <tr class='head'>
-                                <{if $useGroups|default:false}>
+                                <{if isset($useGroups) && $useGroups}>
                                     <th><{$smarty.const._MA_WGDIARIES_ITEM_GROUPID}></th>
                                 <{/if}>
-                                <{if $listGroup|default:false}>
+                                <{if isset($listGroup) && $listGroup}>
                                     <th><{$smarty.const._MA_WGDIARIES_ITEM_SUBMITTER}></th>
                                 <{/if}>
                                 <th><{$smarty.const._MA_WGDIARIES_ITEM_LOGO}></th>
@@ -38,7 +38,7 @@
                     </thead>
                     <tbody>
                         <{foreach item=item from=$items name=item}>
-                            <{if $showItem|default:false}>
+                            <{if isset($showItem) && $showItem}>
                                 <{include file='db:wgdiaries_items_single.tpl' }>
                             <{else}>
                                 <{include file='db:wgdiaries_items_item.tpl' }>
@@ -47,17 +47,15 @@
                     </tbody>
                     <tfoot><tr><td>&nbsp;</td></tr></tfoot>
                 </table>
-
-
             </div>
         </div>
     </div>
 <{/if}>
 
-<{if $form|default:''}>
+<{if isset($form)}>
     <{$form|default:false}>
 <{/if}>
-<{if $error|default:''}>
+<{if isset($error)}>
     <{$error|default:false}>
 <{/if}>
 
