@@ -1,9 +1,8 @@
 <{include file='db:wgdiaries_header.tpl' }>
 
-
 <h3><{$smarty.const._MA_WGDIARIES_ARCHIVE_TITLE}></h3>
 
-<{if $monthsCount|default:0 > 0}>
+<{if isset($monthsCount) && $monthsCount > 0}>
     <ul>
         <{foreach name=year item=year key=key from=$arrYearMonth}>
             <li><{$key}> (<{$year.counterYear}>)</li>
@@ -16,8 +15,7 @@
     </ul>
 <{/if}>
 
-
-<{if $itemsCount|default:0 > 0}>
+<{if isset($itemsCount) && $itemsCount > 0}>
     <div id="divToPrint">
         <link href="<{$wgdiaries_css_print_1|default:''}>" rel="stylesheet">
         <h3><{$itemsTitle|default:''}></h3>
@@ -26,7 +24,7 @@
                 <table class='table table-<{$table_type|default:false}>'>
                     <thead>
                         <tr class='head'>
-                            <{if $useGroups|default:false}>
+                            <{if isset($useGroups) && $useGroups}>
                                 <th><{$smarty.const._MA_WGDIARIES_ITEM_GROUPID}></th>
                             <{/if}>
                             <th><{$smarty.const._MA_WGDIARIES_ITEM_SUBMITTER}></th>
@@ -42,24 +40,25 @@
                     <tbody>
                         <{foreach item=item from=$items name=item}>
                             <tr>
-                                <{if $useGroups|default:false}>
-                                <td><{$item.groupname}></td>
+                                <{if isset($useGroups) && $useGroups}>
+                                    <td><{$item.groupname}></td>
                                 <{/if}>
                                 <td><{$item.submitter}></td>
                                 <td class='center'>
-                                    <{if $item.logo|default:false}>
-                                <img class="wgd-items-logo" src="<{$wgdiaries_upload_itemsurl}>/logos/<{$item.logo}>" alt="<{$item.logo}>" title="<{$item.logo}>">
+                                    <{if isset($item.logo) && $item.logo != ''}>
+                                        <img class="wgd-items-logo" src="<{$wgdiaries_upload_itemsurl}>/logos/<{$item.logo}>" alt="<{$item.logo}>" title="<{$item.logo}>">
                                     <{/if}>
                                 </td>
                                 <td><{$item.name}></td>
                                 <td><{$item.remarks}></td>
                                 <td><{$item.datefrom}></td>
                                 <td><{$item.dateto}></td>
-                                <td><{if $item.catid|default:0 > 0}>
-                                    <{if $item.catlogo|default:''}>
-                                <img class="wgd-items-catlogo" src="<{$wgdiaries_upload_categoriesurl}>/<{$item.catlogo}>" alt="<{$item.category}>" title="<{$item.category}>">
-                                    <{/if}>
-                                    <{$item.category}>
+                                <td>
+                                    <{if isset($item.catid) && $item.catid > 0}>
+                                        <{if isset($item.catlogo)}>
+                                            <img class="wgd-items-catlogo" src="<{$wgdiaries_upload_categoriesurl}>/<{$item.catlogo}>" alt="<{$item.category}>" title="<{$item.category}>">
+                                        <{/if}>
+                                        <{$item.category}>
                                     <{/if}>
                                 </td>
                                 <td class="printNone">
@@ -70,14 +69,12 @@
                     </tbody>
                     <tfoot><tr><td>&nbsp;</td></tr></tfoot>
                 </table>
-
-
             </div>
         </div>
     </div>
 <{/if}>
 
-<{if $error|default:''}>
+<{if isset($error)}>
     <{$error|default:false}>
 <{/if}>
 

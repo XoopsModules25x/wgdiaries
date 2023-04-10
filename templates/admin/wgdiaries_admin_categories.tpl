@@ -1,7 +1,7 @@
 <!-- Header -->
 <{include file='db:wgdiaries_admin_header.tpl' }>
 
-<{if $categories_list|default:''}>
+<{if isset($categories_list)}>
     <table class='table table-bordered'>
         <thead>
             <tr class='head'>
@@ -15,7 +15,7 @@
                 <th class="center width5"><{$smarty.const._MA_WGDIARIES_FORM_ACTION}></th>
             </tr>
         </thead>
-        <{if $categories_count|default:''}>
+        <{if isset($categories_count) && $categories_count > 0}>
         <tbody>
             <{foreach item=category from=$categories_list}>
             <tr class='<{cycle values='odd, even'}>'>
@@ -23,14 +23,13 @@
                 <td class='center'><{$category.name}></td>
                 <td class='center'><img src="<{$wgdiaries_upload_url|default:false}>/categories/<{$category.logo}>" alt="categories" style="max-width:100px"></td>
                 <td class='center'>
-                    <{if $category.cat_online|default:0 == 1}>
-                    <a href="categories.php?op=change_yn&amp;field=cat_online&amp;value=0&amp;cat_id=<{$category.id}>&amp;start=<{$start|default:0}>&amp;limit=<{$limit|default:0}>" title="<{$smarty.const._MA_WGDIARIES_ACTIVE}>">
-                        <img src="<{$wgdiaries_icons_url}>/32/1.png" alt="<{$smarty.const._MA_WGDIARIES_ACTIVE}>"></a>
+                    <{if isset($category.cat_online) && $category.cat_online == 1}>
+                        <a href="categories.php?op=change_yn&amp;field=cat_online&amp;value=0&amp;cat_id=<{$category.id}>&amp;start=<{$start|default:0}>&amp;limit=<{$limit|default:0}>" title="<{$smarty.const._MA_WGDIARIES_ACTIVE}>">
+                            <img src="<{$wgdiaries_icons_url}>/32/1.png" alt="<{$smarty.const._MA_WGDIARIES_ACTIVE}>"></a>
                     <{else}>
-                    <a href="categories.php?op=change_yn&amp;field=cat_online&amp;value=1&amp;cat_id=<{$category.id}>&amp;start=<{$start|default:0}>&amp;limit=<{$limit|default:0}>" title="<{$smarty.const._MA_WGDIARIES_NONACTIVE}>">
-                        <img src="<{$wgdiaries_icons_url}>/32/0.png" alt="<{$smarty.const._MA_WGDIARIES_NONACTIVE}>"></a>
+                        <a href="categories.php?op=change_yn&amp;field=cat_online&amp;value=1&amp;cat_id=<{$category.id}>&amp;start=<{$start|default:0}>&amp;limit=<{$limit|default:0}>" title="<{$smarty.const._MA_WGDIARIES_NONACTIVE}>">
+                            <img src="<{$wgdiaries_icons_url}>/32/0.png" alt="<{$smarty.const._MA_WGDIARIES_NONACTIVE}>"></a>
                     <{/if}>
-
                 </td>
                 <td class='center'><{$category.weight}></td>
                 <td class='center'><{$category.datecreated}></td>
@@ -45,15 +44,15 @@
         <{/if}>
     </table>
     <div class="clear">&nbsp;</div>
-    <{if $pagenav|default:''}>
+    <{if isset($pagenav)}>
         <div class="xo-pagenav floatright"><{$pagenav|default:false}></div>
         <div class="clear spacer"></div>
     <{/if}>
 <{/if}>
-<{if $form|default:''}>
+<{if isset($form)}>
     <{$form|default:false}>
 <{/if}>
-<{if $error|default:''}>
+<{if isset($error)}>
     <div class="errorMsg"><strong><{$error|default:false}></strong></div>
 <{/if}>
 

@@ -1,12 +1,12 @@
 <!-- Header -->
 <{include file='db:wgdiaries_admin_header.tpl' }>
 
-<{if $items_list|default:''}>
+<{if isset($items_list)}>
     <table class='table table-bordered'>
         <thead>
             <tr class='head'>
                 <th class="center"><{$smarty.const._MA_WGDIARIES_ITEM_ID}></th>
-                <{if $useGroups|default:false}>
+                <{if isset($useGroups) && $useGroups}>
                     <th class="center"><{$smarty.const._MA_WGDIARIES_ITEM_GROUPID}></th>
                 <{/if}>
                 <th class="center"><{$smarty.const._MA_WGDIARIES_ITEM_NAME}></th>
@@ -21,12 +21,12 @@
                 <th class="center width5"><{$smarty.const._MA_WGDIARIES_FORM_ACTION}></th>
             </tr>
         </thead>
-        <{if $items_count|default:''}>
+        <{if isset($items_count) && $items_count > 0}>
         <tbody>
             <{foreach item=item from=$items_list}>
             <tr class='<{cycle values='odd, even'}>'>
                 <td class='center'><{$item.id}></td>
-                <{if $useGroups|default:false}>
+                <{if isset($useGroups) && $useGroups}>
                     <td class='center'><{$item.groupname}></td>
                 <{/if}>
                 <td class='center'><{$item.name|default:''}></td>
@@ -36,7 +36,7 @@
                 <td class='center'><{$item.category|default:''}></td>
                 <td class='center'><{$item.tags|default:''}></td>
                 <td class='center'>
-                    <{if $item.logo|default:false}>
+                    <{if isset($item.logo) && $item.logo != ''}>
                         <img class="wgd-items-logo" style="max-height:30px" src="<{$wgdiaries_upload_itemsurl}>/logos/<{$item.logo}>" alt="<{$item.logo}>" title="<{$item.logo}>">
                     <{/if}>
                 </td>
@@ -53,15 +53,15 @@
         <{/if}>
     </table>
     <div class="clear">&nbsp;</div>
-    <{if $pagenav|default:''}>
+    <{if isset($pagenav)}>
         <div class="xo-pagenav floatright"><{$pagenav|default:false}></div>
         <div class="clear spacer"></div>
     <{/if}>
 <{/if}>
-<{if $form|default:''}>
+<{if isset($form)}>
     <{$form|default:false}>
 <{/if}>
-<{if $error|default:''}>
+<{if isset($error)}>
     <div class="errorMsg"><strong><{$error|default:false}></strong></div>
 <{/if}>
 

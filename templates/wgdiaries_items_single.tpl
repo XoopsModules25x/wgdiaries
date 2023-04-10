@@ -1,6 +1,6 @@
 <i id='itemId_<{$item.item_id}>'></i>
 
-<{if $useGroups|default:false}>
+<{if isset($useGroups) && $useGroups}>
     <tr>
         <td><{$smarty.const._MA_WGDIARIES_ITEM_GROUPID}></td>
         <td><{$item.groupname}></td>
@@ -17,7 +17,7 @@
 </tr>
 <tr>
     <td><{$smarty.const._MA_WGDIARIES_ITEM_REMARKS}></td>
-    <td><{$item.remarks}></td>
+    <td><{$item.remarks|default:''}></td>
 </tr>
 <tr>
     <td><{$smarty.const._MA_WGDIARIES_ITEM_DATEFROM}></td>
@@ -30,7 +30,7 @@
 <tr>
     <td><{$smarty.const._MA_WGDIARIES_ITEM_CATID}></td>
     <td>
-        <{if $item.catlogo|default:''}>
+        <{if isset($item.catlogo)}>
             <img style="max-height:30px" src="<{$wgdiaries_upload_categoriesurl}>/<{$item.catlogo}>" alt="<{$item.category}>" title="<{$item.category}>">
         <{/if}>
         <{$item.category}>
@@ -38,18 +38,18 @@
 </tr>
 <tr>
     <td><{$smarty.const._MA_WGDIARIES_ITEM_TAGS}></td>
-    <td><{$item.tags}></td>
+    <td><{$item.tags|default:''}></td>
 </tr>
 <tr>
     <td><{$smarty.const._MA_WGDIARIES_ITEM_NBFILES}></td>
     <td>
-        <{$item.nbfiles}>
-        <{if $item.nbfiles|default:0 > 0}>
+        <{$item.nbfiles|default:0}>
+        <{if isset($item.nbfiles) && $item.nbfiles > 0}>
             <ul>
                 <{foreach item=file from=$item.files name=file}>
                     <li><{$file.name}></li>
                 <{/foreach}>
-                <{if $item.moreFiles|default:false}>
+                <{if isset($item.moreFiles) && $item.moreFiles}>
                     <li>...</li>
                 <{/if}>
             </ul>
@@ -60,12 +60,12 @@
 </tr>
 <tr>
     <td><{$smarty.const._MA_WGDIARIES_ITEM_COMMENTS}></td>
-    <td><{$item.comments}></td>
+    <td><{$item.comments|default:''}></td>
 </tr>
 <tr class="printNone">
     <td colspan="2">
         <a class='btn btn-success right' href='items.php?op=list&amp;#itemId_<{$item.item_id}>' title='<{$smarty.const._MA_WGDIARIES_ITEMS_LIST}>'><{$smarty.const._MA_WGDIARIES_ITEMS_LIST}></a>
-        <{if $item.permEdit|default:''}>
+        <{if isset($item.permEdit) && $item.permEdit}>
             <a class='btn btn-primary right' href='items.php?op=edit&amp;item_id=<{$item.item_id}>' title='<{$smarty.const._EDIT}>'><{$smarty.const._EDIT}></a>
             <a class='btn btn-danger right' href='items.php?op=delete&amp;item_id=<{$item.item_id}>' title='<{$smarty.const._DELETE}>'><{$smarty.const._DELETE}></a>
             <a class='btn btn-primary right' href='javascript:PrintDiv();' title='<{$smarty.const._DELETE}>'><{$smarty.const._MA_WGDIARIES_PRINT_ITEM}></a>

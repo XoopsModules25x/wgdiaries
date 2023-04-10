@@ -2,13 +2,13 @@
 
 <h2 class='center'><{$smarty.const._MA_WGDIARIES_TITLE}></h2>
 
-<{if $formFilter|default:''}><{$formFilter}><{/if}>
+<{if isset($formFilter)}><{$formFilter}><{/if}>
 
-<{if $filterResult|default:''}>
+<{if isset($filterResult)}>
     <h3><{$filterResult}></h3>
 <{/if}>
 
-<{if $itemsCount|default:0 > 0}>
+<{if isset($itemsCount) && $itemsCount > 0}>
     <div id="divToPrint">
         <style></style>
         <h3><{$resultTitle|default:''}></h3>
@@ -17,25 +17,25 @@
             <div class='table-responsive'>
                 <table class='table table-<{$table_type|default:false}>'>
                     <thead>
-                    <{if $showItem|default:false === false}>
-                        <tr class='head'>
-                            <{if $useGroups|default:false}>
-                            <th><{$smarty.const._MA_WGDIARIES_ITEM_GROUPID}></th>
-                            <{/if}>
-                            <{if $listGroup|default:false}>
-                            <th><{$smarty.const._MA_WGDIARIES_ITEM_SUBMITTER}></th>
-                            <{/if}>
-                            <th><{$smarty.const._MA_WGDIARIES_ITEM_LOGO}></th>
-                            <th><{$smarty.const._MA_WGDIARIES_ITEM_NAME}></th>
-                            <th><{$smarty.const._MA_WGDIARIES_ITEM_REMARKS}></th>
-                            <th><{$smarty.const._MA_WGDIARIES_ITEM_DATEFROM}></th>
-                            <th><{$smarty.const._MA_WGDIARIES_ITEM_DATETO}></th>
-                            <th><{$smarty.const._MA_WGDIARIES_ITEM_CATID}></th>
-                            <th><{$smarty.const._MA_WGDIARIES_ITEM_TAGS}></th>
-                            <th><{$smarty.const._MA_WGDIARIES_ITEM_NBFILES}></th>
-                            <th><{$smarty.const._MA_WGDIARIES_ITEM_COMMENTS}></th>
-                            <th class="printNone">&nbsp;</th>
-                        </tr>
+                        <{if isset($showItem) && !$showItem}>
+                            <tr class='head'>
+                                <{if isset($useGroups) && $useGroups}>
+                                    <th><{$smarty.const._MA_WGDIARIES_ITEM_GROUPID}></th>
+                                <{/if}>
+                                <{if isset($listGroup) && $listGroup}>
+                                    <th><{$smarty.const._MA_WGDIARIES_ITEM_SUBMITTER}></th>
+                                <{/if}>
+                                <th><{$smarty.const._MA_WGDIARIES_ITEM_LOGO}></th>
+                                <th><{$smarty.const._MA_WGDIARIES_ITEM_NAME}></th>
+                                <th><{$smarty.const._MA_WGDIARIES_ITEM_REMARKS}></th>
+                                <th><{$smarty.const._MA_WGDIARIES_ITEM_DATEFROM}></th>
+                                <th><{$smarty.const._MA_WGDIARIES_ITEM_DATETO}></th>
+                                <th><{$smarty.const._MA_WGDIARIES_ITEM_CATID}></th>
+                                <th><{$smarty.const._MA_WGDIARIES_ITEM_TAGS}></th>
+                                <th><{$smarty.const._MA_WGDIARIES_ITEM_NBFILES}></th>
+                                <th><{$smarty.const._MA_WGDIARIES_ITEM_COMMENTS}></th>
+                                <th class="printNone">&nbsp;</th>
+                            </tr>
                         <{/if}>
                     </thead>
                     <tbody>
@@ -53,7 +53,7 @@
     </div>
 <{/if}>
 
-<{if $error|default:''}>
+<{if isset($error)}>
     <{$error|default:false}>
 <{/if}>
 

@@ -1,10 +1,10 @@
 <div class='clear'></div>
 
-<{if $pagenav|default:''}>
+<{if isset($pagenav)}>
     <div class='pull-right'><{$pagenav}></div>
 <{/if}>
 <br>
-<{if $xoops_isadmin|default:''}>
+<{if isset($xoops_isadmin) && $xoops_isadmin}>
     <div class='text-center bold'><a href='<{$admin}>'><{$smarty.const._MA_WGDIARIES_ADMIN}></a></div>
 <{/if}>
 
