@@ -74,7 +74,7 @@
     </div>
 <{/if}>
 
-<{if isset($error)}>
+<{if !empty($error)}>
     <{$error|default:false}>
 <{/if}>
 
