@@ -41,10 +41,10 @@
         </div>
     <{/if}>
 <{/if}>
-<{if isset($form)}>
+<{if !empty($form)}>
     <{$form|default:false}>
 <{/if}>
-<{if isset($error)}>
+<{if !empty($error)}>
     <{$error|default:false}>
 <{/if}>
 
