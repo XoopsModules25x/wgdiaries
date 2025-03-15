@@ -14,7 +14,7 @@ Demo (in German) is available on: https://xoops.wedega.com
 
 #### Test:
 The module is tested with 
-* PHP 8.1
+* PHP 8.4
 * XOOPS 2.5.11 RC1
 
 #### Tutorial: 
