@@ -33,15 +33,14 @@ class Modulemenu
     {
 
         $moduleDirName = \basename(\dirname(__DIR__));
-        $subcount      = 1;
         $pathname      = \XOOPS_ROOT_PATH . '/modules/' . $moduleDirName . '/';
-        $urlModule     = \XOOPS_URL . '/modules/' . $moduleDirName . '/';
 
         require_once $pathname . 'include/common.php';
         $helper = \XoopsModules\Wgfilemanager\Helper::getInstance();
         //load necessary language files from this module
         $helper->loadLanguage('modinfo');
 
+        $items = [];
         $currdirname  = isset($GLOBALS['xoopsModule']) && \is_object($GLOBALS['xoopsModule']) ? $GLOBALS['xoopsModule']->getVar('dirname') : 'system';
         if ($currdirname == $moduleDirName) {
             require_once \XOOPS_ROOT_PATH . '/modules/' . $moduleDirName . '/include/common.php';
@@ -53,20 +52,17 @@ class Modulemenu
                 'name' => \_MI_WGDIARIES_SMNAME1,
                 'url'  => 'index.php',
             ];
-            // Sub items
             $items[] = [
                 'name' => \_MI_WGDIARIES_SMNAME2,
                 'url'  => 'items.php',
             ];
             if ($permissionsHandler->getPermItemsGroupView()) {
-                // Sub Submit
                 $items[] = [
                     'name' => \_MI_WGDIARIES_SMNAME4,
                     'url'  => 'items.php?op=listgroup',
                 ];
             }
             if ($permissionsHandler->getPermItemsSubmit()) {
-                // Sub Submit
                 $items[] = [
                     'name' => \_MI_WGDIARIES_SMNAME3,
                     'url'  => 'items.php?op=new',
@@ -91,7 +87,6 @@ class Modulemenu
                 ];
             }
             if ($permissionsHandler->getPermItemsSubmit()) {
-                // Sub Submit
                 $items[] = [
                     'name' => \_MI_WGDIARIES_SMNAME8,
                     'url'  => 'archive.php',
@@ -116,7 +111,104 @@ class Modulemenu
      */
     public function getMenuitemsSbadmin5()
     {
-        return $this->getMenuitemsDefault();
+        $moduleDirName = \basename(\dirname(__DIR__));
+        $pathname      = \XOOPS_ROOT_PATH . '/modules/' . $moduleDirName . '/';
+        $urlModule     = \XOOPS_URL . '/modules/' . $moduleDirName . '/';
+
+        require_once $pathname . 'include/common.php';
+        $helper = \XoopsModules\Wgdiaries\Helper::getInstance();
+
+        //load necessary language files from this module
+/*        $helper->loadLanguage('common');
+        $helper->loadLanguage('main');*/
+        $helper->loadLanguage('modinfo');
+
+        // start creation of link list as array
+        $permissionsHandler = $helper->getHandler('Permissions');
+
+        $requestUri = $_SERVER['REQUEST_URI'];
+        /*read navbar items related to perms of current user*/
+        $nav_items1 = [];
+        $nav_items1[] = [
+            'highlight' => \strpos($requestUri, $moduleDirName . '/index.php') > 0,
+            'url' => $urlModule . 'index.php',
+            'icon' => '<i class="fa fa-tachometer fa-fw fa-lg"></i>',
+            'name' => \_MI_WGDIARIES_SMNAME1,
+            'sublinks' => []
+        ];
+        // Sub items
+        $nav_items1[] = [
+            'highlight' => \strpos($requestUri, $moduleDirName . '/items.php') > 0 && 0 === \strpos($requestUri, $moduleDirName . '/items.php?op='),
+            'url' => $urlModule . 'items.php',
+            'icon' => '<i class="fa fa-list-alt fa-fw fa-lg"></i>',
+            'name' => \_MI_WGDIARIES_SMNAME2,
+            'sublinks' => []
+        ];
+        if ($permissionsHandler->getPermItemsGroupView()) {
+            $nav_items1[] = [
+                'highlight' => \strpos($requestUri, $moduleDirName . '/items.php?op=listgroup') > 0,
+                'url' => $urlModule . 'items.php?op=listgroup',
+                'icon' => '<i class="fa fa-group fa-fw fa-lg"></i>',
+                'name' => \_MI_WGDIARIES_SMNAME4,
+                'sublinks' => []
+            ];
+        }
+        if ($permissionsHandler->getPermItemsSubmit()) {
+            $nav_items1[] = [
+                'highlight' => \strpos($requestUri, $moduleDirName . '/items.php?op=new.php') > 0,
+                'url' => $urlModule . 'items.php?op=new.php',
+                'icon' => '<i class="fa fa-edit fa-fw fa-lg"></i>',
+                'name' => \_MI_WGDIARIES_SMNAME3,
+                'sublinks' => []
+            ];
+        }
+        if ($permissionsHandler->getPermCalPageView()) {
+            $nav_items1[] = [
+                'highlight' => \strpos($requestUri, $moduleDirName . '/calendar.php') > 0,
+                'url' => $urlModule . 'calendar.php',
+                'icon' => '<i class="fa fa-calendar fa-fw fa-lg"></i>',
+                'name' => \_MI_WGDIARIES_SMNAME7,
+                'sublinks' => []
+            ];
+        }
+        if ($permissionsHandler->getPermStatisticsView()) {
+            $nav_items1[] = [
+                'highlight' => \strpos($requestUri, $moduleDirName . '/statistics.php') > 0,
+                'url' => $urlModule . 'statistics.php',
+                'icon' => '<i class="fa fa-bar-chart-o fa-fw fa-lg"></i>',
+                'name' => \_MI_WGDIARIES_SMNAME5,
+                'sublinks' => []
+            ];
+        }
+        if ($permissionsHandler->getPermOutputsView()) {
+            $nav_items1[] = [
+                'highlight' => \strpos($requestUri, $moduleDirName . '/outputs.php') > 0,
+                'url' => $urlModule . 'outputs.php',
+                'icon' => '<i class="fa fa-download fa-fw fa-lg"></i>',
+                'name' => \_MI_WGDIARIES_SMNAME6,
+                'sublinks' => []
+            ];
+        }
+        if ($permissionsHandler->getPermItemsSubmit()) {
+            $nav_items1[] = [
+                'highlight' => \strpos($requestUri, $moduleDirName . '/archive.php') > 0,
+                'url' => $urlModule . 'archive.php',
+                'icon' => '<i class="fa fa-folder-o fa-fw fa-lg"></i>',
+                'name' => \_MI_WGDIARIES_SMNAME8,
+                'sublinks' => []
+            ];
+        }
+        if ($permissionsHandler->getPermUserItemsView()) {
+            $nav_items1[] = [
+                'highlight' => \strpos($requestUri, $moduleDirName . '/useritems.php') > 0,
+                'url' => $urlModule . 'useritems.php',
+                'icon' => '<i class="fa fa-user fa-fw fa-lg"></i>',
+                'name' => \_MI_WGDIARIES_SMNAME9,
+                'sublinks' => []
+            ];
+        }
+
+        return $nav_items1;
     }
 
 
