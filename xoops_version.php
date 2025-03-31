@@ -123,66 +123,14 @@ $modversion['comments']['callback'] = [
 // ------------------- Menu ------------------- //
 $currdirname  = isset($GLOBALS['xoopsModule']) && \is_object($GLOBALS['xoopsModule']) ? $GLOBALS['xoopsModule']->getVar('dirname') : 'system';
 if ($currdirname == $moduleDirName) {
-    require_once \XOOPS_ROOT_PATH . '/modules/' . $moduleDirName . '/include/common.php';
-    $helper = Helper::getInstance();
-    $permissionsHandler = $helper->getHandler('Permissions');
-
-    $modversion['sub'][] = [
-        'name' => \_MI_WGDIARIES_SMNAME1,
-        'url'  => 'index.php',
-    ];
-    // Sub items
-    $modversion['sub'][] = [
-        'name' => \_MI_WGDIARIES_SMNAME2,
-        'url'  => 'items.php',
-    ];
-    if ($permissionsHandler->getPermItemsGroupView()) {
-        // Sub Submit
-        $modversion['sub'][] = [
-            'name' => \_MI_WGDIARIES_SMNAME4,
-            'url'  => 'items.php?op=listgroup',
-        ];
-    }
-    if ($permissionsHandler->getPermItemsSubmit()) {
-        // Sub Submit
-        $modversion['sub'][] = [
-            'name' => \_MI_WGDIARIES_SMNAME3,
-            'url'  => 'items.php?op=new',
-        ];
-    }
-    if ($permissionsHandler->getPermCalPageView()) {
-        $modversion['sub'][] = [
-            'name' => \_MI_WGDIARIES_SMNAME7,
-            'url' => 'calendar.php',
-        ];
-    }
-    if ($permissionsHandler->getPermStatisticsView()) {
-        $modversion['sub'][] = [
-            'name' => \_MI_WGDIARIES_SMNAME5,
-            'url' => 'statistics.php',
-        ];
-    }
-    if ($permissionsHandler->getPermOutputsView()) {
-        $modversion['sub'][] = [
-            'name' => \_MI_WGDIARIES_SMNAME6,
-            'url' => 'outputs.php',
-        ];
-    }
-    if ($permissionsHandler->getPermItemsSubmit()) {
-        // Sub Submit
-        $modversion['sub'][] = [
-            'name' => \_MI_WGDIARIES_SMNAME8,
-            'url'  => 'archive.php',
-        ];
-    }
-    if ($permissionsHandler->getPermUserItemsView()) {
-        // Sub Submit
-        $modversion['sub'][] = [
-            'name' => \_MI_WGDIARIES_SMNAME9,
-            'url'  => 'useritems.php',
-        ];
+    $submenu = new \XoopsModules\Wgdiaries\Modulemenu;
+    $menuItems = $submenu->getMenuitemsDefault();
+    foreach ($menuItems as $key => $menuItem) {
+        $modversion['sub'][$key]['name'] = $menuItem['name'];
+        $modversion['sub'][$key]['url'] = $menuItem['url'];
     }
 }
+// -
 // ------------------- Config ------------------- //
 // Editor Admin
 \xoops_load('xoopseditorhandler');

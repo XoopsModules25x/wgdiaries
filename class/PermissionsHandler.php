@@ -53,10 +53,15 @@ class PermissionsHandler extends \XoopsPersistableObjectHandler
      */
     public function getPermGlobalSubmit()
     {
-        global $xoopsUser, $xoopsModule;
+        global $xoopsUser;
         $currentuid = 0;
+
+        $moduleDirName = \basename(\dirname(__DIR__));
+        /** @var XoopsModuleHandler $module_handler */
+        $module_handler = xoops_getHandler('module');
+        $xoopsModule    = $module_handler->getByDirname($moduleDirName);
         if (isset($xoopsUser) && \is_object($xoopsUser)) {
-            if ($xoopsUser->isAdmin($xoopsModule->mid())) {
+            if (isset($xoopsModule) && $xoopsUser->isAdmin($xoopsModule->mid())) {
                 return true;
             }
             $currentuid = $xoopsUser->uid();
